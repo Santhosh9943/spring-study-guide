@@ -1,0 +1,59 @@
+site_name: Spring Ecosystem Study Guide
+site_description: Complete Spring guide with 27 files
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: green
+      accent: green
+nav:
+  - Home: README.md
+  - Part 1 — Foundations:
+      - Spring Core: docs/part-1-foundations/01_Spring_Framework_Core.md
+      - AOP: docs/part-1-foundations/02_Spring_AOP.md
+      - MVC: docs/part-1-foundations/03_Spring_MVC.md
+      - JDBC: docs/part-1-foundations/04_Spring_JDBC.md
+      - Transactions: docs/part-1-foundations/05_Spring_Transaction_Management.md
+  - Part 2 — Spring Boot:
+      - Fundamentals: docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md
+      - Starters: docs/part-2-spring-boot/07_Spring_Boot_Starters.md
+      - Configuration: docs/part-2-spring-boot/08_Spring_Boot_Configuration.md
+      - Actuator: docs/part-2-spring-boot/09_Spring_Boot_Actuator.md
+  - Part 3 — Data Access:
+      - JPA: docs/part-3-data-access/10_Spring_Data_JPA.md
+      - Spring Data JDBC: docs/part-3-data-access/11_Spring_Data_JDBC.md
+      - Caching: docs/part-3-data-access/12_Spring_Caching.md
+  - Part 4 — Security:
+      - Security Core: docs/part-4-security/13_Spring_Security_Core.md
+      - JWT & OAuth2: docs/part-4-security/14_Spring_Security_JWT_OAuth2.md
+      - Method Security: docs/part-4-security/15_Spring_Security_Method_Level.md
+  - Part 5 — Testing:
+      - Testing: docs/part-5-testing/16_Spring_Testing.md
+  - Part 6 — Build Tools:
+      - Maven: docs/part-6-build-tools/17_Maven_Build_Tool.md
+      - Gradle: docs/part-6-build-tools/18_Gradle_For_Spring.md
+  - Part 7 — Advanced:
+      - Microservices: docs/part-7-advanced/19_Spring_Microservices_Cloud.md
+      - WebFlux: docs/part-7-advanced/20_Spring_WebFlux_Reactive.md
+      - Batch: docs/part-7-advanced/21_Spring_Batch.md
+      - Messaging: docs/part-7-advanced/22_Spring_Messaging.md
+      - Web Services: docs/part-7-advanced/23_Spring_Web_Services.md
+  - Part 8 — Interview Prep:
+      - Interview Questions: docs/part-8-interview-prep/24_Spring_Interview_Questions.md
+      - Project Architecture: docs/part-8-interview-prep/25_Spring_Project_Architecture.md
+      - Best Practices: docs/part-8-interview-prep/26_Spring_Best_Practices.md
+      - Cheat Sheet: docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+  - toc:
+      permalink: true
