@@ -1,0 +1,3847 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Spring JDBC & JdbcTemplate - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spring-jdbc-jdbctemplate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spring JDBC &amp; JdbcTemplate
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-problems-with-raw-jdbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Problems with Raw JDBC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Problems with Raw JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-7-pain-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The 7 Pain Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problems-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-spring-jdbc-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Spring JDBC Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-spring-jdbc-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spring JDBC Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Spring JDBC Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-datasource-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. DataSource Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. DataSource Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spring-boot-auto-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Boot Auto-Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-pool-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection Pool Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-datasources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple DataSources
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-jdbctemplate-crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. JdbcTemplate — CRUD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. JdbcTemplate — CRUD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CREATE — Insert
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert-with-generated-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insert with Generated Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        READ — Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UPDATE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-no-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling No Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rowmapper-as-bean-or-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RowMapper as Bean or Class
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rowmapper-resultsetextractor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. RowMapper &amp; ResultSetExtractor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. RowMapper &amp; ResultSetExtractor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rowmapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RowMapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultsetextractor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ResultSetExtractor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rowcallbackhandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RowCallbackHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beanpropertyrowmapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeanPropertyRowMapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-batch-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Batch Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Batch Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-insert-list-of-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch Insert — List of Arrays
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batchpreparedstatementsetter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BatchPreparedStatementSetter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameterizedbatchupdate-batch-with-named-params" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ParameterizedBatchUpdate — Batch with Named Params
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beanpropertysqlparametersource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeanPropertySqlParameterSource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-performance-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch Performance Tips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-namedparameterjdbctemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. NamedParameterJdbcTemplate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. NamedParameterJdbcTemplate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#named-params" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Named Params
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Map-based
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IN Clause
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlparametersource-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SqlParameterSource Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-simplejdbcinsert-simplejdbccall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. SimpleJdbcInsert &amp; SimpleJdbcCall
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. SimpleJdbcInsert &amp; SimpleJdbcCall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplejdbcinsert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SimpleJdbcInsert
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplejdbccall-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SimpleJdbcCall (Stored Procedures)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-rowmapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With RowMapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-exception-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Exception Translation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Exception Translation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#without-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Without Spring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With Spring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-translation-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Translation Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Translator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-transaction-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Transaction Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Transaction Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactional-on-repositoryservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Transactional on Repository/Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-transaction-transactiontemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic Transaction (TransactionTemplate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasourcetransactionmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DataSourceTransactionManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-jdbc-vs-jpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. JDBC vs JPA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-why-use-jdbctemplate-over-plain-jdbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. Why use JdbcTemplate over plain JDBC?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-difference-between-rowmapper-and-resultsetextractor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. Difference between RowMapper and ResultSetExtractor?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-what-is-namedparameterjdbctemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. What is NamedParameterJdbcTemplate?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-how-does-spring-handle-sqlexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. How does Spring handle SQLException?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-how-to-insert-and-get-generated-id-with-jdbctemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. How to insert and get generated ID with JdbcTemplate?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-what-is-simplejdbcinsert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. What is SimpleJdbcInsert?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-how-to-perform-batch-insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. How to perform batch insert?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-how-to-enable-exception-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. How to enable exception translation?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-what-is-beanpropertyrowmapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. What is BeanPropertyRowMapper?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-how-to-query-a-list-of-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. How to query a list of values?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-how-to-handle-emptyresultdataaccessexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. How to handle EmptyResultDataAccessException?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-jdbctemplate-vs-jpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. JdbcTemplate vs JPA?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-how-to-configure-multiple-datasources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. How to configure multiple DataSources?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-what-is-simplejdbccall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. What is SimpleJdbcCall?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-how-do-you-get-a-connection-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. How do you get a Connection manually?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-what-is-the-difference-between-execute-and-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. What is the difference between execute and update?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-how-to-bind-a-list-to-an-in-clause-in-namedparameterjdbctemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. How to bind a List to an IN clause in NamedParameterJdbcTemplate?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-how-to-log-executed-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. How to log executed SQL?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-when-would-you-choose-jdbc-over-jpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. When would you choose JDBC over JPA?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-how-do-you-test-jdbctemplate-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. How do you test JdbcTemplate code?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rowmapper-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RowMapper Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-hierarchy-memory-aid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception Hierarchy (Memory Aid)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="spring-jdbc-jdbctemplate">Spring JDBC &amp; JdbcTemplate<a class="headerlink" href="#spring-jdbc-jdbctemplate" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>04_Spring_JDBC.md</code>
+<strong>Part:</strong> 1 — Foundations
+<strong>Prerequisites:</strong> <code>01_Spring_Framework_Core.md</code>, <code>05_Spring_Transaction_Management.md</code> (helpful)
+<strong>Estimated Study Time:</strong> 6–8 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-problems-with-raw-jdbc">Problems with Raw JDBC</a></li>
+<li><a href="#2-spring-jdbc-architecture">Spring JDBC Architecture</a></li>
+<li><a href="#3-datasource-configuration">DataSource Configuration</a></li>
+<li><a href="#4-jdbctemplate--crud">JdbcTemplate — CRUD</a></li>
+<li><a href="#5-rowmapper--resultsetextractor">RowMapper &amp; ResultSetExtractor</a></li>
+<li><a href="#6-batch-operations">Batch Operations</a></li>
+<li><a href="#7-namedparameterjdbctemplate">NamedParameterJdbcTemplate</a></li>
+<li><a href="#8-simplejdbcinsert--simplejdbccall">SimpleJdbcInsert &amp; SimpleJdbcCall</a></li>
+<li><a href="#9-exception-translation">Exception Translation</a></li>
+<li><a href="#10-transaction-integration">Transaction Integration</a></li>
+<li><a href="#11-jdbc-vs-jpa">JDBC vs JPA</a></li>
+<li><a href="#12-interview-questions">Interview Questions</a></li>
+<li><a href="#13-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-problems-with-raw-jdbc">1. Problems with Raw JDBC<a class="headerlink" href="#1-problems-with-raw-jdbc" title="Permanent link">&para;</a></h2>
+<h3 id="the-7-pain-points">The 7 Pain Points<a class="headerlink" href="#the-7-pain-points" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Connection</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataSource</span><span class="p">.</span><span class="na">getConnection</span><span class="p">();</span><span class="w">                       </span><span class="c1">// 1. Boilerplate</span>
+<span class="w">        </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="w">                              </span><span class="c1">// 2. SQL strings</span>
+<span class="w">            </span><span class="s">"SELECT id, name, email FROM users WHERE id = ?"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ps</span><span class="p">.</span><span class="na">setLong</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">                                       </span><span class="c1">// 3. Positional params</span>
+<span class="w">        </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ps</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">                                         </span><span class="c1">// 4. Manual mapping</span>
+<span class="w">            </span><span class="n">User</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">();</span>
+<span class="w">            </span><span class="n">u</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="s">"id"</span><span class="p">));</span>
+<span class="w">            </span><span class="n">u</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"name"</span><span class="p">));</span>
+<span class="w">            </span><span class="n">u</span><span class="p">.</span><span class="na">setEmail</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"email"</span><span class="p">));</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                                   </span><span class="c1">// 5. Verbose exceptions</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w">                                                  </span><span class="c1">// 6. Resource cleanup</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">ignored</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ps</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ps</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">ignored</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">conn</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">conn</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">ignored</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">}</span><span class="w">                                                                </span><span class="c1">// 7. Vendor exceptions</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="problems-summary">Problems Summary<a class="headerlink" href="#problems-summary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Problem</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Boilerplate getConnection/prepareStatement</td>
+<td>Code bloat</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SQL embedded in Java</td>
+<td>Poor readability</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Positional parameters</td>
+<td>Fragile when order changes</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Manual ResultSet → object mapping</td>
+<td>Repetitive, error-prone</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SQLException (checked)</td>
+<td>Forces try/catch everywhere</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Explicit resource cleanup</td>
+<td>Leak risk</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Vendor-specific error codes</td>
+<td>Non-portable</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-spring-jdbc-fixes">What Spring JDBC Fixes<a class="headerlink" href="#what-spring-jdbc-fixes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Template pattern</strong> — boilerplate eliminated</li>
+<li><strong>RowMapper</strong> — clean mapping</li>
+<li><strong>DataAccessException</strong> — unchecked, portable</li>
+<li><strong>Automatic resource management</strong> — no leaks</li>
+<li><strong>NamedParameterJdbcTemplate</strong> — named params</li>
+<li><strong>Batch support</strong> — first-class</li>
+</ul>
+<hr />
+<h2 id="2-spring-jdbc-architecture">2. Spring JDBC Architecture<a class="headerlink" href="#2-spring-jdbc-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="module-stack">Module Stack<a class="headerlink" href="#module-stack" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────────────────────┐
+│              Application Code                    │
+├──────────────────────────────────────────────────┤
+│  JdbcTemplate / NamedParameterJdbcTemplate      │
+│  SimpleJdbcInsert / SimpleJdbcCall / JdbcDaoSupport │
+├──────────────────────────────────────────────────┤
+│      Spring JDBC Core (org.springframework.jdbc) │
+│      Exception translation, RowMapper, etc.      │
+├──────────────────────────────────────────────────┤
+│   DataSource Abstraction                         │
+│   (HikariCP, Tomcat, DBCP, ...)                  │
+├──────────────────────────────────────────────────┤
+│         JDBC Driver (PostgreSQL, MySQL, ...)     │
+├──────────────────────────────────────────────────┤
+│              Database                            │
+└──────────────────────────────────────────────────┘
+</code></pre></div>
+<h3 id="key-classes">Key Classes<a class="headerlink" href="#key-classes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JdbcTemplate</code></td>
+<td>Main workhorse</td>
+</tr>
+<tr>
+<td><code>NamedParameterJdbcTemplate</code></td>
+<td>Named parameters</td>
+</tr>
+<tr>
+<td><code>SimpleJdbcInsert</code></td>
+<td>Inserts without SQL</td>
+</tr>
+<tr>
+<td><code>SimpleJdbcCall</code></td>
+<td>Stored procedures</td>
+</tr>
+<tr>
+<td><code>JdbcDaoSupport</code></td>
+<td>Base class for DAOs (legacy)</td>
+</tr>
+<tr>
+<td><code>DataSource</code></td>
+<td>Connection source</td>
+</tr>
+<tr>
+<td><code>RowMapper</code></td>
+<td>Row → object (1 per row)</td>
+</tr>
+<tr>
+<td><code>ResultSetExtractor</code></td>
+<td>ResultSet → object (whole set)</td>
+</tr>
+<tr>
+<td><code>RowCallbackHandler</code></td>
+<td>Row → side-effect (no return)</td>
+</tr>
+<tr>
+<td><code>PreparedStatementSetter</code></td>
+<td>Bind params</td>
+</tr>
+<tr>
+<td><code>GeneratedKeyHolder</code></td>
+<td>Retrieve auto-generated keys</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dependency">Dependency<a class="headerlink" href="#dependency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.postgresql<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>postgresql<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Includes HikariCP by default.</p>
+<hr />
+<h2 id="3-datasource-configuration">3. DataSource Configuration<a class="headerlink" href="#3-datasource-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="spring-boot-auto-configuration">Spring Boot Auto-Configuration<a class="headerlink" href="#spring-boot-auto-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://localhost:5432/mydb</span>
+<span class="na">spring.datasource.username</span><span class="o">=</span><span class="s">admin</span>
+<span class="na">spring.datasource.password</span><span class="o">=</span><span class="s">secret</span>
+<span class="na">spring.datasource.driver-class-name</span><span class="o">=</span><span class="s">org.postgresql.Driver</span>
+<span class="na">spring.datasource.hikari.maximum-pool-size</span><span class="o">=</span><span class="s">20</span>
+<span class="na">spring.datasource.hikari.minimum-idle</span><span class="o">=</span><span class="s">5</span>
+<span class="na">spring.datasource.hikari.connection-timeout</span><span class="o">=</span><span class="s">30000</span>
+<span class="na">spring.datasource.hikari.idle-timeout</span><span class="o">=</span><span class="s">600000</span>
+<span class="na">spring.datasource.hikari.max-lifetime</span><span class="o">=</span><span class="s">1800000</span>
+<span class="na">spring.datasource.hikari.pool-name</span><span class="o">=</span><span class="s">MyHikariPool</span>
+</code></pre></div>
+<h3 id="manual-config">Manual Config<a class="headerlink" href="#manual-config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DataSourceConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="s">"spring.datasource.hikari"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">HikariDataSource</span><span class="w"> </span><span class="nf">dataSource</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HikariDataSource</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="nf">jdbcTemplate</span><span class="p">(</span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">NamedParameterJdbcTemplate</span><span class="w"> </span><span class="nf">namedJdbc</span><span class="p">(</span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NamedParameterJdbcTemplate</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="connection-pool-comparison">Connection Pool Comparison<a class="headerlink" href="#connection-pool-comparison" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Pool</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HikariCP</strong></td>
+<td>Default in Spring Boot, fastest</td>
+</tr>
+<tr>
+<td>Tomcat JDBC</td>
+<td>Bundled with Tomcat, feature-rich</td>
+</tr>
+<tr>
+<td>Apache DBCP2</td>
+<td>Legacy, widely known</td>
+</tr>
+<tr>
+<td>C3P0</td>
+<td>Old, avoid</td>
+</tr>
+<tr>
+<td>Vibur</td>
+<td>Low-latency</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Always use Hikari for new apps.</strong></p>
+<h3 id="multiple-datasources">Multiple DataSources<a class="headerlink" href="#multiple-datasources" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MultiDsConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@Primary</span>
+<span class="w">    </span><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="s">"spring.datasource.primary"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">primaryDs</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">DataSourceBuilder</span><span class="p">.</span><span class="na">create</span><span class="p">().</span><span class="na">build</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="s">"spring.datasource.secondary"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">secondaryDs</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">DataSourceBuilder</span><span class="p">.</span><span class="na">create</span><span class="p">().</span><span class="na">build</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span><span class="w"> </span><span class="nd">@Primary</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="nf">primaryJdbc</span><span class="p">(</span><span class="nd">@Qualifier</span><span class="p">(</span><span class="s">"primaryDs"</span><span class="p">)</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="nf">secondaryJdbc</span><span class="p">(</span><span class="nd">@Qualifier</span><span class="p">(</span><span class="s">"secondaryDs"</span><span class="p">)</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="4-jdbctemplate-crud">4. JdbcTemplate — CRUD<a class="headerlink" href="#4-jdbctemplate-crud" title="Permanent link">&para;</a></h2>
+<h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Repository</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="n">jdbc</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserRepository</span><span class="p">(</span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="n">jdbc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">jdbc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jdbc</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="create-insert">CREATE — Insert<a class="headerlink" href="#create-insert" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"INSERT INTO users (name, email) VALUES (?, ?)"</span><span class="p">,</span>
+<span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">getName</span><span class="p">(),</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getEmail</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="insert-with-generated-key">Insert with Generated Key<a class="headerlink" href="#insert-with-generated-key" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">insertAndReturnId</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">KeyHolder</span><span class="w"> </span><span class="n">keyHolder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GeneratedKeyHolder</span><span class="p">();</span>
+<span class="w">    </span><span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">con</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span>
+<span class="w">            </span><span class="s">"INSERT INTO users (name, email) VALUES (?, ?)"</span><span class="p">,</span>
+<span class="w">            </span><span class="n">Statement</span><span class="p">.</span><span class="na">RETURN_GENERATED_KEYS</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">        </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getEmail</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ps</span><span class="p">;</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="n">keyHolder</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">keyHolder</span><span class="p">.</span><span class="na">getKey</span><span class="p">().</span><span class="na">longValue</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="read-query">READ — Query<a class="headerlink" href="#read-query" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Count</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">count</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">queryForObject</span><span class="p">(</span><span class="s">"SELECT COUNT(*) FROM users"</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Single value</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">findEmailById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">queryForObject</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"SELECT email FROM users WHERE id = ?"</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Single row → object</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">queryForObject</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"SELECT id, name, email FROM users WHERE id = ?"</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="w"> </span><span class="n">rowNum</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="s">"id"</span><span class="p">),</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"name"</span><span class="p">),</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"email"</span><span class="p">)),</span>
+<span class="w">        </span><span class="n">id</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// List</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"SELECT id, name, email FROM users ORDER BY id"</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="w"> </span><span class="n">rowNum</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="s">"id"</span><span class="p">),</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"name"</span><span class="p">),</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"email"</span><span class="p">)));</span>
+<span class="p">}</span>
+
+<span class="c1">// Map</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">findRaw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">queryForList</span><span class="p">(</span><span class="s">"SELECT * FROM users"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="update">UPDATE<a class="headerlink" href="#update" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"UPDATE users SET name = ?, email = ? WHERE id = ?"</span><span class="p">,</span>
+<span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">getName</span><span class="p">(),</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getEmail</span><span class="p">(),</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="delete">DELETE<a class="headerlink" href="#delete" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="s">"DELETE FROM users WHERE id = ?"</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="handling-no-result">Handling No Result<a class="headerlink" href="#handling-no-result" title="Permanent link">&para;</a></h3>
+<p><code>queryForObject</code> throws <code>EmptyResultDataAccessException</code> if no rows. Handle:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">jdbc</span><span class="p">.</span><span class="na">queryForObject</span><span class="p">(</span>
+<span class="w">            </span><span class="s">"SELECT id, name, email FROM users WHERE id = ?"</span><span class="p">,</span>
+<span class="w">            </span><span class="n">userRowMapper</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">EmptyResultDataAccessException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">empty</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="available-methods">Available Methods<a class="headerlink" href="#available-methods" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>update(sql, args...)</code></td>
+<td>INSERT/UPDATE/DELETE</td>
+</tr>
+<tr>
+<td><code>queryForObject(sql, Class, args...)</code></td>
+<td>Single value</td>
+</tr>
+<tr>
+<td><code>queryForObject(sql, RowMapper, args...)</code></td>
+<td>Single row</td>
+</tr>
+<tr>
+<td><code>query(sql, RowMapper, args...)</code></td>
+<td>List of rows</td>
+</tr>
+<tr>
+<td><code>queryForList(sql, Class, args...)</code></td>
+<td>List of values</td>
+</tr>
+<tr>
+<td><code>queryForList(sql, args...)</code></td>
+<td>List of maps</td>
+</tr>
+<tr>
+<td><code>queryForMap(sql, args...)</code></td>
+<td>Single map</td>
+</tr>
+<tr>
+<td><code>execute(sql)</code></td>
+<td>Any SQL (DDL)</td>
+</tr>
+<tr>
+<td><code>batchUpdate(sql, BatchPreparedStatementSetter)</code></td>
+<td>Batch</td>
+</tr>
+<tr>
+<td><code>batchUpdate(sql, List&lt;Object[]&gt;)</code></td>
+<td>Batch with args</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rowmapper-as-bean-or-class">RowMapper as Bean or Class<a class="headerlink" href="#rowmapper-as-bean-or-class" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserRowMapper</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">RowMapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">mapRow</span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rowNum</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="s">"id"</span><span class="p">),</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"name"</span><span class="p">),</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"email"</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Usage</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="s">"SELECT * FROM users"</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UserRowMapper</span><span class="p">());</span>
+</code></pre></div>
+<hr />
+<h2 id="5-rowmapper-resultsetextractor">5. RowMapper &amp; ResultSetExtractor<a class="headerlink" href="#5-rowmapper-resultsetextractor" title="Permanent link">&para;</a></h2>
+<h3 id="rowmapper">RowMapper<T><a class="headerlink" href="#rowmapper" title="Permanent link">&para;</a></h3>
+<p>Maps <strong>one row</strong> at a time. Spring iterates.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">RowMapper</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="nf">mapRow</span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rowNum</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Pros:</strong> Simple, memory-efficient for large results.</p>
+<h3 id="resultsetextractor">ResultSetExtractor<T><a class="headerlink" href="#resultsetextractor" title="Permanent link">&para;</a></h3>
+<p>Receives the <strong>entire</strong> ResultSet. You iterate manually.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ResultSetExtractor</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="nf">extractData</span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="p">,</span><span class="w"> </span><span class="n">DataAccessException</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Use case:</strong> Custom shapes (e.g., customer + orders in one query).</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findCustomersWithOrders</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"SELECT c.id cid, c.name cname, o.id oid, o.total ototal "</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="s">"FROM customers c LEFT JOIN orders o ON c.id = o.customer_id "</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="s">"ORDER BY c.id"</span><span class="p">,</span>
+<span class="w">        </span><span class="n">rs</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="p">,</span><span class="w"> </span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedHashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Long</span><span class="w"> </span><span class="n">cid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="s">"cid"</span><span class="p">);</span>
+<span class="w">                </span><span class="n">Customer</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">computeIfAbsent</span><span class="p">(</span><span class="n">cid</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Customer</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"cname"</span><span class="p">));</span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                </span><span class="p">});</span>
+<span class="w">                </span><span class="kt">long</span><span class="w"> </span><span class="n">oid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="s">"oid"</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">rs</span><span class="p">.</span><span class="na">wasNull</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">c</span><span class="p">.</span><span class="na">getOrders</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Order</span><span class="p">(</span><span class="n">oid</span><span class="p">,</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getBigDecimal</span><span class="p">(</span><span class="s">"ototal"</span><span class="p">)));</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">map</span><span class="p">.</span><span class="na">values</span><span class="p">());</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="rowcallbackhandler">RowCallbackHandler<a class="headerlink" href="#rowcallbackhandler" title="Permanent link">&para;</a></h3>
+<p>For side effects (no return value).</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">processAllUsers</span><span class="p">(</span><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">consumer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">jdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="s">"SELECT * FROM users"</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="n">RowCallbackHandler</span><span class="p">)</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">consumer</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="s">"id"</span><span class="p">),</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"name"</span><span class="p">),</span>
+<span class="w">            </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"email"</span><span class="p">))));</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="comparison">Comparison<a class="headerlink" href="#comparison" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Scope</th>
+<th>Returns</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RowMapper</code></td>
+<td>1 row</td>
+<td>T</td>
+<td>Normal row → object</td>
+</tr>
+<tr>
+<td><code>ResultSetExtractor</code></td>
+<td>Whole set</td>
+<td>T</td>
+<td>Complex object graph</td>
+</tr>
+<tr>
+<td><code>RowCallbackHandler</code></td>
+<td>1 row</td>
+<td>void</td>
+<td>Streaming side effects</td>
+</tr>
+</tbody>
+</table>
+<h3 id="beanpropertyrowmapper">BeanPropertyRowMapper<a class="headerlink" href="#beanpropertyrowmapper" title="Permanent link">&para;</a></h3>
+<p>Auto-maps columns to bean fields (by name).</p>
+<div class="highlight"><pre><span></span><code><span class="n">RowMapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BeanPropertyRowMapper</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="s">"SELECT id, name, email FROM users"</span><span class="p">,</span><span class="w"> </span><span class="n">mapper</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Rules:</strong>
+- Column <code>user_name</code> → field <code>userName</code> (via <code>underscoreToCamelCase</code>)
+- Types auto-converted by Spring
+- Works with setters or fields</p>
+<p><strong>Caveat:</strong> Slightly slower (reflection), but very convenient.</p>
+<hr />
+<h2 id="6-batch-operations">6. Batch Operations<a class="headerlink" href="#6-batch-operations" title="Permanent link">&para;</a></h2>
+<h3 id="batch-insert-list-of-arrays">Batch Insert — List of Arrays<a class="headerlink" href="#batch-insert-list-of-arrays" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="nf">batchInsert</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]&gt;</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="p">{</span><span class="n">u</span><span class="p">.</span><span class="na">getName</span><span class="p">(),</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="na">getEmail</span><span class="p">()})</span>
+<span class="w">        </span><span class="p">.</span><span class="na">toList</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">batchUpdate</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"INSERT INTO users (name, email) VALUES (?, ?)"</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="batchpreparedstatementsetter">BatchPreparedStatementSetter<a class="headerlink" href="#batchpreparedstatementsetter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="nf">batchInsertWithSetter</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">batchUpdate</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"INSERT INTO users (name, email) VALUES (?, ?)"</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">BatchPreparedStatementSetter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setValues</span><span class="p">(</span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">User</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">                </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">                </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="na">getEmail</span><span class="p">());</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getBatchSize</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="parameterizedbatchupdate-batch-with-named-params">ParameterizedBatchUpdate — Batch with Named Params<a class="headerlink" href="#parameterizedbatchupdate-batch-with-named-params" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">namedJdbc</span><span class="p">.</span><span class="na">batchUpdate</span><span class="p">(</span>
+<span class="w">    </span><span class="s">"INSERT INTO users (name, email) VALUES (:name, :email)"</span><span class="p">,</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">SqlParameterSource</span><span class="o">[]</span><span class="p">{</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MapSqlParameterSource</span><span class="p">().</span><span class="na">addValue</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span><span class="w"> </span><span class="s">"A"</span><span class="p">).</span><span class="na">addValue</span><span class="p">(</span><span class="s">"email"</span><span class="p">,</span><span class="w"> </span><span class="s">"a@x.com"</span><span class="p">),</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MapSqlParameterSource</span><span class="p">().</span><span class="na">addValue</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span><span class="w"> </span><span class="s">"B"</span><span class="p">).</span><span class="na">addValue</span><span class="p">(</span><span class="s">"email"</span><span class="p">,</span><span class="w"> </span><span class="s">"b@x.com"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">});</span>
+</code></pre></div>
+<h3 id="beanpropertysqlparametersource">BeanPropertySqlParameterSource<a class="headerlink" href="#beanpropertysqlparametersource" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">SqlParameterSource</span><span class="o">[]</span><span class="w"> </span><span class="n">sources</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">BeanPropertySqlParameterSource</span><span class="p">::</span><span class="k">new</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="n">SqlParameterSource</span><span class="o">[]</span><span class="p">::</span><span class="k">new</span><span class="p">);</span>
+<span class="n">namedJdbc</span><span class="p">.</span><span class="na">batchUpdate</span><span class="p">(</span><span class="s">"INSERT INTO users (name, email) VALUES (:name, :email)"</span><span class="p">,</span><span class="w"> </span><span class="n">sources</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="batch-performance-tips">Batch Performance Tips<a class="headerlink" href="#batch-performance-tips" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Batch size <strong>500–5000</strong> typically optimal</li>
+<li>Use <code>rewriteBatchedStatements=true</code> for MySQL</li>
+<li>Batch <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> — not <code>SELECT</code></li>
+<li>Use transactions to avoid per-statement commit</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertMany</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">batchInsert</span><span class="p">(</span><span class="n">users</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="7-namedparameterjdbctemplate">7. NamedParameterJdbcTemplate<a class="headerlink" href="#7-namedparameterjdbctemplate" title="Permanent link">&para;</a></h2>
+<p>Cleaner than positional <code>?</code>.</p>
+<h3 id="setup_1">Setup<a class="headerlink" href="#setup_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Repository</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">NamedParameterJdbcTemplate</span><span class="w"> </span><span class="n">namedJdbc</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserRepository</span><span class="p">(</span><span class="n">NamedParameterJdbcTemplate</span><span class="w"> </span><span class="n">namedJdbc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">namedJdbc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">namedJdbc</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="named-params">Named Params<a class="headerlink" href="#named-params" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findByEmail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MapSqlParameterSource</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MapSqlParameterSource</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">addValue</span><span class="p">(</span><span class="s">"email"</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">namedJdbc</span><span class="p">.</span><span class="na">queryForObject</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"SELECT * FROM users WHERE email = :email"</span><span class="p">,</span>
+<span class="w">        </span><span class="n">params</span><span class="p">,</span>
+<span class="w">        </span><span class="n">userRowMapper</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="map-based">Map-based<a class="headerlink" href="#map-based" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">    </span><span class="s">"minAge"</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span>
+<span class="w">    </span><span class="s">"maxAge"</span><span class="p">,</span><span class="w"> </span><span class="mi">65</span>
+<span class="p">);</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">namedJdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span>
+<span class="w">    </span><span class="s">"SELECT * FROM users WHERE age BETWEEN :minAge AND :maxAge"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">params</span><span class="p">,</span>
+<span class="w">    </span><span class="n">userRowMapper</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="in-clause">IN Clause<a class="headerlink" href="#in-clause" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">MapSqlParameterSource</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MapSqlParameterSource</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="na">addValue</span><span class="p">(</span><span class="s">"ids"</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1L</span><span class="p">,</span><span class="w"> </span><span class="mi">2L</span><span class="p">,</span><span class="w"> </span><span class="mi">3L</span><span class="p">));</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">namedJdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span>
+<span class="w">    </span><span class="s">"SELECT * FROM users WHERE id IN (:ids)"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">params</span><span class="p">,</span>
+<span class="w">    </span><span class="n">userRowMapper</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="updates">Updates<a class="headerlink" href="#updates" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">namedJdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="s">"UPDATE users SET name = :name WHERE id = :id"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span><span class="w"> </span><span class="s">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="s">"id"</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">));</span>
+</code></pre></div>
+<h3 id="sqlparametersource-options">SqlParameterSource Options<a class="headerlink" href="#sqlparametersource-options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MapSqlParameterSource</code></td>
+<td>Explicit map of params</td>
+</tr>
+<tr>
+<td><code>BeanPropertySqlParameterSource</code></td>
+<td>Java bean props = params</td>
+</tr>
+<tr>
+<td><code>EmptySqlParameterSource</code></td>
+<td>No params</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-simplejdbcinsert-simplejdbccall">8. SimpleJdbcInsert &amp; SimpleJdbcCall<a class="headerlink" href="#8-simplejdbcinsert-simplejdbccall" title="Permanent link">&para;</a></h2>
+<h3 id="simplejdbcinsert">SimpleJdbcInsert<a class="headerlink" href="#simplejdbcinsert" title="Permanent link">&para;</a></h3>
+<p>Insert without writing SQL.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Repository</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SimpleJdbcInsert</span><span class="w"> </span><span class="n">insert</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserRepository</span><span class="p">(</span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="n">jdbc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">insert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleJdbcInsert</span><span class="p">(</span><span class="n">jdbc</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">withTableName</span><span class="p">(</span><span class="s">"users"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">usingGeneratedKeyColumns</span><span class="p">(</span><span class="s">"id"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">usingColumns</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span><span class="w"> </span><span class="s">"email"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">            </span><span class="s">"name"</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getName</span><span class="p">(),</span>
+<span class="w">            </span><span class="s">"email"</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getEmail</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">insert</span><span class="p">.</span><span class="na">executeAndReturnKey</span><span class="p">(</span><span class="n">params</span><span class="p">).</span><span class="na">longValue</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="simplejdbccall-stored-procedures">SimpleJdbcCall (Stored Procedures)<a class="headerlink" href="#simplejdbccall-stored-procedures" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">SimpleJdbcCall</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleJdbcCall</span><span class="p">(</span><span class="n">jdbc</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">withProcedureName</span><span class="p">(</span><span class="s">"sp_find_users"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">declareParameters</span><span class="p">(</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">SqlParameter</span><span class="p">(</span><span class="s">"in_status"</span><span class="p">,</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">VARCHAR</span><span class="p">),</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">SqlOutParameter</span><span class="p">(</span><span class="s">"out_count"</span><span class="p">,</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">INTEGER</span><span class="p">));</span>
+
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">call</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"in_status"</span><span class="p">,</span><span class="w"> </span><span class="s">"ACTIVE"</span><span class="p">));</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"out_count"</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="with-rowmapper">With RowMapper<a class="headerlink" href="#with-rowmapper" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">SimpleJdbcCall</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleJdbcCall</span><span class="p">(</span><span class="n">jdbc</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">withProcedureName</span><span class="p">(</span><span class="s">"sp_get_user"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">returningResultSet</span><span class="p">(</span><span class="s">"user"</span><span class="p">,</span><span class="w"> </span><span class="n">userRowMapper</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">declareParameters</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SqlParameter</span><span class="p">(</span><span class="s">"id"</span><span class="p">,</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">BIGINT</span><span class="p">));</span>
+
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">call</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"id"</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">));</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"user"</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="9-exception-translation">9. Exception Translation<a class="headerlink" href="#9-exception-translation" title="Permanent link">&para;</a></h2>
+<h3 id="without-spring">Without Spring<a class="headerlink" href="#without-spring" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// SQL</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Check vendor code: "23505" (PostgreSQL unique), "1062" (MySQL)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="with-spring">With Spring<a class="headerlink" href="#with-spring" title="Permanent link">&para;</a></h3>
+<p>Spring translates <code>SQLException</code> → <code>DataAccessException</code> (unchecked) via <code>SQLExceptionTranslator</code>.</p>
+<h3 id="exception-hierarchy">Exception Hierarchy<a class="headerlink" href="#exception-hierarchy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>DataAccessException (unchecked, root)
+├── NonTransientDataAccessException (retry won't help)
+│   ├── BadSqlGrammarException
+│   ├── DataIntegrityViolationException
+│   ├── DuplicateKeyException
+│   ├── DataAccessResourceFailureException
+│   ├── InvalidDataAccessApiUsageException
+│   └── ...
+├── TransientDataAccessException (retry may help)
+│   ├── TransientDataAccessResourceException
+│   ├── ConcurrencyFailureException
+│   │   ├── OptimisticLockingFailureException
+│   │   └── PessimisticLockingFailureException
+│   └── QueryTimeoutException
+├── RecoverableDataAccessException
+└── ...
+</code></pre></div>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="s">"INSERT INTO users (email) VALUES (?)"</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">DuplicateKeyException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">EmailAlreadyExistsException</span><span class="p">(</span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">DataIntegrityViolationException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ValidationException</span><span class="p">(</span><span class="s">"Data integrity violation"</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="how-translation-works">How Translation Works<a class="headerlink" href="#how-translation-works" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Spring uses <code>SQLExceptionTranslator</code> (default: <code>SQLExceptionSubclassTranslator</code> + <code>SQLStateSQLExceptionTranslator</code>)</li>
+<li>It examines <code>SQLState</code>, error code, and vendor codes</li>
+<li>For <code>@Repository</code> beans, translation is applied via <code>PersistenceExceptionTranslationPostProcessor</code></li>
+</ul>
+<h3 id="custom-translator">Custom Translator<a class="headerlink" href="#custom-translator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyTranslator</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SQLErrorCodeSQLExceptionTranslator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="n">DataAccessException</span><span class="w"> </span><span class="nf">customTranslate</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">task</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="p">,</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="na">getErrorCode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">12345</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyCustomException</span><span class="p">(</span><span class="s">"Oops"</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">customTranslate</span><span class="p">(</span><span class="n">task</span><span class="p">,</span><span class="w"> </span><span class="n">sql</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="10-transaction-integration">10. Transaction Integration<a class="headerlink" href="#10-transaction-integration" title="Permanent link">&para;</a></h2>
+<h3 id="transactional-on-repositoryservice">@Transactional on Repository/Service<a class="headerlink" href="#transactional-on-repositoryservice" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="n">repo</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserService</span><span class="p">(</span><span class="n">UserRepository</span><span class="w"> </span><span class="n">repo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">repo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">createUserWithProfile</span><span class="p">(</span><span class="n">CreateUserRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">name</span><span class="p">(),</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">email</span><span class="p">()));</span>
+<span class="w">        </span><span class="n">repo</span><span class="p">.</span><span class="na">insertProfile</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">profile</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="programmatic-transaction-transactiontemplate">Programmatic Transaction (TransactionTemplate)<a class="headerlink" href="#programmatic-transaction-transactiontemplate" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">TransactionTemplate</span><span class="w"> </span><span class="n">txTemplate</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="n">jdbc</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserService</span><span class="p">(</span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="n">tm</span><span class="p">,</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="n">jdbc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">txTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TransactionTemplate</span><span class="p">(</span><span class="n">tm</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">jdbc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jdbc</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">create</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">txTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ... operations</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">user</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="datasourcetransactionmanager">DataSourceTransactionManager<a class="headerlink" href="#datasourcetransactionmanager" title="Permanent link">&para;</a></h3>
+<p>Auto-configured by Spring Boot when <code>DataSource</code> is present. Uses <code>Connection.setAutoCommit(false)</code> + <code>commit()/rollback()</code>.</p>
+<h3 id="best-practice">Best Practice<a class="headerlink" href="#best-practice" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Put <code>@Transactional</code> on <strong>service</strong> layer, not repository</li>
+<li>Batch inserts inside a single transaction</li>
+<li>Set <code>readOnly=true</code> for queries</li>
+</ul>
+<hr />
+<h2 id="11-jdbc-vs-jpa">11. JDBC vs JPA<a class="headerlink" href="#11-jdbc-vs-jpa" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Spring JDBC</th>
+<th>Spring Data JPA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQL control</td>
+<td>Full</td>
+<td>Generated (JPQL/Criteria)</td>
+</tr>
+<tr>
+<td>Learning curve</td>
+<td>Low</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Boilerplate</td>
+<td>Medium (SQL + mapping)</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Higher (direct)</td>
+<td>Overhead of ORM</td>
+</tr>
+<tr>
+<td>Complex queries</td>
+<td>Easy</td>
+<td>Harder (native queries)</td>
+</tr>
+<tr>
+<td>Batch operations</td>
+<td>Native support</td>
+<td>Requires config</td>
+</tr>
+<tr>
+<td>Relationships</td>
+<td>Manual</td>
+<td>Auto (ORM)</td>
+</tr>
+<tr>
+<td>Caching</td>
+<td>Manual</td>
+<td>1st/2nd level</td>
+</tr>
+<tr>
+<td>Schema changes</td>
+<td>Manual</td>
+<td>DDL auto</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Reports, batch, high perf</td>
+<td>CRUD, domain-rich apps</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule of thumb:</strong>
+- <strong>Simple CRUD with objects</strong> → JPA
+- <strong>Complex reporting/batch</strong> → JDBC
+- <strong>Hybrid</strong> — both in same app is common</p>
+<hr />
+<h2 id="12-interview-questions">12. Interview Questions<a class="headerlink" href="#12-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-why-use-jdbctemplate-over-plain-jdbc">Q1. Why use JdbcTemplate over plain JDBC?<a class="headerlink" href="#q1-why-use-jdbctemplate-over-plain-jdbc" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Eliminates boilerplate (connection, statement, resultset, close), provides automatic resource management, translates <code>SQLException</code> to unchecked <code>DataAccessException</code>, supports RowMapper for clean mapping, offers batch operations, and integrates with Spring transactions. Focus remains on SQL, not plumbing.</p>
+<h3 id="q2-difference-between-rowmapper-and-resultsetextractor">Q2. Difference between RowMapper and ResultSetExtractor?<a class="headerlink" href="#q2-difference-between-rowmapper-and-resultsetextractor" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>RowMapper</code> maps <strong>one row</strong> to an object; Spring iterates. <code>ResultSetExtractor</code> receives the <strong>entire ResultSet</strong> and you control iteration — needed when the output requires combining multiple rows (e.g., customer with orders in one query).</p>
+<h3 id="q3-what-is-namedparameterjdbctemplate">Q3. What is NamedParameterJdbcTemplate?<a class="headerlink" href="#q3-what-is-namedparameterjdbctemplate" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A wrapper around <code>JdbcTemplate</code> that supports <strong>named parameters</strong> (<code>:name</code>) instead of positional <code>?</code>. Cleaner, safer, especially when the same parameter is used multiple times or when the SQL is long.</p>
+<h3 id="q4-how-does-spring-handle-sqlexception">Q4. How does Spring handle SQLException?<a class="headerlink" href="#q4-how-does-spring-handle-sqlexception" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring wraps <code>SQLException</code> (checked, vendor-specific) into <code>DataAccessException</code> (unchecked, portable) via <code>SQLExceptionTranslator</code>. Subclasses communicate the nature of the failure (<code>DuplicateKeyException</code>, <code>BadSqlGrammarException</code>, etc.).</p>
+<h3 id="q5-how-to-insert-and-get-generated-id-with-jdbctemplate">Q5. How to insert and get generated ID with JdbcTemplate?<a class="headerlink" href="#q5-how-to-insert-and-get-generated-id-with-jdbctemplate" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>KeyHolder</code> + <code>PreparedStatementCreator</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">KeyHolder</span><span class="w"> </span><span class="n">keyHolder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GeneratedKeyHolder</span><span class="p">();</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">con</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span><span class="w"> </span><span class="n">Statement</span><span class="p">.</span><span class="na">RETURN_GENERATED_KEYS</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// set params</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ps</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="n">keyHolder</span><span class="p">);</span>
+<span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keyHolder</span><span class="p">.</span><span class="na">getKey</span><span class="p">().</span><span class="na">longValue</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="q6-what-is-simplejdbcinsert">Q6. What is SimpleJdbcInsert?<a class="headerlink" href="#q6-what-is-simplejdbcinsert" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A helper that builds <code>INSERT</code> statements from metadata — you don't write SQL. Configure with table name and generated key column. Provides <code>execute()</code>, <code>executeAndReturnKey()</code>, <code>executeAndReturnKeyHolder()</code>.</p>
+<h3 id="q7-how-to-perform-batch-insert">Q7. How to perform batch insert?<a class="headerlink" href="#q7-how-to-perform-batch-insert" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>jdbc.batchUpdate(sql, List&lt;Object[]&gt;)</code> or <code>jdbc.batchUpdate(sql, BatchPreparedStatementSetter)</code>. For named params, use <code>NamedParameterJdbcTemplate.batchUpdate(sql, SqlParameterSource[])</code>. Wrap in a transaction for efficiency.</p>
+<h3 id="q8-how-to-enable-exception-translation">Q8. How to enable exception translation?<a class="headerlink" href="#q8-how-to-enable-exception-translation" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Automatically applies if the class is a Spring bean. For extra safety, annotate DAO with <code>@Repository</code> — Spring applies <code>PersistenceExceptionTranslationPostProcessor</code> which wraps and translates. With <code>JdbcTemplate</code> directly, translation already happens.</p>
+<h3 id="q9-what-is-beanpropertyrowmapper">Q9. What is BeanPropertyRowMapper?<a class="headerlink" href="#q9-what-is-beanpropertyrowmapper" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A <code>RowMapper</code> that auto-maps <code>ResultSet</code> columns to a bean's fields/setters by name. Supports underscore-to-camelCase mapping. Convenient but slower than a hand-written <code>RowMapper</code> due to reflection.</p>
+<h3 id="q10-how-to-query-a-list-of-values">Q10. How to query a list of values?<a class="headerlink" href="#q10-how-to-query-a-list-of-values" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>jdbc.queryForList("SELECT name FROM users", String.class)</code> returns <code>List&lt;String&gt;</code>. For a single value: <code>queryForObject</code>.</p>
+<h3 id="q11-how-to-handle-emptyresultdataaccessexception">Q11. How to handle <code>EmptyResultDataAccessException</code>?<a class="headerlink" href="#q11-how-to-handle-emptyresultdataaccessexception" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Wrap the <code>queryForObject</code> call in try/catch and return <code>Optional.empty()</code>, or use <code>query</code> and check size. There is no built-in "Optional-returning" variant.</p>
+<h3 id="q12-jdbctemplate-vs-jpa">Q12. JdbcTemplate vs JPA?<a class="headerlink" href="#q12-jdbctemplate-vs-jpa" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>JdbcTemplate</code> gives full SQL control with less abstraction — great for reports/batch. JPA handles ORM, relationships, caching — great for domain modeling. Many production systems mix both: JPA for CRUD, JDBC for complex queries/batch.</p>
+<h3 id="q13-how-to-configure-multiple-datasources">Q13. How to configure multiple DataSources?<a class="headerlink" href="#q13-how-to-configure-multiple-datasources" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Define multiple <code>@Bean DataSource</code>s, mark one <code>@Primary</code>, create separate <code>JdbcTemplate</code> beans qualified by name, and use <code>@Qualifier</code> at injection. Use <code>DataSourceBuilder.create().build()</code> bound to distinct property prefixes.</p>
+<h3 id="q14-what-is-simplejdbccall">Q14. What is <code>SimpleJdbcCall</code>?<a class="headerlink" href="#q14-what-is-simplejdbccall" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A helper for calling stored procedures/functions. Configure procedure name, IN/OUT parameters, and RowMapper for returning result sets. Handles <code>CallableStatement</code> boilerplate.</p>
+<h3 id="q15-how-do-you-get-a-connection-manually">Q15. How do you get a <code>Connection</code> manually?<a class="headerlink" href="#q15-how-do-you-get-a-connection-manually" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>jdbc.execute(ConnectionCallback&lt;T&gt;)</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">jdbc</span><span class="p">.</span><span class="na">execute</span><span class="p">((</span><span class="n">ConnectionCallback</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">getMetaData</span><span class="p">().</span><span class="na">getDatabaseProductName</span><span class="p">());</span>
+</code></pre></div>
+<p>Forgetting to close isn't an issue — Spring does it.</p>
+<h3 id="q16-what-is-the-difference-between-execute-and-update">Q16. What is the difference between <code>execute</code> and <code>update</code>?<a class="headerlink" href="#q16-what-is-the-difference-between-execute-and-update" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>execute(String sql)</code> runs DDL/any SQL and returns void. <code>update(...)</code> runs DML (INSERT/UPDATE/DELETE) and returns the number of affected rows.</p>
+<h3 id="q17-how-to-bind-a-list-to-an-in-clause-in-namedparameterjdbctemplate">Q17. How to bind a <code>List</code> to an <code>IN</code> clause in NamedParameterJdbcTemplate?<a class="headerlink" href="#q17-how-to-bind-a-list-to-an-in-clause-in-namedparameterjdbctemplate" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Pass it as a named parameter value:</p>
+<div class="highlight"><pre><span></span><code><span class="n">MapSqlParameterSource</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MapSqlParameterSource</span><span class="p">(</span><span class="s">"ids"</span><span class="p">,</span><span class="w"> </span><span class="n">ids</span><span class="p">);</span>
+<span class="n">namedJdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="s">"SELECT * FROM users WHERE id IN (:ids)"</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">mapper</span><span class="p">);</span>
+</code></pre></div>
+<p>Spring expands the list automatically.</p>
+<h3 id="q18-how-to-log-executed-sql">Q18. How to log executed SQL?<a class="headerlink" href="#q18-how-to-log-executed-sql" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Set logger:</p>
+<div class="highlight"><pre><span></span><code><span class="na">logging.level.org.springframework.jdbc.core</span><span class="o">=</span><span class="s">DEBUG</span>
+<span class="na">logging.level.org.springframework.jdbc.core.JdbcTemplate</span><span class="o">=</span><span class="s">DEBUG</span>
+<span class="na">logging.level.org.springframework.jdbc.core.StatementCreatorUtils</span><span class="o">=</span><span class="s">TRACE</span>
+</code></pre></div>
+<h3 id="q19-when-would-you-choose-jdbc-over-jpa">Q19. When would you choose JDBC over JPA?<a class="headerlink" href="#q19-when-would-you-choose-jdbc-over-jpa" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong>
+- Complex reports/analytics with custom SQL
+- Bulk data operations
+- Stored procedure usage
+- Full control over SQL and performance
+- Simple, mostly-tabular data
+- Avoiding ORM overhead (memory/perf)</p>
+<h3 id="q20-how-do-you-test-jdbctemplate-code">Q20. How do you test JdbcTemplate code?<a class="headerlink" href="#q20-how-do-you-test-jdbctemplate-code" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Options:
+- <strong><code>@JdbcTest</code></strong> (Spring Boot) — auto-configures an in-memory DB + <code>JdbcTemplate</code>
+- <strong>Testcontainers</strong> — real DB in Docker
+- <strong>H2 in-memory</strong> — fast, some dialect differences
+- <strong>Mockito</strong> — mock <code>JdbcTemplate</code> for unit tests</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@JdbcTest</span>
+<span class="kd">class</span> <span class="nc">UserRepositoryTest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Autowired</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="n">jdbc</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertAndFind</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="s">"INSERT INTO users (id, name) VALUES (?, ?)"</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">,</span><span class="w"> </span><span class="s">"Alice"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jdbc</span><span class="p">.</span><span class="na">queryForObject</span><span class="p">(</span>
+<span class="w">            </span><span class="s">"SELECT name FROM users WHERE id = ?"</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">name</span><span class="p">).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="s">"Alice"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="13-cheat-sheet">13. Cheat Sheet<a class="headerlink" href="#13-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="setup_2">Setup<a class="headerlink" href="#setup_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:...</span>
+<span class="na">spring.datasource.username</span><span class="o">=</span><span class="s">...</span>
+<span class="na">spring.datasource.password</span><span class="o">=</span><span class="s">...</span>
+<span class="na">spring.datasource.hikari.maximum-pool-size</span><span class="o">=</span><span class="s">20</span>
+</code></pre></div>
+<h3 id="common-operations">Common Operations<a class="headerlink" href="#common-operations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Insert</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="s">"INSERT INTO t (a,b) VALUES (?,?)"</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+
+<span class="c1">// Insert returning id</span>
+<span class="n">KeyHolder</span><span class="w"> </span><span class="n">kh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GeneratedKeyHolder</span><span class="p">();</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">con</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span><span class="w"> </span><span class="n">RETURN_GENERATED_KEYS</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// set params</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ps</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="n">kh</span><span class="p">);</span>
+<span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kh</span><span class="p">.</span><span class="na">getKey</span><span class="p">().</span><span class="na">longValue</span><span class="p">();</span>
+
+<span class="c1">// Query single value</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">queryForObject</span><span class="p">(</span><span class="s">"SELECT COUNT(*) FROM t"</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+
+<span class="c1">// Query single row</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">queryForObject</span><span class="p">(</span><span class="s">"SELECT * FROM t WHERE id=?"</span><span class="p">,</span><span class="w"> </span><span class="n">rowMapper</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+
+<span class="c1">// Query list</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="s">"SELECT * FROM t"</span><span class="p">,</span><span class="w"> </span><span class="n">rowMapper</span><span class="p">);</span>
+
+<span class="c1">// Update</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="s">"UPDATE t SET a=? WHERE id=?"</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+
+<span class="c1">// Delete</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="s">"DELETE FROM t WHERE id=?"</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+
+<span class="c1">// Batch</span>
+<span class="n">jdbc</span><span class="p">.</span><span class="na">batchUpdate</span><span class="p">(</span><span class="s">"INSERT INTO t (a,b) VALUES (?,?)"</span><span class="p">,</span><span class="w"> </span><span class="n">listOfArrays</span><span class="p">);</span>
+
+<span class="c1">// Named params</span>
+<span class="n">namedJdbc</span><span class="p">.</span><span class="na">query</span><span class="p">(</span><span class="s">"SELECT * FROM t WHERE a=:a"</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"a"</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">rowMapper</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="rowmapper-example">RowMapper Example<a class="headerlink" href="#rowmapper-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">RowMapper</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">userRowMapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="w"> </span><span class="n">rowNum</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span>
+<span class="w">    </span><span class="n">rs</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="s">"id"</span><span class="p">),</span>
+<span class="w">    </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"name"</span><span class="p">),</span>
+<span class="w">    </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"email"</span><span class="p">));</span>
+</code></pre></div>
+<h3 id="exception-hierarchy-memory-aid">Exception Hierarchy (Memory Aid)<a class="headerlink" href="#exception-hierarchy-memory-aid" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>DataAccessException
+├── NonTransient (bad SQL, integrity)
+│   ├── DuplicateKey
+│   ├── DataIntegrityViolation
+│   └── BadSqlGrammar
+├── Transient (retry-able)
+│   ├── ConcurrencyFailure
+│   ├── QueryTimeout
+│   └── TransientDataAccessResource
+└── Recoverable
+</code></pre></div>
+<h3 id="debug-logging">Debug Logging<a class="headerlink" href="#debug-logging" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">logging.level.org.springframework.jdbc.core</span><span class="o">=</span><span class="s">DEBUG</span>
+<span class="na">logging.level.org.springframework.jdbc.core.JdbcTemplate</span><span class="o">=</span><span class="s">TRACE</span>
+<span class="na">logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager</span><span class="o">=</span><span class="s">DEBUG</span>
+</code></pre></div>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>03_Spring_MVC.md</code></li>
+<li><strong>Next:</strong> <code>05_Spring_Transaction_Management.md</code></li>
+<li><strong>Related:</strong> <code>10_Spring_Data_JPA.md</code>, <code>11_Spring_Data_JDBC.md</code></li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code></li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="../03_Spring_MVC/">03_Spring_MVC.md</a></li>
+<li><strong>Next →:</strong> <a href="../05_Spring_Transaction_Management/">05_Spring_Transaction_Management.md</a></li>
+<li><strong>Related:</strong> <a href="./10_Spring_Data_JPA.md">10_Spring_Data_JPA.md</a>, <a href="./11_Spring_Data_JDBC.md">11_Spring_Data_JDBC.md</a>, <a href="../05_Spring_Transaction_Management/">05_Spring_Transaction_Management.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

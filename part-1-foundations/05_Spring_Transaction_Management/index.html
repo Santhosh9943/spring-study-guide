@@ -1,0 +1,4377 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Spring Transaction Management - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spring-transaction-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spring Transaction Management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-acid-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ACID Properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. ACID Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#atomicity-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atomicity Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolation-anomalies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolation Anomalies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-transaction-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why Transaction Management?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Why Transaction Management?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#without-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Without Transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With Transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#springs-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring's Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-programmatic-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Programmatic Transactions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Programmatic Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-platformtransactionmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 PlatformTransactionManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-manual-low-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Manual — Low-level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-transactiontemplate-recommended-programmatic-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 TransactionTemplate (RECOMMENDED programmatic style)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-transactioncallbackwithoutresult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 TransactionCallbackWithoutResult
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-programmatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use Programmatic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-declarative-transactions-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Declarative Transactions: @Transactional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Declarative Transactions: @Transactional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributes of @Transactional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works (AOP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-interceptor-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Interceptor Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-propagation-behaviors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Propagation Behaviors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Propagation Behaviors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-7-propagations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The 7 Propagations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REQUIRED (default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requires_new" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REQUIRES_NEW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SUPPORTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not_supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NOT_SUPPORTED
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mandatory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MANDATORY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#never" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NEVER
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NESTED
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propagation-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propagation Visual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-world-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-World Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-isolation-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Isolation Levels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Isolation Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-four-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Four Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolationdefault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolation.DEFAULT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consistency-vs-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency vs Concurrency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-world-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-World Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimistic-vs-pessimistic-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimistic vs Pessimistic Locking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interview-tip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interview Tip
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-rollback-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Rollback Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Rollback Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollbackfor-norollbackfor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rollbackFor / noRollbackFor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catch-and-rethrow-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catch-and-Rethrow Trap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inner-call-caught-by-outer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inner Call Caught by Outer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-readonly-timeout-and-other-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. readOnly, timeout, and Other Attributes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. readOnly, timeout, and Other Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#readonly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        readOnly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        timeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactionmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        transactionManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-propagation-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        value / propagation aliases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-attribute-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Attribute List
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-transaction-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Transaction Managers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Transaction Managers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-jdbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration — JDBC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-jpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration — JPA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Managers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jta-distributed-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JTA — Distributed Transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-class-vs-method-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Class vs Method Level
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Class vs Method Level">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class-Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-level-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interface-Level (avoid)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback-exception-during-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback Exception During Commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Pitfalls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Common Pitfalls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-self-invocation-the-1-pitfall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Self-Invocation (The #1 Pitfall)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-private-protected-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Private / Protected Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-final-methods-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Final Methods / Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-checked-exception-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Checked Exception Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-catch-and-swallow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 Catch and Swallow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-wrong-propagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6 Wrong Propagation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-long-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7 Long Transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#118-readonly-not-enforced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.8 readOnly Not Enforced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#119-testing-with-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.9 Testing With @Transactional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1110-multiple-transaction-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.10 Multiple Transaction Managers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1111-async-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.11 Async + @Transactional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1112-proxy-vs-target-casting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.12 Proxy vs Target Casting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-transaction-synchronization-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Transaction Synchronization &amp; Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Transaction Synchronization &amp; Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactionsynchronizationmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TransactionSynchronizationManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactionaleventlistener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @TransactionalEventListener
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-transactional-outbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case: Transactional Outbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-nested-transactions-savepoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Nested Transactions &amp; Savepoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Nested Transactions &amp; Savepoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-via-savepoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NESTED via Savepoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-vs-requires_new" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NESTED vs REQUIRES_NEW
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-reactive-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Reactive Transactions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Reactive Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reactivetransactionmanager-webflux-r2dbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReactiveTransactionManager (WebFlux + R2DBC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactional-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Transactional Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-reactive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic Reactive
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-what-is-a-transaction-acid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. What is a transaction? ACID?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-programmatic-vs-declarative-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. Programmatic vs declarative transactions?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-how-does-transactional-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. How does @Transactional work internally?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-explain-propagation-behaviors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. Explain propagation behaviors.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-whats-the-difference-between-requires_new-and-nested" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. What's the difference between REQUIRES_NEW and NESTED?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-what-are-the-isolation-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. What are the isolation levels?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-which-exceptions-trigger-rollback-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. Which exceptions trigger rollback by default?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-what-is-self-invocation-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. What is self-invocation problem?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-can-you-use-transactional-on-private-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. Can you use @Transactional on private methods?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-how-do-you-configure-transactions-in-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. How do you configure transactions in Spring Boot?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-what-is-transactionsynchronizationmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. What is TransactionSynchronizationManager?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-what-is-transactionaleventlistener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. What is @TransactionalEventListener?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-can-you-have-multiple-transaction-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. Can you have multiple transaction managers?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-what-is-a-distributed-transaction-do-you-use-jta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. What is a distributed transaction? Do you use JTA?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-what-is-savepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. What is savepoint?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-can-transactional-be-used-on-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. Can @Transactional be used on interfaces?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-how-does-spring-handle-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. How does Spring handle timeout?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-what-is-readonlytrue-and-how-does-it-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. What is readOnly=true and how does it help?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-how-to-test-transactional-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. How to test @Transactional code?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-why-might-unexpectedrollbackexception-occur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. Why might UnexpectedRollbackException occur?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Transactional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propagation-memory-aid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propagation (Memory Aid)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pitfalls-quick-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pitfalls Quick List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="spring-transaction-management">Spring Transaction Management<a class="headerlink" href="#spring-transaction-management" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>05_Spring_Transaction_Management.md</code>
+<strong>Part:</strong> 1 — Foundations
+<strong>Prerequisites:</strong> <code>01_Spring_Framework_Core.md</code>, <code>02_Spring_AOP.md</code>, <code>04_Spring_JDBC.md</code>
+<strong>Estimated Study Time:</strong> 8–12 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-acid-properties">ACID Properties</a></li>
+<li><a href="#2-why-transaction-management">Why Transaction Management?</a></li>
+<li><a href="#3-programmatic-transactions">Programmatic Transactions</a></li>
+<li><a href="#4-declarative-transactions-transactional">Declarative Transactions: @Transactional</a></li>
+<li><a href="#5-propagation-behaviors">Propagation Behaviors</a></li>
+<li><a href="#6-isolation-levels">Isolation Levels</a></li>
+<li><a href="#7-rollback-rules">Rollback Rules</a></li>
+<li><a href="#8-readonly-timeout-and-other-attributes">readOnly, timeout, and Other Attributes</a></li>
+<li><a href="#9-transaction-managers">Transaction Managers</a></li>
+<li><a href="#10-class-vs-method-level">Class vs Method Level</a></li>
+<li><a href="#11-common-pitfalls">Common Pitfalls</a></li>
+<li><a href="#12-transaction-synchronization--events">Transaction Synchronization &amp; Events</a></li>
+<li><a href="#13-nested-transactions--savepoints">Nested Transactions &amp; Savepoints</a></li>
+<li><a href="#14-reactive-transactions">Reactive Transactions</a></li>
+<li><a href="#15-interview-questions">Interview Questions</a></li>
+<li><a href="#16-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-acid-properties">1. ACID Properties<a class="headerlink" href="#1-acid-properties" title="Permanent link">&para;</a></h2>
+<p>Every reliable transaction satisfies ACID:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Atomicity</strong></td>
+<td>All or nothing</td>
+<td>Transfer: debit AND credit, or neither</td>
+</tr>
+<tr>
+<td><strong>Consistency</strong></td>
+<td>Valid state → valid state</td>
+<td>Constraints hold before/after</td>
+</tr>
+<tr>
+<td><strong>Isolation</strong></td>
+<td>Concurrent txns don't interfere</td>
+<td>Two transfers don't corrupt balances</td>
+</tr>
+<tr>
+<td><strong>Durability</strong></td>
+<td>Committed data survives crash</td>
+<td>Committed transfer persists after power loss</td>
+</tr>
+</tbody>
+</table>
+<h3 id="atomicity-example">Atomicity Example<a class="headerlink" href="#atomicity-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>BEGIN
+  UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+  UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT
+</code></pre></div>
+<p>If either UPDATE fails → rollback both.</p>
+<h3 id="isolation-anomalies">Isolation Anomalies<a class="headerlink" href="#isolation-anomalies" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Anomaly</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dirty Read</strong></td>
+<td>Read uncommitted data from another txn</td>
+</tr>
+<tr>
+<td><strong>Non-Repeatable Read</strong></td>
+<td>Same row returns different values in same txn</td>
+</tr>
+<tr>
+<td><strong>Phantom Read</strong></td>
+<td>Same query returns different rows in same txn</td>
+</tr>
+<tr>
+<td><strong>Lost Update</strong></td>
+<td>Two txns overwrite each other</td>
+</tr>
+<tr>
+<td><strong>Write Skew</strong></td>
+<td>Each txn individually valid, combined invalid</td>
+</tr>
+</tbody>
+</table>
+<p>Isolation levels trade off performance vs anomaly prevention (§6).</p>
+<hr />
+<h2 id="2-why-transaction-management">2. Why Transaction Management?<a class="headerlink" href="#2-why-transaction-management" title="Permanent link">&para;</a></h2>
+<h3 id="without-transactions">Without Transactions<a class="headerlink" href="#without-transactions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="kd">to</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">accountRepo</span><span class="p">.</span><span class="na">debit</span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">amt</span><span class="p">);</span><span class="w">   </span><span class="c1">// succeeds</span>
+<span class="w">    </span><span class="c1">// ⚠️ app crashes here</span>
+<span class="w">    </span><span class="n">accountRepo</span><span class="p">.</span><span class="na">credit</span><span class="p">(</span><span class="kd">to</span><span class="p">,</span><span class="w"> </span><span class="n">amt</span><span class="p">);</span><span class="w">    </span><span class="c1">// never runs → money lost</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="with-transactions">With Transactions<a class="headerlink" href="#with-transactions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="kd">to</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">accountRepo</span><span class="p">.</span><span class="na">debit</span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">amt</span><span class="p">);</span>
+<span class="w">    </span><span class="n">accountRepo</span><span class="p">.</span><span class="na">credit</span><span class="p">(</span><span class="kd">to</span><span class="p">,</span><span class="w"> </span><span class="n">amt</span><span class="p">);</span><span class="w">    </span><span class="c1">// both commit, or both rollback</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="springs-value">Spring's Value<a class="headerlink" href="#springs-value" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Declarative</strong> — <code>@Transactional</code> annotation; no manual BEGIN/COMMIT</li>
+<li><strong>Portable</strong> — same code across JDBC, JPA, JMS, JTA</li>
+<li><strong>AOP-based</strong> — proxies wrap methods</li>
+<li><strong>Propagation &amp; isolation</strong> — configurable per method</li>
+<li><strong>Integration</strong> — works with all Spring data access</li>
+</ul>
+<hr />
+<h2 id="3-programmatic-transactions">3. Programmatic Transactions<a class="headerlink" href="#3-programmatic-transactions" title="Permanent link">&para;</a></h2>
+<h3 id="31-platformtransactionmanager">3.1 PlatformTransactionManager<a class="headerlink" href="#31-platformtransactionmanager" title="Permanent link">&para;</a></h3>
+<p>Core SPI:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PlatformTransactionManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TransactionStatus</span><span class="w"> </span><span class="nf">getTransaction</span><span class="p">(</span><span class="n">TransactionDefinition</span><span class="w"> </span><span class="n">definition</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">commit</span><span class="p">(</span><span class="n">TransactionStatus</span><span class="w"> </span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">rollback</span><span class="p">(</span><span class="n">TransactionStatus</span><span class="w"> </span><span class="n">status</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="32-manual-low-level">3.2 Manual — Low-level<a class="headerlink" href="#32-manual-low-level" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Autowired</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="n">txManager</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doWork</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DefaultTransactionDefinition</span><span class="w"> </span><span class="n">def</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultTransactionDefinition</span><span class="p">();</span>
+<span class="w">    </span><span class="n">def</span><span class="p">.</span><span class="na">setPropagationBehavior</span><span class="p">(</span><span class="n">TransactionDefinition</span><span class="p">.</span><span class="na">PROPAGATION_REQUIRED</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">TransactionStatus</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">txManager</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">(</span><span class="n">def</span><span class="p">);</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// ... business logic</span>
+<span class="w">        </span><span class="n">txManager</span><span class="p">.</span><span class="na">commit</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">txManager</span><span class="p">.</span><span class="na">rollback</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="33-transactiontemplate-recommended-programmatic-style">3.3 TransactionTemplate (RECOMMENDED programmatic style)<a class="headerlink" href="#33-transactiontemplate-recommended-programmatic-style" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TransferService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">TransactionTemplate</span><span class="w"> </span><span class="n">txTemplate</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">TransferService</span><span class="p">(</span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="n">txManager</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">txTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TransactionTemplate</span><span class="p">(</span><span class="n">txManager</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">txTemplate</span><span class="p">.</span><span class="na">setTimeout</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">txTemplate</span><span class="p">.</span><span class="na">setIsolationLevel</span><span class="p">(</span><span class="n">TransactionDefinition</span><span class="p">.</span><span class="na">ISOLATION_READ_COMMITTED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="kd">to</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">txTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">accountRepo</span><span class="p">.</span><span class="na">debit</span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">amt</span><span class="p">);</span>
+<span class="w">            </span><span class="n">accountRepo</span><span class="p">.</span><span class="na">credit</span><span class="p">(</span><span class="kd">to</span><span class="p">,</span><span class="w"> </span><span class="n">amt</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// With result</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">getBalance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">txTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">accountRepo</span><span class="p">.</span><span class="na">getTotalBalance</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Rollback programmatically</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">conditional</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">txTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">somethingWrong</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">status</span><span class="p">.</span><span class="na">setRollbackOnly</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Pros:</strong>
+- Explicit, easy to read
+- No AOP surprises
+- Works with self-invocation</p>
+<p><strong>Cons:</strong>
+- More verbose than <code>@Transactional</code>
+- Requires injecting the template</p>
+<h3 id="34-transactioncallbackwithoutresult">3.4 TransactionCallbackWithoutResult<a class="headerlink" href="#34-transactioncallbackwithoutresult" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">txTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TransactionCallbackWithoutResult</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doInTransactionWithoutResult</span><span class="p">(</span><span class="n">TransactionStatus</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// no return value</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="when-to-use-programmatic">When to Use Programmatic<a class="headerlink" href="#when-to-use-programmatic" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Complex transaction logic (conditional rollback, loops)</li>
+<li>Self-invocation contexts</li>
+<li>Fine-grained control</li>
+<li>Non-Spring-managed objects</li>
+</ul>
+<hr />
+<h2 id="4-declarative-transactions-transactional">4. Declarative Transactions: @Transactional<a class="headerlink" href="#4-declarative-transactions-transactional" title="Permanent link">&para;</a></h2>
+<h3 id="enabling">Enabling<a class="headerlink" href="#enabling" title="Permanent link">&para;</a></h3>
+<p><strong>Spring Boot:</strong> auto-enabled via <code>TransactionAutoConfiguration</code>.</p>
+<p><strong>Standalone Spring:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableTransactionManagement</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TxConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="nf">txManager</span><span class="p">(</span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataSourceTransactionManager</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span><span class="n">CreateUserRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">name</span><span class="p">()));</span>
+<span class="w">        </span><span class="n">profileRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Profile</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">getId</span><span class="p">(),</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">bio</span><span class="p">()));</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">user</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Any <code>RuntimeException</code> → rollback</li>
+<li>Any checked exception → <strong>commit</strong> (by default!)</li>
+</ul>
+<h3 id="attributes-of-transactional">Attributes of @Transactional<a class="headerlink" href="#attributes-of-transactional" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span>
+<span class="w">    </span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRED</span><span class="p">,</span>
+<span class="w">    </span><span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">    </span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rollbackFor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">SQLException</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">MyException</span><span class="p">.</span><span class="na">class</span><span class="p">},</span>
+<span class="w">    </span><span class="n">noRollbackFor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">BusinessWarning</span><span class="p">.</span><span class="na">class</span><span class="p">},</span>
+<span class="w">    </span><span class="n">transactionManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"txManager"</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doWork</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="how-it-works-aop">How It Works (AOP)<a class="headerlink" href="#how-it-works-aop" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Spring creates a <strong>proxy</strong> around the bean</li>
+<li>Calls to <code>@Transactional</code> methods go through <code>TransactionInterceptor</code> (<code>@Around</code> advice)</li>
+<li>Interceptor:</li>
+<li>Gets/creates a <code>TransactionStatus</code> from the manager</li>
+<li>Invokes <code>proceed()</code> (target method)</li>
+<li>On success → <code>commit</code></li>
+<li>On exception (per rollback rules) → <code>rollback</code></li>
+</ol>
+<h3 id="full-interceptor-flow">Full Interceptor Flow<a class="headerlink" href="#full-interceptor-flow" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Caller → Proxy → TransactionInterceptor.invoke()
+    ├─ Determine tx attribute from @Transactional
+    ├─ getTransaction(def) → TransactionStatus
+    ├─ try:
+    │    ├─ Invoke target method
+    │    ├─ commit(status)
+    │    └─ return result
+    └─ catch (Throwable t):
+         ├─ if rollbackOn(t): rollback(status)
+         └─ else: commit(status)
+         throw t
+</code></pre></div>
+<h3 id="proxy-types">Proxy Types<a class="headerlink" href="#proxy-types" title="Permanent link">&para;</a></h3>
+<p>Same as AOP (§09 in <code>02_Spring_AOP.md</code>):
+- <strong>JDK proxy</strong> by default (interface-based)
+- <strong>CGLIB</strong> for classes / if <code>proxyTargetClass=true</code>
+- Spring Boot 2.0+ → CGLIB default</p>
+<hr />
+<h2 id="5-propagation-behaviors">5. Propagation Behaviors<a class="headerlink" href="#5-propagation-behaviors" title="Permanent link">&para;</a></h2>
+<p>Propagation defines <strong>how a transactional method behaves when called within an existing transaction</strong>.</p>
+<h3 id="the-7-propagations">The 7 Propagations<a class="headerlink" href="#the-7-propagations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Propagation</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>REQUIRED</strong> (default)</td>
+<td>Join existing txn, or create new if none</td>
+</tr>
+<tr>
+<td><strong>REQUIRES_NEW</strong></td>
+<td>Always create new txn, suspend existing</td>
+</tr>
+<tr>
+<td><strong>SUPPORTS</strong></td>
+<td>Join if exists, else run non-transactionally</td>
+</tr>
+<tr>
+<td><strong>NOT_SUPPORTED</strong></td>
+<td>Suspend existing, run non-transactionally</td>
+</tr>
+<tr>
+<td><strong>MANDATORY</strong></td>
+<td>Must have existing txn, else throw</td>
+</tr>
+<tr>
+<td><strong>NEVER</strong></td>
+<td>Must NOT have existing txn, else throw</td>
+</tr>
+<tr>
+<td><strong>NESTED</strong></td>
+<td>Savepoint within existing txn (create new if none)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="detailed-behavior">Detailed Behavior<a class="headerlink" href="#detailed-behavior" title="Permanent link">&para;</a></h3>
+<h4 id="required-default">REQUIRED (default)<a class="headerlink" href="#required-default" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Caller (no txn) → method() → NEW txn
+Caller (txn A) → method() → joins A
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="w">  </span><span class="c1">// default = REQUIRED</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><strong>Use case:</strong> 95% of cases.</p>
+<h4 id="requires_new">REQUIRES_NEW<a class="headerlink" href="#requires_new" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Caller (txn A) → method() → suspend A, create B, commit/rollback B, resume A
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRES_NEW</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">logAction</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">action</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">auditRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">AuditRecord</span><span class="p">(</span><span class="n">action</span><span class="p">));</span><span class="w">  </span><span class="c1">// always commits separately</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Use case:</strong> Audit logging that must persist even if the outer txn rolls back.</p>
+<p>⚠️ <strong>Requires a second DB connection</strong> — can deadlock if pool is exhausted.</p>
+<h4 id="supports">SUPPORTS<a class="headerlink" href="#supports" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Caller (txn A) → method() → joins A
+Caller (no txn) → method() → runs without txn
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">SUPPORTS</span><span class="p">,</span><span class="w"> </span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><strong>Use case:</strong> Read methods that work either way.</p>
+<h4 id="not_supported">NOT_SUPPORTED<a class="headerlink" href="#not_supported" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Caller (txn A) → method() → suspend A, run without txn, resume A
+</code></pre></div>
+<p><strong>Use case:</strong> Long operations that shouldn't hold a connection.</p>
+<h4 id="mandatory">MANDATORY<a class="headerlink" href="#mandatory" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Caller (txn A) → method() → joins A
+Caller (no txn) → method() → throws IllegalTransactionStateException
+</code></pre></div>
+<p><strong>Use case:</strong> Enforcing that callers always manage transactions.</p>
+<h4 id="never">NEVER<a class="headerlink" href="#never" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Caller (txn A) → method() → throws IllegalTransactionStateException
+Caller (no txn) → method() → runs normally
+</code></pre></div>
+<p><strong>Use case:</strong> Guarantee method is never called in a transaction.</p>
+<h4 id="nested">NESTED<a class="headerlink" href="#nested" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>Caller (txn A) → method() → savepoint SP inside A
+    Inner fails → rollback to SP (A continues)
+    Inner succeeds → commit SP (still inside A)
+Caller (no txn) → method() → NEW txn (like REQUIRED)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">NESTED</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">step1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><strong>Use case:</strong> Partial rollback — "try this step; if it fails, skip it, keep the rest".</p>
+<p><strong>Requirements:</strong> JDBC (<code>DataSourceTransactionManager</code>) supports savepoints. JPA/Hibernate supports via <code>JpaTransactionManager</code> with savepoints.</p>
+<h3 id="propagation-visual">Propagation Visual<a class="headerlink" href="#propagation-visual" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>REQUIRED:
+  Outer [────── A ──────]
+  Inner   [── A ──]
+
+REQUIRES_NEW:
+  Outer [── A ──]  [B]  [── A ──]
+  Inner            [B]
+
+NESTED:
+  Outer [── A ──────────────]
+  Inner     [savepoint B ]
+            (rollback B doesn't kill A)
+</code></pre></div>
+<h3 id="comparison">Comparison<a class="headerlink" href="#comparison" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Propagation</th>
+<th>Joins outer?</th>
+<th>New txn?</th>
+<th>Suspend outer?</th>
+<th>Savepoint?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REQUIRED</td>
+<td>✅ (if exists)</td>
+<td>✅ (if none)</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>REQUIRES_NEW</td>
+<td>❌</td>
+<td>✅ (always)</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>SUPPORTS</td>
+<td>✅ (if exists)</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>NOT_SUPPORTED</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>MANDATORY</td>
+<td>✅ (required)</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>NEVER</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>NESTED</td>
+<td>✅ (as savepoint)</td>
+<td>✅ (if none)</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="real-world-example">Real-World Example<a class="headerlink" href="#real-world-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">AuditService</span><span class="w"> </span><span class="n">audit</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="w">  </span><span class="c1">// REQUIRED</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="nf">placeOrder</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Order</span><span class="w"> </span><span class="n">saved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orderRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">o</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">paymentService</span><span class="p">.</span><span class="na">charge</span><span class="p">(</span><span class="n">saved</span><span class="p">);</span><span class="w">          </span><span class="c1">// REQUIRED (joins)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">PaymentException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">audit</span><span class="p">.</span><span class="na">logFailedPayment</span><span class="p">(</span><span class="n">saved</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span><span class="w">      </span><span class="c1">// REQUIRES_NEW</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w">                                </span><span class="c1">// outer rolls back</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">audit</span><span class="p">.</span><span class="na">logSuccess</span><span class="p">(</span><span class="n">saved</span><span class="p">);</span><span class="w">                    </span><span class="c1">// REQUIRES_NEW (persists)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">saved</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AuditService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRES_NEW</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">logSuccess</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">auditRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(...);</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRES_NEW</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">logFailedPayment</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">auditRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(...);</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Result: failed payments leave an audit trail even though the order rolls back.</p>
+<hr />
+<h2 id="6-isolation-levels">6. Isolation Levels<a class="headerlink" href="#6-isolation-levels" title="Permanent link">&para;</a></h2>
+<p>Isolation controls <strong>how much concurrent transactions see of each other</strong>.</p>
+<h3 id="the-four-levels">The Four Levels<a class="headerlink" href="#the-four-levels" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Dirty Read</th>
+<th>Non-Repeatable Read</th>
+<th>Phantom Read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>READ_UNCOMMITTED</strong></td>
+<td>✅ Possible</td>
+<td>✅ Possible</td>
+<td>✅ Possible</td>
+</tr>
+<tr>
+<td><strong>READ_COMMITTED</strong></td>
+<td>❌ Prevented</td>
+<td>✅ Possible</td>
+<td>✅ Possible</td>
+</tr>
+<tr>
+<td><strong>REPEATABLE_READ</strong></td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ Possible</td>
+</tr>
+<tr>
+<td><strong>SERIALIZABLE</strong></td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="isolationdefault"><code>Isolation.DEFAULT</code><a class="headerlink" href="#isolationdefault" title="Permanent link">&para;</a></h3>
+<p>Uses DB default (PostgreSQL/MySQL InnoDB → READ_COMMITTED; Oracle → READ_COMMITTED; SQL Server → READ_COMMITTED).</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">READ_COMMITTED</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="consistency-vs-concurrency">Consistency vs Concurrency<a class="headerlink" href="#consistency-vs-concurrency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Higher isolation = safer, but <strong>slower</strong> (more locking, less concurrency)</li>
+<li>Lower isolation = faster, but risk of anomalies</li>
+</ul>
+<h3 id="real-world-usage">Real-World Usage<a class="headerlink" href="#real-world-usage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>READ_COMMITTED</strong> — most common default; balances safety &amp; speed</li>
+<li><strong>REPEATABLE_READ</strong> — for reports requiring stable reads</li>
+<li><strong>SERIALIZABLE</strong> — financial transactions, but beware of deadlocks and retries</li>
+</ul>
+<h3 id="optimistic-vs-pessimistic-locking">Optimistic vs Pessimistic Locking<a class="headerlink" href="#optimistic-vs-pessimistic-locking" title="Permanent link">&para;</a></h3>
+<p><strong>Optimistic</strong> — assume no conflict, check at commit:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Product</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Version</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">version</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Product</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="na">setPrice</span><span class="p">(</span><span class="n">newPrice</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// flush → if version changed, OptimisticLockingFailureException</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Pessimistic</strong> — lock at read:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Lock</span><span class="p">(</span><span class="n">LockModeType</span><span class="p">.</span><span class="na">PESSIMISTIC_WRITE</span><span class="p">)</span>
+<span class="nd">@Query</span><span class="p">(</span><span class="s">"select p from Product p where p.id = :id"</span><span class="p">)</span>
+<span class="n">Product</span><span class="w"> </span><span class="nf">findForUpdate</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">"id"</span><span class="p">)</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="interview-tip">Interview Tip<a class="headerlink" href="#interview-tip" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Do <strong>not</strong> change isolation casually — it affects DB-level behavior and can cause deadlocks or performance issues. Default (DB default) is usually correct.</p>
+</blockquote>
+<hr />
+<h2 id="7-rollback-rules">7. Rollback Rules<a class="headerlink" href="#7-rollback-rules" title="Permanent link">&para;</a></h2>
+<h3 id="default-behavior">Default Behavior<a class="headerlink" href="#default-behavior" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>RuntimeException</strong> → rollback</li>
+<li><strong>Error</strong> → rollback</li>
+<li><strong>Checked Exception</strong> → <strong>commit</strong> (surprising!)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doWork</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// throws IOException → transaction COMMITS (unintended!)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="rollbackfor-norollbackfor">rollbackFor / noRollbackFor<a class="headerlink" href="#rollbackfor-norollbackfor" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">rollbackFor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">IOException</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">MyChecked</span><span class="p">.</span><span class="na">class</span><span class="p">})</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doWork</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Transactional</span><span class="p">(</span><span class="n">noRollbackFor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">BusinessWarning</span><span class="p">.</span><span class="na">class</span><span class="p">})</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doWork</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="best-practice">Best Practice<a class="headerlink" href="#best-practice" title="Permanent link">&para;</a></h3>
+<p>Always specify <code>rollbackFor = Exception.class</code> if you want all exceptions to roll back:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">rollbackFor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exception</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doWork</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="programmatic-rollback">Programmatic Rollback<a class="headerlink" href="#programmatic-rollback" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doWork</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="n">TransactionAspectSupport</span><span class="p">.</span><span class="na">currentTransactionStatus</span><span class="p">().</span><span class="na">setRollbackOnly</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="catch-and-rethrow-trap">Catch-and-Rethrow Trap<a class="headerlink" href="#catch-and-rethrow-trap" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">inner</span><span class="p">();</span><span class="w">                </span><span class="c1">// also @Transactional</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// swallowed → transaction still commits!</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">"Ignored"</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If you want rollback, <strong>rethrow</strong> or <code>setRollbackOnly()</code>.</p>
+<h3 id="inner-call-caught-by-outer">Inner Call Caught by Outer<a class="headerlink" href="#inner-call-caught-by-outer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">inner</span><span class="p">();</span><span class="w">      </span><span class="c1">// @Transactional(REQUIRED) → same txn</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// outer catches; but inner already marked rollback-only!</span>
+<span class="w">        </span><span class="c1">// → UnexpectedRollbackException at commit</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Fix: use <code>REQUIRES_NEW</code> on inner, or ensure outer rolls back too.</p>
+<hr />
+<h2 id="8-readonly-timeout-and-other-attributes">8. readOnly, timeout, and Other Attributes<a class="headerlink" href="#8-readonly-timeout-and-other-attributes" title="Permanent link">&para;</a></h2>
+<h3 id="readonly">readOnly<a class="headerlink" href="#readonly" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><strong>Effects:</strong>
+- JDBC: sets <code>Connection.setReadOnly(true)</code> (hint)
+- Hibernate: <code>Session.setDefaultReadOnly(true)</code> — skips dirty checking
+- <strong>Optimization</strong>, not enforcement — DB must enforce</p>
+<p><strong>Use case:</strong> All read methods. Ensures no accidental writes.</p>
+<h3 id="timeout">timeout<a class="headerlink" href="#timeout" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span><span class="w">   </span><span class="c1">// seconds</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">longRunning</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Causes <code>TransactionTimedOutException</code> if exceeded</li>
+<li>Requires DB/driver support</li>
+<li><strong>Not a substitute for query timeout</strong> — a long query may still run</li>
+</ul>
+<h3 id="transactionmanager">transactionManager<a class="headerlink" href="#transactionmanager" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">transactionManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"secondaryTxManager"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">inSecondary</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>For multiple <code>PlatformTransactionManager</code>s.</p>
+<h3 id="value-propagation-aliases">value / propagation aliases<a class="headerlink" href="#value-propagation-aliases" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="s">"secondaryTxManager"</span><span class="p">)</span><span class="w">   </span><span class="c1">// value = txManager bean name</span>
+<span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRES_NEW</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="full-attribute-list">Full Attribute List<a class="headerlink" href="#full-attribute-list" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>propagation</code></td>
+<td><code>Propagation</code></td>
+<td><code>REQUIRED</code></td>
+</tr>
+<tr>
+<td><code>isolation</code></td>
+<td><code>Isolation</code></td>
+<td><code>DEFAULT</code></td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td><code>int</code> (sec)</td>
+<td><code>-1</code> (no timeout)</td>
+</tr>
+<tr>
+<td><code>readOnly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>rollbackFor</code></td>
+<td><code>Class[]</code></td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>rollbackForClassName</code></td>
+<td><code>String[]</code></td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>noRollbackFor</code></td>
+<td><code>Class[]</code></td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>noRollbackForClassName</code></td>
+<td><code>String[]</code></td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>transactionManager</code></td>
+<td><code>String</code></td>
+<td>primary</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-transaction-managers">9. Transaction Managers<a class="headerlink" href="#9-transaction-managers" title="Permanent link">&para;</a></h2>
+<h3 id="common-implementations">Common Implementations<a class="headerlink" href="#common-implementations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Manager</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DataSourceTransactionManager</code></td>
+<td>Plain JDBC</td>
+</tr>
+<tr>
+<td><code>JpaTransactionManager</code></td>
+<td>JPA / Hibernate</td>
+</tr>
+<tr>
+<td><code>HibernateTransactionManager</code></td>
+<td>Hibernate (native)</td>
+</tr>
+<tr>
+<td><code>JtaTransactionManager</code></td>
+<td>Distributed (XA)</td>
+</tr>
+<tr>
+<td><code>ChainedTransactionManager</code></td>
+<td>Multiple resources (deprecated in Spring 6)</td>
+</tr>
+<tr>
+<td><code>ReactiveTransactionManager</code></td>
+<td>WebFlux / R2DBC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration-jdbc">Configuration — JDBC<a class="headerlink" href="#configuration-jdbc" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="nf">txManager</span><span class="p">(</span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataSourceTransactionManager</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="configuration-jpa">Configuration — JPA<a class="headerlink" href="#configuration-jpa" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="nf">txManager</span><span class="p">(</span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JpaTransactionManager</span><span class="p">(</span><span class="n">emf</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Spring Boot auto-configures both when dependencies are present.</p>
+<h3 id="multiple-managers">Multiple Managers<a class="headerlink" href="#multiple-managers" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="nf">primaryTx</span><span class="p">(</span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataSourceTransactionManager</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="nf">secondaryTx</span><span class="p">(</span>
+<span class="w">        </span><span class="nd">@Qualifier</span><span class="p">(</span><span class="s">"secondaryDs"</span><span class="p">)</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataSourceTransactionManager</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="s">"secondaryTx"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">inSecondary</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="jta-distributed-transactions">JTA — Distributed Transactions<a class="headerlink" href="#jta-distributed-transactions" title="Permanent link">&para;</a></h3>
+<p>For multi-DB, DB + MQ, etc. Requires an XA-capable transaction manager (Narayana, Atomikos, Bitronix).</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="nf">txManager</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JtaTransactionManager</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>⚠️ 2-phase commit is slow — often avoided via <strong>Sagas</strong> or <strong>Outbox pattern</strong> in microservices.</p>
+<hr />
+<h2 id="10-class-vs-method-level">10. Class vs Method Level<a class="headerlink" href="#10-class-vs-method-level" title="Permanent link">&para;</a></h2>
+<h3 id="class-level">Class-Level<a class="headerlink" href="#class-level" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">create</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// inherits @Transactional</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRES_NEW</span><span class="p">)</span><span class="w">   </span><span class="c1">// overrides</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">log</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w">   </span><span class="c1">// overrides</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>All public methods</strong> become transactional</li>
+<li><strong>Method-level</strong> overrides class-level</li>
+<li>Private/protected methods are <strong>not advised</strong></li>
+</ul>
+<h3 id="recommended-pattern">Recommended Pattern<a class="headerlink" href="#recommended-pattern" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="nd">@Transactional</span><span class="p">(</span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w">   </span><span class="c1">// default for reads</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// readOnly</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="w">                   </span><span class="c1">// read-write for writes</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">create</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="interface-level-avoid">Interface-Level (avoid)<a class="headerlink" href="#interface-level-avoid" title="Permanent link">&para;</a></h3>
+<p>Spring supports <code>@Transactional</code> on interfaces, but:
+- Not recommended by Spring docs
+- Confusing with JDK proxies
+- <strong>Always annotate the concrete class/method</strong></p>
+<h3 id="rollback-exception-during-commit">Rollback Exception During Commit<a class="headerlink" href="#rollback-exception-during-commit" title="Permanent link">&para;</a></h3>
+<p>If commit fails, <code>TransactionSystemException</code> is thrown <strong>after</strong> the method returns. In that case, rollback already happened — you can't recover.</p>
+<hr />
+<h2 id="11-common-pitfalls">11. Common Pitfalls<a class="headerlink" href="#11-common-pitfalls" title="Permanent link">&para;</a></h2>
+<h3 id="111-self-invocation-the-1-pitfall">11.1 Self-Invocation (The #1 Pitfall)<a class="headerlink" href="#111-self-invocation-the-1-pitfall" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">inner</span><span class="p">();</span><span class="w">      </span><span class="c1">// ❌ proxy bypassed</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">inner</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Why:</strong> AOP proxy wraps the bean, but <code>this.inner()</code> is a plain Java call — no proxy.</p>
+<p><strong>Fixes:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Option 1: Split into another bean</span>
+<span class="nd">@Service</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Autowired</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">UserTxService</span><span class="w"> </span><span class="n">tx</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">inner</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Option 2: Inject self</span>
+<span class="nd">@Service</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Autowired</span><span class="w"> </span><span class="nd">@Lazy</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">UserService</span><span class="w"> </span><span class="n">self</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="na">inner</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Option 3: AopContext</span>
+<span class="nd">@EnableAspectJAutoProxy</span><span class="p">(</span><span class="n">exposeProxy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="p">...</span>
+<span class="p">((</span><span class="n">UserService</span><span class="p">)</span><span class="w"> </span><span class="n">AopContext</span><span class="p">.</span><span class="na">currentProxy</span><span class="p">()).</span><span class="na">inner</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="112-private-protected-methods">11.2 Private / Protected Methods<a class="headerlink" href="#112-private-protected-methods" title="Permanent link">&para;</a></h3>
+<p><code>@Transactional</code> on private → <strong>silently ignored</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doWork</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// ⚠️ never transactional!</span>
+</code></pre></div>
+<p>Fix: make it public, or move to another bean.</p>
+<h3 id="113-final-methods-classes">11.3 Final Methods / Classes<a class="headerlink" href="#113-final-methods-classes" title="Permanent link">&para;</a></h3>
+<p>CGLIB cannot override final → advice skipped silently.</p>
+<h3 id="114-checked-exception-rollback">11.4 Checked Exception Rollback<a class="headerlink" href="#114-checked-exception-rollback" title="Permanent link">&para;</a></h3>
+<p>By default, <code>IOException</code> won't roll back. Add <code>rollbackFor = Exception.class</code>.</p>
+<h3 id="115-catch-and-swallow">11.5 Catch and Swallow<a class="headerlink" href="#115-catch-and-swallow" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">inner</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ignored */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// still commits</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Rethrow or <code>setRollbackOnly()</code>.</p>
+<h3 id="116-wrong-propagation">11.6 Wrong Propagation<a class="headerlink" href="#116-wrong-propagation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>REQUIRES_NEW</code> with a small connection pool → pool exhaustion</li>
+<li><code>NESTED</code> on JPA without savepoint support → falls back to REQUIRED silently</li>
+</ul>
+<h3 id="117-long-transactions">11.7 Long Transactions<a class="headerlink" href="#117-long-transactions" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Hold DB locks</li>
+<li>Block other txns</li>
+<li>Cause deadlocks</li>
+<li>Cause connection pool starvation</li>
+</ul>
+<p><strong>Keep transactions short. No HTTP calls inside transactions.</strong></p>
+<h3 id="118-readonly-not-enforced">11.8 readOnly Not Enforced<a class="headerlink" href="#118-readonly-not-enforced" title="Permanent link">&para;</a></h3>
+<p><code>readOnly=true</code> is a <strong>hint</strong>. Some databases ignore it. Accidental writes still succeed in some dialects.</p>
+<h3 id="119-testing-with-transactional">11.9 Testing With @Transactional<a class="headerlink" href="#119-testing-with-transactional" title="Permanent link">&para;</a></h3>
+<p><code>@Transactional</code> on a test method <strong>rolls back automatically</strong> — but this hides flushing issues (JPA). Prefer explicit cleanup with Testcontainers.</p>
+<h3 id="1110-multiple-transaction-managers">11.10 Multiple Transaction Managers<a class="headerlink" href="#1110-multiple-transaction-managers" title="Permanent link">&para;</a></h3>
+<p>Without specifying <code>transactionManager</code>, Spring uses the primary. Mixing managers can silently misconfigure.</p>
+<h3 id="1111-async-transactional">11.11 Async + @Transactional<a class="headerlink" href="#1111-async-transactional" title="Permanent link">&para;</a></h3>
+<p><code>@Async</code> + <code>@Transactional</code> on the same method → the async thread runs <strong>without</strong> the caller's transaction. Ensure the async method itself is <code>@Transactional</code>.</p>
+<h3 id="1112-proxy-vs-target-casting">11.12 Proxy vs Target Casting<a class="headerlink" href="#1112-proxy-vs-target-casting" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">UserServiceImpl</span><span class="w"> </span><span class="n">impl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="n">UserServiceImpl</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">  </span><span class="c1">// ❌ NoSuchBeanDefinition</span>
+<span class="n">UserService</span><span class="w"> </span><span class="n">svc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="n">UserService</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">           </span><span class="c1">// ✅</span>
+</code></pre></div>
+<h3 id="checklist">Checklist<a class="headerlink" href="#checklist" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Method is <strong>public</strong></li>
+<li>[ ] No <strong>self-invocation</strong></li>
+<li>[ ] Class/method <strong>not final</strong></li>
+<li>[ ] Bean is <strong>Spring-managed</strong></li>
+<li>[ ] <code>rollbackFor</code> set if checked exceptions expected</li>
+<li>[ ] No <strong>catch-and-swallow</strong></li>
+<li>[ ] Propagation appropriate</li>
+<li>[ ] readOnly hint used for reads</li>
+<li>[ ] No remote calls inside txn</li>
+<li>[ ] No <code>this.</code> calls to transactional methods</li>
+</ul>
+<hr />
+<h2 id="12-transaction-synchronization-events">12. Transaction Synchronization &amp; Events<a class="headerlink" href="#12-transaction-synchronization-events" title="Permanent link">&para;</a></h2>
+<h3 id="transactionsynchronizationmanager">TransactionSynchronizationManager<a class="headerlink" href="#transactionsynchronizationmanager" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">TransactionSynchronizationManager</span><span class="p">.</span><span class="na">registerSynchronization</span><span class="p">(</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">TransactionSynchronization</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nd">@Override</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">afterCommit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// runs only if commit succeeded</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nd">@Override</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">afterCompletion</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// status: COMMITTED / ROLLED_BACK</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+</code></pre></div>
+<h3 id="transactionaleventlistener">@TransactionalEventListener<a class="headerlink" href="#transactionaleventlistener" title="Permanent link">&para;</a></h3>
+<p>Fire events <strong>after commit</strong> or <strong>after completion</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderListener</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@TransactionalEventListener</span><span class="p">(</span><span class="n">phase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TransactionPhase</span><span class="p">.</span><span class="na">AFTER_COMMIT</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onOrderPlaced</span><span class="p">(</span><span class="n">OrderPlacedEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">emailService</span><span class="p">.</span><span class="na">sendConfirmation</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">orderId</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BEFORE_COMMIT</code></td>
+<td>Before commit</td>
+</tr>
+<tr>
+<td><code>AFTER_COMMIT</code> (default)</td>
+<td>After successful commit</td>
+</tr>
+<tr>
+<td><code>AFTER_ROLLBACK</code></td>
+<td>After rollback</td>
+</tr>
+<tr>
+<td><code>AFTER_COMPLETION</code></td>
+<td>After either</td>
+</tr>
+</tbody>
+</table>
+<p><code>fallbackExecution = true</code> runs even without a transaction.</p>
+<h3 id="use-case-transactional-outbox">Use Case: Transactional Outbox<a class="headerlink" href="#use-case-transactional-outbox" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">placeOrder</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">orderRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">o</span><span class="p">);</span>
+<span class="w">    </span><span class="n">outboxRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">OutboxMessage</span><span class="p">(</span><span class="s">"OrderPlaced"</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="na">getId</span><span class="p">()));</span>
+<span class="w">    </span><span class="c1">// event listener publishes to Kafka AFTER_COMMIT</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="13-nested-transactions-savepoints">13. Nested Transactions &amp; Savepoints<a class="headerlink" href="#13-nested-transactions-savepoints" title="Permanent link">&para;</a></h2>
+<h3 id="nested-via-savepoints">NESTED via Savepoints<a class="headerlink" href="#nested-via-savepoints" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">doA</span><span class="p">();</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">inner</span><span class="p">();</span><span class="w">          </span><span class="c1">// NESTED</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// rollback to savepoint — outer continues</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">doB</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">NESTED</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">inner</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><strong>JDBC:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">Savepoint</span><span class="w"> </span><span class="n">sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">setSavepoint</span><span class="p">(</span><span class="s">"inner"</span><span class="p">);</span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">connection</span><span class="p">.</span><span class="na">rollback</span><span class="p">(</span><span class="n">sp</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="nested-vs-requires_new">NESTED vs REQUIRES_NEW<a class="headerlink" href="#nested-vs-requires_new" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>NESTED</th>
+<th>REQUIRES_NEW</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New connection</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Independent commit</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Savepoint-based</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Outer rollback kills inner</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Pool exhaustion risk</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule:</strong> NESTED for partial rollback; REQUIRES_NEW for truly independent work.</p>
+<hr />
+<h2 id="14-reactive-transactions">14. Reactive Transactions<a class="headerlink" href="#14-reactive-transactions" title="Permanent link">&para;</a></h2>
+<h3 id="reactivetransactionmanager-webflux-r2dbc">ReactiveTransactionManager (WebFlux + R2DBC)<a class="headerlink" href="#reactivetransactionmanager-webflux-r2dbc" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">ReactiveTransactionManager</span><span class="w"> </span><span class="nf">reactiveTxManager</span><span class="p">(</span><span class="n">ConnectionFactory</span><span class="w"> </span><span class="n">cf</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">R2dbcTransactionManager</span><span class="p">(</span><span class="n">cf</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="transactional-works">@Transactional Works<a class="headerlink" href="#transactional-works" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">CreateUserRequest</span><span class="o">&gt;</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">flatMap</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">userRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="na">name</span><span class="p">())));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Rules:
+- Must return <code>Mono</code> / <code>Flux</code>
+- Uses <code>ReactiveTransactionManager</code>
+- No ThreadLocal — uses Reactor Context
+- Not compatible with blocking <code>PlatformTransactionManager</code></p>
+<h3 id="programmatic-reactive">Programmatic Reactive<a class="headerlink" href="#programmatic-reactive" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">TransactionalOperator</span><span class="w"> </span><span class="n">operator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TransactionalOperator</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">txManager</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="n">operator</span><span class="p">.</span><span class="na">transactional</span><span class="p">(</span><span class="n">userRepo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">user</span><span class="p">));</span>
+</code></pre></div>
+<hr />
+<h2 id="15-interview-questions">15. Interview Questions<a class="headerlink" href="#15-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-a-transaction-acid">Q1. What is a transaction? ACID?<a class="headerlink" href="#q1-what-is-a-transaction-acid" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A transaction is a unit of work executed atomically. ACID: <strong>A</strong>tomicity (all/nothing), <strong>C</strong>onsistency (valid state → valid state), <strong>I</strong>solation (concurrent txns don't interfere), <strong>D</strong>urability (committed data persists).</p>
+<h3 id="q2-programmatic-vs-declarative-transactions">Q2. Programmatic vs declarative transactions?<a class="headerlink" href="#q2-programmatic-vs-declarative-transactions" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <strong>Programmatic</strong> (<code>TransactionTemplate</code>) is explicit in code — more verbose but flexible. <strong>Declarative</strong> (<code>@Transactional</code>) uses AOP — cleaner, less code, but with pitfalls (self-invocation). Use declarative by default, programmatic for complex logic.</p>
+<h3 id="q3-how-does-transactional-work-internally">Q3. How does @Transactional work internally?<a class="headerlink" href="#q3-how-does-transactional-work-internally" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring creates a <strong>proxy</strong> (JDK or CGLIB) around the bean. When a <code>@Transactional</code> method is called, <code>TransactionInterceptor</code> (an <code>@Around</code> advice) intercepts, obtains a <code>TransactionStatus</code> from <code>PlatformTransactionManager</code>, invokes the method, then commits or rolls back based on the outcome.</p>
+<h3 id="q4-explain-propagation-behaviors">Q4. Explain propagation behaviors.<a class="headerlink" href="#q4-explain-propagation-behaviors" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong>
+- <code>REQUIRED</code> (default) — join or create
+- <code>REQUIRES_NEW</code> — always new, suspend outer
+- <code>SUPPORTS</code> — join if present, else none
+- <code>NOT_SUPPORTED</code> — suspend, run without
+- <code>MANDATORY</code> — must have outer
+- <code>NEVER</code> — must not have outer
+- <code>NESTED</code> — savepoint within outer</p>
+<h3 id="q5-whats-the-difference-between-requires_new-and-nested">Q5. What's the difference between REQUIRES_NEW and NESTED?<a class="headerlink" href="#q5-whats-the-difference-between-requires_new-and-nested" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>REQUIRES_NEW</code> opens a <strong>new independent transaction</strong> (new connection, own commit). <code>NESTED</code> uses a <strong>savepoint within the same transaction</strong> — inner rollback only reverts to the savepoint; outer can continue. <code>REQUIRES_NEW</code> consumes an extra connection.</p>
+<h3 id="q6-what-are-the-isolation-levels">Q6. What are the isolation levels?<a class="headerlink" href="#q6-what-are-the-isolation-levels" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>READ_UNCOMMITTED</code> (dirty reads allowed), <code>READ_COMMITTED</code> (no dirty reads), <code>REPEATABLE_READ</code> (no non-repeatable), <code>SERIALIZABLE</code> (fully isolated). Higher isolation = more locking = lower concurrency.</p>
+<h3 id="q7-which-exceptions-trigger-rollback-by-default">Q7. Which exceptions trigger rollback by default?<a class="headerlink" href="#q7-which-exceptions-trigger-rollback-by-default" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>RuntimeException</code> and <code>Error</code>. <strong>Checked exceptions do NOT roll back</strong> by default. Use <code>rollbackFor = Exception.class</code> to include checked.</p>
+<h3 id="q8-what-is-self-invocation-problem">Q8. What is self-invocation problem?<a class="headerlink" href="#q8-what-is-self-invocation-problem" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Calling a <code>@Transactional</code> method from within the same bean via <code>this.method()</code> bypasses the proxy — no transaction advice applied. Fix: extract to another bean, inject self, or use <code>AopContext.currentProxy()</code>.</p>
+<h3 id="q9-can-you-use-transactional-on-private-methods">Q9. Can you use @Transactional on private methods?<a class="headerlink" href="#q9-can-you-use-transactional-on-private-methods" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> No — proxy-based AOP only advises public methods. Annotation on private is silently ignored.</p>
+<h3 id="q10-how-do-you-configure-transactions-in-spring-boot">Q10. How do you configure transactions in Spring Boot?<a class="headerlink" href="#q10-how-do-you-configure-transactions-in-spring-boot" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring Boot auto-configures <code>PlatformTransactionManager</code> (JPA → <code>JpaTransactionManager</code>, JDBC → <code>DataSourceTransactionManager</code>) and enables <code>@EnableTransactionManagement</code>. Just annotate methods with <code>@Transactional</code>.</p>
+<h3 id="q11-what-is-transactionsynchronizationmanager">Q11. What is <code>TransactionSynchronizationManager</code>?<a class="headerlink" href="#q11-what-is-transactionsynchronizationmanager" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Manages transaction-scoped resources (connections, sessions) via ThreadLocals. Supports registering <code>TransactionSynchronization</code> callbacks (<code>beforeCommit</code>, <code>afterCommit</code>, <code>afterCompletion</code>).</p>
+<h3 id="q12-what-is-transactionaleventlistener">Q12. What is <code>@TransactionalEventListener</code>?<a class="headerlink" href="#q12-what-is-transactionaleventlistener" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A listener for application events, invoked at a specific transaction phase (default <code>AFTER_COMMIT</code>). Ensures event handling happens only after the transaction commits — avoiding side effects on rolled-back work.</p>
+<h3 id="q13-can-you-have-multiple-transaction-managers">Q13. Can you have multiple transaction managers?<a class="headerlink" href="#q13-can-you-have-multiple-transaction-managers" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes. Define multiple <code>PlatformTransactionManager</code> beans, mark one <code>@Primary</code>, and select via <code>@Transactional("beanName")</code> or <code>@Transactional(transactionManager = "..."</code>.</p>
+<h3 id="q14-what-is-a-distributed-transaction-do-you-use-jta">Q14. What is a distributed transaction? Do you use JTA?<a class="headerlink" href="#q14-what-is-a-distributed-transaction-do-you-use-jta" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Multi-resource transaction requiring 2-phase commit (2PC). JTA + XA managers (Atomikos, Narayana) provide it. It's slow and fragile at scale. Modern microservices use <strong>Sagas</strong> or the <strong>Outbox pattern</strong> instead.</p>
+<h3 id="q15-what-is-savepoint">Q15. What is savepoint?<a class="headerlink" href="#q15-what-is-savepoint" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A marker inside a transaction to which you can roll back <strong>without</strong> ending the whole transaction. Used by <code>Propagation.NESTED</code> via <code>Connection.setSavepoint()</code>.</p>
+<h3 id="q16-can-transactional-be-used-on-interfaces">Q16. Can @Transactional be used on interfaces?<a class="headerlink" href="#q16-can-transactional-be-used-on-interfaces" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes, but not recommended. Spring docs advise annotating concrete classes/methods. On interfaces with JDK proxies, it works, but it's fragile with CGLIB and inheritance.</p>
+<h3 id="q17-how-does-spring-handle-timeout">Q17. How does Spring handle timeout?<a class="headerlink" href="#q17-how-does-spring-handle-timeout" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>@Transactional(timeout=30)</code> sets a transaction timeout. Spring calls <code>setTransactionTimeout</code> on the manager, which delegates to the JDBC driver/JTA. Exceeding → <code>TransactionTimedOutException</code>.</p>
+<h3 id="q18-what-is-readonlytrue-and-how-does-it-help">Q18. What is <code>readOnly=true</code> and how does it help?<a class="headerlink" href="#q18-what-is-readonlytrue-and-how-does-it-help" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Sets <code>Connection.setReadOnly(true)</code> and disables Hibernate dirty checking. It's a hint — improves performance and discourages accidental writes, but DB must enforce.</p>
+<h3 id="q19-how-to-test-transactional-code">Q19. How to test @Transactional code?<a class="headerlink" href="#q19-how-to-test-transactional-code" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>@DataJpaTest</code> (auto-rollback), <code>@SpringBootTest</code> with <code>@Transactional</code>, or Testcontainers for real DB. Note that Spring's <code>@Transactional</code> on tests rolls back automatically — sometimes hiding flush issues.</p>
+<h3 id="q20-why-might-unexpectedrollbackexception-occur">Q20. Why might <code>UnexpectedRollbackException</code> occur?<a class="headerlink" href="#q20-why-might-unexpectedrollbackexception-occur" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> An inner method marked the transaction as <strong>rollback-only</strong> (e.g., an exception propagated from a REQUIRED inner method was caught by the outer), and the outer tried to commit. Spring throws <code>UnexpectedRollbackException</code> at commit time.</p>
+<hr />
+<h2 id="16-cheat-sheet">16. Cheat Sheet<a class="headerlink" href="#16-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="transactional">@Transactional<a class="headerlink" href="#transactional" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span>
+<span class="w">    </span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRED</span><span class="p">,</span>
+<span class="w">    </span><span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">READ_COMMITTED</span><span class="p">,</span>
+<span class="w">    </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">    </span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rollbackFor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exception</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">    </span><span class="n">noRollbackFor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BusinessWarning</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">    </span><span class="n">transactionManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"txManager"</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="propagation-memory-aid">Propagation (Memory Aid)<a class="headerlink" href="#propagation-memory-aid" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>REQUIRED      = join or create (default)
+REQUIRES_NEW  = always new (suspend outer)
+SUPPORTS      = join if exists
+NOT_SUPPORTED = suspend, no txn
+MANDATORY     = must have outer
+NEVER         = must not have outer
+NESTED        = savepoint inside outer
+</code></pre></div>
+<h3 id="isolation">Isolation<a class="headerlink" href="#isolation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>READ_UNCOMMITTED → dirty reads allowed
+READ_COMMITTED   → no dirty reads
+REPEATABLE_READ  → no dirty + no non-repeatable
+SERIALIZABLE     → full isolation
+</code></pre></div>
+<h3 id="default-rollback">Default Rollback<a class="headerlink" href="#default-rollback" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>RuntimeException → ROLLBACK
+Error            → ROLLBACK
+Checked          → COMMIT (surprising!)
+</code></pre></div>
+<h3 id="programmatic">Programmatic<a class="headerlink" href="#programmatic" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Autowired</span><span class="w"> </span><span class="n">TransactionTemplate</span><span class="w"> </span><span class="n">txTemplate</span><span class="p">;</span>
+
+<span class="n">txTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// work</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fail</span><span class="p">)</span><span class="w"> </span><span class="n">status</span><span class="p">.</span><span class="na">setRollbackOnly</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="debug-logging">Debug Logging<a class="headerlink" href="#debug-logging" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">logging.level.org.springframework.transaction</span><span class="o">=</span><span class="s">DEBUG</span>
+<span class="na">logging.level.org.springframework.transaction.interceptor</span><span class="o">=</span><span class="s">TRACE</span>
+<span class="na">logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager</span><span class="o">=</span><span class="s">DEBUG</span>
+</code></pre></div>
+<h3 id="pitfalls-quick-list">Pitfalls Quick List<a class="headerlink" href="#pitfalls-quick-list" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Self-invocation</li>
+<li>Private methods</li>
+<li>Final methods/classes</li>
+<li>Checked exception rollback missing</li>
+<li>Catch-and-swallow</li>
+<li>Wrong propagation</li>
+<li>Long transactions</li>
+<li>readOnly assumed enforced</li>
+<li>Mixing tx managers</li>
+<li>Async + @Transactional mismatch</li>
+</ul>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>04_Spring_JDBC.md</code></li>
+<li><strong>Next:</strong> <code>06_Spring_Boot_Fundamentals.md</code></li>
+<li><strong>Related:</strong> <code>10_Spring_Data_JPA.md</code>, <code>19_Spring_Microservices_Cloud.md</code> (Sagas)</li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code></li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="../04_Spring_JDBC/">04_Spring_JDBC.md</a></li>
+<li><strong>Next →:</strong> <a href="./06_Spring_Boot_Fundamentals.md">06_Spring_Boot_Fundamentals.md</a></li>
+<li><strong>Related:</strong> <a href="../04_Spring_JDBC/">04_Spring_JDBC.md</a>, <a href="./10_Spring_Data_JPA.md">10_Spring_Data_JPA.md</a>, <a href="./26_Spring_Best_Practices.md">26_Spring_Best_Practices.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

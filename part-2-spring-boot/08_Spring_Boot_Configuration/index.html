@@ -1,0 +1,4612 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Spring Boot Configuration & Profiles - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spring-boot-configuration-profiles" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spring Boot Configuration &amp; Profiles
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-configuration-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Configuration Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Configuration Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-files-live" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Files Live
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-applicationproperties-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. application.properties Syntax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. application.properties Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-continuation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line Continuation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-characters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special Characters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-line-complex-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-line / Complex Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-applicationyml-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. application.yml Syntax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. application.yml Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-format_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lists_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-document-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Document (Profiles)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anchors-aliases-dry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anchors &amp; Aliases (DRY)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-vs-properties-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML vs Properties Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-property-placeholders-random-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Property Placeholders &amp; Random Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Property Placeholders &amp; Random Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Placeholders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Defaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencing-other-configs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencing Other Configs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-value-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. @Value Annotation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. @Value Annotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spel-in-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SpEL in @Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Injection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Map Injection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructor-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructor Injection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drawbacks-of-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drawbacks of @Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-prefer-configurationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Prefer @ConfigurationProperties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-configurationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. @ConfigurationProperties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. @ConfigurationProperties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-via-enableconfigurationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling via @EnableConfigurationProperties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#or-configurationpropertiesscan-boot-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Or @ConfigurationPropertiesScan (Boot 2.2+)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructor-binding-immutable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructor Binding (Immutable)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#records-boot-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Records (Boot 2.6+)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relaxed-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relaxed Binding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ide-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDE Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurationproperties-vs-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @ConfigurationProperties vs @Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-validation-of-configuration-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Validation of Configuration Properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Validation of Configuration Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-jsr-303-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add JSR-303 Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failure-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Validators
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-profile-specific-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Profile-Specific Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Profile-Specific Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File-Based
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dev-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dev Override
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prod-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prod Override
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-profile-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Profile Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-multi-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML Multi-Doc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bean-level-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bean-Level Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-expressions-boot-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile Expressions (Boot 2.4+)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-specific-beans-via-profile-on-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile-Specific Beans via @Profile on @Bean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-activating-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Activating Profiles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Activating Profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-property-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Property File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Command Line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-environment-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Environment Variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-jvm-system-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. JVM System Property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-programmatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Programmatic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-in-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. In Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Include Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overriding-active-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overriding Active Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precedence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precedence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-profile-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Profile Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Profile Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-groups-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Groups (avoid)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-externalized-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Externalized Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Externalized Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sources-in-addition-to-classpath-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources (in addition to classpath files)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Locations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_application_json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPRING_APPLICATION_JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-Line Args
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-property-precedence-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Property Precedence Order
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Property Precedence Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#within-a-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Within a Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precedence-mnemonic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precedence Mnemonic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overriding-managed-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overriding Managed Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-propertysource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. @PropertySource
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. @PropertySource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignoring-missing-files-boot-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ignoring Missing Files (Boot 2.4+)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-yaml-propertysource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom YAML PropertySource
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-config-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Config Import
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Config Import">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-in-applicationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import in application.properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-server-spring-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Server (Spring Cloud)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiles-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profiles + Import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precedence_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precedence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-encrypting-properties-jasypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Encrypting Properties (Jasypt)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Encrypting Properties (Jasypt)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-a-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encrypt a Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-in-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use in Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-encryption-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provide Encryption Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-how-does-spring-boot-externalize-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. How does Spring Boot externalize configuration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-applicationproperties-vs-applicationyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. application.properties vs application.yml?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-difference-between-value-and-configurationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. Difference between @Value and @ConfigurationProperties?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-how-do-you-validate-configuration-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. How do you validate configuration properties?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-what-is-relaxed-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. What is relaxed binding?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-how-do-you-activate-a-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. How do you activate a profile?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-what-are-profile-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. What are profile groups?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-explain-the-property-precedence-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. Explain the property precedence order.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-what-is-configurationpropertiesscan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. What is @ConfigurationPropertiesScan?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-can-you-bind-constructor-parameters-in-configurationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. Can you bind constructor parameters in @ConfigurationProperties?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-how-do-you-encrypt-sensitive-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. How do you encrypt sensitive properties?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-what-is-springconfigimport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. What is spring.config.import?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-how-do-you-override-a-boot-managed-dependency-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. How do you override a Boot-managed dependency version?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-what-is-propertysource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. What is @PropertySource?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-difference-between-springprofilesactive-and-springprofilesinclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. Difference between spring.profiles.active and spring.profiles.include?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-how-do-you-pass-configuration-to-a-spring-boot-app-in-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. How do you pass configuration to a Spring Boot app in Kubernetes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-what-is-the-default-value-syntax-in-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. What is the default value syntax in @Value?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-how-do-you-bind-a-map-in-configurationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. How do you bind a Map in @ConfigurationProperties?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-what-is-springconfiglocation-vs-springconfigadditional-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. What is spring.config.location vs spring.config.additional-location?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-how-do-you-know-which-properties-are-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. How do you know which properties are available?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#property-sources-highest-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Property Sources (Highest Wins)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-property-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Property Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variable-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variable Naming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @ConfigurationProperties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#record-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record Style
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activate-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activate Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalized-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Externalized Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jasypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jasypt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="spring-boot-configuration-profiles">Spring Boot Configuration &amp; Profiles<a class="headerlink" href="#spring-boot-configuration-profiles" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>08_Spring_Boot_Configuration.md</code>
+<strong>Part:</strong> 2 — Spring Boot
+<strong>Prerequisites:</strong> <code>06_Spring_Boot_Fundamentals.md</code>
+<strong>Estimated Study Time:</strong> 6–8 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-configuration-overview">Configuration Overview</a></li>
+<li><a href="#2-applicationproperties-syntax">application.properties Syntax</a></li>
+<li><a href="#3-applicationyml-syntax">application.yml Syntax</a></li>
+<li><a href="#4-property-placeholders--random-values">Property Placeholders &amp; Random Values</a></li>
+<li><a href="#5-value-annotation">@Value Annotation</a></li>
+<li><a href="#6-configurationproperties">@ConfigurationProperties</a></li>
+<li><a href="#7-validation-of-configuration-properties">Validation of Configuration Properties</a></li>
+<li><a href="#8-profile-specific-configuration">Profile-Specific Configuration</a></li>
+<li><a href="#9-activating-profiles">Activating Profiles</a></li>
+<li><a href="#10-profile-groups">Profile Groups</a></li>
+<li><a href="#11-externalized-configuration">Externalized Configuration</a></li>
+<li><a href="#12-property-precedence-order">Property Precedence Order</a></li>
+<li><a href="#13-propertysource">@PropertySource</a></li>
+<li><a href="#14-config-import">Config Import</a></li>
+<li><a href="#15-encrypting-properties-jasypt">Encrypting Properties (Jasypt)</a></li>
+<li><a href="#16-interview-questions">Interview Questions</a></li>
+<li><a href="#17-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-configuration-overview">1. Configuration Overview<a class="headerlink" href="#1-configuration-overview" title="Permanent link">&para;</a></h2>
+<p>Spring Boot supports multiple configuration sources, unified via the <code>Environment</code> abstraction:</p>
+<ul>
+<li><code>application.properties</code> / <code>application.yml</code></li>
+<li>Profile-specific variants</li>
+<li>Environment variables</li>
+<li>System properties</li>
+<li>Command-line arguments</li>
+<li><code>@PropertySource</code></li>
+<li><code>spring.config.import</code></li>
+</ul>
+<h3 id="design-principles">Design Principles<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Convention over configuration</strong> — sensible defaults</li>
+<li><strong>Externalize everything</strong> — 12-factor app</li>
+<li><strong>Override easily</strong> — layered precedence</li>
+<li><strong>Type-safe binding</strong> — <code>@ConfigurationProperties</code></li>
+</ol>
+<h3 id="where-files-live">Where Files Live<a class="headerlink" href="#where-files-live" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Precedence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>classpath:/</code> (jar root)</td>
+<td>Lowest</td>
+</tr>
+<tr>
+<td><code>classpath:/config/</code></td>
+<td>Higher</td>
+</tr>
+<tr>
+<td><code>file:./</code> (current dir)</td>
+<td>Higher</td>
+</tr>
+<tr>
+<td><code>file:./config/</code></td>
+<td>Higher</td>
+</tr>
+<tr>
+<td><code>file:./config/*/</code></td>
+<td>Higher</td>
+</tr>
+<tr>
+<td>Command-line / env</td>
+<td>Highest</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-applicationproperties-syntax">2. application.properties Syntax<a class="headerlink" href="#2-applicationproperties-syntax" title="Permanent link">&para;</a></h2>
+<h3 id="basic-format">Basic Format<a class="headerlink" href="#basic-format" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">server.port</span><span class="o">=</span><span class="s">8080</span>
+<span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://localhost:5432/mydb</span>
+<span class="na">logging.level.com.example</span><span class="o">=</span><span class="s">DEBUG</span>
+</code></pre></div>
+<h3 id="comments">Comments<a class="headerlink" href="#comments" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># This is a comment</span>
+<span class="c1">! This is also a comment</span>
+</code></pre></div>
+<h3 id="line-continuation">Line Continuation<a class="headerlink" href="#line-continuation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://localhost:5432/mydb?</span><span class="se">\</span>
+<span class="s">useSSL=false&amp;serverTimezone=UTC</span>
+</code></pre></div>
+<h3 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">myapp.hosts[0]</span><span class="o">=</span><span class="s">host1</span>
+<span class="na">myapp.hosts[1]</span><span class="o">=</span><span class="s">host2</span>
+<span class="na">myapp.hosts[2]</span><span class="o">=</span><span class="s">host3</span>
+
+<span class="c1"># Or comma-separated</span>
+<span class="na">myapp.hosts</span><span class="o">=</span><span class="s">host1,host2,host3</span>
+</code></pre></div>
+<h3 id="maps">Maps<a class="headerlink" href="#maps" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">myapp.endpoints.user</span><span class="o">=</span><span class="s">http://user.api</span>
+<span class="na">myapp.endpoints.order</span><span class="o">=</span><span class="s">http://order.api</span>
+</code></pre></div>
+<p>Bound to <code>Map&lt;String, String&gt; endpoints</code> or <code>Map&lt;String, URL&gt;</code>.</p>
+<h3 id="special-characters">Special Characters<a class="headerlink" href="#special-characters" title="Permanent link">&para;</a></h3>
+<p>Escape <code>:</code> <code>=</code> <code>\</code> with backslash:</p>
+<div class="highlight"><pre><span></span><code><span class="na">my.key</span><span class="o">=</span><span class="s">value</span><span class="se">\:</span><span class="s">with</span><span class="se">\:</span><span class="s">colons</span>
+</code></pre></div>
+<h3 id="multi-line-complex-values">Multi-line / Complex Values<a class="headerlink" href="#multi-line-complex-values" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">app.description</span><span class="o">=</span><span class="s">Line one</span><span class="se">\n\</span>
+<span class="s">Line two</span><span class="se">\n\</span>
+<span class="s">Line three</span>
+</code></pre></div>
+<hr />
+<h2 id="3-applicationyml-syntax">3. application.yml Syntax<a class="headerlink" href="#3-applicationyml-syntax" title="Permanent link">&para;</a></h2>
+<h3 id="basic-format_1">Basic Format<a class="headerlink" href="#basic-format_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">datasource</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jdbc:postgresql://localhost:5432/mydb</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<span class="nt">logging</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">level</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">com.example</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+</code></pre></div>
+<h3 id="lists_1">Lists<a class="headerlink" href="#lists_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">myapp</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host3</span>
+
+<span class="c1"># or inline</span>
+<span class="nt">myapp</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">host1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">host2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">host3</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<h3 id="maps_1">Maps<a class="headerlink" href="#maps_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">myapp</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://user.api</span>
+<span class="w">    </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://order.api</span>
+</code></pre></div>
+<h3 id="multi-document-profiles">Multi-Document (Profiles)<a class="headerlink" href="#multi-document-profiles" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Base</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">application</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
+
+<span class="nn">---</span>
+<span class="c1"># Dev profile</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">on-profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
+<span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+
+<span class="nn">---</span>
+<span class="c1"># Prod profile</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">on-profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
+<span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div>
+<h3 id="anchors-aliases-dry">Anchors &amp; Aliases (DRY)<a class="headerlink" href="#anchors-aliases-dry" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">defaults</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;defaults</span>
+<span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
+<span class="w">  </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="nt">service-a</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*defaults</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://a.api</span>
+
+<span class="nt">service-b</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*defaults</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://b.api</span>
+</code></pre></div>
+<h3 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">app</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">  </span><span class="nt">ratio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.85</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Hello"</span>
+<span class="w">  </span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-01-01</span>
+<span class="w">  </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span><span class="w">          </span><span class="c1"># → Duration</span>
+<span class="w">  </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10MB</span><span class="w">             </span><span class="c1"># → DataSize</span>
+<span class="w">  </span><span class="nt">list</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">a</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">b</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">c</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">map</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> k1</span><span class="p">:</span><span class="w"> </span><span class="nv">v1</span><span class="p p-Indicator">,</span><span class="nt"> k2</span><span class="p">:</span><span class="w"> </span><span class="nv">v2</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</code></pre></div>
+<p>Spring Boot converts <code>30s</code>, <code>5m</code>, <code>10MB</code>, <code>1GB</code> automatically.</p>
+<h3 id="yaml-vs-properties-decision">YAML vs Properties Decision<a class="headerlink" href="#yaml-vs-properties-decision" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Properties</th>
+<th>YAML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hierarchical</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Multi-doc</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Lists</td>
+<td>Awkward</td>
+<td>Natural</td>
+</tr>
+<tr>
+<td>Dup keys</td>
+<td>Last wins</td>
+<td>Error</td>
+</tr>
+<tr>
+<td>Tooling</td>
+<td>Universal</td>
+<td>SnakeYAML needed</td>
+</tr>
+<tr>
+<td>Profiles inline</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-property-placeholders-random-values">4. Property Placeholders &amp; Random Values<a class="headerlink" href="#4-property-placeholders-random-values" title="Permanent link">&para;</a></h2>
+<h3 id="placeholders">Placeholders<a class="headerlink" href="#placeholders" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">app.name</span><span class="o">=</span><span class="s">MyApp</span>
+<span class="na">app.description</span><span class="o">=</span><span class="s">${app.name} is awesome</span>
+<span class="na">app.home</span><span class="o">=</span><span class="s">${user.home}/.myapp</span>
+</code></pre></div>
+<h3 id="random-values">Random Values<a class="headerlink" href="#random-values" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">app.uuid</span><span class="o">=</span><span class="s">${random.uuid}</span>
+<span class="na">app.int</span><span class="o">=</span><span class="s">${random.int}</span>
+<span class="na">app.intRange</span><span class="o">=</span><span class="s">${random.int(1,100)}</span>
+<span class="na">app.long</span><span class="o">=</span><span class="s">${random.long}</span>
+<span class="na">app.longRange</span><span class="o">=</span><span class="s">${random.long(1000,9999)}</span>
+<span class="na">app.bytes</span><span class="o">=</span><span class="s">${random.bytes(16)}</span>
+</code></pre></div>
+<h3 id="default-values">Default Values<a class="headerlink" href="#default-values" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">app.port</span><span class="o">=</span><span class="s">${SERVER_PORT:8080}</span>
+<span class="na">app.name</span><span class="o">=</span><span class="s">${APP_NAME:MyApp}</span>
+</code></pre></div>
+<p>If property missing → use default after <code>:</code>.</p>
+<h3 id="nested-defaults">Nested Defaults<a class="headerlink" href="#nested-defaults" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">app.url</span><span class="o">=</span><span class="s">${APP_URL:http://${APP_HOST:localhost}:${APP_PORT:8080}}</span>
+</code></pre></div>
+<h3 id="referencing-other-configs">Referencing Other Configs<a class="headerlink" href="#referencing-other-configs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}</span>
+</code></pre></div>
+<hr />
+<h2 id="5-value-annotation">5. @Value Annotation<a class="headerlink" href="#5-value-annotation" title="Permanent link">&para;</a></h2>
+<h3 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyBean</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">"${app.name}"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">"${app.timeout:5000}"</span><span class="p">)</span><span class="w">   </span><span class="c1">// default</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">timeout</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">"${app.enabled:true}"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">enabled</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="spel-in-value">SpEL in @Value<a class="headerlink" href="#spel-in-value" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Value</span><span class="p">(</span><span class="s">"#{systemProperties['user.dir']}"</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">workingDir</span><span class="p">;</span>
+
+<span class="nd">@Value</span><span class="p">(</span><span class="s">"#{2 + 3}"</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+
+<span class="nd">@Value</span><span class="p">(</span><span class="s">"#{myProperties.list}"</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="list-injection">List Injection<a class="headerlink" href="#list-injection" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">app.hosts</span><span class="o">=</span><span class="s">host1,host2,host3</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Value</span><span class="p">(</span><span class="s">"${app.hosts}"</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hosts</span><span class="p">;</span><span class="w">   </span><span class="c1">// auto-splits by comma</span>
+
+<span class="nd">@Value</span><span class="p">(</span><span class="s">"${app.hosts}"</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">hostArray</span><span class="p">;</span><span class="w">   </span><span class="c1">// comma-split</span>
+</code></pre></div>
+<h3 id="map-injection">Map Injection<a class="headerlink" href="#map-injection" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">app.endpoints.user</span><span class="o">=</span><span class="s">http://user.api</span>
+<span class="na">app.endpoints.order</span><span class="o">=</span><span class="s">http://order.api</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Value</span><span class="p">(</span><span class="s">"#{${app.endpoints}}"</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">endpoints</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="constructor-injection">Constructor Injection<a class="headerlink" href="#constructor-injection" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="nf">MyBean</span><span class="p">(</span><span class="nd">@Value</span><span class="p">(</span><span class="s">"${app.name}"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="drawbacks-of-value">Drawbacks of @Value<a class="headerlink" href="#drawbacks-of-value" title="Permanent link">&para;</a></h3>
+<ul>
+<li>No type-safe binding</li>
+<li>No relaxed binding (kebab-case only)</li>
+<li>No validation</li>
+<li>Not grouped</li>
+<li>Harder to refactor</li>
+<li>Scattered across classes</li>
+</ul>
+<h3 id="when-to-prefer-configurationproperties">When to Prefer @ConfigurationProperties<a class="headerlink" href="#when-to-prefer-configurationproperties" title="Permanent link">&para;</a></h3>
+<p>Use <code>@Value</code> for:
+- Simple, single values
+- SpEL expressions
+- Ad-hoc overrides</p>
+<p>Use <code>@ConfigurationProperties</code> for:
+- Grouped config
+- Type-safe
+- Validation
+- IDE support</p>
+<hr />
+<h2 id="6-configurationproperties">6. @ConfigurationProperties<a class="headerlink" href="#6-configurationproperties" title="Permanent link">&para;</a></h2>
+<p>Type-safe binding of a group of properties to a POJO.</p>
+<h3 id="basic">Basic<a class="headerlink" href="#basic" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"app.mail"</span><span class="p">)</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MailProperties</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">host</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// getters/setters</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>application.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">app</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mail</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">smtp.example.com</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">587</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">noreply@example.com</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret</span>
+<span class="w">    </span><span class="nt">ssl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h3 id="enabling-via-enableconfigurationproperties">Enabling via @EnableConfigurationProperties<a class="headerlink" href="#enabling-via-enableconfigurationproperties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableConfigurationProperties</span><span class="p">(</span><span class="n">MailProperties</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MailConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="or-configurationpropertiesscan-boot-22">Or @ConfigurationPropertiesScan (Boot 2.2+)<a class="headerlink" href="#or-configurationpropertiesscan-boot-22" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span>
+<span class="nd">@ConfigurationPropertiesScan</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">App</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Scans for <code>@ConfigurationProperties</code> classes without <code>@Component</code>.</p>
+<h3 id="nested-properties">Nested Properties<a class="headerlink" href="#nested-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"app"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AppProperties</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Mail</span><span class="w"> </span><span class="n">mail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mail</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Database</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Database</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="o">&gt;</span><span class="w"> </span><span class="n">timeouts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Mail</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">host</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// getters/setters</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Database</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// getters/setters</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// getters/setters</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nt">app</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyApp</span>
+<span class="w">  </span><span class="nt">mail</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">smtp.example.com</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">587</span>
+<span class="w">  </span><span class="nt">database</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jdbc:...</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<span class="w">  </span><span class="nt">features</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metrics</span>
+<span class="w">  </span><span class="nt">timeouts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+<span class="w">    </span><span class="nt">api</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+</code></pre></div>
+<h3 id="constructor-binding-immutable">Constructor Binding (Immutable)<a class="headerlink" href="#constructor-binding-immutable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"app.mail"</span><span class="p">)</span>
+<span class="nd">@ConstructorBinding</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MailProperties</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">host</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MailProperties</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">host</span><span class="p">,</span><span class="w"> </span><span class="nd">@DefaultValue</span><span class="p">(</span><span class="s">"25"</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">host</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">port</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// getters only</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Since Boot 3.0, constructor binding is enabled automatically for records and single-constructor classes (no <code>@ConstructorBinding</code> needed unless multiple constructors).</p>
+<h3 id="records-boot-26">Records (Boot 2.6+)<a class="headerlink" href="#records-boot-26" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"app.mail"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">MailProperties</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">host</span><span class="p">,</span><span class="w"> </span><span class="nd">@DefaultValue</span><span class="p">(</span><span class="s">"25"</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">ssl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Immutable, concise, ideal for config.</p>
+<h3 id="relaxed-binding">Relaxed Binding<a class="headerlink" href="#relaxed-binding" title="Permanent link">&para;</a></h3>
+<p>Multiple property name styles bind to the same field:</p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kebab</td>
+<td><code>app.mail.host-name</code></td>
+</tr>
+<tr>
+<td>camelCase</td>
+<td><code>app.mail.hostName</code></td>
+</tr>
+<tr>
+<td>Underscore</td>
+<td><code>app.mail.host_name</code></td>
+</tr>
+<tr>
+<td>Uppercase env</td>
+<td><code>APP_MAIL_HOSTNAME</code></td>
+</tr>
+</tbody>
+</table>
+<p>Bind to field <code>hostName</code> in all cases.</p>
+<h3 id="using-properties">Using Properties<a class="headerlink" href="#using-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MailService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MailProperties</span><span class="w"> </span><span class="n">props</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MailService</span><span class="p">(</span><span class="n">MailProperties</span><span class="w"> </span><span class="n">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">props</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">send</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// use props.getHost(), props.getPort()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="ide-support">IDE Support<a class="headerlink" href="#ide-support" title="Permanent link">&para;</a></h3>
+<p>Add <code>spring-boot-configuration-processor</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-configuration-processor<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Generates <code>spring-configuration-metadata.json</code> → IDE autocomplete for properties.</p>
+<h3 id="configurationproperties-vs-value">@ConfigurationProperties vs @Value<a class="headerlink" href="#configurationproperties-vs-value" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>@ConfigurationProperties</th>
+<th>@Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type-safe binding</td>
+<td>✅</td>
+<td>Partial</td>
+</tr>
+<tr>
+<td>Grouped</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Relaxed binding</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>SpEL</td>
+<td>❌ (needs workaround)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Constructor binding</td>
+<td>✅</td>
+<td>Partial</td>
+</tr>
+<tr>
+<td>Immutability</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>IDE support</td>
+<td>✅</td>
+<td>Partial</td>
+</tr>
+<tr>
+<td>Default values</td>
+<td>Field default</td>
+<td><code>${x:default}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule:</strong> Grouped/structured config → <code>@ConfigurationProperties</code>. Simple single values → <code>@Value</code>.</p>
+<hr />
+<h2 id="7-validation-of-configuration-properties">7. Validation of Configuration Properties<a class="headerlink" href="#7-validation-of-configuration-properties" title="Permanent link">&para;</a></h2>
+<h3 id="add-jsr-303-annotations">Add JSR-303 Annotations<a class="headerlink" href="#add-jsr-303-annotations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"app.mail"</span><span class="p">)</span>
+<span class="nd">@Validated</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MailProperties</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@NotBlank</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">host</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Min</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="nd">@Max</span><span class="p">(</span><span class="mi">65535</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Email</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Size</span><span class="p">(</span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// getters/setters</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Add dependency:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-validation<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="failure-behavior">Failure Behavior<a class="headerlink" href="#failure-behavior" title="Permanent link">&para;</a></h3>
+<p>Invalid properties → startup fails with <code>BindValidationException</code>.</p>
+<h3 id="nested-validation">Nested Validation<a class="headerlink" href="#nested-validation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Valid</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">Database</span><span class="w"> </span><span class="n">database</span><span class="p">;</span>
+</code></pre></div>
+<p>Nested object must have <code>@Valid</code> to trigger its validators.</p>
+<h3 id="custom-validators">Custom Validators<a class="headerlink" href="#custom-validators" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Target</span><span class="p">({</span><span class="n">ElementType</span><span class="p">.</span><span class="na">FIELD</span><span class="p">})</span>
+<span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">RUNTIME</span><span class="p">)</span>
+<span class="nd">@Constraint</span><span class="p">(</span><span class="n">validatedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UrlValidator</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="nd">@interface</span><span class="w"> </span><span class="n">ValidUrl</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">message</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s">"Invalid URL"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Class</span><span class="o">&lt;?&gt;[]</span><span class="w"> </span><span class="nf">groups</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Payload</span><span class="o">&gt;[]</span><span class="w"> </span><span class="nf">payload</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{};</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UrlValidator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ConstraintValidator</span><span class="o">&lt;</span><span class="n">ValidUrl</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isValid</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">ConstraintValidatorContext</span><span class="w"> </span><span class="n">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">url</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">URL</span><span class="p">(</span><span class="n">url</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">MalformedURLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="8-profile-specific-configuration">8. Profile-Specific Configuration<a class="headerlink" href="#8-profile-specific-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="file-based">File-Based<a class="headerlink" href="#file-based" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>src/main/resources/
+├── application.properties               # base
+├── application-dev.properties           # dev
+├── application-prod.properties          # prod
+├── application-test.properties          # test
+</code></pre></div>
+<h3 id="base">Base<a class="headerlink" href="#base" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">app.name</span><span class="o">=</span><span class="s">MyApp</span>
+<span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:h2:mem:test</span>
+<span class="na">logging.level.root</span><span class="o">=</span><span class="s">INFO</span>
+</code></pre></div>
+<h3 id="dev-override">Dev Override<a class="headerlink" href="#dev-override" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">logging.level.root</span><span class="o">=</span><span class="s">DEBUG</span>
+<span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://localhost:5432/mydb_dev</span>
+<span class="na">spring.jpa.show-sql</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="prod-override">Prod Override<a class="headerlink" href="#prod-override" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">logging.level.root</span><span class="o">=</span><span class="s">WARN</span>
+<span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://prod-host:5432/mydb</span>
+<span class="na">spring.jpa.hibernate.ddl-auto</span><span class="o">=</span><span class="s">validate</span>
+<span class="na">spring.datasource.hikari.maximum-pool-size</span><span class="o">=</span><span class="s">50</span>
+</code></pre></div>
+<p>When <code>dev</code> active: base + dev overrides. Same for prod.</p>
+<h3 id="multi-profile-files">Multi-Profile Files<a class="headerlink" href="#multi-profile-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>application-dev,metrics.properties
+</code></pre></div>
+<p>Both must be active for this file to load.</p>
+<h3 id="yaml-multi-doc">YAML Multi-Doc<a class="headerlink" href="#yaml-multi-doc" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># application.yml</span>
+<span class="nt">app</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyApp</span>
+
+<span class="nn">---</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">on-profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
+<span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+
+<span class="nn">---</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">on-profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
+<span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div>
+<h3 id="bean-level-profiles">Bean-Level Profiles<a class="headerlink" href="#bean-level-profiles" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@Profile</span><span class="p">(</span><span class="s">"dev"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DevEmailService</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">EmailService</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Component</span>
+<span class="nd">@Profile</span><span class="p">(</span><span class="s">"prod"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ProdEmailService</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">EmailService</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="profile-expressions-boot-24">Profile Expressions (Boot 2.4+)<a class="headerlink" href="#profile-expressions-boot-24" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Profile</span><span class="p">(</span><span class="s">"dev &amp; !cloud"</span><span class="p">)</span>
+<span class="nd">@Profile</span><span class="p">(</span><span class="s">"dev | staging"</span><span class="p">)</span>
+<span class="nd">@Profile</span><span class="p">(</span><span class="s">"(dev | test) &amp; !ci"</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="profile-specific-beans-via-profile-on-bean">Profile-Specific Beans via @Profile on @Bean<a class="headerlink" href="#profile-specific-beans-via-profile-on-bean" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DataConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@Profile</span><span class="p">(</span><span class="s">"dev"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">devDs</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">H2DataSource</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@Profile</span><span class="p">(</span><span class="s">"prod"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">prodDs</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PostgresDataSource</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="default-profile">Default Profile<a class="headerlink" href="#default-profile" title="Permanent link">&para;</a></h3>
+<p>When no profile is active, <code>default</code> is used.</p>
+<div class="highlight"><pre><span></span><code><span class="na">spring.profiles.default</span><span class="o">=</span><span class="s">local</span>
+</code></pre></div>
+<p>Beans with <code>@Profile("default")</code> load.</p>
+<hr />
+<h2 id="9-activating-profiles">9. Activating Profiles<a class="headerlink" href="#9-activating-profiles" title="Permanent link">&para;</a></h2>
+<h3 id="1-property-file">1. Property File<a class="headerlink" href="#1-property-file" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.profiles.active</span><span class="o">=</span><span class="s">dev</span>
+</code></pre></div>
+<h3 id="2-command-line">2. Command Line<a class="headerlink" href="#2-command-line" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span>--spring.profiles.active<span class="o">=</span>dev
+</code></pre></div>
+<h3 id="3-environment-variable">3. Environment Variable<a class="headerlink" href="#3-environment-variable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">SPRING_PROFILES_ACTIVE</span><span class="o">=</span>dev
+</code></pre></div>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SPRING_PROFILES_ACTIVE</span><span class="o">=</span>dev,metrics<span class="w"> </span>java<span class="w"> </span>-jar<span class="w"> </span>app.jar
+</code></pre></div>
+<h3 id="4-jvm-system-property">4. JVM System Property<a class="headerlink" href="#4-jvm-system-property" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>java<span class="w"> </span>-Dspring.profiles.active<span class="o">=</span>dev<span class="w"> </span>-jar<span class="w"> </span>app.jar
+</code></pre></div>
+<h3 id="5-programmatic">5. Programmatic<a class="headerlink" href="#5-programmatic" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">SpringApplication</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SpringApplication</span><span class="p">(</span><span class="n">MyApp</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="n">app</span><span class="p">.</span><span class="na">setAdditionalProfiles</span><span class="p">(</span><span class="s">"dev"</span><span class="p">);</span>
+<span class="n">app</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+</code></pre></div>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ConfigurableEnvironment</span><span class="w"> </span><span class="n">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">app</span><span class="p">.</span><span class="na">run</span><span class="p">().</span><span class="na">getEnvironment</span><span class="p">();</span>
+<span class="n">env</span><span class="p">.</span><span class="na">setActiveProfiles</span><span class="p">(</span><span class="s">"dev"</span><span class="p">,</span><span class="w"> </span><span class="s">"metrics"</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="6-in-tests">6. In Tests<a class="headerlink" href="#6-in-tests" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@ActiveProfiles</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">MyTest</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="multiple-profiles">Multiple Profiles<a class="headerlink" href="#multiple-profiles" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.profiles.active</span><span class="o">=</span><span class="s">dev,metrics</span>
+</code></pre></div>
+<p>Beans matching <strong>any</strong> active profile load.</p>
+<h3 id="include-profiles">Include Profiles<a class="headerlink" href="#include-profiles" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.profiles.include</span><span class="o">=</span><span class="s">common</span>
+</code></pre></div>
+<p>Adds <code>common</code> even if not listed in <code>active</code>. Only applies to non-profile-specific configs (Boot 2.4+).</p>
+<h3 id="overriding-active-profiles">Overriding Active Profiles<a class="headerlink" href="#overriding-active-profiles" title="Permanent link">&para;</a></h3>
+<p>If set on command line, it <strong>replaces</strong> <code>spring.profiles.active</code> from properties.</p>
+<h3 id="precedence">Precedence<a class="headerlink" href="#precedence" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Command line <code>--spring.profiles.active</code></li>
+<li>Environment variable <code>SPRING_PROFILES_ACTIVE</code></li>
+<li>JVM system property <code>-Dspring.profiles.active</code></li>
+<li><code>application.properties</code> <code>spring.profiles.active</code></li>
+<li>Programmatic <code>setAdditionalProfiles</code></li>
+</ol>
+<hr />
+<h2 id="10-profile-groups">10. Profile Groups<a class="headerlink" href="#10-profile-groups" title="Permanent link">&para;</a></h2>
+<p>Boot 2.4+ feature to activate multiple profiles via a single alias.</p>
+<h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.profiles.group.production</span><span class="o">=</span><span class="s">prod-db,prod-mq,prod-monitoring</span>
+<span class="na">spring.profiles.group.dev</span><span class="o">=</span><span class="s">dev-db,dev-mail</span>
+</code></pre></div>
+<p>Now:</p>
+<div class="highlight"><pre><span></span><code><span class="na">spring.profiles.active</span><span class="o">=</span><span class="s">production</span>
+</code></pre></div>
+<p>Activates all three: <code>prod-db</code>, <code>prod-mq</code>, <code>prod-monitoring</code>.</p>
+<h3 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">profiles</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">group</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">production</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod-db</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod-mq</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod-monitoring</span>
+<span class="w">      </span><span class="nt">dev</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev-db</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev-mail</span>
+</code></pre></div>
+<h3 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Environment aliases (<code>prod</code> → <code>db,mq,logging,metrics</code>)</li>
+<li>Feature toggles across profiles</li>
+<li>Cleaner activation on deploy</li>
+</ul>
+<h3 id="nested-groups-avoid">Nested Groups (avoid)<a class="headerlink" href="#nested-groups-avoid" title="Permanent link">&para;</a></h3>
+<p>Groups can reference other groups but keep it shallow to avoid confusion.</p>
+<hr />
+<h2 id="11-externalized-configuration">11. Externalized Configuration<a class="headerlink" href="#11-externalized-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="sources-in-addition-to-classpath-files">Sources (in addition to classpath files)<a class="headerlink" href="#sources-in-addition-to-classpath-files" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Command-line args (<code>--key=value</code>)</li>
+<li>OS environment variables (<code>MYAPP_KEY=value</code>)</li>
+<li>JVM system properties (<code>-Dmyapp.key=value</code>)</li>
+<li>External files (<code>--spring.config.location=/etc/myapp/</code>)</li>
+<li>Config server (Spring Cloud Config)</li>
+<li><code>SPRING_APPLICATION_JSON</code> env var</li>
+<li>Kubernetes ConfigMaps / Secrets (mounted or via Spring Cloud K8s)</li>
+</ul>
+<h3 id="external-files">External Files<a class="headerlink" href="#external-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Point to a directory</span>
+java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span>--spring.config.location<span class="o">=</span>file:/etc/myapp/
+
+<span class="c1"># Or additional locations (higher precedence)</span>
+java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span>--spring.config.additional-location<span class="o">=</span>/opt/myapp/
+
+<span class="c1"># Explicit file</span>
+java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span>--spring.config.location<span class="o">=</span>file:/etc/myapp/application-prod.properties
+</code></pre></div>
+<p>Multiple locations:</p>
+<div class="highlight"><pre><span></span><code>--spring.config.location<span class="o">=</span>classpath:/default/,file:/etc/myapp/
+</code></pre></div>
+<h3 id="optional-locations">Optional Locations<a class="headerlink" href="#optional-locations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>--spring.config.location<span class="o">=</span>optional:file:/etc/myapp/
+</code></pre></div>
+<p>Missing files don't cause failure.</p>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">SPRING_DATASOURCE_URL</span><span class="o">=</span>jdbc:postgresql://prod:5432/mydb
+<span class="nb">export</span><span class="w"> </span><span class="nv">SPRING_PROFILES_ACTIVE</span><span class="o">=</span>prod
+</code></pre></div>
+<p>Naming: uppercase + underscores, matches <code>spring.datasource.url</code>.</p>
+<h3 id="spring_application_json">SPRING_APPLICATION_JSON<a class="headerlink" href="#spring_application_json" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">SPRING_APPLICATION_JSON</span><span class="o">=</span><span class="s1">'{"spring":{"datasource":{"url":"jdbc:..."}}}'</span>
+</code></pre></div>
+<p>Great for CI/CD pipelines.</p>
+<h3 id="command-line-args">Command-Line Args<a class="headerlink" href="#command-line-args" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span>--server.port<span class="o">=</span><span class="m">9090</span><span class="w"> </span>--spring.profiles.active<span class="o">=</span>prod
+</code></pre></div>
+<p>These are highest precedence (after DevTools/TestPropertySource).</p>
+<hr />
+<h2 id="12-property-precedence-order">12. Property Precedence Order<a class="headerlink" href="#12-property-precedence-order" title="Permanent link">&para;</a></h2>
+<p>Spring Boot 2.4+ uses a <strong>layered</strong> approach. Later wins:</p>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lowest</strong></td>
+<td>Default properties (<code>SpringApplication.setDefaultProperties</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>@PropertySource</code> on <code>@Configuration</code></td>
+</tr>
+<tr>
+<td></td>
+<td>Config data (application.properties/yml from classpath)</td>
+</tr>
+<tr>
+<td></td>
+<td>Config data (from <code>file:./config/</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td>Config data (from <code>file:./</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td>Profile-specific config data</td>
+</tr>
+<tr>
+<td></td>
+<td>Random values (<code>${random.*}</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td>OS environment variables</td>
+</tr>
+<tr>
+<td></td>
+<td>Java system properties (<code>-D</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td>JNDI (<code>java:comp/env</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ServletConfig</code> init params</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ServletContext</code> init params</td>
+</tr>
+<tr>
+<td></td>
+<td><code>SPRING_APPLICATION_JSON</code></td>
+</tr>
+<tr>
+<td></td>
+<td>Command-line args</td>
+</tr>
+<tr>
+<td></td>
+<td><code>@TestPropertySource</code></td>
+</tr>
+<tr>
+<td><strong>Highest</strong></td>
+<td><code>@DynamicPropertySource</code> (tests)</td>
+</tr>
+<tr>
+<td></td>
+<td>DevTools global settings (<code>~/.config/spring-boot/spring-boot-devtools.properties</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="within-a-level">Within a Level<a class="headerlink" href="#within-a-level" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Profile-specific files beat generic files</li>
+<li>Last-loaded wins within same source</li>
+</ul>
+<h3 id="precedence-mnemonic">Precedence Mnemonic<a class="headerlink" href="#precedence-mnemonic" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>"Command line beats env beats system beats file beats default."</p>
+</blockquote>
+<h3 id="practical-example">Practical Example<a class="headerlink" href="#practical-example" title="Permanent link">&para;</a></h3>
+<p>If <code>server.port</code> is set in:
+- <code>application.properties</code>: 8080
+- <code>application-prod.properties</code>: 80
+- Env var <code>SERVER_PORT=9090</code>
+- Command-line <code>--server.port=7070</code></p>
+<p>With prod active → <strong>7070</strong> wins.</p>
+<h3 id="overriding-managed-properties">Overriding Managed Properties<a class="headerlink" href="#overriding-managed-properties" title="Permanent link">&para;</a></h3>
+<p>To override a Boot-managed dependency version:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;properties&gt;</span>
+<span class="w">    </span><span class="nt">&lt;jackson.version&gt;</span>2.17.0<span class="nt">&lt;/jackson.version&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div>
+<p>Check the Boot BOM for the property name.</p>
+<hr />
+<h2 id="13-propertysource">13. @PropertySource<a class="headerlink" href="#13-propertysource" title="Permanent link">&para;</a></h2>
+<p>Load properties from a custom file.</p>
+<h3 id="basic_1">Basic<a class="headerlink" href="#basic_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@PropertySource</span><span class="p">(</span><span class="s">"classpath:custom.properties"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Config</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">"${custom.prop}"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">prop</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="multiple-files">Multiple Files<a class="headerlink" href="#multiple-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PropertySources</span><span class="p">({</span>
+<span class="w">    </span><span class="nd">@PropertySource</span><span class="p">(</span><span class="s">"classpath:db.properties"</span><span class="p">),</span>
+<span class="w">    </span><span class="nd">@PropertySource</span><span class="p">(</span><span class="s">"classpath:cache.properties"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+<h3 id="file-system">File System<a class="headerlink" href="#file-system" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PropertySource</span><span class="p">(</span><span class="s">"file:/etc/myapp/config.properties"</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="with-profile">With Profile<a class="headerlink" href="#with-profile" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@PropertySource</span><span class="p">(</span><span class="s">"classpath:dev.properties"</span><span class="p">)</span>
+<span class="nd">@Profile</span><span class="p">(</span><span class="s">"dev"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DevConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="ignoring-missing-files-boot-24">Ignoring Missing Files (Boot 2.4+)<a class="headerlink" href="#ignoring-missing-files-boot-24" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PropertySource</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"classpath:missing.properties"</span><span class="p">,</span><span class="w"> </span><span class="n">ignoreResourceNotFound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+</code></pre></div>
+<p>⚠️ <strong>Note:</strong> <code>@PropertySource</code> does <strong>not</strong> support YAML. Use <code>application.yml</code> or write a custom <code>PropertySourceFactory</code>.</p>
+<h3 id="custom-yaml-propertysource">Custom YAML PropertySource<a class="headerlink" href="#custom-yaml-propertysource" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">YamlPropertySourceFactory</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">PropertySourceFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">PropertySource</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="nf">createPropertySource</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="n">EncodedResource</span><span class="w"> </span><span class="n">resource</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">YamlPropertySourceLoader</span><span class="w"> </span><span class="n">loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">YamlPropertySourceLoader</span><span class="p">();</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PropertySource</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="n">sources</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">            </span><span class="n">loader</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">resource</span><span class="p">.</span><span class="na">getResource</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sources</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@PropertySource</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"classpath:custom.yml"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YamlPropertySourceFactory</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="14-config-import">14. Config Import<a class="headerlink" href="#14-config-import" title="Permanent link">&para;</a></h2>
+<p>Boot 2.4+ feature to import configs from anywhere.</p>
+<h3 id="import-in-applicationproperties">Import in application.properties<a class="headerlink" href="#import-in-applicationproperties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.config.import</span><span class="o">=</span><span class="s">classpath:extra.properties</span>
+<span class="na">spring.config.import</span><span class="o">=</span><span class="s">file:/etc/myapp/secrets.properties</span>
+<span class="na">spring.config.import</span><span class="o">=</span><span class="s">optional:file:/etc/missing.properties</span>
+<span class="na">spring.config.import</span><span class="o">=</span><span class="s">configtree:/etc/secrets/</span>
+</code></pre></div>
+<h3 id="config-tree">Config Tree<a class="headerlink" href="#config-tree" title="Permanent link">&para;</a></h3>
+<p>For Kubernetes/Docker secrets mounted as files:</p>
+<div class="highlight"><pre><span></span><code>/etc/secrets/
+├── db-password
+└── api-key
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="na">spring.config.import</span><span class="o">=</span><span class="s">configtree:/etc/secrets/</span>
+</code></pre></div>
+<p>Each file becomes a property: <code>db.password</code>, <code>api.key</code>.</p>
+<h3 id="config-server-spring-cloud">Config Server (Spring Cloud)<a class="headerlink" href="#config-server-spring-cloud" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.config.import</span><span class="o">=</span><span class="s">configserver:http://config-server:8888</span>
+</code></pre></div>
+<h3 id="profiles-import">Profiles + Import<a class="headerlink" href="#profiles-import" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.config.import</span><span class="o">=</span><span class="s">classpath:extra-${spring.profiles.active}.properties</span>
+</code></pre></div>
+<h3 id="precedence_1">Precedence<a class="headerlink" href="#precedence_1" title="Permanent link">&para;</a></h3>
+<p>Imports are <strong>lower precedence</strong> than the importing file. So <code>application.properties</code> overrides imported values if both define the same key.</p>
+<hr />
+<h2 id="15-encrypting-properties-jasypt">15. Encrypting Properties (Jasypt)<a class="headerlink" href="#15-encrypting-properties-jasypt" title="Permanent link">&para;</a></h2>
+<h3 id="add-dependency">Add Dependency<a class="headerlink" href="#add-dependency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.ulisesbocchio<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>jasypt-spring-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>3.0.5<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="encrypt-a-value">Encrypt a Value<a class="headerlink" href="#encrypt-a-value" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>java<span class="w"> </span>-cp<span class="w"> </span>jasypt-1.9.3.jar<span class="w"> </span>org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">input</span><span class="o">=</span><span class="s2">"mySecretPassword"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">password</span><span class="o">=</span><span class="s2">"encryptionKey"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">algorithm</span><span class="o">=</span><span class="s2">"PBEWithMD5AndDES"</span>
+</code></pre></div>
+<p>Or programmatically:</p>
+<div class="highlight"><pre><span></span><code><span class="n">StandardPBEStringEncryptor</span><span class="w"> </span><span class="n">enc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StandardPBEStringEncryptor</span><span class="p">();</span>
+<span class="n">enc</span><span class="p">.</span><span class="na">setPassword</span><span class="p">(</span><span class="s">"encryptionKey"</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">cipher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enc</span><span class="p">.</span><span class="na">encrypt</span><span class="p">(</span><span class="s">"mySecretPassword"</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="use-in-properties">Use in Properties<a class="headerlink" href="#use-in-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.datasource.password</span><span class="o">=</span><span class="s">ENC(AbCdEf123...)</span>
+</code></pre></div>
+<h3 id="provide-encryption-key">Provide Encryption Key<a class="headerlink" href="#provide-encryption-key" title="Permanent link">&para;</a></h3>
+<p>Via env var:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">JASYPT_ENCRYPTOR_PASSWORD</span><span class="o">=</span>encryptionKey
+java<span class="w"> </span>-jar<span class="w"> </span>app.jar
+</code></pre></div>
+<p>Via command line:</p>
+<div class="highlight"><pre><span></span><code>java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span>--jasypt.encryptor.password<span class="o">=</span>encryptionKey
+</code></pre></div>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">jasypt.encryptor.algorithm</span><span class="o">=</span><span class="s">PBEWithMD5AndDES</span>
+<span class="na">jasypt.encryptor.iv-generator-classname</span><span class="o">=</span><span class="s">org.jasypt.iv.NoIvGenerator</span>
+<span class="na">jasypt.encryptor.property.prefix</span><span class="o">=</span><span class="s">ENC(</span>
+<span class="na">jasypt.encryptor.property.suffix</span><span class="o">=</span><span class="s">)</span>
+</code></pre></div>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Never</strong> store the encryption key in the same file as encrypted values</li>
+<li>Use OS environment variable, Vault, or AWS Secrets Manager</li>
+<li>Rotate keys periodically</li>
+<li>Consider Spring Cloud Vault instead for production</li>
+</ul>
+<hr />
+<h2 id="16-interview-questions">16. Interview Questions<a class="headerlink" href="#16-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-how-does-spring-boot-externalize-configuration">Q1. How does Spring Boot externalize configuration?<a class="headerlink" href="#q1-how-does-spring-boot-externalize-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Via the <code>Environment</code> abstraction, which aggregates multiple property sources in a layered order: defaults → <code>application.properties</code> → profile-specific files → env vars → system properties → command-line args. Later sources override earlier ones.</p>
+<h3 id="q2-applicationproperties-vs-applicationyml">Q2. application.properties vs application.yml?<a class="headerlink" href="#q2-applicationproperties-vs-applicationyml" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>.properties</code> is flat key=value. <code>.yml</code> is hierarchical YAML with multi-doc support. Both load identically; choose based on team preference and structure complexity.</p>
+<h3 id="q3-difference-between-value-and-configurationproperties">Q3. Difference between @Value and @ConfigurationProperties?<a class="headerlink" href="#q3-difference-between-value-and-configurationproperties" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>@Value</code> injects a single property with SpEL support but no type-safe binding, relaxed binding, or validation. <code>@ConfigurationProperties</code> binds a group of properties to a POJO with type safety, validation, and IDE support. Use <code>@ConfigurationProperties</code> for grouped config.</p>
+<h3 id="q4-how-do-you-validate-configuration-properties">Q4. How do you validate configuration properties?<a class="headerlink" href="#q4-how-do-you-validate-configuration-properties" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Annotate the <code>@ConfigurationProperties</code> class with <code>@Validated</code> and add JSR-303 constraints (<code>@NotBlank</code>, <code>@Min</code>, <code>@Email</code>, etc.) to fields. Invalid properties fail application startup with <code>BindValidationException</code>.</p>
+<h3 id="q5-what-is-relaxed-binding">Q5. What is relaxed binding?<a class="headerlink" href="#q5-what-is-relaxed-binding" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A feature of <code>@ConfigurationProperties</code> that binds property names in multiple forms (kebab-case, camelCase, underscore, uppercase env vars) to the same Java field. E.g., <code>my-app.max-size</code>, <code>myApp.maxSize</code>, <code>MY_APP_MAX_SIZE</code> all map to <code>maxSize</code>.</p>
+<h3 id="q6-how-do-you-activate-a-profile">Q6. How do you activate a profile?<a class="headerlink" href="#q6-how-do-you-activate-a-profile" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Via <code>spring.profiles.active=dev</code> in properties, <code>--spring.profiles.active=dev</code> on command line, <code>SPRING_PROFILES_ACTIVE=dev</code> env var, <code>-Dspring.profiles.active=dev</code> JVM arg, or <code>@ActiveProfiles</code> in tests.</p>
+<h3 id="q7-what-are-profile-groups">Q7. What are profile groups?<a class="headerlink" href="#q7-what-are-profile-groups" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A Boot 2.4+ feature to activate multiple profiles via a single alias. Define <code>spring.profiles.group.production=prod-db,prod-mq</code>; activating <code>production</code> activates all listed profiles.</p>
+<h3 id="q8-explain-the-property-precedence-order">Q8. Explain the property precedence order.<a class="headerlink" href="#q8-explain-the-property-precedence-order" title="Permanent link">&para;</a></h3>
+<p><strong>Answer (high to low):</strong> DevTools global &gt; <code>@TestPropertySource</code> &gt; <code>@DynamicPropertySource</code> &gt; command-line args &gt; <code>SPRING_APPLICATION_JSON</code> &gt; servlet params &gt; JNDI &gt; system properties &gt; OS env vars &gt; profile-specific files &gt; base <code>application.properties</code> &gt; <code>@PropertySource</code> &gt; defaults.</p>
+<h3 id="q9-what-is-configurationpropertiesscan">Q9. What is @ConfigurationPropertiesScan?<a class="headerlink" href="#q9-what-is-configurationpropertiesscan" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A Boot 2.2+ annotation that scans for <code>@ConfigurationProperties</code> classes without <code>@Component</code>, avoiding need to list them in <code>@EnableConfigurationProperties</code>.</p>
+<h3 id="q10-can-you-bind-constructor-parameters-in-configurationproperties">Q10. Can you bind constructor parameters in @ConfigurationProperties?<a class="headerlink" href="#q10-can-you-bind-constructor-parameters-in-configurationproperties" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes, with constructor binding. Since Boot 2.6, records work natively; since Boot 3.0, single-constructor classes bind automatically (no <code>@ConstructorBinding</code> needed). Records are the modern idiomatic choice.</p>
+<h3 id="q11-how-do-you-encrypt-sensitive-properties">Q11. How do you encrypt sensitive properties?<a class="headerlink" href="#q11-how-do-you-encrypt-sensitive-properties" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use Jasypt (<code>jasypt-spring-boot-starter</code>), Spring Cloud Vault, AWS Secrets Manager, or Kubernetes Secrets. Encrypt values with <code>ENC(...)</code>, provide the key via env var. Never commit the encryption key.</p>
+<h3 id="q12-what-is-springconfigimport">Q12. What is <code>spring.config.import</code>?<a class="headerlink" href="#q12-what-is-springconfigimport" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A Boot 2.4+ mechanism to import config from additional locations (files, config tree, Config Server). Supports <code>optional:</code> prefix and <code>configtree:</code> scheme for directory-mounted files.</p>
+<h3 id="q13-how-do-you-override-a-boot-managed-dependency-version">Q13. How do you override a Boot-managed dependency version?<a class="headerlink" href="#q13-how-do-you-override-a-boot-managed-dependency-version" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Add a property to your POM using the Boot BOM's property name (e.g., <code>&lt;jackson.version&gt;2.17.0&lt;/jackson.version&gt;</code>). Check Spring Boot's parent POM for names. Rarely needed.</p>
+<h3 id="q14-what-is-propertysource">Q14. What is <code>@PropertySource</code>?<a class="headerlink" href="#q14-what-is-propertysource" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Loads properties from a specific file into the environment. Does <strong>not</strong> support YAML by default — requires a custom <code>PropertySourceFactory</code>.</p>
+<h3 id="q15-difference-between-springprofilesactive-and-springprofilesinclude">Q15. Difference between <code>spring.profiles.active</code> and <code>spring.profiles.include</code>?<a class="headerlink" href="#q15-difference-between-springprofilesactive-and-springprofilesinclude" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>active</code> <strong>sets</strong> the active profiles (replaces any programmatic profiles). <code>include</code> <strong>adds</strong> profiles, merged with those set by active. Since Boot 2.4, <code>include</code> should be used in non-profile-specific files only.</p>
+<h3 id="q16-how-do-you-pass-configuration-to-a-spring-boot-app-in-kubernetes">Q16. How do you pass configuration to a Spring Boot app in Kubernetes?<a class="headerlink" href="#q16-how-do-you-pass-configuration-to-a-spring-boot-app-in-kubernetes" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Via ConfigMaps (mounted as files or env vars), Secrets, or Spring Cloud Kubernetes. Common pattern: <code>spring.config.import=configtree:/etc/config/</code> for mounted config.</p>
+<h3 id="q17-what-is-the-default-value-syntax-in-value">Q17. What is the default value syntax in @Value?<a class="headerlink" href="#q17-what-is-the-default-value-syntax-in-value" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>${property.name:defaultValue}</code> — the value after <code>:</code> is used if the property is missing.</p>
+<h3 id="q18-how-do-you-bind-a-map-in-configurationproperties">Q18. How do you bind a Map in @ConfigurationProperties?<a class="headerlink" href="#q18-how-do-you-bind-a-map-in-configurationproperties" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Declare a <code>Map&lt;String, T&gt;</code> field. Properties like <code>app.endpoints.user=...</code>, <code>app.endpoints.order=...</code> populate keys <code>user</code>, <code>order</code>. Keys can be quoted for special chars.</p>
+<h3 id="q19-what-is-springconfiglocation-vs-springconfigadditional-location">Q19. What is <code>spring.config.location</code> vs <code>spring.config.additional-location</code>?<a class="headerlink" href="#q19-what-is-springconfiglocation-vs-springconfigadditional-location" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>location</code> <strong>replaces</strong> default locations. <code>additional-location</code> <strong>adds</strong> to them. Use <code>location</code> when you know exactly where config lives; <code>additional-location</code> to extend defaults.</p>
+<h3 id="q20-how-do-you-know-which-properties-are-available">Q20. How do you know which properties are available?<a class="headerlink" href="#q20-how-do-you-know-which-properties-are-available" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Add <code>spring-boot-configuration-processor</code> for IDE autocomplete. Or check <code>spring-configuration-metadata.json</code> in the Boot jar. Or use <code>application.yml</code> samples in official docs.</p>
+<hr />
+<h2 id="17-cheat-sheet">17. Cheat Sheet<a class="headerlink" href="#17-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="property-sources-highest-wins">Property Sources (Highest Wins)<a class="headerlink" href="#property-sources-highest-wins" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>1. DevTools global settings
+2. @TestPropertySource / @DynamicPropertySource
+3. Command-line args (--key=value)
+4. SPRING_APPLICATION_JSON
+5. ServletConfig/ServletContext init params
+6. JNDI
+7. Java system properties (-Dkey=value)
+8. OS environment variables
+9. Profile-specific application-{profile}.properties/yml
+10. application.properties/yml
+11. @PropertySource
+12. Default properties
+</code></pre></div>
+<h3 id="common-property-files">Common Property Files<a class="headerlink" href="#common-property-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>application.properties
+application.yml
+application-dev.properties
+application-prod.properties
+application-{profile}.yml
+</code></pre></div>
+<h3 id="environment-variable-naming">Environment Variable Naming<a class="headerlink" href="#environment-variable-naming" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>spring.datasource.url  →  SPRING_DATASOURCE_URL
+app.mail.host          →  APP_MAIL_HOST
+</code></pre></div>
+<h3 id="configurationproperties">@ConfigurationProperties<a class="headerlink" href="#configurationproperties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"app.mail"</span><span class="p">)</span>
+<span class="nd">@Component</span><span class="w">  </span><span class="c1">// or @EnableConfigurationProperties / @ConfigurationPropertiesScan</span>
+<span class="nd">@Validated</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MailProperties</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@NotBlank</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">host</span><span class="p">;</span>
+<span class="w">    </span><span class="nd">@Min</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// getters/setters</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="record-style">Record Style<a class="headerlink" href="#record-style" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@ConfigurationProperties</span><span class="p">(</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"app.mail"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">MailProperties</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">host</span><span class="p">,</span><span class="w"> </span><span class="nd">@DefaultValue</span><span class="p">(</span><span class="s">"25"</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="activate-profiles">Activate Profiles<a class="headerlink" href="#activate-profiles" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Properties</span>
+spring.profiles.active<span class="o">=</span>dev,metrics
+
+<span class="c1"># Env</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">SPRING_PROFILES_ACTIVE</span><span class="o">=</span>dev
+
+<span class="c1"># Command line</span>
+java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span>--spring.profiles.active<span class="o">=</span>dev
+
+<span class="c1"># Test</span>
+@ActiveProfiles<span class="o">(</span><span class="s2">"test"</span><span class="o">)</span>
+</code></pre></div>
+<h3 id="profile-groups">Profile Groups<a class="headerlink" href="#profile-groups" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.profiles.group.production</span><span class="o">=</span><span class="s">prod-db,prod-mq</span>
+</code></pre></div>
+<h3 id="import-config">Import Config<a class="headerlink" href="#import-config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.config.import</span><span class="o">=</span><span class="s">classpath:extra.properties</span>
+<span class="na">spring.config.import</span><span class="o">=</span><span class="s">optional:file:/etc/secret.properties</span>
+<span class="na">spring.config.import</span><span class="o">=</span><span class="s">configtree:/etc/secrets/</span>
+</code></pre></div>
+<h3 id="externalized-config">Externalized Config<a class="headerlink" href="#externalized-config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--spring.config.location<span class="o">=</span>file:/etc/myapp/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--spring.config.additional-location<span class="o">=</span>/opt/override/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--spring.profiles.active<span class="o">=</span>prod<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--server.port<span class="o">=</span><span class="m">9090</span>
+</code></pre></div>
+<h3 id="enable-metadata">Enable Metadata<a class="headerlink" href="#enable-metadata" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-configuration-processor<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="jasypt">Jasypt<a class="headerlink" href="#jasypt" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>spring.datasource.password=ENC(...)
+JASYPT_ENCRYPTOR_PASSWORD=secretKey java -jar app.jar
+</code></pre></div>
+<h3 id="debug">Debug<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">debug</span><span class="o">=</span><span class="s">true</span>
+<span class="na">logging.level.org.springframework.boot.context.config</span><span class="o">=</span><span class="s">TRACE</span>
+</code></pre></div>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>07_Spring_Boot_Starters.md</code></li>
+<li><strong>Next:</strong> <code>09_Spring_Boot_Actuator.md</code></li>
+<li><strong>Related:</strong> <code>06_Spring_Boot_Fundamentals.md</code>, <code>19_Spring_Microservices_Cloud.md</code> (Config Server)</li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code></li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="../07_Spring_Boot_Starters/">07_Spring_Boot_Starters.md</a></li>
+<li><strong>Next →:</strong> <a href="../09_Spring_Boot_Actuator/">09_Spring_Boot_Actuator.md</a></li>
+<li><strong>Related:</strong> <a href="../06_Spring_Boot_Fundamentals/">06_Spring_Boot_Fundamentals.md</a>, <a href="./17_Maven_Build_Tool.md">17_Maven_Build_Tool.md</a>, <a href="./18_Gradle_For_Spring.md">18_Gradle_For_Spring.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,4430 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Gradle for Spring Developers - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gradle-for-spring-developers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gradle for Spring Developers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is Gradle?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is Gradle?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-gradle-vs-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Gradle vs Maven
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Gradle vs Maven">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#which-to-choose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which to Choose?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-installation-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Installation &amp; Wrapper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Installation &amp; Wrapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wrapper-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrapper (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gradle-wrapperproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gradle-wrapper.properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caches
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Project Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Project Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-buildgradle-groovy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. build.gradle (Groovy)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. build.gradle (Groovy)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anatomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Task
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-buildgradlekts-kotlin-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. build.gradle.kts (Kotlin DSL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. build.gradle.kts (Kotlin DSL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Spring Boot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kotlin-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kotlin Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-task_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-kotlin-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Kotlin DSL?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-groovy-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Groovy DSL?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-settingsgradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. settings.gradle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. settings.gradle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#groovy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groovy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kotlin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kotlin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-resolution-management-gradle-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Resolution Management (Gradle 7+)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-dependency-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Dependency Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Dependency Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-vs-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        implementation vs api
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#excluding-transitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excluding Transitive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail-on-version-conflict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fail on Version Conflict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-spring-boot-gradle-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Spring Boot Gradle Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Spring Boot Gradle Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apply
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-image-cloud-native-buildpacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Image (Cloud Native Buildpacks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exclude-devtools-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exclude DevTools in Production
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-dependency-management-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Dependency Management Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Dependency Management Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apply_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apply
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versionless-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versionless Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-dependency-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Dependency Override
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-gradle-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative: Gradle Platform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-gradle-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Gradle Tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Gradle Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-java-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Java Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifecycle-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-task_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-with-inputsoutputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task with Inputs/Outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skipping-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skipping Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallel Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-multi-project-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Multi-Project Builds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Multi-Project Builds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsgradlekts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings.gradle.kts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-buildgradlekts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root build.gradle.kts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subproject-buildgradlekts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subproject build.gradle.kts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-config-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared Config Approaches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convention-plugin-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convention Plugin (Advanced)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-properties-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Properties &amp; Profiles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Properties &amp; Profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradleproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gradle.properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-in-buildgradlekts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using in build.gradle.kts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-Line Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-types-android-style-not-standard-for-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Types (Android-style, not standard for Spring)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-common-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Common Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Common Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wrapper-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrapper Upgrade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clean-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clean Caches
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-what-is-gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. What is Gradle?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-difference-between-gradle-and-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. Difference between Gradle and Maven?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-what-is-a-gradle-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. What is a Gradle task?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-what-is-the-gradle-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. What is the Gradle wrapper?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-difference-between-implementation-and-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. Difference between implementation and api?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-what-are-dependency-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. What are dependency configurations?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-what-is-the-spring-boot-gradle-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. What is the Spring Boot Gradle plugin?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-how-do-you-manage-dependency-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. How do you manage dependency versions?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-how-do-you-exclude-a-transitive-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. How do you exclude a transitive dependency?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-how-do-you-force-a-specific-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. How do you force a specific version?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-difference-between-build-assemble-and-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. Difference between build, assemble, and check?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-how-do-you-run-a-spring-boot-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. How do you run a Spring Boot app?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-how-do-you-create-a-fat-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. How do you create a fat JAR?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-how-do-you-run-integration-tests-separately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. How do you run integration tests separately?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-how-do-you-enable-parallel-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. How do you enable parallel execution?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-what-is-the-gradle-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. What is the Gradle daemon?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-what-is-the-build-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. What is the build cache?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-how-do-you-customize-the-jar-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. How do you customize the JAR name?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-groovy-dsl-vs-kotlin-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. Groovy DSL vs Kotlin DSL?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-how-do-you-see-why-a-dependency-version-was-chosen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. How do you see why a dependency version was chosen?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q21-how-do-you-build-a-container-image-with-gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q21. How do you build a container image with Gradle?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q22-how-do-you-share-configuration-across-subprojects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q22. How do you share configuration across subprojects?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q23-what-is-gradleproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q23. What is gradle.properties?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q24-how-do-you-migrate-from-maven-to-gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q24. How do you migrate from Maven to Gradle?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q25-whats-the-equivalent-of-mavens-dependencymanagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q25. What's the equivalent of Maven's &lt;dependencyManagement&gt;?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal-spring-boot-buildgradlekts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Spring Boot build.gradle.kts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsgradlekts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings.gradle.kts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bom-native-gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BOM (Native Gradle)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bom-with-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BOM (with plugin)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exclusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-test-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Test Task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gradleproperties_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gradle.properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-vs-gradle-equivalents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maven vs Gradle Equivalents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gradle-for-spring-developers">Gradle for Spring Developers<a class="headerlink" href="#gradle-for-spring-developers" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>18_Gradle_For_Spring.md</code>
+<strong>Part:</strong> 6 — Build Tools
+<strong>Prerequisites:</strong> Basic Java, Maven helpful (comparison)
+<strong>Estimated Study Time:</strong> 5–6 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-what-is-gradle">What is Gradle?</a></li>
+<li><a href="#2-gradle-vs-maven">Gradle vs Maven</a></li>
+<li><a href="#3-installation--wrapper">Installation &amp; Wrapper</a></li>
+<li><a href="#4-project-structure">Project Structure</a></li>
+<li><a href="#5-buildgradle-groovy">build.gradle (Groovy)</a></li>
+<li><a href="#6-buildgradlekts-kotlin-dsl">build.gradle.kts (Kotlin DSL)</a></li>
+<li><a href="#7-settingsgradle">settings.gradle</a></li>
+<li><a href="#8-dependency-configurations">Dependency Configurations</a></li>
+<li><a href="#9-spring-boot-gradle-plugin">Spring Boot Gradle Plugin</a></li>
+<li><a href="#10-dependency-management-plugin">Dependency Management Plugin</a></li>
+<li><a href="#11-gradle-tasks">Gradle Tasks</a></li>
+<li><a href="#12-multi-project-builds">Multi-Project Builds</a></li>
+<li><a href="#13-properties--profiles">Properties &amp; Profiles</a></li>
+<li><a href="#14-common-commands">Common Commands</a></li>
+<li><a href="#15-interview-questions">Interview Questions</a></li>
+<li><a href="#16-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-what-is-gradle">1. What is Gradle?<a class="headerlink" href="#1-what-is-gradle" title="Permanent link">&para;</a></h2>
+<p><strong>Gradle</strong> is a modern build automation tool using Groovy or Kotlin DSL instead of XML. It builds on Maven's conventions but adds:</p>
+<ul>
+<li><strong>Programmable build logic</strong> — write code, not just config</li>
+<li><strong>Faster builds</strong> — incremental, build cache, daemon</li>
+<li><strong>Flexible</strong> — tasks are first-class</li>
+<li><strong>Multi-language</strong> — Java, Kotlin, Groovy, Scala, Android</li>
+</ul>
+<h3 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Project</strong></td>
+<td>A build unit (root or subproject)</td>
+</tr>
+<tr>
+<td><strong>Task</strong></td>
+<td>A unit of work (compileJava, test, jar)</td>
+</tr>
+<tr>
+<td><strong>Plugin</strong></td>
+<td>Adds tasks/conventions (java, boot)</td>
+</tr>
+<tr>
+<td><strong>Configuration</strong></td>
+<td>Dependency bucket (implementation, testImplementation)</td>
+</tr>
+<tr>
+<td><strong>Build script</strong></td>
+<td><code>build.gradle</code> or <code>build.gradle.kts</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-gradle-vs-maven">2. Gradle vs Maven<a class="headerlink" href="#2-gradle-vs-maven" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Maven</th>
+<th>Gradle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Config file</td>
+<td><code>pom.xml</code> (XML)</td>
+<td><code>build.gradle</code> / <code>.kts</code></td>
+</tr>
+<tr>
+<td>Language</td>
+<td>XML</td>
+<td>Groovy / Kotlin</td>
+</tr>
+<tr>
+<td>Build logic</td>
+<td>Limited</td>
+<td>Full programming</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Slower</td>
+<td>Faster (daemon, incremental, cache)</td>
+</tr>
+<tr>
+<td>Convention</td>
+<td>Strong</td>
+<td>Convention + flexibility</td>
+</tr>
+<tr>
+<td>Learning curve</td>
+<td>Easier</td>
+<td>Steeper</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>❌</td>
+<td>✅ (default)</td>
+</tr>
+<tr>
+<td>Spring Boot</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Multi-module</td>
+<td>Verbose</td>
+<td>Concise</td>
+</tr>
+<tr>
+<td>Task graph</td>
+<td>Fixed lifecycle</td>
+<td>Flexible DAG</td>
+</tr>
+</tbody>
+</table>
+<h3 id="which-to-choose">Which to Choose?<a class="headerlink" href="#which-to-choose" title="Permanent link">&para;</a></h3>
+<p><strong>Maven:</strong>
+- Simpler builds
+- Team familiar with XML
+- Strict conventions desired
+- Large ecosystem alignment</p>
+<p><strong>Gradle:</strong>
+- Complex custom logic
+- Performance matters
+- Multi-language / Android
+- Kotlin/Groovy-friendly team</p>
+<p><strong>Spring Boot supports both equally.</strong> Spring Initializr offers both.</p>
+<hr />
+<h2 id="3-installation-wrapper">3. Installation &amp; Wrapper<a class="headerlink" href="#3-installation-wrapper" title="Permanent link">&para;</a></h2>
+<h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h3>
+<p><strong>SDKMAN:</strong>
+<div class="highlight"><pre><span></span><code>sdk<span class="w"> </span>install<span class="w"> </span>gradle
+</code></pre></div></p>
+<p><strong>Homebrew:</strong>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>gradle
+</code></pre></div></p>
+<h3 id="wrapper-recommended">Wrapper (Recommended)<a class="headerlink" href="#wrapper-recommended" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>gradle<span class="w"> </span>wrapper<span class="w"> </span>--gradle-version<span class="w"> </span><span class="m">8</span>.5
+</code></pre></div>
+<p>Creates:</p>
+<div class="highlight"><pre><span></span><code>gradlew
+gradlew.bat
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+</code></pre></div>
+<p>Use wrapper always:</p>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>build
+./gradlew.bat<span class="w"> </span>build<span class="w">     </span><span class="c1"># Windows</span>
+</code></pre></div>
+<h3 id="gradle-wrapperproperties">gradle-wrapper.properties<a class="headerlink" href="#gradle-wrapperproperties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">distributionBase</span><span class="o">=</span><span class="s">GRADLE_USER_HOME</span>
+<span class="na">distributionPath</span><span class="o">=</span><span class="s">wrapper/dists</span>
+<span class="na">distributionUrl</span><span class="o">=</span><span class="s">https</span><span class="se">\:</span><span class="s">//services.gradle.org/distributions/gradle-8.5-bin.zip</span>
+<span class="na">zipStoreBase</span><span class="o">=</span><span class="s">GRADLE_USER_HOME</span>
+<span class="na">zipStorePath</span><span class="o">=</span><span class="s">wrapper/dists</span>
+</code></pre></div>
+<h3 id="caches">Caches<a class="headerlink" href="#caches" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/.gradle/caches/</code></td>
+<td>Dependency &amp; build caches</td>
+</tr>
+<tr>
+<td><code>~/.gradle/wrapper/</code></td>
+<td>Wrapper distributions</td>
+</tr>
+<tr>
+<td><code>&lt;project&gt;/.gradle/</code></td>
+<td>Project-specific state</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-project-structure">4. Project Structure<a class="headerlink" href="#4-project-structure" title="Permanent link">&para;</a></h2>
+<h3 id="standard-layout">Standard Layout<a class="headerlink" href="#standard-layout" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>my-project/
+├── build.gradle                (or build.gradle.kts)
+├── settings.gradle             (or settings.gradle.kts)
+├── gradle/
+│   └── wrapper/
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   ├── resources/
+│   │   └── webapp/
+│   └── test/
+│       ├── java/
+│       └── resources/
+└── build/                      (output, gitignored)
+    ├── classes/
+    ├── libs/
+    └── reports/
+</code></pre></div>
+<p>Same layout as Maven (this is the <strong>default</strong>).</p>
+<hr />
+<h2 id="5-buildgradle-groovy">5. build.gradle (Groovy)<a class="headerlink" href="#5-buildgradle-groovy" title="Permanent link">&para;</a></h2>
+<h3 id="minimal">Minimal<a class="headerlink" href="#minimal" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="s1">'java'</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="s1">'org.springframework.boot'</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s1">'3.2.0'</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="s1">'io.spring.dependency-management'</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s1">'1.1.4'</span>
+<span class="o">}</span>
+
+<span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'com.example'</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'1.0.0'</span>
+<span class="n">sourceCompatibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'17'</span>
+
+<span class="n">repositories</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">mavenCentral</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s1">'org.springframework.boot:spring-boot-starter-web'</span>
+<span class="w">    </span><span class="n">testImplementation</span><span class="w"> </span><span class="s1">'org.springframework.boot:spring-boot-starter-test'</span>
+<span class="o">}</span>
+
+<span class="n">tasks</span><span class="o">.</span><span class="na">named</span><span class="o">(</span><span class="s1">'test'</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">useJUnitPlatform</span><span class="o">()</span>
+<span class="o">}</span>
+</code></pre></div>
+<h3 id="anatomy">Anatomy<a class="headerlink" href="#anatomy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plugins</code></td>
+<td>Add plugins</td>
+</tr>
+<tr>
+<td><code>group</code>, <code>version</code></td>
+<td>Project coordinates</td>
+</tr>
+<tr>
+<td><code>repositories</code></td>
+<td>Where to fetch deps</td>
+</tr>
+<tr>
+<td><code>dependencies</code></td>
+<td>Declare deps</td>
+</tr>
+<tr>
+<td><code>tasks</code></td>
+<td>Configure tasks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="extending">Extending<a class="headerlink" href="#extending" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="s1">'java'</span>
+<span class="o">}</span>
+
+<span class="n">java</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">sourceCompatibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JavaVersion</span><span class="o">.</span><span class="na">VERSION_17</span>
+<span class="w">    </span><span class="n">targetCompatibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JavaVersion</span><span class="o">.</span><span class="na">VERSION_17</span>
+<span class="o">}</span>
+
+<span class="n">tasks</span><span class="o">.</span><span class="na">withType</span><span class="o">(</span><span class="n">JavaCompile</span><span class="o">).</span><span class="na">configureEach</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">options</span><span class="o">.</span><span class="na">encoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'UTF-8'</span>
+<span class="o">}</span>
+</code></pre></div>
+<h3 id="custom-task">Custom Task<a class="headerlink" href="#custom-task" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="s1">'hello'</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">doLast</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">println</span><span class="w"> </span><span class="s1">'Hello, Gradle!'</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Run: <code>./gradlew hello</code></p>
+<hr />
+<h2 id="6-buildgradlekts-kotlin-dsl">6. build.gradle.kts (Kotlin DSL)<a class="headerlink" href="#6-buildgradlekts-kotlin-dsl" title="Permanent link">&para;</a></h2>
+<p>Modern, type-safe, IDE-friendly. <strong>Recommended for new projects.</strong></p>
+<h3 id="minimal-spring-boot">Minimal Spring Boot<a class="headerlink" href="#minimal-spring-boot" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">java</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"org.springframework.boot"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"3.2.0"</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"io.spring.dependency-management"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"1.1.4"</span>
+<span class="p">}</span>
+
+<span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"com.example"</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"1.0.0"</span>
+
+<span class="n">java</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sourceCompatibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JavaVersion</span><span class="p">.</span><span class="na">VERSION_17</span>
+<span class="p">}</span>
+
+<span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">mavenCentral</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testImplementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-test"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">tasks</span><span class="p">.</span><span class="na">withType</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">useJUnitPlatform</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="kotlin-project">Kotlin Project<a class="headerlink" href="#kotlin-project" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">kotlin</span><span class="p">(</span><span class="s">"jvm"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"1.9.20"</span>
+<span class="w">    </span><span class="n">kotlin</span><span class="p">(</span><span class="s">"plugin.spring"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"1.9.20"</span>
+<span class="w">    </span><span class="n">kotlin</span><span class="p">(</span><span class="s">"plugin.jpa"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"1.9.20"</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"org.springframework.boot"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"3.2.0"</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"io.spring.dependency-management"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"1.1.4"</span>
+<span class="p">}</span>
+
+<span class="n">java</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sourceCompatibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JavaVersion</span><span class="p">.</span><span class="na">VERSION_17</span>
+<span class="p">}</span>
+
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"com.fasterxml.jackson.module:jackson-module-kotlin"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.jetbrains.kotlin:kotlin-reflect"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testImplementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-test"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testImplementation</span><span class="p">(</span><span class="s">"org.jetbrains.kotlin:kotlin-test-junit5"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="custom-task_1">Custom Task<a class="headerlink" href="#custom-task_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="s">"hello"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">doLast</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">"Hello, Gradle!"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="why-kotlin-dsl">Why Kotlin DSL?<a class="headerlink" href="#why-kotlin-dsl" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Type-safe (IDE completion, refactoring)</li>
+<li>Better error messages</li>
+<li>Kotlin-first teams</li>
+</ul>
+<h3 id="why-groovy-dsl">Why Groovy DSL?<a class="headerlink" href="#why-groovy-dsl" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Terser for simple builds</li>
+<li>Older, more examples</li>
+<li>Dynamic flexibility</li>
+</ul>
+<p><strong>Choose one; don't mix.</strong></p>
+<hr />
+<h2 id="7-settingsgradle">7. settings.gradle<a class="headerlink" href="#7-settingsgradle" title="Permanent link">&para;</a></h2>
+<p>Defines the root project name and included subprojects.</p>
+<h3 id="groovy">Groovy<a class="headerlink" href="#groovy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">rootProject</span><span class="o">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'my-app'</span>
+<span class="n">include</span><span class="w"> </span><span class="s1">'module-a'</span><span class="o">,</span><span class="w"> </span><span class="s1">'module-b'</span>
+</code></pre></div>
+<h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">rootProject</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"my-app"</span>
+<span class="n">include</span><span class="p">(</span><span class="s">"module-a"</span><span class="p">,</span><span class="w"> </span><span class="s">"module-b"</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="plugin-management">Plugin Management<a class="headerlink" href="#plugin-management" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">pluginManagement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">gradlePluginPortal</span><span class="p">()</span>
+<span class="w">        </span><span class="n">mavenCentral</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="dependency-resolution-management-gradle-7">Dependency Resolution Management (Gradle 7+)<a class="headerlink" href="#dependency-resolution-management-gradle-7" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">dependencyResolutionManagement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">repositoriesMode</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">RepositoriesMode</span><span class="p">.</span><span class="na">FAIL_ON_PROJECT_REPOS</span><span class="p">)</span>
+<span class="w">    </span><span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mavenCentral</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Forces repositories to be defined centrally.</p>
+<hr />
+<h2 id="8-dependency-configurations">8. Dependency Configurations<a class="headerlink" href="#8-dependency-configurations" title="Permanent link">&para;</a></h2>
+<h3 id="common-configurations">Common Configurations<a class="headerlink" href="#common-configurations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Extends</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>implementation</code></td>
+<td>—</td>
+<td>Runtime + compile (not exported to consumers)</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td>—</td>
+<td>Exposed to consumers (for library projects)</td>
+</tr>
+<tr>
+<td><code>compileOnly</code></td>
+<td>—</td>
+<td>Compile only (Lombok, annotations)</td>
+</tr>
+<tr>
+<td><code>runtimeOnly</code></td>
+<td>—</td>
+<td>Runtime only (JDBC drivers)</td>
+</tr>
+<tr>
+<td><code>testImplementation</code></td>
+<td>implementation</td>
+<td>Test compile + runtime</td>
+</tr>
+<tr>
+<td><code>testCompileOnly</code></td>
+<td>compileOnly</td>
+<td>Test compile only</td>
+</tr>
+<tr>
+<td><code>testRuntimeOnly</code></td>
+<td>runtimeOnly</td>
+<td>Test runtime only</td>
+</tr>
+<tr>
+<td><code>annotationProcessor</code></td>
+<td>—</td>
+<td>Annotation processors</td>
+</tr>
+<tr>
+<td><code>testAnnotationProcessor</code></td>
+<td>—</td>
+<td>Test annotation processors</td>
+</tr>
+<tr>
+<td><code>developmentOnly</code></td>
+<td>—</td>
+<td>Dev-only (Spring Boot DevTools)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Main code</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">compileOnly</span><span class="p">(</span><span class="s">"org.projectlombok:lombok"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">annotationProcessor</span><span class="p">(</span><span class="s">"org.projectlombok:lombok"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">runtimeOnly</span><span class="p">(</span><span class="s">"org.postgresql:postgresql"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">developmentOnly</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-devtools"</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Tests</span>
+<span class="w">    </span><span class="n">testImplementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-test"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testImplementation</span><span class="p">(</span><span class="s">"org.testcontainers:postgresql"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testCompileOnly</span><span class="p">(</span><span class="s">"org.projectlombok:lombok"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testAnnotationProcessor</span><span class="p">(</span><span class="s">"org.projectlombok:lombok"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testRuntimeOnly</span><span class="p">(</span><span class="s">"org.junit.platform:junit-platform-launcher"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="implementation-vs-api">implementation vs api<a class="headerlink" href="#implementation-vs-api" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>implementation</code> — deps not exposed to consumers; internal</li>
+<li><code>api</code> — deps exposed to consumers (they can use them transitively)</li>
+</ul>
+<p>For <strong>applications</strong>, use <code>implementation</code>. For <strong>libraries</strong>, use <code>api</code> only for public API types.</p>
+<h3 id="excluding-transitive">Excluding Transitive<a class="headerlink" href="#excluding-transitive" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">exclude</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"org.springframework.boot"</span><span class="p">,</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"spring-boot-starter-tomcat"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Global exclusion:</p>
+<div class="highlight"><pre><span></span><code><span class="n">configurations</span><span class="p">.</span><span class="na">all</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">exclude</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"commons-logging"</span><span class="p">,</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"commons-logging"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="force-version">Force Version<a class="headerlink" href="#force-version" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">configurations</span><span class="p">.</span><span class="na">all</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">resolutionStrategy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">force</span><span class="p">(</span><span class="s">"com.google.guava:guava:32.1.3-jre"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="fail-on-version-conflict">Fail on Version Conflict<a class="headerlink" href="#fail-on-version-conflict" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">configurations</span><span class="p">.</span><span class="na">all</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">resolutionStrategy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">failOnVersionConflict</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="dynamic-versions">Dynamic Versions<a class="headerlink" href="#dynamic-versions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">implementation</span><span class="p">(</span><span class="s">"com.example:lib:1.+"</span><span class="p">)</span><span class="w">           </span><span class="c1">// ⚠️ avoid</span>
+<span class="n">implementation</span><span class="p">(</span><span class="s">"com.example:lib:[1.0,2.0)"</span><span class="p">)</span><span class="w">     </span><span class="c1">// ⚠️ avoid</span>
+</code></pre></div>
+<p>Use exact versions or BOMs.</p>
+<h3 id="dependency-insight">Dependency Insight<a class="headerlink" href="#dependency-insight" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>dependencyInsight<span class="w"> </span>--dependency<span class="w"> </span>guava<span class="w"> </span>--configuration<span class="w"> </span>runtimeClasspath
+</code></pre></div>
+<p>Shows why a version was chosen.</p>
+<h3 id="dependency-tree">Dependency Tree<a class="headerlink" href="#dependency-tree" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>dependencies
+./gradlew<span class="w"> </span>dependencies<span class="w"> </span>--configuration<span class="w"> </span>runtimeClasspath
+</code></pre></div>
+<hr />
+<h2 id="9-spring-boot-gradle-plugin">9. Spring Boot Gradle Plugin<a class="headerlink" href="#9-spring-boot-gradle-plugin" title="Permanent link">&para;</a></h2>
+<h3 id="apply">Apply<a class="headerlink" href="#apply" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"org.springframework.boot"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"3.2.0"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Adds:
+- <code>bootJar</code> task — creates executable fat JAR
+- <code>bootRun</code> task — runs the app
+- <code>bootBuildInfo</code> — generates <code>build-info.properties</code>
+- Dependency management for <code>spring-boot-dependencies</code>
+- Replaces the standard <code>jar</code> with <code>bootJar</code> by default</p>
+<h3 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bootJar</code></td>
+<td>Build executable JAR</td>
+</tr>
+<tr>
+<td><code>bootWar</code></td>
+<td>Build executable WAR</td>
+</tr>
+<tr>
+<td><code>bootRun</code></td>
+<td>Run the app</td>
+</tr>
+<tr>
+<td><code>bootBuildImage</code></td>
+<td>Build container image</td>
+</tr>
+<tr>
+<td><code>bootBuildInfo</code></td>
+<td>Generate build info</td>
+</tr>
+</tbody>
+</table>
+<h3 id="customize">Customize<a class="headerlink" href="#customize" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">named</span><span class="o">&lt;</span><span class="n">org</span><span class="p">.</span><span class="na">springframework</span><span class="p">.</span><span class="na">boot</span><span class="p">.</span><span class="na">gradle</span><span class="p">.</span><span class="na">tasks</span><span class="p">.</span><span class="na">bundling</span><span class="p">.</span><span class="na">BootJar</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"bootJar"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">archiveFileName</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">"my-app.jar"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">mainClass</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">"com.example.App"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">layered</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">enabled</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="run">Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>bootRun
+./gradlew<span class="w"> </span>bootRun<span class="w"> </span>--args<span class="o">=</span><span class="s1">'--server.port=9090'</span>
+</code></pre></div>
+<h3 id="build-image-cloud-native-buildpacks">Build Image (Cloud Native Buildpacks)<a class="headerlink" href="#build-image-cloud-native-buildpacks" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>bootBuildImage
+</code></pre></div>
+<p>Requires Docker; produces an optimized OCI image.</p>
+<h3 id="exclude-devtools-in-production">Exclude DevTools in Production<a class="headerlink" href="#exclude-devtools-in-production" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">developmentOnly</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-devtools"</span><span class="p">)</span>
+</code></pre></div>
+<p><code>developmentOnly</code> is automatically excluded from the bootJar.</p>
+<hr />
+<h2 id="10-dependency-management-plugin">10. Dependency Management Plugin<a class="headerlink" href="#10-dependency-management-plugin" title="Permanent link">&para;</a></h2>
+<p><code>io.spring.dependency-management</code> mimics Maven's BOM behavior.</p>
+<h3 id="apply_1">Apply<a class="headerlink" href="#apply_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"io.spring.dependency-management"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"1.1.4"</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="versionless-dependencies">Versionless Dependencies<a class="headerlink" href="#versionless-dependencies" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">dependencyManagement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">imports</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mavenBom</span><span class="p">(</span><span class="s">"org.springframework.cloud:spring-cloud-dependencies:2023.0.0"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="per-dependency-override">Per-Dependency Override<a class="headerlink" href="#per-dependency-override" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">dependencyManagement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dependency</span><span class="p">(</span><span class="s">"com.google.guava:guava:32.1.3-jre"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="alternative-gradle-platform">Alternative: Gradle Platform<a class="headerlink" href="#alternative-gradle-platform" title="Permanent link">&para;</a></h3>
+<p>Modern alternative without the plugin:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="n">platform</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-dependencies:3.2.0"</span><span class="p">))</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="n">platform</span><span class="p">(</span><span class="s">"org.springframework.cloud:spring-cloud-dependencies:2023.0.0"</span><span class="p">))</span>
+
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// version omitted — from BOM</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Native Gradle</strong>, no extra plugin. Recommended for new projects.</p>
+<hr />
+<h2 id="11-gradle-tasks">11. Gradle Tasks<a class="headerlink" href="#11-gradle-tasks" title="Permanent link">&para;</a></h2>
+<h3 id="core-java-tasks">Core Java Tasks<a class="headerlink" href="#core-java-tasks" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compileJava</code></td>
+<td>Compile main sources</td>
+</tr>
+<tr>
+<td><code>compileTestJava</code></td>
+<td>Compile test sources</td>
+</tr>
+<tr>
+<td><code>processResources</code></td>
+<td>Copy main resources</td>
+</tr>
+<tr>
+<td><code>processTestResources</code></td>
+<td>Copy test resources</td>
+</tr>
+<tr>
+<td><code>classes</code></td>
+<td>Compile main + process resources</td>
+</tr>
+<tr>
+<td><code>testClasses</code></td>
+<td>Compile tests</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Run tests</td>
+</tr>
+<tr>
+<td><code>jar</code></td>
+<td>Build JAR</td>
+</tr>
+<tr>
+<td><code>assemble</code></td>
+<td>Build everything</td>
+</tr>
+<tr>
+<td><code>check</code></td>
+<td>Run verification (tests, lint)</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>assemble + check</td>
+</tr>
+<tr>
+<td><code>clean</code></td>
+<td>Delete <code>build/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="lifecycle-tasks">Lifecycle Tasks<a class="headerlink" href="#lifecycle-tasks" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>build = assemble + check
+assemble = jar, bootJar, ...
+check = test, integrationTest, ...
+</code></pre></div>
+<h3 id="custom-task_2">Custom Task<a class="headerlink" href="#custom-task_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="s">"greet"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">doLast</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">"Hello, Gradle!"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="task-with-inputsoutputs">Task with Inputs/Outputs<a class="headerlink" href="#task-with-inputsoutputs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">register</span><span class="o">&lt;</span><span class="n">Copy</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"copyDocs"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">from</span><span class="p">(</span><span class="s">"docs"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">into</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="na">buildDirectory</span><span class="p">.</span><span class="na">dir</span><span class="p">(</span><span class="s">"docs"</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Enables up-to-date checks and caching.</p>
+<h3 id="task-dependencies">Task Dependencies<a class="headerlink" href="#task-dependencies" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">named</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">dependsOn</span><span class="p">(</span><span class="s">"integrationTest"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="s">"doWork"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">dependsOn</span><span class="p">(</span><span class="s">"compileJava"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">doLast</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="task-types">Task Types<a class="headerlink" href="#task-types" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">register</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"integrationTest"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Runs integration tests"</span>
+<span class="w">    </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"verification"</span>
+<span class="w">    </span><span class="n">testClassesDirs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sourceSets</span><span class="o">[</span><span class="s">"test"</span><span class="o">]</span><span class="p">.</span><span class="na">output</span><span class="p">.</span><span class="na">classesDirs</span>
+<span class="w">    </span><span class="n">classpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sourceSets</span><span class="o">[</span><span class="s">"test"</span><span class="o">]</span><span class="p">.</span><span class="na">runtimeClasspath</span>
+<span class="w">    </span><span class="n">useJUnitPlatform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">includeTags</span><span class="p">(</span><span class="s">"integration"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">shouldRunAfter</span><span class="p">(</span><span class="n">tasks</span><span class="p">.</span><span class="na">test</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">tasks</span><span class="p">.</span><span class="na">named</span><span class="p">(</span><span class="s">"check"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">dependsOn</span><span class="p">(</span><span class="s">"integrationTest"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="skipping-tasks">Skipping Tasks<a class="headerlink" href="#skipping-tasks" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>build<span class="w"> </span>-x<span class="w"> </span><span class="nb">test</span><span class="w">             </span><span class="c1"># exclude test</span>
+./gradlew<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--tests<span class="w"> </span><span class="s2">"*ServiceTest"</span>
+./gradlew<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--tests<span class="w"> </span><span class="s2">"com.example.UserServiceTest.findById"</span>
+</code></pre></div>
+<h3 id="parallel-execution">Parallel Execution<a class="headerlink" href="#parallel-execution" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>build<span class="w"> </span>--parallel
+</code></pre></div>
+<p>Or in <code>gradle.properties</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="na">org.gradle.parallel</span><span class="o">=</span><span class="s">true</span>
+<span class="na">org.gradle.caching</span><span class="o">=</span><span class="s">true</span>
+<span class="na">org.gradle.daemon</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<hr />
+<h2 id="12-multi-project-builds">12. Multi-Project Builds<a class="headerlink" href="#12-multi-project-builds" title="Permanent link">&para;</a></h2>
+<h3 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>root/
+├── settings.gradle.kts
+├── build.gradle.kts          (root: shared config)
+├── module-a/
+│   └── build.gradle.kts
+├── module-b/
+│   └── build.gradle.kts
+└── module-c/
+    └── build.gradle.kts
+</code></pre></div>
+<h3 id="settingsgradlekts">settings.gradle.kts<a class="headerlink" href="#settingsgradlekts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">rootProject</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"my-platform"</span>
+<span class="n">include</span><span class="p">(</span><span class="s">"module-a"</span><span class="p">,</span><span class="w"> </span><span class="s">"module-b"</span><span class="p">,</span><span class="w"> </span><span class="s">"module-c"</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="root-buildgradlekts">Root build.gradle.kts<a class="headerlink" href="#root-buildgradlekts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">java</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"org.springframework.boot"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"3.2.0"</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"io.spring.dependency-management"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"1.1.4"</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+
+<span class="n">allprojects</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"com.example"</span>
+<span class="w">    </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"1.0.0"</span>
+
+<span class="w">    </span><span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mavenCentral</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">subprojects</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">apply</span><span class="p">(</span><span class="n">plugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"java"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">apply</span><span class="p">(</span><span class="n">plugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"io.spring.dependency-management"</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">java</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sourceCompatibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JavaVersion</span><span class="p">.</span><span class="na">VERSION_17</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">testImplementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-test"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">tasks</span><span class="p">.</span><span class="na">withType</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">useJUnitPlatform</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="subproject-buildgradlekts">Subproject build.gradle.kts<a class="headerlink" href="#subproject-buildgradlekts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"org.springframework.boot"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="n">project</span><span class="p">(</span><span class="s">":module-b"</span><span class="p">))</span><span class="w">   </span><span class="c1">// inter-module dependency</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>build<span class="w">                             </span><span class="c1"># everything</span>
+./gradlew<span class="w"> </span>:module-a:build<span class="w">                   </span><span class="c1"># single module</span>
+./gradlew<span class="w"> </span>:module-a:build<span class="w"> </span>--parallel
+</code></pre></div>
+<h3 id="shared-config-approaches">Shared Config Approaches<a class="headerlink" href="#shared-config-approaches" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allprojects</code></td>
+<td>Apply to root + all subprojects</td>
+</tr>
+<tr>
+<td><code>subprojects</code></td>
+<td>Apply to subprojects only</td>
+</tr>
+<tr>
+<td>Convention plugins</td>
+<td>Reusable plugin (buildSrc) — recommended</td>
+</tr>
+<tr>
+<td><code>buildSrc</code></td>
+<td>Shared build logic as code</td>
+</tr>
+</tbody>
+</table>
+<h3 id="convention-plugin-advanced">Convention Plugin (Advanced)<a class="headerlink" href="#convention-plugin-advanced" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>buildSrc/
+├── build.gradle.kts
+└── src/main/kotlin/
+    └── my-java-conventions.gradle.kts
+</code></pre></div>
+<p>Then in subprojects:</p>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"my-java-conventions"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="13-properties-profiles">13. Properties &amp; Profiles<a class="headerlink" href="#13-properties-profiles" title="Permanent link">&para;</a></h2>
+<h3 id="gradleproperties">gradle.properties<a class="headerlink" href="#gradleproperties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">org.gradle.jvmargs</span><span class="o">=</span><span class="s">-Xmx2g -XX:MaxMetaspaceSize=512m</span>
+<span class="na">org.gradle.parallel</span><span class="o">=</span><span class="s">true</span>
+<span class="na">org.gradle.caching</span><span class="o">=</span><span class="s">true</span>
+<span class="na">org.gradle.daemon</span><span class="o">=</span><span class="s">true</span>
+
+<span class="na">myApp.version</span><span class="o">=</span><span class="s">1.0.0</span>
+<span class="na">springBootVersion</span><span class="o">=</span><span class="s">3.2.0</span>
+</code></pre></div>
+<h3 id="using-in-buildgradlekts">Using in build.gradle.kts<a class="headerlink" href="#using-in-buildgradlekts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">property</span><span class="p">(</span><span class="s">"myApp.version"</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">String</span>
+</code></pre></div>
+<h3 id="command-line-properties">Command-Line Properties<a class="headerlink" href="#command-line-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>build<span class="w"> </span>-Penv<span class="o">=</span>prod
+./gradlew<span class="w"> </span>build<span class="w"> </span>-Denv<span class="o">=</span>prod<span class="w">         </span><span class="c1"># system property</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">project</span><span class="p">.</span><span class="na">findProperty</span><span class="p">(</span><span class="s">"env"</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">"dev"</span>
+</code></pre></div>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">ci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">"CI"</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"true"</span>
+</code></pre></div>
+<h3 id="conditional-configuration">Conditional Configuration<a class="headerlink" href="#conditional-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">project</span><span class="p">.</span><span class="na">hasProperty</span><span class="p">(</span><span class="s">"prod"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">implementation</span><span class="p">(</span><span class="s">"com.example:prod-lib:1.0"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="build-types-android-style-not-standard-for-spring">Build Types (Android-style, not standard for Spring)<a class="headerlink" href="#build-types-android-style-not-standard-for-spring" title="Permanent link">&para;</a></h3>
+<p>Gradle doesn't have Maven profiles. Use:
+- Property-based conditionals
+- Separate source sets
+- Different build scripts
+- <code>-P</code> flags</p>
+<hr />
+<h2 id="14-common-commands">14. Common Commands<a class="headerlink" href="#14-common-commands" title="Permanent link">&para;</a></h2>
+<h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>build<span class="w">                 </span><span class="c1"># compile + test + assemble</span>
+./gradlew<span class="w"> </span>assemble<span class="w">              </span><span class="c1"># create artifacts</span>
+./gradlew<span class="w"> </span>check<span class="w">                 </span><span class="c1"># run verification</span>
+./gradlew<span class="w"> </span>clean<span class="w">                 </span><span class="c1"># delete build/</span>
+./gradlew<span class="w"> </span>clean<span class="w"> </span>build
+./gradlew<span class="w"> </span>bootJar<span class="w">               </span><span class="c1"># build fat JAR</span>
+./gradlew<span class="w"> </span>jar<span class="w">                   </span><span class="c1"># build thin JAR</span>
+./gradlew<span class="w"> </span>bootRun<span class="w">               </span><span class="c1"># run app</span>
+./gradlew<span class="w"> </span>bootBuildImage<span class="w">        </span><span class="c1"># build container image</span>
+</code></pre></div>
+<h3 id="test">Test<a class="headerlink" href="#test" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span><span class="nb">test</span>
+./gradlew<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--tests<span class="w"> </span><span class="s2">"*UserServiceTest"</span>
+./gradlew<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--tests<span class="w"> </span><span class="s2">"com.example.UserServiceTest.findById"</span>
+./gradlew<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-x<span class="w"> </span>testIntegration
+</code></pre></div>
+<h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>dependencies
+./gradlew<span class="w"> </span>dependencies<span class="w"> </span>--configuration<span class="w"> </span>runtimeClasspath
+./gradlew<span class="w"> </span>dependencyInsight<span class="w"> </span>--dependency<span class="w"> </span>guava
+./gradlew<span class="w"> </span>dependencyUpdates
+</code></pre></div>
+<h3 id="tasks_1">Tasks<a class="headerlink" href="#tasks_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>tasks<span class="w">                 </span><span class="c1"># list tasks</span>
+./gradlew<span class="w"> </span>tasks<span class="w"> </span>--all
+./gradlew<span class="w"> </span><span class="nb">help</span>
+./gradlew<span class="w"> </span><span class="nb">help</span><span class="w"> </span>--task<span class="w"> </span>bootRun
+</code></pre></div>
+<h3 id="build-info">Build Info<a class="headerlink" href="#build-info" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>buildEnvironment
+./gradlew<span class="w"> </span>properties
+./gradlew<span class="w"> </span>projects
+</code></pre></div>
+<h3 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>build<span class="w"> </span>--parallel
+./gradlew<span class="w"> </span>build<span class="w"> </span>--build-cache
+./gradlew<span class="w"> </span>build<span class="w"> </span>--scan<span class="w">          </span><span class="c1"># build scan (develocity)</span>
+./gradlew<span class="w"> </span>build<span class="w"> </span>--refresh-dependencies
+</code></pre></div>
+<h3 id="wrapper-upgrade">Wrapper Upgrade<a class="headerlink" href="#wrapper-upgrade" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>wrapper<span class="w"> </span>--gradle-version<span class="w"> </span><span class="m">8</span>.6
+</code></pre></div>
+<h3 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>build<span class="w"> </span>--info
+./gradlew<span class="w"> </span>build<span class="w"> </span>--debug
+./gradlew<span class="w"> </span>build<span class="w"> </span>--stacktrace
+./gradlew<span class="w"> </span>build<span class="w"> </span>--warning-mode<span class="w"> </span>all
+</code></pre></div>
+<h3 id="clean-caches">Clean Caches<a class="headerlink" href="#clean-caches" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>--stop<span class="w">                 </span><span class="c1"># stop daemon</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>~/.gradle/caches
+./gradlew<span class="w"> </span>clean<span class="w"> </span>build<span class="w"> </span>--refresh-dependencies
+</code></pre></div>
+<hr />
+<h2 id="15-interview-questions">15. Interview Questions<a class="headerlink" href="#15-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-gradle">Q1. What is Gradle?<a class="headerlink" href="#q1-what-is-gradle" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A modern build automation tool using Groovy or Kotlin DSL. Features: incremental builds, build cache, daemon, flexible task graph, multi-language support. Default for Android; fully supported by Spring Boot.</p>
+<h3 id="q2-difference-between-gradle-and-maven">Q2. Difference between Gradle and Maven?<a class="headerlink" href="#q2-difference-between-gradle-and-maven" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Maven uses XML POM with fixed lifecycles. Gradle uses Groovy/Kotlin DSL with programmable build logic and a DAG task graph. Gradle is often faster due to daemon and incremental builds. Maven is simpler and more standardized.</p>
+<h3 id="q3-what-is-a-gradle-task">Q3. What is a Gradle task?<a class="headerlink" href="#q3-what-is-a-gradle-task" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A unit of work in the build (compileJava, test, jar, bootJar). Tasks have inputs/outputs, dependencies, and actions. Task graph is dynamically built.</p>
+<h3 id="q4-what-is-the-gradle-wrapper">Q4. What is the Gradle wrapper?<a class="headerlink" href="#q4-what-is-the-gradle-wrapper" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Scripts (<code>gradlew</code>, <code>gradlew.bat</code>) + JAR that download and run a pinned Gradle version. Ensures reproducible builds regardless of developer's global Gradle.</p>
+<h3 id="q5-difference-between-implementation-and-api">Q5. Difference between implementation and api?<a class="headerlink" href="#q5-difference-between-implementation-and-api" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>implementation</code> hides the dependency from consumers (better encapsulation). <code>api</code> exposes it (consumers can use it transitively). Use <code>implementation</code> unless the type is part of your public API.</p>
+<h3 id="q6-what-are-dependency-configurations">Q6. What are dependency configurations?<a class="headerlink" href="#q6-what-are-dependency-configurations" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Buckets grouping dependencies by usage: <code>implementation</code>, <code>api</code>, <code>compileOnly</code>, <code>runtimeOnly</code>, <code>testImplementation</code>, <code>annotationProcessor</code>, <code>developmentOnly</code>. Analogous to Maven scopes.</p>
+<h3 id="q7-what-is-the-spring-boot-gradle-plugin">Q7. What is the Spring Boot Gradle plugin?<a class="headerlink" href="#q7-what-is-the-spring-boot-gradle-plugin" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Adds <code>bootJar</code> (executable fat JAR), <code>bootRun</code> (run app), <code>bootBuildImage</code> (container image), <code>bootBuildInfo</code> (build metadata). Also imports <code>spring-boot-dependencies</code> version management when combined with <code>io.spring.dependency-management</code>.</p>
+<h3 id="q8-how-do-you-manage-dependency-versions">Q8. How do you manage dependency versions?<a class="headerlink" href="#q8-how-do-you-manage-dependency-versions" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>io.spring.dependency-management</code> plugin with <code>dependencyManagement { imports { mavenBom("...") } }</code>, or native Gradle <code>platform("group:artifact:version")</code>.</p>
+<h3 id="q9-how-do-you-exclude-a-transitive-dependency">Q9. How do you exclude a transitive dependency?<a class="headerlink" href="#q9-how-do-you-exclude-a-transitive-dependency" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">exclude</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"org.springframework.boot"</span><span class="p">,</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"spring-boot-starter-tomcat"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="q10-how-do-you-force-a-specific-version">Q10. How do you force a specific version?<a class="headerlink" href="#q10-how-do-you-force-a-specific-version" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">configurations</span><span class="p">.</span><span class="na">all</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">resolutionStrategy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">force</span><span class="p">(</span><span class="s">"com.google.guava:guava:32.1.3-jre"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="q11-difference-between-build-assemble-and-check">Q11. Difference between build, assemble, and check?<a class="headerlink" href="#q11-difference-between-build-assemble-and-check" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>build</code> = <code>assemble</code> + <code>check</code>. <code>assemble</code> creates artifacts (JARs, WARs). <code>check</code> runs verification (tests, lint). So <code>build</code> produces artifacts and verifies them.</p>
+<h3 id="q12-how-do-you-run-a-spring-boot-app">Q12. How do you run a Spring Boot app?<a class="headerlink" href="#q12-how-do-you-run-a-spring-boot-app" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>./gradlew bootRun</code>. Add <code>--args='--server.port=9090'</code> for args.</p>
+<h3 id="q13-how-do-you-create-a-fat-jar">Q13. How do you create a fat JAR?<a class="headerlink" href="#q13-how-do-you-create-a-fat-jar" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>./gradlew bootJar</code> uses the Spring Boot plugin's <code>bootJar</code> task. Output: <code>build/libs/&lt;name&gt;-&lt;version&gt;.jar</code>.</p>
+<h3 id="q14-how-do-you-run-integration-tests-separately">Q14. How do you run integration tests separately?<a class="headerlink" href="#q14-how-do-you-run-integration-tests-separately" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Create a custom <code>integrationTest</code> task of type <code>Test</code>, point at test class dirs, use JUnit tags to select. Hook into <code>check</code> via <code>dependsOn</code>.</p>
+<h3 id="q15-how-do-you-enable-parallel-execution">Q15. How do you enable parallel execution?<a class="headerlink" href="#q15-how-do-you-enable-parallel-execution" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>./gradlew build --parallel</code> or <code>org.gradle.parallel=true</code> in <code>gradle.properties</code>.</p>
+<h3 id="q16-what-is-the-gradle-daemon">Q16. What is the Gradle daemon?<a class="headerlink" href="#q16-what-is-the-gradle-daemon" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A long-lived background process that speeds up builds by caching JVM startup and in-memory state. Enabled by default. Stop with <code>./gradlew --stop</code>.</p>
+<h3 id="q17-what-is-the-build-cache">Q17. What is the build cache?<a class="headerlink" href="#q17-what-is-the-build-cache" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A local/remote cache of task outputs keyed by inputs. If inputs haven't changed, tasks are skipped. Enable with <code>org.gradle.caching=true</code> or <code>--build-cache</code>.</p>
+<h3 id="q18-how-do-you-customize-the-jar-name">Q18. How do you customize the JAR name?<a class="headerlink" href="#q18-how-do-you-customize-the-jar-name" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">named</span><span class="o">&lt;</span><span class="n">BootJar</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"bootJar"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">archiveFileName</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">"my-app.jar"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or globally:</p>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">withType</span><span class="o">&lt;</span><span class="n">Jar</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">archiveFileName</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">"</span><span class="si">${</span><span class="n">project</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s">.jar"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="q19-groovy-dsl-vs-kotlin-dsl">Q19. Groovy DSL vs Kotlin DSL?<a class="headerlink" href="#q19-groovy-dsl-vs-kotlin-dsl" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Groovy DSL is terser, older, more examples. Kotlin DSL is type-safe, IDE-friendly, better errors — recommended for new projects. Choose one; don't mix within a project.</p>
+<h3 id="q20-how-do-you-see-why-a-dependency-version-was-chosen">Q20. How do you see why a dependency version was chosen?<a class="headerlink" href="#q20-how-do-you-see-why-a-dependency-version-was-chosen" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>./gradlew dependencyInsight --dependency &lt;artifact&gt; --configuration &lt;config&gt;</code> shows the resolution reasoning.</p>
+<h3 id="q21-how-do-you-build-a-container-image-with-gradle">Q21. How do you build a container image with Gradle?<a class="headerlink" href="#q21-how-do-you-build-a-container-image-with-gradle" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>./gradlew bootBuildImage</code> — uses Cloud Native Buildpacks to produce an optimized OCI image. Requires Docker.</p>
+<h3 id="q22-how-do-you-share-configuration-across-subprojects">Q22. How do you share configuration across subprojects?<a class="headerlink" href="#q22-how-do-you-share-configuration-across-subprojects" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>allprojects</code>/<code>subprojects</code> in root build, or better, <strong>convention plugins</strong> in <code>buildSrc</code>. <code>allprojects</code> is discouraged due to configuration-time coupling.</p>
+<h3 id="q23-what-is-gradleproperties">Q23. What is <code>gradle.properties</code>?<a class="headerlink" href="#q23-what-is-gradleproperties" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A file for Gradle properties — JVM args, daemon/parallel/cache toggles, and custom <code>key=value</code> properties. Found at project root or <code>~/.gradle/gradle.properties</code> (user-level).</p>
+<h3 id="q24-how-do-you-migrate-from-maven-to-gradle">Q24. How do you migrate from Maven to Gradle?<a class="headerlink" href="#q24-how-do-you-migrate-from-maven-to-gradle" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>gradle init</code> on an existing Maven project. It reads <code>pom.xml</code> and generates equivalent <code>build.gradle(.kts)</code> and <code>settings.gradle(.kts)</code>. Verify tasks, dependencies, and plugins after conversion.</p>
+<h3 id="q25-whats-the-equivalent-of-mavens-dependencymanagement">Q25. What's the equivalent of Maven's <code>&lt;dependencyManagement&gt;</code>?<a class="headerlink" href="#q25-whats-the-equivalent-of-mavens-dependencymanagement" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Either the <code>io.spring.dependency-management</code> plugin (recommended by Spring), or Gradle's native <code>platform(...)</code> / <code>enforcedPlatform(...)</code> in <code>dependencies</code> — the latter is the modern approach.</p>
+<hr />
+<h2 id="16-cheat-sheet">16. Cheat Sheet<a class="headerlink" href="#16-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="minimal-spring-boot-buildgradlekts">Minimal Spring Boot build.gradle.kts<a class="headerlink" href="#minimal-spring-boot-buildgradlekts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">java</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"org.springframework.boot"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"3.2.0"</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"io.spring.dependency-management"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"1.1.4"</span>
+<span class="p">}</span>
+
+<span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"com.example"</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"1.0.0"</span>
+
+<span class="n">java</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sourceCompatibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JavaVersion</span><span class="p">.</span><span class="na">VERSION_17</span>
+<span class="p">}</span>
+
+<span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">mavenCentral</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testImplementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-test"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">tasks</span><span class="p">.</span><span class="na">withType</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">useJUnitPlatform</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="settingsgradlekts_1">settings.gradle.kts<a class="headerlink" href="#settingsgradlekts_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">rootProject</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"my-app"</span>
+</code></pre></div>
+<h3 id="configurations">Configurations<a class="headerlink" href="#configurations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>implementation       runtime + compile (hidden)
+api                  runtime + compile (exposed)
+compileOnly          compile only
+runtimeOnly          runtime only
+testImplementation   test compile + runtime
+testCompileOnly      test compile only
+testRuntimeOnly      test runtime only
+annotationProcessor  annotation processing
+developmentOnly      dev-only (Spring Boot)
+</code></pre></div>
+<h3 id="common-commands">Common Commands<a class="headerlink" href="#common-commands" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>build<span class="w">               </span><span class="c1"># full build</span>
+./gradlew<span class="w"> </span>bootRun<span class="w">             </span><span class="c1"># run app</span>
+./gradlew<span class="w"> </span>bootJar<span class="w">             </span><span class="c1"># fat JAR</span>
+./gradlew<span class="w"> </span>bootBuildImage<span class="w">      </span><span class="c1"># container image</span>
+./gradlew<span class="w"> </span><span class="nb">test</span><span class="w">                </span><span class="c1"># tests</span>
+./gradlew<span class="w"> </span>dependencies<span class="w">        </span><span class="c1"># dep tree</span>
+./gradlew<span class="w"> </span>dependencyInsight<span class="w"> </span>--dependency<span class="w"> </span>guava
+./gradlew<span class="w"> </span>tasks<span class="w">               </span><span class="c1"># list tasks</span>
+./gradlew<span class="w"> </span>clean<span class="w"> </span>build
+./gradlew<span class="w"> </span>build<span class="w"> </span>--parallel
+./gradlew<span class="w"> </span>build<span class="w"> </span>--refresh-dependencies
+</code></pre></div>
+<h3 id="bom-native-gradle">BOM (Native Gradle)<a class="headerlink" href="#bom-native-gradle" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="n">platform</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-dependencies:3.2.0"</span><span class="p">))</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// version omitted — from BOM</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="bom-with-plugin">BOM (with plugin)<a class="headerlink" href="#bom-with-plugin" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span><span class="p">(</span><span class="s">"io.spring.dependency-management"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"1.1.4"</span>
+<span class="p">}</span>
+
+<span class="n">dependencyManagement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">imports</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mavenBom</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-dependencies:3.2.0"</span><span class="p">)</span>
+<span class="w">        </span><span class="n">mavenBom</span><span class="p">(</span><span class="s">"org.springframework.cloud:spring-cloud-dependencies:2023.0.0"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="exclusion">Exclusion<a class="headerlink" href="#exclusion" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">exclude</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"org.springframework.boot"</span><span class="p">,</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"spring-boot-starter-tomcat"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="force-version_1">Force Version<a class="headerlink" href="#force-version_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">configurations</span><span class="p">.</span><span class="na">all</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">resolutionStrategy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">force</span><span class="p">(</span><span class="s">"com.google.guava:guava:32.1.3-jre"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="custom-test-task">Custom Test Task<a class="headerlink" href="#custom-test-task" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">tasks</span><span class="p">.</span><span class="na">register</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"integrationTest"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">testClassesDirs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sourceSets</span><span class="o">[</span><span class="s">"test"</span><span class="o">]</span><span class="p">.</span><span class="na">output</span><span class="p">.</span><span class="na">classesDirs</span>
+<span class="w">    </span><span class="n">classpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sourceSets</span><span class="o">[</span><span class="s">"test"</span><span class="o">]</span><span class="p">.</span><span class="na">runtimeClasspath</span>
+<span class="w">    </span><span class="n">useJUnitPlatform</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">includeTags</span><span class="p">(</span><span class="s">"integration"</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">tasks</span><span class="p">.</span><span class="na">named</span><span class="p">(</span><span class="s">"check"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">dependsOn</span><span class="p">(</span><span class="s">"integrationTest"</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="gradleproperties_1">gradle.properties<a class="headerlink" href="#gradleproperties_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">org.gradle.jvmargs</span><span class="o">=</span><span class="s">-Xmx2g</span>
+<span class="na">org.gradle.parallel</span><span class="o">=</span><span class="s">true</span>
+<span class="na">org.gradle.caching</span><span class="o">=</span><span class="s">true</span>
+<span class="na">org.gradle.daemon</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="multi-module">Multi-Module<a class="headerlink" href="#multi-module" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// settings.gradle.kts</span>
+<span class="n">include</span><span class="p">(</span><span class="s">"module-a"</span><span class="p">,</span><span class="w"> </span><span class="s">"module-b"</span><span class="p">)</span>
+
+<span class="c1">// module-a/build.gradle.kts</span>
+<span class="n">plugins</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="p">(</span><span class="s">"org.springframework.boot"</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="n">project</span><span class="p">(</span><span class="s">":module-b"</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:module-a:build
+./gradlew<span class="w"> </span>build<span class="w"> </span>--parallel
+</code></pre></div>
+<h3 id="maven-vs-gradle-equivalents">Maven vs Gradle Equivalents<a class="headerlink" href="#maven-vs-gradle-equivalents" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Maven</th>
+<th>Gradle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pom.xml</code></td>
+<td><code>build.gradle.kts</code></td>
+</tr>
+<tr>
+<td><code>&lt;dependency&gt;</code></td>
+<td><code>implementation(...)</code></td>
+</tr>
+<tr>
+<td><code>&lt;scope&gt;test&lt;/scope&gt;</code></td>
+<td><code>testImplementation(...)</code></td>
+</tr>
+<tr>
+<td><code>&lt;dependencyManagement&gt;</code></td>
+<td><code>platform(...)</code> / <code>dependencyManagement{}</code></td>
+</tr>
+<tr>
+<td><code>&lt;parent&gt;</code></td>
+<td>convention plugin / root build</td>
+</tr>
+<tr>
+<td><code>&lt;modules&gt;</code></td>
+<td><code>include(...)</code></td>
+</tr>
+<tr>
+<td><code>&lt;plugin&gt;</code></td>
+<td><code>plugins { id(...) }</code></td>
+</tr>
+<tr>
+<td><code>&lt;profiles&gt;</code></td>
+<td><code>-P</code> properties / conditionals</td>
+</tr>
+<tr>
+<td><code>mvn package</code></td>
+<td><code>./gradlew build</code></td>
+</tr>
+<tr>
+<td><code>mvn install</code></td>
+<td><code>./gradlew publishToMavenLocal</code></td>
+</tr>
+<tr>
+<td><code>mvn deploy</code></td>
+<td><code>./gradlew publish</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>17_Maven_Build_Tool.md</code></li>
+<li><strong>Next:</strong> <code>19_Spring_Microservices_Cloud.md</code></li>
+<li><strong>Related:</strong> <code>06_Spring_Boot_Fundamentals.md</code></li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code> (§Maven)</li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="../17_Maven_Build_Tool/">17_Maven_Build_Tool.md</a></li>
+<li><strong>Next →:</strong> <a href="./19_Spring_Microservices_Cloud.md">19_Spring_Microservices_Cloud.md</a></li>
+<li><strong>Related:</strong> <a href="../17_Maven_Build_Tool/">17_Maven_Build_Tool.md</a>, <a href="./08_Spring_Boot_Configuration.md">08_Spring_Boot_Configuration.md</a>, <a href="./26_Spring_Best_Practices.md">26_Spring_Best_Practices.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

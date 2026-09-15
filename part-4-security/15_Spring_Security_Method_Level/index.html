@@ -1,0 +1,4439 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Method-Level Security - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#method-level-security" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Method-Level Security
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-method-level-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Method-Level Security?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Why Method-Level Security?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-level-vs-method-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL-Level vs Method-Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-method-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use Method-Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-enabling-method-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Enabling Method Security
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Enabling Method Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enablemethodsecurity-recommended-spring-security-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @EnableMethodSecurity (Recommended — Spring Security 6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legacy-enableglobalmethodsecurity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy: @EnableGlobalMethodSecurity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works-aop-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works — AOP Proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-preauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. @PreAuthorize
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. @PreAuthorize">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-method-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing Method Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-based-rules-on-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return-Based Rules (on method)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-level-preauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class-Level @PreAuthorize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-beans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing Beans
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pathvariable-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PathVariable Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-postauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. @PostAuthorize
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. @PostAuthorize">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-postauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why @PostAuthorize?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postauthorize-with-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @PostAuthorize with Collections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-preauthorize-and-postauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining @PreAuthorize and @PostAuthorize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Note
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-prefilter-postfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. @PreFilter &amp; @PostFilter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. @PreFilter &amp; @PostFilter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prefilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @PreFilter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @PostFilter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-set-map-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List, Set, Map Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-with-postauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common with @PostAuthorize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-secured-legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. @Secured (Legacy)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. @Secured (Legacy)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secured-vs-preauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Secured vs @PreAuthorize
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-rolesallowed-jsr-250" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. @RolesAllowed (JSR-250)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. @RolesAllowed (JSR-250)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolesallowed-vs-secured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @RolesAllowed vs @Secured
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotations-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-spel-in-security-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. SpEL in Security Expressions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. SpEL in Security Expressions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-vs-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role vs Authority
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-the-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing the Principal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bean-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bean Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method Calls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complex Expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean Operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-authenticationprincipal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. @AuthenticationPrincipal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. @AuthenticationPrincipal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-userdetails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom UserDetails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-anonymous-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling Anonymous Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expression-support-spring-security-52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expression Support (Spring Security 5.2+)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-with-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common with JWT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#injection-alternatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Injection Alternatives
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-custom-permission-evaluator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Custom Permission Evaluator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Custom Permission Evaluator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permissionevaluator-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PermissionEvaluator Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-with-methodsecurityexpressionhandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register with MethodSecurityExpressionHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-domain-object-security-acl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Domain Object Security (ACL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Domain Object Security (ACL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acl-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACL Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-acl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use ACL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-not-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When NOT to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-how-it-works-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. How It Works (AOP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. How It Works (AOP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-mode-vs-aspectj-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy Mode vs AspectJ Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-invocation-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Invocation Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-testing-method-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Testing Method Security
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Testing Method Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#withmockuser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @WithMockUser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#withuserdetails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @WithUserDetails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#withanonymoususer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @WithAnonymousUser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#withsecuritycontext-custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @WithSecurityContext (Custom)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#springboottest-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @SpringBootTest Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-jwt-resource-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With JWT (Resource Server)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Common Pitfalls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Common Pitfalls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-self-invocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 Self-Invocation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-private-protected-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 Private / Protected Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143-final-methods-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3 Final Methods / Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#144-missing-enablemethodsecurity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.4 Missing @EnableMethodSecurity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#145-roles-vs-authorities-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.5 Roles vs Authorities Mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#146-class-level-vs-method-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.6 Class-Level vs Method-Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#147-postauthorize-runs-regardless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.7 @PostAuthorize Runs Regardless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#148-postfilter-on-large-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.8 @PostFilter on Large Collections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#149-preauthorize-on-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.9 @PreAuthorize on Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1410-expression-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.10 Expression Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1411-nested-method-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.11 Nested Method Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pitfalls-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pitfalls Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-what-is-method-level-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. What is method-level security?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-how-do-you-enable-method-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. How do you enable method security?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-difference-between-preauthorize-and-postauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. Difference between @PreAuthorize and @PostAuthorize?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-what-is-the-difference-between-prefilter-and-postfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. What is the difference between @PreFilter and @PostFilter?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-when-to-use-secured-vs-preauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. When to use @Secured vs @PreAuthorize?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-what-are-jsr-250-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. What are JSR-250 annotations?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-how-do-you-access-method-arguments-in-preauthorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. How do you access method arguments in @PreAuthorize?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-how-do-you-access-the-authenticated-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. How do you access the authenticated user?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-what-is-authenticationprincipal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. What is @AuthenticationPrincipal?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-how-do-you-implement-custom-permission-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. How do you implement custom permission checks?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-what-is-spring-acl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. What is Spring ACL?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-how-does-method-security-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. How does method security work internally?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-what-is-self-invocation-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. What is self-invocation problem?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-can-you-annotate-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. Can you annotate interfaces?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-how-do-you-test-method-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. How do you test method security?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-what-happens-if-enablemethodsecurity-is-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. What happens if @EnableMethodSecurity is missing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-what-exceptions-are-thrown-on-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. What exceptions are thrown on failure?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-can-you-combine-url-and-method-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. Can you combine URL and method security?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-what-is-the-difference-between-hasrole-and-hasauthority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. What is the difference between hasRole and hasAuthority?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-what-is-preauthorizes-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. What is @PreAuthorize's #root?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q21-how-do-you-conditionally-apply-method-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q21. How do you conditionally apply method security?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q22-whats-the-performance-impact-of-method-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q22. What's the performance impact of method security?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q23-what-is-postfilters-filterobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q23. What is @PostFilter's filterObject?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q24-can-preauthorize-call-other-beans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q24. Can @PreAuthorize call other beans?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q25-what-modes-does-enablemethodsecurity-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q25. What modes does @EnableMethodSecurity support?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-expressions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-permissionevaluator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom PermissionEvaluator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aop-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOP Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="method-level-security">Method-Level Security<a class="headerlink" href="#method-level-security" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>15_Spring_Security_Method_Level.md</code>
+<strong>Part:</strong> 4 — Security
+<strong>Prerequisites:</strong> <code>13_Spring_Security_Core.md</code>, <code>14_Spring_Security_JWT_OAuth2.md</code>, <code>02_Spring_AOP.md</code>
+<strong>Estimated Study Time:</strong> 5–7 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-why-method-level-security">Why Method-Level Security?</a></li>
+<li><a href="#2-enabling-method-security">Enabling Method Security</a></li>
+<li><a href="#3-preauthorize">@PreAuthorize</a></li>
+<li><a href="#4-postauthorize">@PostAuthorize</a></li>
+<li><a href="#5-prefilter--postfilter">@PreFilter &amp; @PostFilter</a></li>
+<li><a href="#6-secured-legacy">@Secured (Legacy)</a></li>
+<li><a href="#7-rolesallowed-jsr-250">@RolesAllowed (JSR-250)</a></li>
+<li><a href="#8-spel-in-security-expressions">SpEL in Security Expressions</a></li>
+<li><a href="#9-authenticationprincipal">@AuthenticationPrincipal</a></li>
+<li><a href="#10-custom-permission-evaluator">Custom Permission Evaluator</a></li>
+<li><a href="#11-domain-object-security-acl">Domain Object Security (ACL)</a></li>
+<li><a href="#12-how-it-works-aop">How It Works (AOP)</a></li>
+<li><a href="#13-testing-method-security">Testing Method Security</a></li>
+<li><a href="#14-common-pitfalls">Common Pitfalls</a></li>
+<li><a href="#15-interview-questions">Interview Questions</a></li>
+<li><a href="#16-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-why-method-level-security">1. Why Method-Level Security?<a class="headerlink" href="#1-why-method-level-security" title="Permanent link">&para;</a></h2>
+<h3 id="url-level-vs-method-level">URL-Level vs Method-Level<a class="headerlink" href="#url-level-vs-method-level" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>URL-Level</th>
+<th>Method-Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Where</td>
+<td>SecurityFilterChain</td>
+<td>Annotated methods</td>
+</tr>
+<tr>
+<td>Granularity</td>
+<td>URL patterns</td>
+<td>Per method</td>
+</tr>
+<tr>
+<td>Cross-service</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Domain-aware</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>SpEL</td>
+<td>Limited</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>Config location</td>
+<td>Centralized</td>
+<td>On methods</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-to-use-method-level">When to Use Method-Level<a class="headerlink" href="#when-to-use-method-level" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Service-layer authorization (URL patterns can't distinguish business rules)</li>
+<li>Cross-cutting concerns on services (not just controllers)</li>
+<li>Fine-grained rules: "owner can update their own order"</li>
+<li>Reusing the same service from multiple controllers</li>
+<li>Domain-driven security</li>
+</ul>
+<h3 id="example-scenario">Example Scenario<a class="headerlink" href="#example-scenario" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// URL-level can't express this:</span>
+<span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#order.ownerId == authentication.principal.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="nf">updateOrder</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">,</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c1">// URL-level would need custom code in controller — messy</span>
+</code></pre></div>
+<hr />
+<h2 id="2-enabling-method-security">2. Enabling Method Security<a class="headerlink" href="#2-enabling-method-security" title="Permanent link">&para;</a></h2>
+<h3 id="enablemethodsecurity-recommended-spring-security-6">@EnableMethodSecurity (Recommended — Spring Security 6)<a class="headerlink" href="#enablemethodsecurity-recommended-spring-security-6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableMethodSecurity</span><span class="p">(</span>
+<span class="w">    </span><span class="n">prePostEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">          </span><span class="c1">// default true — @PreAuthorize, @PostAuthorize</span>
+<span class="w">    </span><span class="n">securedEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">         </span><span class="c1">// enable @Secured</span>
+<span class="w">    </span><span class="n">jsr250Enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w">           </span><span class="c1">// enable @RolesAllowed</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MethodSecurityConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Spring Boot auto-configures when <code>spring-boot-starter-security</code> is present, but <code>@EnableMethodSecurity</code> must be <strong>explicitly</strong> added to enable annotations.</p>
+<h3 id="legacy-enableglobalmethodsecurity">Legacy: @EnableGlobalMethodSecurity<a class="headerlink" href="#legacy-enableglobalmethodsecurity" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableGlobalMethodSecurity</span><span class="p">(</span>
+<span class="w">    </span><span class="n">prePostEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="n">securedEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="n">jsr250Enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MethodSecurityConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Deprecated since Spring Security 5.6; replaced by <code>@EnableMethodSecurity</code>.</p>
+<h3 id="how-it-works-aop-proxy">How It Works — AOP Proxy<a class="headerlink" href="#how-it-works-aop-proxy" title="Permanent link">&para;</a></h3>
+<p>Method security uses <strong>Spring AOP</strong> — a proxy wraps beans and intercepts method calls. Same proxy mechanisms as <code>@Transactional</code> (JDK or CGLIB).</p>
+<h3 id="configuration-attributes">Configuration Attributes<a class="headerlink" href="#configuration-attributes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Default</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prePostEnabled</code></td>
+<td><code>true</code></td>
+<td>Enables <code>@PreAuthorize</code>, <code>@PostAuthorize</code>, <code>@PreFilter</code>, <code>@PostFilter</code></td>
+</tr>
+<tr>
+<td><code>securedEnabled</code></td>
+<td><code>false</code></td>
+<td>Enables <code>@Secured</code></td>
+</tr>
+<tr>
+<td><code>jsr250Enabled</code></td>
+<td><code>false</code></td>
+<td>Enables <code>@RolesAllowed</code>, <code>@PermitAll</code>, <code>@DenyAll</code></td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td><code>PROXY</code></td>
+<td><code>PROXY</code> (AOP) or <code>ASPECTJ</code> (weaving)</td>
+</tr>
+<tr>
+<td><code>proxyTargetClass</code></td>
+<td><code>false</code></td>
+<td>Use CGLIB for all proxies</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-preauthorize">3. @PreAuthorize<a class="headerlink" href="#3-preauthorize" title="Permanent link">&para;</a></h2>
+<p>Evaluated <strong>before</strong> the method executes. Can use SpEL to access method arguments, <code>authentication</code>, <code>principal</code>, <code>#root</code>, etc.</p>
+<h3 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasRole('ADMIN')"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasAuthority('USER_READ')"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"isAuthenticated()"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getCurrentUser</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="accessing-method-arguments">Accessing Method Arguments<a class="headerlink" href="#accessing-method-arguments" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#id == authentication.principal.id or hasRole('ADMIN')"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#user.id == authentication.principal.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateUser</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#username == authentication.name"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Profile</span><span class="w"> </span><span class="nf">getProfile</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="return-based-rules-on-method">Return-Based Rules (on method)<a class="headerlink" href="#return-based-rules-on-method" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#order.ownerId == authentication.principal.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateOrder</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="common-expressions">Common Expressions<a class="headerlink" href="#common-expressions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isAuthenticated()</code></td>
+<td>Any authenticated user</td>
+</tr>
+<tr>
+<td><code>isAnonymous()</code></td>
+<td>Anonymous user</td>
+</tr>
+<tr>
+<td><code>isRememberMe()</code></td>
+<td>Remember-me authenticated</td>
+</tr>
+<tr>
+<td><code>isFullyAuthenticated()</code></td>
+<td>Not remember-me</td>
+</tr>
+<tr>
+<td><code>hasRole('ADMIN')</code></td>
+<td>Has <code>ROLE_ADMIN</code></td>
+</tr>
+<tr>
+<td><code>hasAnyRole('ADMIN', 'USER')</code></td>
+<td>Has any</td>
+</tr>
+<tr>
+<td><code>hasAuthority('READ_USERS')</code></td>
+<td>Has exact authority</td>
+</tr>
+<tr>
+<td><code>hasAnyAuthority('A', 'B')</code></td>
+<td>Has any authority</td>
+</tr>
+<tr>
+<td><code>permitAll</code></td>
+<td>Always true</td>
+</tr>
+<tr>
+<td><code>denyAll</code></td>
+<td>Always false</td>
+</tr>
+<tr>
+<td><code>principal.username == #username</code></td>
+<td>Custom check</td>
+</tr>
+</tbody>
+</table>
+<h3 id="class-level-preauthorize">Class-Level @PreAuthorize<a class="headerlink" href="#class-level-preauthorize" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasRole('ADMIN')"</span><span class="p">)</span><span class="w">   </span><span class="c1">// applies to all methods</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AdminService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">    </span><span class="c1">// needs ADMIN</span>
+
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasRole('SUPER_ADMIN')"</span><span class="p">)</span><span class="w">   </span><span class="c1">// overrides class-level</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Method-level overrides class-level.</p>
+<h3 id="accessing-beans">Accessing Beans<a class="headerlink" href="#accessing-beans" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"@permissionService.canAccess(#userId)"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getUser</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">userId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><code>@permissionService</code> references the <code>permissionService</code> bean.</p>
+<h3 id="combining-conditions">Combining Conditions<a class="headerlink" href="#combining-conditions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasRole('ADMIN') or (#userId == authentication.principal.id)"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getUser</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">userId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"isAuthenticated() and !isAnonymous()"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">myOrders</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="pathvariable-example">PathVariable Example<a class="headerlink" href="#pathvariable-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@RestController</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#id == authentication.principal.id or hasRole('ADMIN')"</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/users/{id}/orders"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">orders</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="4-postauthorize">4. @PostAuthorize<a class="headerlink" href="#4-postauthorize" title="Permanent link">&para;</a></h2>
+<p>Evaluated <strong>after</strong> the method returns. Can access the return value via <code>returnObject</code>.</p>
+<h3 id="basic">Basic<a class="headerlink" href="#basic" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PostAuthorize</span><span class="p">(</span><span class="s">"returnObject.owner == authentication.name"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Document</span><span class="w"> </span><span class="nf">getDocument</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Method runs, then result is checked. If denied → 403 (but expensive work already done).</p>
+<h3 id="why-postauthorize">Why @PostAuthorize?<a class="headerlink" href="#why-postauthorize" title="Permanent link">&para;</a></h3>
+<p>When the rule depends on the <strong>returned data</strong>, not just args:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@PostAuthorize</span><span class="p">(</span><span class="s">"returnObject.ownerId == authentication.principal.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="nf">findOrder</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// fetch and return — security check after</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orderRepo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">orderId</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Downside:</strong> method body executes regardless. Use for cheap operations, or when return value matters.</p>
+<h3 id="postauthorize-with-collections">@PostAuthorize with Collections<a class="headerlink" href="#postauthorize-with-collections" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PostAuthorize</span><span class="p">(</span><span class="s">"returnObject.ownerId == authentication.principal.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findMyOrders</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>For collections, use <code>@PostFilter</code> (see next section).</p>
+<h3 id="combining-preauthorize-and-postauthorize">Combining @PreAuthorize and @PostAuthorize<a class="headerlink" href="#combining-preauthorize-and-postauthorize" title="Permanent link">&para;</a></h3>
+<p>Not usually needed. Use one.</p>
+<h3 id="performance-note">Performance Note<a class="headerlink" href="#performance-note" title="Permanent link">&para;</a></h3>
+<p><code>@PostAuthorize</code> doesn't short-circuit — the method runs even for unauthorized users. Use <code>@PreAuthorize</code> when possible.</p>
+<hr />
+<h2 id="5-prefilter-postfilter">5. @PreFilter &amp; @PostFilter<a class="headerlink" href="#5-prefilter-postfilter" title="Permanent link">&para;</a></h2>
+<p>Filter collections based on security rules.</p>
+<h3 id="prefilter">@PreFilter<a class="headerlink" href="#prefilter" title="Permanent link">&para;</a></h3>
+<p>Filters method <strong>arguments</strong> before invocation. Only the user's own items are passed.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreFilter</span><span class="p">(</span><span class="s">"filterObject.ownerId == authentication.principal.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">saveAll</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="n">orders</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><code>filterObject</code> = the current element.</p>
+<h3 id="postfilter">@PostFilter<a class="headerlink" href="#postfilter" title="Permanent link">&para;</a></h3>
+<p>Filters the <strong>returned collection</strong> — only elements the user can access are kept.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@PostFilter</span><span class="p">(</span><span class="s">"filterObject.ownerId == authentication.principal.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orderRepo</span><span class="p">.</span><span class="na">findAll</span><span class="p">();</span><span class="w">   </span><span class="c1">// returns only user's orders</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="list-set-map-support">List, Set, Map Support<a class="headerlink" href="#list-set-map-support" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PostFilter</span><span class="p">(</span><span class="s">"filterObject.value.ownerId == authentication.name"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="p">,</span><span class="w"> </span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>For Map, <code>filterObject.value</code> is the map entry value.</p>
+<h3 id="common-with-postauthorize">Common with @PostAuthorize<a class="headerlink" href="#common-with-postauthorize" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PostAuthorize</span><span class="p">(</span><span class="s">"hasRole('ADMIN') or returnObject.ownerId == authentication.name"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@PostFilter</span><span class="p">(</span><span class="s">"hasRole('ADMIN') or filterObject.ownerId == authentication.name"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="performance-warning">Performance Warning<a class="headerlink" href="#performance-warning" title="Permanent link">&para;</a></h3>
+<p><code>@PreFilter</code> and <code>@PostFilter</code> operate on the <strong>whole collection in memory</strong>. For large datasets, prefer a <strong>custom query</strong> that filters at the DB level, or use a <code>PermissionEvaluator</code>.</p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DocumentService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@PostFilter</span><span class="p">(</span><span class="s">"hasPermission(filterObject, 'READ')"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">keyword</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">documentRepo</span><span class="p">.</span><span class="na">findByTitleContaining</span><span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Uses custom <code>PermissionEvaluator</code> for <code>hasPermission(...)</code>.</p>
+<hr />
+<h2 id="6-secured-legacy">6. @Secured (Legacy)<a class="headerlink" href="#6-secured-legacy" title="Permanent link">&para;</a></h2>
+<p>Simple role check without SpEL. Enable via <code>securedEnabled = true</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableMethodSecurity</span><span class="p">(</span><span class="n">securedEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SecurityConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Secured</span><span class="p">(</span><span class="s">"ROLE_ADMIN"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Secured</span><span class="p">({</span><span class="s">"ROLE_ADMIN"</span><span class="p">,</span><span class="w"> </span><span class="s">"ROLE_MANAGER"</span><span class="p">})</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Requires <code>ROLE_</code> prefix explicitly</li>
+<li>No SpEL (can't access args or return value)</li>
+<li>Deprecated in favor of <code>@PreAuthorize</code></li>
+</ul>
+<h3 id="secured-vs-preauthorize">@Secured vs @PreAuthorize<a class="headerlink" href="#secured-vs-preauthorize" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>@Secured</th>
+<th>@PreAuthorize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Roles only</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Authorities</td>
+<td>❌ (needs ROLE_)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>SpEL</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Arg access</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Return value</td>
+<td>❌</td>
+<td>✅ (post)</td>
+</tr>
+<tr>
+<td>Recommended</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule:</strong> Use <code>@PreAuthorize</code> instead of <code>@Secured</code> in new code.</p>
+<hr />
+<h2 id="7-rolesallowed-jsr-250">7. @RolesAllowed (JSR-250)<a class="headerlink" href="#7-rolesallowed-jsr-250" title="Permanent link">&para;</a></h2>
+<p>JSR-250 standard annotation. Enable via <code>jsr250Enabled = true</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableMethodSecurity</span><span class="p">(</span><span class="n">jsr250Enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SecurityConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="usage_1">Usage<a class="headerlink" href="#usage_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@RolesAllowed</span><span class="p">(</span><span class="s">"ADMIN"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@RolesAllowed</span><span class="p">({</span><span class="s">"ADMIN"</span><span class="p">,</span><span class="w"> </span><span class="s">"MANAGER"</span><span class="p">})</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@PermitAll</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getPublicInfo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@DenyAll</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dangerousOperation</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="rolesallowed-vs-secured">@RolesAllowed vs @Secured<a class="headerlink" href="#rolesallowed-vs-secured" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Both role-based, no SpEL</li>
+<li><code>@RolesAllowed</code> is standard (JSR-250)</li>
+<li><code>@Secured</code> is Spring-specific</li>
+<li>Both add <code>ROLE_</code> prefix automatically (unlike <code>@Secured</code> — which requires it explicitly)</li>
+</ul>
+<p><strong>Rule:</strong> Prefer <code>@PreAuthorize</code>. Use JSR-250 only for standards compliance (e.g., shared code across frameworks).</p>
+<h3 id="annotations-summary">Annotations Summary<a class="headerlink" href="#annotations-summary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Type</th>
+<th>Roles prefix auto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@Secured("ROLE_ADMIN")</code></td>
+<td>Spring</td>
+<td>❌ (need <code>ROLE_</code>)</td>
+</tr>
+<tr>
+<td><code>@RolesAllowed("ADMIN")</code></td>
+<td>JSR-250</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>@PreAuthorize("hasRole('ADMIN')")</code></td>
+<td>Spring</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-spel-in-security-expressions">8. SpEL in Security Expressions<a class="headerlink" href="#8-spel-in-security-expressions" title="Permanent link">&para;</a></h2>
+<h3 id="available-objects">Available Objects<a class="headerlink" href="#available-objects" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>authentication</code></td>
+<td><code>Authentication</code></td>
+</tr>
+<tr>
+<td><code>principal</code></td>
+<td><code>authentication.getPrincipal()</code></td>
+</tr>
+<tr>
+<td><code>#argName</code> / <code>#a0</code> / <code>#p0</code></td>
+<td>Method args</td>
+</tr>
+<tr>
+<td><code>#root</code></td>
+<td><code>MethodSecurityExpressionRoot</code></td>
+</tr>
+<tr>
+<td><code>returnObject</code></td>
+<td>(post) Return value</td>
+</tr>
+<tr>
+<td><code>filterObject</code></td>
+<td>(filter) Current element</td>
+</tr>
+<tr>
+<td><code>@beanName</code></td>
+<td>Any Spring bean</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-methods">Common Methods<a class="headerlink" href="#common-methods" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>hasRole('X')                    hasAuthority('Y')
+hasAnyRole('X','Y')             hasAnyAuthority('X','Y')
+isAuthenticated()               isAnonymous()
+isRememberMe()                  isFullyAuthenticated()
+permitAll                       denyAll
+hasPermission(target, perm)     hasPermission(targetId, type, perm)
+</code></pre></div>
+<h3 id="role-vs-authority">Role vs Authority<a class="headerlink" href="#role-vs-authority" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>hasRole("ADMIN")</code> → checks for <code>ROLE_ADMIN</code></li>
+<li><code>hasAuthority("ROLE_ADMIN")</code> → checks for exact string</li>
+</ul>
+<p>⚠️ Do not mix — either store <code>ROLE_ADMIN</code> and use <code>hasRole("ADMIN")</code>, or store <code>ADMIN</code> and use <code>hasAuthority("ADMIN")</code>.</p>
+<h3 id="accessing-the-principal">Accessing the Principal<a class="headerlink" href="#accessing-the-principal" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#principal.username == #username"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Profile</span><span class="w"> </span><span class="nf">getProfile</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c1">// With custom UserDetails</span>
+<span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#id == principal.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="bean-reference">Bean Reference<a class="headerlink" href="#bean-reference" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"@securityService.isOwner(#orderId, authentication)"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">cancel</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="nested-properties">Nested Properties<a class="headerlink" href="#nested-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#request.owner == authentication.name"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">Request</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="method-calls">Method Calls<a class="headerlink" href="#method-calls" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"#userService.isActive(#id)"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getActiveUser</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="complex-expressions">Complex Expressions<a class="headerlink" href="#complex-expressions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasRole('ADMIN') or "</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="s">"(hasRole('MANAGER') and #amount &lt; 1000) or "</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="s">"authentication.name == #customerName"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">approve</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">customerName</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="type-references">Type References<a class="headerlink" href="#type-references" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"@permissionService.hasRole(authentication, T(com.example.Role).ADMIN)"</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="boolean-operators">Boolean Operators<a class="headerlink" href="#boolean-operators" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>and / or / not    → and &amp;&amp; || !
+</code></pre></div>
+<p>Both forms work; <code>and/or/not</code> preferred in annotations for readability.</p>
+<hr />
+<h2 id="9-authenticationprincipal">9. @AuthenticationPrincipal<a class="headerlink" href="#9-authenticationprincipal" title="Permanent link">&para;</a></h2>
+<p>Injects the authenticated principal (or a custom <code>UserDetails</code>) into controller/service method parameters.</p>
+<h3 id="basic_1">Basic<a class="headerlink" href="#basic_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/me"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">UserDto</span><span class="w"> </span><span class="nf">me</span><span class="p">(</span><span class="nd">@AuthenticationPrincipal</span><span class="w"> </span><span class="n">UserDetails</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UserDto</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">getUsername</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="custom-userdetails">Custom UserDetails<a class="headerlink" href="#custom-userdetails" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AppUser</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">UserDetails</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">getId</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/me"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">UserDto</span><span class="w"> </span><span class="nf">me</span><span class="p">(</span><span class="nd">@AuthenticationPrincipal</span><span class="w"> </span><span class="n">AppUser</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UserDto</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">getId</span><span class="p">(),</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getUsername</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="handling-anonymous-users">Handling Anonymous Users<a class="headerlink" href="#handling-anonymous-users" title="Permanent link">&para;</a></h3>
+<p><code>@AuthenticationPrincipal</code> may be null for anonymous. Use <code>errorOnInvalidType</code> or check:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/profile"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Profile</span><span class="w"> </span><span class="nf">profile</span><span class="p">(</span><span class="nd">@AuthenticationPrincipal</span><span class="w"> </span><span class="n">AppUser</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">user</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UnauthorizedException</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">profileService</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or provide a fallback:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/profile"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Profile</span><span class="w"> </span><span class="nf">profile</span><span class="p">(</span>
+<span class="w">    </span><span class="nd">@AuthenticationPrincipal</span><span class="p">(</span><span class="n">errorOnInvalidType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="n">AppUser</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="expression-support-spring-security-52">Expression Support (Spring Security 5.2+)<a class="headerlink" href="#expression-support-spring-security-52" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">myId</span><span class="p">(</span><span class="nd">@AuthenticationPrincipal</span><span class="p">(</span><span class="n">expression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"id"</span><span class="p">)</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>SpEL on the principal.</p>
+<h3 id="common-with-jwt">Common with JWT<a class="headerlink" href="#common-with-jwt" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/claims"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">claims</span><span class="p">(</span><span class="nd">@AuthenticationPrincipal</span><span class="w"> </span><span class="n">Jwt</span><span class="w"> </span><span class="n">jwt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">jwt</span><span class="p">.</span><span class="na">getClaims</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>With OAuth2 Resource Server, the principal is <code>Jwt</code> (not <code>UserDetails</code>).</p>
+<h3 id="injection-alternatives">Injection Alternatives<a class="headerlink" href="#injection-alternatives" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@AuthenticationPrincipal</code></td>
+<td>Custom principal/UserDetails</td>
+</tr>
+<tr>
+<td><code>Principal</code></td>
+<td><code>java.security.Principal</code> (just name)</td>
+</tr>
+<tr>
+<td><code>Authentication</code></td>
+<td>Spring Security <code>Authentication</code></td>
+</tr>
+<tr>
+<td><code>@CurrentSecurityContext</code></td>
+<td>Full security context</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-custom-permission-evaluator">10. Custom Permission Evaluator<a class="headerlink" href="#10-custom-permission-evaluator" title="Permanent link">&para;</a></h2>
+<p>For domain-object rules like <code>hasPermission(order, 'WRITE')</code>.</p>
+<h3 id="permissionevaluator-interface">PermissionEvaluator Interface<a class="headerlink" href="#permissionevaluator-interface" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PermissionEvaluator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">hasPermission</span><span class="p">(</span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">permission</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">hasPermission</span><span class="p">(</span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="n">targetId</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">String</span><span class="w"> </span><span class="n">targetType</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">permission</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DomainPermissionEvaluator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">PermissionEvaluator</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">OrderRepository</span><span class="w"> </span><span class="n">orderRepo</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">DomainPermissionEvaluator</span><span class="p">(</span><span class="n">OrderRepository</span><span class="w"> </span><span class="n">orderRepo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">orderRepo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orderRepo</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">hasPermission</span><span class="p">(</span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">permission</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">target</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">permission</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="s">"READ"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">order</span><span class="p">.</span><span class="na">getOwnerId</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">principalId</span><span class="p">(</span><span class="n">auth</span><span class="p">))</span>
+<span class="w">                    </span><span class="o">||</span><span class="w"> </span><span class="n">hasRole</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="s">"ADMIN"</span><span class="p">);</span>
+<span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="s">"WRITE"</span><span class="p">,</span><span class="w"> </span><span class="s">"DELETE"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">order</span><span class="p">.</span><span class="na">getOwnerId</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">principalId</span><span class="p">(</span><span class="n">auth</span><span class="p">));</span>
+<span class="w">                </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">};</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">hasPermission</span><span class="p">(</span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="n">targetId</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">String</span><span class="w"> </span><span class="n">targetType</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">permission</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">"Order"</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">targetType</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">orderRepo</span><span class="p">.</span><span class="na">findById</span><span class="p">((</span><span class="n">Long</span><span class="p">)</span><span class="w"> </span><span class="n">targetId</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">o</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">hasPermission</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="n">permission</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">principalId</span><span class="p">(</span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">((</span><span class="n">AppUser</span><span class="p">)</span><span class="w"> </span><span class="n">auth</span><span class="p">.</span><span class="na">getPrincipal</span><span class="p">()).</span><span class="na">getId</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">hasRole</span><span class="p">(</span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">role</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">auth</span><span class="p">.</span><span class="na">getAuthorities</span><span class="p">().</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">anyMatch</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">getAuthority</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">"ROLE_"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">role</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="register-with-methodsecurityexpressionhandler">Register with MethodSecurityExpressionHandler<a class="headerlink" href="#register-with-methodsecurityexpressionhandler" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableMethodSecurity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MethodSecurityConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">MethodSecurityExpressionHandler</span><span class="w"> </span><span class="nf">expressionHandler</span><span class="p">(</span>
+<span class="w">            </span><span class="n">PermissionEvaluator</span><span class="w"> </span><span class="n">permissionEvaluator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DefaultMethodSecurityExpressionHandler</span><span class="w"> </span><span class="n">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultMethodSecurityExpressionHandler</span><span class="p">();</span>
+<span class="w">        </span><span class="n">handler</span><span class="p">.</span><span class="na">setPermissionEvaluator</span><span class="p">(</span><span class="n">permissionEvaluator</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">handler</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="usage_2">Usage<a class="headerlink" href="#usage_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasPermission(#order, 'WRITE')"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasPermission(#orderId, 'Order', 'DELETE')"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@PostFilter</span><span class="p">(</span><span class="s">"hasPermission(filterObject, 'READ')"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
+<span class="nd">@WithMockUser</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">userCanReadOwnOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// mock evaluator returns true</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="11-domain-object-security-acl">11. Domain Object Security (ACL)<a class="headerlink" href="#11-domain-object-security-acl" title="Permanent link">&para;</a></h2>
+<p>Spring Security provides a full <strong>ACL</strong> system for per-instance permissions.</p>
+<h3 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Object Identity</strong> (<code>ObjectIdentity</code>) — a domain object (class + id)</li>
+<li><strong>SID</strong> (Security Identity) — user or authority</li>
+<li><strong>ACL</strong> — list of <code>AccessControlEntry</code> for an object</li>
+<li><strong>Permission</strong> — bit mask (READ, WRITE, DELETE, ADMINISTRATION, ...)</li>
+</ul>
+<h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.security<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-security-acl<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-context-support<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="acl-schema">ACL Schema<a class="headerlink" href="#acl-schema" title="Permanent link">&para;</a></h3>
+<p>Spring provides SQL scripts to create ACL tables:</p>
+<div class="highlight"><pre><span></span><code>acl_sid
+acl_class
+acl_object_identity
+acl_entry
+</code></pre></div>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableMethodSecurity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AclConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">AclService</span><span class="w"> </span><span class="nf">aclService</span><span class="p">(</span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JdbcMutableAclService</span><span class="p">(</span>
+<span class="w">            </span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LookupStrategyImpl</span><span class="p">(...),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BasicAclEntryCache</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">PermissionEvaluator</span><span class="w"> </span><span class="nf">aclPermissionEvaluator</span><span class="p">(</span><span class="n">AclService</span><span class="w"> </span><span class="n">aclService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AclPermissionEvaluator</span><span class="p">(</span><span class="n">aclService</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">MethodSecurityExpressionHandler</span><span class="w"> </span><span class="nf">expressionHandler</span><span class="p">(</span>
+<span class="w">            </span><span class="n">PermissionEvaluator</span><span class="w"> </span><span class="n">aclPermissionEvaluator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DefaultMethodSecurityExpressionHandler</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultMethodSecurityExpressionHandler</span><span class="p">();</span>
+<span class="w">        </span><span class="n">h</span><span class="p">.</span><span class="na">setPermissionEvaluator</span><span class="p">(</span><span class="n">aclPermissionEvaluator</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="adding-permissions">Adding Permissions<a class="headerlink" href="#adding-permissions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">grantAccess</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">Permission</span><span class="w"> </span><span class="n">permission</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ObjectIdentity</span><span class="w"> </span><span class="n">oid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectIdentityImpl</span><span class="p">(</span><span class="n">Order</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">orderId</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sid</span><span class="w"> </span><span class="n">sid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PrincipalSid</span><span class="p">(</span><span class="n">username</span><span class="p">);</span>
+<span class="w">    </span><span class="n">MutableAcl</span><span class="w"> </span><span class="n">acl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aclService</span><span class="p">.</span><span class="na">createAcl</span><span class="p">(</span><span class="n">oid</span><span class="p">);</span>
+<span class="w">    </span><span class="n">acl</span><span class="p">.</span><span class="na">insertAce</span><span class="p">(</span><span class="n">acl</span><span class="p">.</span><span class="na">getEntries</span><span class="p">().</span><span class="na">size</span><span class="p">(),</span><span class="w"> </span><span class="n">permission</span><span class="p">,</span><span class="w"> </span><span class="n">sid</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="n">aclService</span><span class="p">.</span><span class="na">updateAcl</span><span class="p">(</span><span class="n">acl</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="usage_3">Usage<a class="headerlink" href="#usage_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasPermission(#orderId, 'com.example.Order', 'READ')"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="nf">getOrder</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="when-to-use-acl">When to Use ACL<a class="headerlink" href="#when-to-use-acl" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fine-grained per-instance permissions (documents, projects)</li>
+<li>Many users × many objects</li>
+<li>Permissions change frequently</li>
+</ul>
+<h3 id="when-not-to-use">When NOT to Use<a class="headerlink" href="#when-not-to-use" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Simple "owner or admin" rules — use SpEL</li>
+<li>Few users or objects — use simpler checks</li>
+<li>ACL adds complexity and DB tables</li>
+</ul>
+<hr />
+<h2 id="12-how-it-works-aop">12. How It Works (AOP)<a class="headerlink" href="#12-how-it-works-aop" title="Permanent link">&para;</a></h2>
+<p>Method security uses Spring AOP:</p>
+<div class="highlight"><pre><span></span><code>Caller → Proxy → MethodSecurityInterceptor
+                    ├── PreAuthorizeAdvice (before)
+                    ├── Invoke target method
+                    ├── PostAuthorizeAdvice (after)
+                    └── Return / throw AccessDeniedException
+</code></pre></div>
+<h3 id="key-classes">Key Classes<a class="headerlink" href="#key-classes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AuthorizationManagerBeforeMethodInterceptor</code></td>
+<td>Handles <code>@PreAuthorize</code>, <code>@Secured</code>, <code>@RolesAllowed</code></td>
+</tr>
+<tr>
+<td><code>AuthorizationManagerAfterMethodInterceptor</code></td>
+<td>Handles <code>@PostAuthorize</code></td>
+</tr>
+<tr>
+<td><code>PreFilterAuthorizationMethodInterceptor</code></td>
+<td>Handles <code>@PreFilter</code></td>
+</tr>
+<tr>
+<td><code>PostFilterAuthorizationMethodInterceptor</code></td>
+<td>Handles <code>@PostFilter</code></td>
+</tr>
+<tr>
+<td><code>MethodSecurityExpressionHandler</code></td>
+<td>Evaluates SpEL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="proxy-mode-vs-aspectj-mode">Proxy Mode vs AspectJ Mode<a class="headerlink" href="#proxy-mode-vs-aspectj-mode" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Proxying</th>
+<th>Supports self-invocation</th>
+<th>Enables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PROXY</code> (default)</td>
+<td>JDK/CGLIB</td>
+<td>❌</td>
+<td>Normal beans</td>
+</tr>
+<tr>
+<td><code>ASPECTJ</code></td>
+<td>AspectJ weaving</td>
+<td>✅</td>
+<td>Any code</td>
+</tr>
+</tbody>
+</table>
+<p>Enable AspectJ mode:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@EnableMethodSecurity</span><span class="p">(</span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AdviceMode</span><span class="p">.</span><span class="na">ASPECTJ</span><span class="p">)</span>
+</code></pre></div>
+<p>Requires AspectJ load-time weaving.</p>
+<h3 id="self-invocation-problem">Self-Invocation Problem<a class="headerlink" href="#self-invocation-problem" title="Permanent link">&para;</a></h3>
+<p>Same as <code>@Transactional</code> and <code>@Cacheable</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">inner</span><span class="p">();</span><span class="w">    </span><span class="c1">// ❌ no security applied</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasRole('ADMIN')"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">inner</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Fixes:</strong> extract to another bean, inject self, use AspectJ mode.</p>
+<hr />
+<h2 id="13-testing-method-security">13. Testing Method Security<a class="headerlink" href="#13-testing-method-security" title="Permanent link">&para;</a></h2>
+<h3 id="withmockuser">@WithMockUser<a class="headerlink" href="#withmockuser" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
+<span class="nd">@WithMockUser</span><span class="p">(</span><span class="n">roles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ADMIN"</span><span class="p">)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">adminCanDelete</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">service</span><span class="p">.</span><span class="na">deleteAll</span><span class="p">();</span><span class="w">   </span><span class="c1">// succeeds</span>
+<span class="p">}</span>
+
+<span class="nd">@Test</span>
+<span class="nd">@WithMockUser</span><span class="p">(</span><span class="n">roles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"USER"</span><span class="p">)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">userCannotDelete</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">assertThatThrownBy</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">deleteAll</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">isInstanceOf</span><span class="p">(</span><span class="n">AccessDeniedException</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="withuserdetails">@WithUserDetails<a class="headerlink" href="#withuserdetails" title="Permanent link">&para;</a></h3>
+<p>Loads the actual <code>UserDetails</code> from <code>UserDetailsService</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
+<span class="nd">@WithUserDetails</span><span class="p">(</span><span class="s">"alice"</span><span class="p">)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">aliceCanDoX</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="withanonymoususer">@WithAnonymousUser<a class="headerlink" href="#withanonymoususer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
+<span class="nd">@WithAnonymousUser</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">anonymousDenied</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="withsecuritycontext-custom">@WithSecurityContext (Custom)<a class="headerlink" href="#withsecuritycontext-custom" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Retention</span><span class="p">(</span><span class="n">RUNTIME</span><span class="p">)</span>
+<span class="nd">@WithSecurityContext</span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WithMockAppUserFactory</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="nd">@interface</span><span class="w"> </span><span class="n">WithMockAppUser</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="nf">id</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">username</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s">"test"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="nf">roles</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="s">"USER"</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WithMockAppUserFactory</span><span class="w"> </span>
+<span class="w">        </span><span class="kd">implements</span><span class="w"> </span><span class="n">WithSecurityContextFactory</span><span class="o">&lt;</span><span class="n">WithMockAppUser</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SecurityContext</span><span class="w"> </span><span class="nf">createSecurityContext</span><span class="p">(</span><span class="n">WithMockAppUser</span><span class="w"> </span><span class="n">ann</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">AppUser</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AppUser</span><span class="p">(</span><span class="n">ann</span><span class="p">.</span><span class="na">id</span><span class="p">(),</span><span class="w"> </span><span class="n">ann</span><span class="p">.</span><span class="na">username</span><span class="p">(),</span><span class="w"> </span><span class="n">ann</span><span class="p">.</span><span class="na">roles</span><span class="p">());</span>
+<span class="w">        </span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UsernamePasswordAuthenticationToken</span><span class="p">(</span>
+<span class="w">            </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="s">"password"</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getAuthorities</span><span class="p">());</span>
+<span class="w">        </span><span class="n">SecurityContext</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SecurityContextHolder</span><span class="p">.</span><span class="na">createEmptyContext</span><span class="p">();</span>
+<span class="w">        </span><span class="n">ctx</span><span class="p">.</span><span class="na">setAuthentication</span><span class="p">(</span><span class="n">auth</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ctx</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="springboottest-integration">@SpringBootTest Integration<a class="headerlink" href="#springboottest-integration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootTest</span>
+<span class="kd">class</span> <span class="nc">OrderServiceSecuredTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span><span class="w"> </span><span class="n">OrderService</span><span class="w"> </span><span class="n">service</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="nd">@WithMockUser</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"alice"</span><span class="p">,</span><span class="w"> </span><span class="n">roles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"USER"</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">userCannotAccessOtherUserOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// assume order 42 belongs to bob</span>
+<span class="w">        </span><span class="n">assertThatThrownBy</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">getOrder</span><span class="p">(</span><span class="mi">42L</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">isInstanceOf</span><span class="p">(</span><span class="n">AccessDeniedException</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="nd">@WithMockUser</span><span class="p">(</span><span class="n">roles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ADMIN"</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">adminCanAccessAnyOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Order</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">getOrder</span><span class="p">(</span><span class="mi">42L</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="n">o</span><span class="p">).</span><span class="na">isNotNull</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="with-jwt-resource-server">With JWT (Resource Server)<a class="headerlink" href="#with-jwt-resource-server" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">jwtAccess</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">mvc</span><span class="p">.</span><span class="na">perform</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="s">"/api/admin"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">with</span><span class="p">(</span><span class="n">jwt</span><span class="p">().</span><span class="na">jwt</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="na">subject</span><span class="p">(</span><span class="s">"alice"</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">claim</span><span class="p">(</span><span class="s">"roles"</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"ADMIN"</span><span class="p">)))))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">status</span><span class="p">().</span><span class="na">isOk</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="14-common-pitfalls">14. Common Pitfalls<a class="headerlink" href="#14-common-pitfalls" title="Permanent link">&para;</a></h2>
+<h3 id="141-self-invocation">14.1 Self-Invocation<a class="headerlink" href="#141-self-invocation" title="Permanent link">&para;</a></h3>
+<p>Same as AOP — internal calls bypass the proxy. Fix with self-injection, extract bean, or AspectJ mode.</p>
+<h3 id="142-private-protected-methods">14.2 Private / Protected Methods<a class="headerlink" href="#142-private-protected-methods" title="Permanent link">&para;</a></h3>
+<p>Only public methods are advised. Annotations on private methods are <strong>silently ignored</strong>.</p>
+<h3 id="143-final-methods-classes">14.3 Final Methods / Classes<a class="headerlink" href="#143-final-methods-classes" title="Permanent link">&para;</a></h3>
+<p>CGLIB can't override final → advice skipped silently.</p>
+<h3 id="144-missing-enablemethodsecurity">14.4 Missing @EnableMethodSecurity<a class="headerlink" href="#144-missing-enablemethodsecurity" title="Permanent link">&para;</a></h3>
+<p>Annotation present but <code>@EnableMethodSecurity</code> not added → security not enforced. <strong>Silent failure</strong>.</p>
+<h3 id="145-roles-vs-authorities-mismatch">14.5 Roles vs Authorities Mismatch<a class="headerlink" href="#145-roles-vs-authorities-mismatch" title="Permanent link">&para;</a></h3>
+<p><code>hasRole("ADMIN")</code> requires authority <code>ROLE_ADMIN</code>, not <code>ADMIN</code>. Mixing fails silently.</p>
+<h3 id="146-class-level-vs-method-level">14.6 Class-Level vs Method-Level<a class="headerlink" href="#146-class-level-vs-method-level" title="Permanent link">&para;</a></h3>
+<p>Method-level <strong>overrides</strong> class-level. If you want both, use <code>and</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"isAuthenticated()"</span><span class="p">)</span><span class="w">   </span><span class="c1">// class</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Service</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasRole('ADMIN')"</span><span class="p">)</span><span class="w">    </span><span class="c1">// method — replaces class!</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="147-postauthorize-runs-regardless">14.7 @PostAuthorize Runs Regardless<a class="headerlink" href="#147-postauthorize-runs-regardless" title="Permanent link">&para;</a></h3>
+<p>Method body executes even if access denied. Prefer <code>@PreAuthorize</code> for expensive operations.</p>
+<h3 id="148-postfilter-on-large-collections">14.8 @PostFilter on Large Collections<a class="headerlink" href="#148-postfilter-on-large-collections" title="Permanent link">&para;</a></h3>
+<p>Filters in-memory. For huge result sets, use DB filtering.</p>
+<h3 id="149-preauthorize-on-interfaces">14.9 @PreAuthorize on Interfaces<a class="headerlink" href="#149-preauthorize-on-interfaces" title="Permanent link">&para;</a></h3>
+<p>Same as <code>@Transactional</code> — Spring recommends annotating concrete classes.</p>
+<h3 id="1410-expression-errors">14.10 Expression Errors<a class="headerlink" href="#1410-expression-errors" title="Permanent link">&para;</a></h3>
+<p>A typo in SpEL throws at runtime (not compile). Test thoroughly.</p>
+<h3 id="1411-nested-method-security">14.11 Nested Method Security<a class="headerlink" href="#1411-nested-method-security" title="Permanent link">&para;</a></h3>
+<p>Nested service calls each evaluate their own <code>@PreAuthorize</code>. No context propagation needed — the <code>Authentication</code> is in <code>SecurityContextHolder</code>.</p>
+<h3 id="pitfalls-checklist">Pitfalls Checklist<a class="headerlink" href="#pitfalls-checklist" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <code>@EnableMethodSecurity</code> present</li>
+<li>[ ] Public methods</li>
+<li>[ ] No self-invocation</li>
+<li>[ ] Not final class/method</li>
+<li>[ ] Roles prefixed correctly</li>
+<li>[ ] <code>@PreAuthorize</code> used over <code>@Secured</code></li>
+<li>[ ] Class vs method precedence understood</li>
+<li>[ ] Tested with different roles</li>
+</ul>
+<hr />
+<h2 id="15-interview-questions">15. Interview Questions<a class="headerlink" href="#15-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-method-level-security">Q1. What is method-level security?<a class="headerlink" href="#q1-what-is-method-level-security" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Security enforced on service/component methods via annotations (<code>@PreAuthorize</code>, <code>@PostAuthorize</code>, <code>@Secured</code>, <code>@RolesAllowed</code>). Uses AOP proxies. Provides fine-grained control that URL-level security can't express.</p>
+<h3 id="q2-how-do-you-enable-method-security">Q2. How do you enable method security?<a class="headerlink" href="#q2-how-do-you-enable-method-security" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Add <code>@EnableMethodSecurity</code> to a <code>@Configuration</code> class. Options: <code>prePostEnabled</code> (default true), <code>securedEnabled</code>, <code>jsr250Enabled</code>. Spring Boot does not enable it by default — you must add the annotation.</p>
+<h3 id="q3-difference-between-preauthorize-and-postauthorize">Q3. Difference between @PreAuthorize and @PostAuthorize?<a class="headerlink" href="#q3-difference-between-preauthorize-and-postauthorize" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>@PreAuthorize</code> runs <strong>before</strong> the method — checks args/auth. <code>@PostAuthorize</code> runs <strong>after</strong> — checks <code>returnObject</code>. Use pre for args; post for return-value rules. Pre short-circuits; post doesn't.</p>
+<h3 id="q4-what-is-the-difference-between-prefilter-and-postfilter">Q4. What is the difference between @PreFilter and @PostFilter?<a class="headerlink" href="#q4-what-is-the-difference-between-prefilter-and-postfilter" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>@PreFilter</code> filters method <strong>arguments</strong> (collections) before invocation — only accessible items passed. <code>@PostFilter</code> filters the <strong>returned</strong> collection — only accessible items returned.</p>
+<h3 id="q5-when-to-use-secured-vs-preauthorize">Q5. When to use @Secured vs @PreAuthorize?<a class="headerlink" href="#q5-when-to-use-secured-vs-preauthorize" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>@PreAuthorize</code> supports SpEL, arg/return access, and full expressions. <code>@Secured</code> is a simple role check with <code>ROLE_</code> prefix and no SpEL. Prefer <code>@PreAuthorize</code>.</p>
+<h3 id="q6-what-are-jsr-250-annotations">Q6. What are JSR-250 annotations?<a class="headerlink" href="#q6-what-are-jsr-250-annotations" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>@RolesAllowed</code>, <code>@PermitAll</code>, <code>@DenyAll</code>. Standard Java security annotations. Enable with <code>jsr250Enabled = true</code>. Role names auto-prefixed with <code>ROLE_</code>.</p>
+<h3 id="q7-how-do-you-access-method-arguments-in-preauthorize">Q7. How do you access method arguments in @PreAuthorize?<a class="headerlink" href="#q7-how-do-you-access-method-arguments-in-preauthorize" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Via SpEL: <code>#argName</code> (with <code>-parameters</code> compile flag), <code>#a0</code>/<code>#p0</code> for positional. Example: <code>@PreAuthorize("#id == principal.id")</code>.</p>
+<h3 id="q8-how-do-you-access-the-authenticated-user">Q8. How do you access the authenticated user?<a class="headerlink" href="#q8-how-do-you-access-the-authenticated-user" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>authentication</code>, <code>principal</code>, or <code>@AuthenticationPrincipal</code> in controller methods. <code>authentication.name</code>, <code>authentication.principal.id</code>, etc.</p>
+<h3 id="q9-what-is-authenticationprincipal">Q9. What is @AuthenticationPrincipal?<a class="headerlink" href="#q9-what-is-authenticationprincipal" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Injects the principal from <code>SecurityContext</code> into a method parameter. Custom <code>UserDetails</code> or <code>Jwt</code> (for OAuth2 resource server). Supports SpEL via <code>expression</code> attribute.</p>
+<h3 id="q10-how-do-you-implement-custom-permission-checks">Q10. How do you implement custom permission checks?<a class="headerlink" href="#q10-how-do-you-implement-custom-permission-checks" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Implement <code>PermissionEvaluator</code> with <code>hasPermission(auth, target, perm)</code>. Register it with the <code>MethodSecurityExpressionHandler</code>. Use in expressions: <code>@PreAuthorize("hasPermission(#order, 'WRITE')")</code>.</p>
+<h3 id="q11-what-is-spring-acl">Q11. What is Spring ACL?<a class="headerlink" href="#q11-what-is-spring-acl" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A domain-object security system for per-instance permissions. Stores ACLs in DB tables (<code>acl_sid</code>, <code>acl_class</code>, <code>acl_object_identity</code>, <code>acl_entry</code>). Uses <code>AclPermissionEvaluator</code> with <code>hasPermission(...)</code>. Powerful but complex.</p>
+<h3 id="q12-how-does-method-security-work-internally">Q12. How does method security work internally?<a class="headerlink" href="#q12-how-does-method-security-work-internally" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Via Spring AOP — proxy wraps the bean. <code>AuthorizationManagerBeforeMethodInterceptor</code> evaluates <code>@PreAuthorize</code> before invocation. <code>AfterMethodInterceptor</code> handles <code>@PostAuthorize</code>. <code>Filter</code> interceptors handle <code>@PreFilter</code>/<code>@PostFilter</code>.</p>
+<h3 id="q13-what-is-self-invocation-problem">Q13. What is self-invocation problem?<a class="headerlink" href="#q13-what-is-self-invocation-problem" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Calling a secured method from within the same bean (<code>this.method()</code>) bypasses the proxy → security not applied. Fix: extract to another bean, inject self, or use <code>mode = ASPECTJ</code> (weaving).</p>
+<h3 id="q14-can-you-annotate-interfaces">Q14. Can you annotate interfaces?<a class="headerlink" href="#q14-can-you-annotate-interfaces" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes, but not recommended. Spring docs advise annotating concrete classes. With JDK proxies, interface annotations work; with CGLIB, they may not propagate predictably.</p>
+<h3 id="q15-how-do-you-test-method-security">Q15. How do you test method security?<a class="headerlink" href="#q15-how-do-you-test-method-security" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>@WithMockUser</code>, <code>@WithUserDetails</code>, <code>@WithAnonymousUser</code>, or <code>.with(jwt()...)</code> for JWT. Assert <code>AccessDeniedException</code> for denied cases.</p>
+<h3 id="q16-what-happens-if-enablemethodsecurity-is-missing">Q16. What happens if @EnableMethodSecurity is missing?<a class="headerlink" href="#q16-what-happens-if-enablemethodsecurity-is-missing" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Annotations are <strong>silently ignored</strong>. No security is enforced. This is a common and dangerous mistake — always verify with tests.</p>
+<h3 id="q17-what-exceptions-are-thrown-on-failure">Q17. What exceptions are thrown on failure?<a class="headerlink" href="#q17-what-exceptions-are-thrown-on-failure" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>AccessDeniedException</code> (<code>org.springframework.security.access.AccessDeniedException</code>) for authenticated-but-denied. <code>AuthenticationCredentialsNotFoundException</code> for anonymous when required.</p>
+<h3 id="q18-can-you-combine-url-and-method-security">Q18. Can you combine URL and method security?<a class="headerlink" href="#q18-can-you-combine-url-and-method-security" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes — URL rules run first (at the filter level), then method rules (at the AOP level). Both must pass.</p>
+<h3 id="q19-what-is-the-difference-between-hasrole-and-hasauthority">Q19. What is the difference between hasRole and hasAuthority?<a class="headerlink" href="#q19-what-is-the-difference-between-hasrole-and-hasauthority" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>hasRole("ADMIN")</code> checks for <code>ROLE_ADMIN</code>. <code>hasAuthority("ROLE_ADMIN")</code> checks exact. Roles are authorities with <code>ROLE_</code> prefix.</p>
+<h3 id="q20-what-is-preauthorizes-root">Q20. What is @PreAuthorize's <code>#root</code>?<a class="headerlink" href="#q20-what-is-preauthorizes-root" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>MethodSecurityExpressionRoot</code> — access method metadata: <code>#root.method</code>, <code>#root.target</code>, <code>#root.args</code>, <code>#root.methodName</code>. Useful for generic rules.</p>
+<h3 id="q21-how-do-you-conditionally-apply-method-security">Q21. How do you conditionally apply method security?<a class="headerlink" href="#q21-how-do-you-conditionally-apply-method-security" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>@PreAuthorize</code> with <code>@ConditionalOnExpression</code> on beans, or guard the service method body with <code>if (permission) { ... }</code>. There's no built-in way to skip the annotation per-request.</p>
+<h3 id="q22-whats-the-performance-impact-of-method-security">Q22. What's the performance impact of method security?<a class="headerlink" href="#q22-whats-the-performance-impact-of-method-security" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A proxy call + SpEL evaluation per invocation. For most apps, negligible. For hot paths, use simple checks (<code>@Secured</code>) or cache decisions.</p>
+<h3 id="q23-what-is-postfilters-filterobject">Q23. What is @PostFilter's <code>filterObject</code>?<a class="headerlink" href="#q23-what-is-postfilters-filterobject" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> The current element of the returned collection. In <code>@PostFilter("filterObject.owner == authentication.name")</code>, <code>filterObject</code> is each item.</p>
+<h3 id="q24-can-preauthorize-call-other-beans">Q24. Can @PreAuthorize call other beans?<a class="headerlink" href="#q24-can-preauthorize-call-other-beans" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes — via <code>@beanName</code> syntax: <code>@PreAuthorize("@permissionService.check(#id)")</code>. Useful for complex rule logic.</p>
+<h3 id="q25-what-modes-does-enablemethodsecurity-support">Q25. What modes does @EnableMethodSecurity support?<a class="headerlink" href="#q25-what-modes-does-enablemethodsecurity-support" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>PROXY</code> (default, uses AOP) and <code>ASPECTJ</code> (compile/load-time weaving, supports self-invocation). <code>ASPECTJ</code> requires AspectJ setup.</p>
+<hr />
+<h2 id="16-cheat-sheet">16. Cheat Sheet<a class="headerlink" href="#16-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="enable">Enable<a class="headerlink" href="#enable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableMethodSecurity</span><span class="p">(</span>
+<span class="w">    </span><span class="n">prePostEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">     </span><span class="c1">// @PreAuthorize, @PostAuthorize, @Pre/PostFilter</span>
+<span class="w">    </span><span class="n">securedEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">     </span><span class="c1">// @Secured</span>
+<span class="w">    </span><span class="n">jsr250Enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w">       </span><span class="c1">// @RolesAllowed, @PermitAll, @DenyAll</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SecurityConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="annotations">Annotations<a class="headerlink" href="#annotations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@PreAuthorize</span><span class="p">(</span><span class="s">"hasRole('ADMIN')"</span><span class="p">)</span>
+<span class="nd">@PostAuthorize</span><span class="p">(</span><span class="s">"returnObject.owner == authentication.name"</span><span class="p">)</span>
+<span class="nd">@PreFilter</span><span class="p">(</span><span class="s">"filterObject.owner == authentication.name"</span><span class="p">)</span>
+<span class="nd">@PostFilter</span><span class="p">(</span><span class="s">"hasRole('ADMIN') or filterObject.owner == authentication.name"</span><span class="p">)</span>
+<span class="nd">@Secured</span><span class="p">({</span><span class="s">"ROLE_ADMIN"</span><span class="p">,</span><span class="w"> </span><span class="s">"ROLE_USER"</span><span class="p">})</span>
+<span class="nd">@RolesAllowed</span><span class="p">({</span><span class="s">"ADMIN"</span><span class="p">,</span><span class="w"> </span><span class="s">"USER"</span><span class="p">})</span>
+<span class="nd">@PermitAll</span>
+<span class="nd">@DenyAll</span>
+<span class="nd">@AuthenticationPrincipal</span><span class="w"> </span><span class="n">AppUser</span><span class="w"> </span><span class="n">user</span>
+</code></pre></div>
+<h3 id="common-expressions_1">Common Expressions<a class="headerlink" href="#common-expressions_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>isAuthenticated()               isAnonymous()
+hasRole('X')                    hasAnyRole('X','Y')
+hasAuthority('Y')               hasAnyAuthority('X','Y')
+#argName == principal.name       returnObject.owner == #user
+hasPermission(#obj, 'WRITE')    @bean.check(#id)
+</code></pre></div>
+<h3 id="custom-permissionevaluator">Custom PermissionEvaluator<a class="headerlink" href="#custom-permissionevaluator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DomainPermissionEvaluator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">PermissionEvaluator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">hasPermission</span><span class="p">(</span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">perm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">hasPermission</span><span class="p">(</span><span class="n">Authentication</span><span class="w"> </span><span class="n">auth</span><span class="p">,</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                 </span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">perm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">MethodSecurityExpressionHandler</span><span class="w"> </span><span class="nf">handler</span><span class="p">(</span><span class="n">PermissionEvaluator</span><span class="w"> </span><span class="n">pe</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DefaultMethodSecurityExpressionHandler</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultMethodSecurityExpressionHandler</span><span class="p">();</span>
+<span class="w">    </span><span class="n">h</span><span class="p">.</span><span class="na">setPermissionEvaluator</span><span class="p">(</span><span class="n">pe</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="testing_1">Testing<a class="headerlink" href="#testing_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@WithMockUser</span><span class="p">(</span><span class="n">roles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ADMIN"</span><span class="p">)</span>
+<span class="nd">@WithMockUser</span><span class="p">(</span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"alice"</span><span class="p">,</span><span class="w"> </span><span class="n">authorities</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"ROLE_USER"</span><span class="p">,</span><span class="w"> </span><span class="s">"READ"</span><span class="p">})</span>
+<span class="nd">@WithUserDetails</span><span class="p">(</span><span class="s">"alice"</span><span class="p">)</span>
+<span class="nd">@WithAnonymousUser</span>
+<span class="p">.</span><span class="na">with</span><span class="p">(</span><span class="n">jwt</span><span class="p">().</span><span class="na">jwt</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="na">subject</span><span class="p">(</span><span class="s">"alice"</span><span class="p">).</span><span class="na">claim</span><span class="p">(</span><span class="s">"roles"</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"USER"</span><span class="p">))))</span>
+</code></pre></div>
+<h3 id="pitfalls">Pitfalls<a class="headerlink" href="#pitfalls" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Missing <code>@EnableMethodSecurity</code> → silent no-op</li>
+<li>Self-invocation → no proxy</li>
+<li>Private methods → not advised</li>
+<li>Roles vs authorities mismatch</li>
+<li><code>@Secured</code> needs <code>ROLE_</code> prefix explicitly</li>
+<li>Method-level overrides class-level</li>
+</ul>
+<h3 id="aop-classes">AOP Classes<a class="headerlink" href="#aop-classes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>AuthorizationManagerBeforeMethodInterceptor
+AuthorizationManagerAfterMethodInterceptor
+PreFilterAuthorizationMethodInterceptor
+PostFilterAuthorizationMethodInterceptor
+</code></pre></div>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>14_Spring_Security_JWT_OAuth2.md</code></li>
+<li><strong>Next:</strong> <code>16_Spring_Testing.md</code></li>
+<li><strong>Related:</strong> <code>02_Spring_AOP.md</code>, <code>13_Spring_Security_Core.md</code></li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code> (§Security)</li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="../14_Spring_Security_JWT_OAuth2/">14_Spring_Security_JWT_OAuth2.md</a></li>
+<li><strong>Next →:</strong> <a href="./16_Spring_Testing.md">16_Spring_Testing.md</a></li>
+<li><strong>Related:</strong> <a href="../13_Spring_Security_Core/">13_Spring_Security_Core.md</a>, <a href="./02_Spring_AOP.md">02_Spring_AOP.md</a>, <a href="./26_Spring_Best_Practices.md">26_Spring_Best_Practices.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

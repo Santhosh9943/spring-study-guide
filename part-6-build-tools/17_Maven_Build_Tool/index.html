@@ -1,0 +1,5406 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Apache Maven Complete Guide - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#apache-maven-complete-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Apache Maven Complete Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is Maven?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is Maven?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Maven?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-installation-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Installation &amp; Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Installation &amp; Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings.xml
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Project Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Project Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-maven-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Maven Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pom-project-object-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. POM — Project Object Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. POM — Project Object Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal POM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pom-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POM Sections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effective-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effective POM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-maven-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Maven Coordinates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Maven Coordinates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coordinates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-ranges-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version Ranges (avoid!)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Snapshots
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-build-lifecycles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Build Lifecycles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Build Lifecycles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-default-build-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Default (Build) Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-clean-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Clean Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-site-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Site Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifecycle-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Relationships
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-phases-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Phases &amp; Goals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Phases &amp; Goals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-vs-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase vs Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-goals-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Goals Directly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-goal-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Goal Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-goal-bindings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Goal Bindings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chaining-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chaining Phases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Plugins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-plugin-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Plugin Versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-boot-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Boot Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-executions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Executions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skipping-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skipping Plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-dependency-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Dependency Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Dependency Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declaring-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Declaring Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-dependency-same-gav-different-declared-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duplicate Dependency (Same GAV, different declared version)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyze-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analyze Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-dependency-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Dependency Scopes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Dependency Scopes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-transitive-dependencies-exclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Transitive Dependencies &amp; Exclusions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Transitive Dependencies &amp; Exclusions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transitive-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transitive by Default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exclusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wildcard-exclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wildcard Exclusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-conflict-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version Conflict Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-transitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing Transitives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Conflicts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-parent-pom-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Parent POM &amp; Inheritance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Parent POM &amp; Inheritance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-parent-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Parent POM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inheritance-vs-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance vs Import
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-bom-bill-of-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. BOM (Bill of Materials)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. BOM (Bill of Materials)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spring-boot-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Boot BOM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why BOM?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-boms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common BOMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom BOM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-maven-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Maven Profiles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Maven Profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation-via-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activation via Property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation-via-profile-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activation via Profile ID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile Content
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspecting-active-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting Active Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-properties-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Properties &amp; Filtering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Properties &amp; Filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Repositories
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Repositories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#central-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Central Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshot-vs-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Snapshot vs Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploying
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mirrors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mirrors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-multi-module-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Multi-Module Projects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Multi-Module Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregator-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregator POM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module POM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregator-vs-parent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregator vs Parent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-maven-wrapper-mvnw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Maven Wrapper (mvnw)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. Maven Wrapper (mvnw)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-wrapperproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        maven-wrapper.properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Use It
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-common-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Common Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="19. Common Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="20. Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven_opts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MAVEN_OPTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="21. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-what-is-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. What is Maven?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-explain-mavens-build-lifecycles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. Explain Maven's build lifecycles.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-difference-between-phase-and-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. Difference between phase and goal?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-what-are-maven-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. What are Maven coordinates?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-what-are-dependency-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. What are dependency scopes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-what-is-transitive-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. What is transitive dependency?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-what-is-the-nearest-wins-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. What is the nearest-wins strategy?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-what-is-dependencymanagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. What is dependencyManagement?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-difference-between-dependencies-and-dependencymanagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. Difference between dependencies and dependencyManagement?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-what-is-a-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. What is a BOM?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-what-is-a-parent-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. What is a parent POM?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-parent-vs-bom-which-is-better" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. Parent vs BOM — which is better?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-what-are-maven-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. What are Maven profiles?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-how-do-you-exclude-a-transitive-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. How do you exclude a transitive dependency?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-what-is-the-maven-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. What is the Maven Wrapper?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-how-do-you-run-a-spring-boot-app-with-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. How do you run a Spring Boot app with Maven?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-how-do-you-build-a-fat-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. How do you build a fat JAR?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-how-do-you-skip-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. How do you skip tests?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-what-is-the-difference-between-install-and-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. What is the difference between install and deploy?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-how-do-you-analyze-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. How do you analyze dependencies?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q21-what-is-resource-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q21. What is resource filtering?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q22-how-do-you-resolve-dependency-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q22. How do you resolve dependency conflicts?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q23-what-is-a-multi-module-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q23. What is a multi-module project?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q24-what-is-dependency-mediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q24. What is dependency mediation?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q25-how-do-you-force-maven-to-re-download-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q25. How do you force Maven to re-download dependencies?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="22. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pom-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POM Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifecycle-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle (Default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scopes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bom-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BOM Import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exclusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exclusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="apache-maven-complete-guide">Apache Maven Complete Guide<a class="headerlink" href="#apache-maven-complete-guide" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>17_Maven_Build_Tool.md</code>
+<strong>Part:</strong> 6 — Build Tools
+<strong>Prerequisites:</strong> Basic Java, understanding of dependency management
+<strong>Estimated Study Time:</strong> 8–12 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-what-is-maven">What is Maven?</a></li>
+<li><a href="#2-installation--setup">Installation &amp; Setup</a></li>
+<li><a href="#3-project-structure">Project Structure</a></li>
+<li><a href="#4-pom--project-object-model">POM — Project Object Model</a></li>
+<li><a href="#5-maven-coordinates">Maven Coordinates</a></li>
+<li><a href="#6-build-lifecycles">Build Lifecycles</a></li>
+<li><a href="#7-phases--goals">Phases &amp; Goals</a></li>
+<li><a href="#8-plugins">Plugins</a></li>
+<li><a href="#9-dependency-management">Dependency Management</a></li>
+<li><a href="#10-dependency-scopes">Dependency Scopes</a></li>
+<li><a href="#11-transitive-dependencies--exclusions">Transitive Dependencies &amp; Exclusions</a></li>
+<li><a href="#12-parent-pom--inheritance">Parent POM &amp; Inheritance</a></li>
+<li><a href="#13-bom-bill-of-materials">BOM (Bill of Materials)</a></li>
+<li><a href="#14-maven-profiles">Maven Profiles</a></li>
+<li><a href="#15-properties--filtering">Properties &amp; Filtering</a></li>
+<li><a href="#16-repositories">Repositories</a></li>
+<li><a href="#17-multi-module-projects">Multi-Module Projects</a></li>
+<li><a href="#18-maven-wrapper-mvnw">Maven Wrapper (mvnw)</a></li>
+<li><a href="#19-common-commands">Common Commands</a></li>
+<li><a href="#20-troubleshooting">Troubleshooting</a></li>
+<li><a href="#21-interview-questions">Interview Questions</a></li>
+<li><a href="#22-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-what-is-maven">1. What is Maven?<a class="headerlink" href="#1-what-is-maven" title="Permanent link">&para;</a></h2>
+<p><strong>Apache Maven</strong> is a build automation and dependency management tool for Java. It uses a declarative XML file (<code>pom.xml</code>) to describe a project's structure, dependencies, and build process.</p>
+<h3 id="core-features">Core Features<a class="headerlink" href="#core-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Convention over configuration</strong> — standard directory layout</li>
+<li><strong>Declarative build</strong> — describe <em>what</em>, not <em>how</em></li>
+<li><strong>Dependency management</strong> — transitive resolution, conflict resolution</li>
+<li><strong>Lifecycle model</strong> — phases like compile, test, package, install</li>
+<li><strong>Plugin architecture</strong> — extensible with plugins</li>
+<li><strong>Reproducible builds</strong> — same POM → same output (mostly)</li>
+</ul>
+<h3 id="why-maven">Why Maven?<a class="headerlink" href="#why-maven" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Without Maven</th>
+<th>With Maven</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manual jar downloads</td>
+<td>Declare dependency; Maven downloads</td>
+</tr>
+<tr>
+<td>Hand-managed classpath</td>
+<td>Transitive resolution</td>
+</tr>
+<tr>
+<td>Custom build scripts per project</td>
+<td>Standard lifecycle</td>
+</tr>
+<tr>
+<td>IDE-specific setup</td>
+<td>IDE-agnostic</td>
+</tr>
+<tr>
+<td>Manual version bumping</td>
+<td>Centralized version management</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-installation-setup">2. Installation &amp; Setup<a class="headerlink" href="#2-installation-setup" title="Permanent link">&para;</a></h2>
+<h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h3>
+<p><strong>SDKMAN (Linux/macOS):</strong>
+<div class="highlight"><pre><span></span><code>sdk<span class="w"> </span>install<span class="w"> </span>maven
+</code></pre></div></p>
+<p><strong>macOS (Homebrew):</strong>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>maven
+</code></pre></div></p>
+<p><strong>Windows:</strong> Download from https://maven.apache.org/download.cgi, extract, add <code>bin</code> to <code>PATH</code>.</p>
+<p><strong>Docker:</strong>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/app<span class="w"> </span>-w<span class="w"> </span>/app<span class="w"> </span>maven:3.9-eclipse-temurin-17<span class="w"> </span>mvn<span class="w"> </span>package
+</code></pre></div></p>
+<h3 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>-version
+<span class="c1"># Apache Maven 3.9.6</span>
+<span class="c1"># Java version: 17.0.x</span>
+<span class="c1"># OS: ...</span>
+</code></pre></div>
+<h3 id="directories">Directories<a class="headerlink" href="#directories" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/.m2/repository</code></td>
+<td>Local repository (downloaded artifacts)</td>
+</tr>
+<tr>
+<td><code>~/.m2/settings.xml</code></td>
+<td>User-level settings</td>
+</tr>
+<tr>
+<td><code>&lt;project&gt;/pom.xml</code></td>
+<td>Project config</td>
+</tr>
+<tr>
+<td><code>~/.m2/wrapper</code></td>
+<td>Maven wrapper distributions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="settingsxml">settings.xml<a class="headerlink" href="#settingsxml" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;settings&gt;</span>
+<span class="w">    </span><span class="nt">&lt;localRepository&gt;</span>${user.home}/.m2/repository<span class="nt">&lt;/localRepository&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mirrors&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mirror&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>central-mirror<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>
+<span class="w">            </span><span class="nt">&lt;url&gt;</span>https://repo1.maven.org/maven2<span class="nt">&lt;/url&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/mirror&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/mirrors&gt;</span>
+<span class="w">    </span><span class="nt">&lt;servers&gt;</span>
+<span class="w">        </span><span class="nt">&lt;server&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>internal-repo<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;username&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
+<span class="w">            </span><span class="nt">&lt;password&gt;</span>secret<span class="nt">&lt;/password&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/server&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/servers&gt;</span>
+<span class="w">    </span><span class="nt">&lt;profiles&gt;</span>
+<span class="w">        </span><span class="nt">&lt;profile&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>jdk17<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;activation&gt;&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;&lt;/activation&gt;</span>
+<span class="w">            </span><span class="nt">&lt;properties&gt;</span>
+<span class="w">                </span><span class="nt">&lt;maven.compiler.source&gt;</span>17<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<span class="w">                </span><span class="nt">&lt;maven.compiler.target&gt;</span>17<span class="nt">&lt;/maven.compiler.target&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/properties&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/profile&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/profiles&gt;</span>
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="3-project-structure">3. Project Structure<a class="headerlink" href="#3-project-structure" title="Permanent link">&para;</a></h2>
+<h3 id="standard-maven-layout">Standard Maven Layout<a class="headerlink" href="#standard-maven-layout" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>my-project/
+├── pom.xml
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/App.java
+│   │   ├── resources/
+│   │   │   ├── application.properties
+│   │   │   └── logback.xml
+│   │   └── webapp/                 (only for WAR)
+│   │       └── WEB-INF/web.xml
+│   └── test/
+│       ├── java/
+│       │   └── com/example/AppTest.java
+│       └── resources/
+│           └── test-data.sql
+└── target/                          (build output, gitignored)
+    ├── classes/
+    ├── test-classes/
+    └── my-app-1.0.0.jar
+</code></pre></div>
+<h3 id="conventions">Conventions<a class="headerlink" href="#conventions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src/main/java</code></td>
+<td>Production source</td>
+</tr>
+<tr>
+<td><code>src/main/resources</code></td>
+<td>Prod resources (properties, XML)</td>
+</tr>
+<tr>
+<td><code>src/main/webapp</code></td>
+<td>Web app files (WAR only)</td>
+</tr>
+<tr>
+<td><code>src/test/java</code></td>
+<td>Test source</td>
+</tr>
+<tr>
+<td><code>src/test/resources</code></td>
+<td>Test resources</td>
+</tr>
+<tr>
+<td><code>target/</code></td>
+<td>Build output (created)</td>
+</tr>
+</tbody>
+</table>
+<p>Deviate only if absolutely needed (via <code>&lt;build&gt;&lt;sourceDirectory&gt;</code>).</p>
+<hr />
+<h2 id="4-pom-project-object-model">4. POM — Project Object Model<a class="headerlink" href="#4-pom-project-object-model" title="Permanent link">&para;</a></h2>
+<p>The <code>pom.xml</code> is the heart of a Maven project.</p>
+<h3 id="minimal-pom">Minimal POM<a class="headerlink" href="#minimal-pom" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>My<span class="w"> </span>App<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Demo<span class="w"> </span>application<span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div>
+<h3 id="pom-sections">POM Sections<a class="headerlink" href="#pom-sections" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>modelVersion</code></td>
+<td>Always <code>4.0.0</code></td>
+</tr>
+<tr>
+<td><code>groupId</code></td>
+<td>Organization (reverse DNS)</td>
+</tr>
+<tr>
+<td><code>artifactId</code></td>
+<td>Project name</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Version</td>
+</tr>
+<tr>
+<td><code>packaging</code></td>
+<td><code>jar</code> (default), <code>war</code>, <code>pom</code>, <code>ear</code>, <code>maven-plugin</code></td>
+</tr>
+<tr>
+<td><code>parent</code></td>
+<td>Parent POM for inheritance</td>
+</tr>
+<tr>
+<td><code>properties</code></td>
+<td>Key-value pairs</td>
+</tr>
+<tr>
+<td><code>dependencies</code></td>
+<td>Runtime/build dependencies</td>
+</tr>
+<tr>
+<td><code>dependencyManagement</code></td>
+<td>Versions for dependencies (not actual deps)</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>Plugins, resources, output dirs</td>
+</tr>
+<tr>
+<td><code>profiles</code></td>
+<td>Environment-specific configs</td>
+</tr>
+<tr>
+<td><code>modules</code></td>
+<td>Sub-modules (aggregator)</td>
+</tr>
+<tr>
+<td><code>distributionManagement</code></td>
+<td>Where to deploy</td>
+</tr>
+<tr>
+<td><code>repositories</code></td>
+<td>Additional repos</td>
+</tr>
+<tr>
+<td><code>licenses</code>, <code>developers</code>, <code>scm</code></td>
+<td>Metadata</td>
+</tr>
+</tbody>
+</table>
+<h3 id="effective-pom">Effective POM<a class="headerlink" href="#effective-pom" title="Permanent link">&para;</a></h3>
+<p>The POM after inheritance and interpolation is called the <strong>effective POM</strong>.</p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>help:effective-pom
+</code></pre></div>
+<p>Prints the full merged POM.</p>
+<hr />
+<h2 id="5-maven-coordinates">5. Maven Coordinates<a class="headerlink" href="#5-maven-coordinates" title="Permanent link">&para;</a></h2>
+<p>A dependency is uniquely identified by <strong>GAV</strong>:</p>
+<div class="highlight"><pre><span></span><code>groupId:artifactId:version[:packaging[:classifier]]
+</code></pre></div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>org.springframework.boot:spring-boot-starter-web:3.2.0
+</code></pre></div>
+<h3 id="coordinates">Coordinates<a class="headerlink" href="#coordinates" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>groupId</code></td>
+<td>Organization / namespace</td>
+<td><code>com.google.guava</code></td>
+</tr>
+<tr>
+<td><code>artifactId</code></td>
+<td>Project name</td>
+<td><code>guava</code></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Version</td>
+<td><code>32.1.3-jre</code></td>
+</tr>
+<tr>
+<td><code>packaging</code></td>
+<td>Type (default jar)</td>
+<td><code>jar</code>, <code>war</code>, <code>pom</code></td>
+</tr>
+<tr>
+<td><code>classifier</code></td>
+<td>Variant</td>
+<td><code>sources</code>, <code>javadoc</code>, <code>tests</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="version-ranges-avoid">Version Ranges (avoid!)<a class="headerlink" href="#version-ranges-avoid" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;version&gt;</span>[1.0,2.0)<span class="nt">&lt;/version&gt;</span><span class="w">   </span><span class="cm">&lt;!-- ⚠️ non-deterministic --&gt;</span>
+</code></pre></div>
+<p>Use exact versions or BOMs instead.</p>
+<h3 id="snapshots">Snapshots<a class="headerlink" href="#snapshots" title="Permanent link">&para;</a></h3>
+<p><code>1.0.0-SNAPSHOT</code> — development version. Maven checks for updates frequently.</p>
+<hr />
+<h2 id="6-build-lifecycles">6. Build Lifecycles<a class="headerlink" href="#6-build-lifecycles" title="Permanent link">&para;</a></h2>
+<p>Maven has <strong>three</strong> built-in lifecycles.</p>
+<h3 id="61-default-build-lifecycle">6.1 Default (Build) Lifecycle<a class="headerlink" href="#61-default-build-lifecycle" title="Permanent link">&para;</a></h3>
+<p>The main lifecycle — compiles, tests, packages, deploys.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>validate</code></td>
+<td>Validate project structure</td>
+</tr>
+<tr>
+<td><code>initialize</code></td>
+<td>Initialize build state</td>
+</tr>
+<tr>
+<td><code>generate-sources</code></td>
+<td>Generate sources</td>
+</tr>
+<tr>
+<td><code>process-sources</code></td>
+<td>Process (filter) sources</td>
+</tr>
+<tr>
+<td><code>generate-resources</code></td>
+<td>Generate resources</td>
+</tr>
+<tr>
+<td><code>process-resources</code></td>
+<td>Copy resources to <code>target/classes</code></td>
+</tr>
+<tr>
+<td><code>compile</code></td>
+<td>Compile source</td>
+</tr>
+<tr>
+<td><code>process-classes</code></td>
+<td>Post-process compiled classes</td>
+</tr>
+<tr>
+<td><code>generate-test-sources</code></td>
+<td>Generate test sources</td>
+</tr>
+<tr>
+<td><code>process-test-sources</code></td>
+<td>Process test sources</td>
+</tr>
+<tr>
+<td><code>generate-test-resources</code></td>
+<td>Generate test resources</td>
+</tr>
+<tr>
+<td><code>process-test-resources</code></td>
+<td>Copy test resources</td>
+</tr>
+<tr>
+<td><code>test-compile</code></td>
+<td>Compile test source</td>
+</tr>
+<tr>
+<td><code>process-test-classes</code></td>
+<td>Post-process test classes</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Run tests</td>
+</tr>
+<tr>
+<td><code>prepare-package</code></td>
+<td>Prepare for packaging</td>
+</tr>
+<tr>
+<td><code>package</code></td>
+<td>Package into JAR/WAR</td>
+</tr>
+<tr>
+<td><code>pre-integration-test</code></td>
+<td>Setup IT</td>
+</tr>
+<tr>
+<td><code>integration-test</code></td>
+<td>Run IT</td>
+</tr>
+<tr>
+<td><code>post-integration-test</code></td>
+<td>Teardown IT</td>
+</tr>
+<tr>
+<td><code>verify</code></td>
+<td>Verify package is valid</td>
+</tr>
+<tr>
+<td><code>install</code></td>
+<td>Install to local repo (<code>~/.m2</code>)</td>
+</tr>
+<tr>
+<td><code>deploy</code></td>
+<td>Deploy to remote repo</td>
+</tr>
+</tbody>
+</table>
+<p>Running a phase executes all prior phases.</p>
+<p><code>mvn package</code> → validate → compile → test → package.</p>
+<h3 id="62-clean-lifecycle">6.2 Clean Lifecycle<a class="headerlink" href="#62-clean-lifecycle" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pre-clean</code></td>
+<td>Pre-clean tasks</td>
+</tr>
+<tr>
+<td><code>clean</code></td>
+<td>Delete <code>target/</code></td>
+</tr>
+<tr>
+<td><code>post-clean</code></td>
+<td>Post-clean tasks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-site-lifecycle">6.3 Site Lifecycle<a class="headerlink" href="#63-site-lifecycle" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pre-site</code></td>
+<td>Before site</td>
+</tr>
+<tr>
+<td><code>site</code></td>
+<td>Generate site docs</td>
+</tr>
+<tr>
+<td><code>post-site</code></td>
+<td>After site</td>
+</tr>
+<tr>
+<td><code>site-deploy</code></td>
+<td>Deploy site</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lifecycle-relationships">Lifecycle Relationships<a class="headerlink" href="#lifecycle-relationships" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>clean   → clean lifecycle
+default → build lifecycle
+site    → site lifecycle
+</code></pre></div>
+<p>You can mix: <code>mvn clean install site</code>.</p>
+<hr />
+<h2 id="7-phases-goals">7. Phases &amp; Goals<a class="headerlink" href="#7-phases-goals" title="Permanent link">&para;</a></h2>
+<h3 id="phase-vs-goal">Phase vs Goal<a class="headerlink" href="#phase-vs-goal" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phase</strong></td>
+<td>A step in a lifecycle (<code>compile</code>, <code>test</code>)</td>
+</tr>
+<tr>
+<td><strong>Goal</strong></td>
+<td>A specific task in a plugin (<code>compiler:compile</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>A phase is bound to plugin goals.</p>
+<h3 id="running-goals-directly">Running Goals Directly<a class="headerlink" href="#running-goals-directly" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>compiler:compile<span class="w">       </span><span class="c1"># specific goal, bypasses lifecycle</span>
+mvn<span class="w"> </span>dependency:tree
+mvn<span class="w"> </span>help:effective-pom
+mvn<span class="w"> </span>surefire:test
+</code></pre></div>
+<h3 id="plugin-goal-format">Plugin Goal Format<a class="headerlink" href="#plugin-goal-format" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>plugin-prefix:goal
+</code></pre></div>
+<p>Example: <code>surefire:test</code> runs the Surefire plugin's <code>test</code> goal.</p>
+<p>Fully qualified:</p>
+<div class="highlight"><pre><span></span><code>org.apache.maven.plugins:maven-surefire-plugin:3.2.2:test
+</code></pre></div>
+<h3 id="default-goal-bindings">Default Goal Bindings<a class="headerlink" href="#default-goal-bindings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Bound Goal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compile</code></td>
+<td><code>compiler:compile</code></td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td><code>surefire:test</code></td>
+</tr>
+<tr>
+<td><code>package</code></td>
+<td><code>jar:jar</code> or <code>war:war</code></td>
+</tr>
+<tr>
+<td><code>install</code></td>
+<td><code>install:install</code></td>
+</tr>
+<tr>
+<td><code>deploy</code></td>
+<td><code>deploy:deploy</code></td>
+</tr>
+<tr>
+<td><code>clean</code></td>
+<td><code>clean:clean</code></td>
+</tr>
+<tr>
+<td><code>site</code></td>
+<td><code>site:site</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="chaining-phases">Chaining Phases<a class="headerlink" href="#chaining-phases" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>clean<span class="w"> </span>compile<span class="w"> </span><span class="nb">test</span><span class="w"> </span>package<span class="w"> </span>install
+</code></pre></div>
+<p>Same as <code>mvn clean install</code> (later phases subsume earlier).</p>
+<hr />
+<h2 id="8-plugins">8. Plugins<a class="headerlink" href="#8-plugins" title="Permanent link">&para;</a></h2>
+<p>Plugins extend Maven. Nearly every action is a plugin goal.</p>
+<h3 id="common-plugins">Common Plugins<a class="headerlink" href="#common-plugins" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maven-compiler-plugin</code></td>
+<td>Compile Java</td>
+</tr>
+<tr>
+<td><code>maven-surefire-plugin</code></td>
+<td>Run unit tests</td>
+</tr>
+<tr>
+<td><code>maven-failsafe-plugin</code></td>
+<td>Run integration tests</td>
+</tr>
+<tr>
+<td><code>maven-jar-plugin</code></td>
+<td>Build JAR</td>
+</tr>
+<tr>
+<td><code>maven-war-plugin</code></td>
+<td>Build WAR</td>
+</tr>
+<tr>
+<td><code>maven-install-plugin</code></td>
+<td>Install to local repo</td>
+</tr>
+<tr>
+<td><code>maven-deploy-plugin</code></td>
+<td>Deploy to remote</td>
+</tr>
+<tr>
+<td><code>maven-clean-plugin</code></td>
+<td>Clean target/</td>
+</tr>
+<tr>
+<td><code>maven-resources-plugin</code></td>
+<td>Copy/filter resources</td>
+</tr>
+<tr>
+<td><code>maven-scm-plugin</code></td>
+<td>SCM integration</td>
+</tr>
+<tr>
+<td><code>maven-release-plugin</code></td>
+<td>Release management</td>
+</tr>
+<tr>
+<td><code>maven-enforcer-plugin</code></td>
+<td>Enforce rules (Java version)</td>
+</tr>
+<tr>
+<td><code>spring-boot-maven-plugin</code></td>
+<td>Fat JAR / run</td>
+</tr>
+<tr>
+<td><code>jacoco-maven-plugin</code></td>
+<td>Code coverage</td>
+</tr>
+<tr>
+<td><code>maven-shade-plugin</code></td>
+<td>Uber JAR with relocation</td>
+</tr>
+<tr>
+<td><code>maven-assembly-plugin</code></td>
+<td>Custom distributions</td>
+</tr>
+<tr>
+<td><code>maven-source-plugin</code></td>
+<td>Attach sources</td>
+</tr>
+<tr>
+<td><code>maven-javadoc-plugin</code></td>
+<td>Attach javadocs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="plugin-configuration">Plugin Configuration<a class="headerlink" href="#plugin-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;build&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>3.11.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">                </span><span class="nt">&lt;source&gt;</span>17<span class="nt">&lt;/source&gt;</span>
+<span class="w">                </span><span class="nt">&lt;target&gt;</span>17<span class="nt">&lt;/target&gt;</span>
+<span class="w">                </span><span class="nt">&lt;encoding&gt;</span>UTF-8<span class="nt">&lt;/encoding&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div>
+<h3 id="default-plugin-versions">Default Plugin Versions<a class="headerlink" href="#default-plugin-versions" title="Permanent link">&para;</a></h3>
+<p>Maven defines default plugin versions. Override only when needed.</p>
+<h3 id="spring-boot-plugin">Spring Boot Plugin<a class="headerlink" href="#spring-boot-plugin" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">            </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                </span><span class="nt">&lt;goal&gt;</span>repackage<span class="nt">&lt;/goal&gt;</span><span class="w">   </span><span class="cm">&lt;!-- create fat jar --&gt;</span>
+<span class="w">                </span><span class="nt">&lt;goal&gt;</span>build-info<span class="nt">&lt;/goal&gt;</span><span class="w">  </span><span class="cm">&lt;!-- META-INF/build-info.properties --&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+<h3 id="multiple-executions">Multiple Executions<a class="headerlink" href="#multiple-executions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>maven-failsafe-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>integration-tests<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                </span><span class="nt">&lt;goal&gt;</span>integration-test<span class="nt">&lt;/goal&gt;</span>
+<span class="w">                </span><span class="nt">&lt;goal&gt;</span>verify<span class="nt">&lt;/goal&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+<h3 id="skipping-plugins">Skipping Plugins<a class="headerlink" href="#skipping-plugins" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>package<span class="w"> </span>-DskipTests<span class="o">=</span><span class="nb">true</span><span class="w">          </span><span class="c1"># skip test execution</span>
+mvn<span class="w"> </span>package<span class="w"> </span>-Dmaven.test.skip<span class="o">=</span><span class="nb">true</span><span class="w">    </span><span class="c1"># skip compile + execution</span>
+mvn<span class="w"> </span>install<span class="w"> </span>-Dcheckstyle.skip<span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+<hr />
+<h2 id="9-dependency-management">9. Dependency Management<a class="headerlink" href="#9-dependency-management" title="Permanent link">&para;</a></h2>
+<h3 id="declaring-dependencies">Declaring Dependencies<a class="headerlink" href="#declaring-dependencies" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;version&gt;</span>3.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;groupId&gt;</span>com.google.guava<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>guava<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;version&gt;</span>32.1.3-jre<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div>
+<h3 id="dependency-scope">Dependency Scope<a class="headerlink" href="#dependency-scope" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>optional-lib<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span><span class="w">   </span><span class="cm">&lt;!-- not transitive --&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="dependency-tree">Dependency Tree<a class="headerlink" href="#dependency-tree" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>dependency:tree
+mvn<span class="w"> </span>dependency:tree<span class="w"> </span>-Dincludes<span class="o">=</span>org.springframework.boot
+mvn<span class="w"> </span>dependency:tree<span class="w"> </span>-Dverbose
+</code></pre></div>
+<h3 id="duplicate-dependency-same-gav-different-declared-version">Duplicate Dependency (Same GAV, different declared version)<a class="headerlink" href="#duplicate-dependency-same-gav-different-declared-version" title="Permanent link">&para;</a></h3>
+<p>Maven uses <strong>nearest-wins</strong> strategy by default:</p>
+<div class="highlight"><pre><span></span><code>A → B → C:1.0   (depth 2)
+A → C:2.0       (depth 1)   ← wins
+</code></pre></div>
+<p>Also applies <code>&lt;dependencyManagement&gt;</code> and BOM versions.</p>
+<h3 id="force-version">Force Version<a class="headerlink" href="#force-version" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependencyManagement&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>com.google.guava<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>guava<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>32.1.3-jre<span class="nt">&lt;/version&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/dependencyManagement&gt;</span>
+</code></pre></div>
+<p><code>dependencyManagement</code> sets <strong>default versions</strong> — used when a dependency is declared without a version.</p>
+<h3 id="analyze-dependencies">Analyze Dependencies<a class="headerlink" href="#analyze-dependencies" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>dependency:analyze<span class="w">          </span><span class="c1"># unused / undeclared</span>
+mvn<span class="w"> </span>dependency:analyze-duplicate
+mvn<span class="w"> </span>dependency:list
+mvn<span class="w"> </span>dependency:purge-local-repository
+</code></pre></div>
+<hr />
+<h2 id="10-dependency-scopes">10. Dependency Scopes<a class="headerlink" href="#10-dependency-scopes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Compile classpath</th>
+<th>Test classpath</th>
+<th>Runtime classpath</th>
+<th>Transitive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compile</code> (default)</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>provided</code></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>runtime</code></td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>system</code></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌ (avoid)</td>
+</tr>
+<tr>
+<td><code>import</code></td>
+<td>(in <code>dependencyManagement</code> only)</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- compile: available everywhere, propagated --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>guava<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="cm">&lt;!-- provided: JDK or container supplies at runtime (e.g., servlet-api, lombok) --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>jakarta.servlet<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>jakarta.servlet-api<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="cm">&lt;!-- runtime: not needed to compile, but needed to run (e.g., JDBC driver) --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.postgresql<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>postgresql<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="cm">&lt;!-- test: only in test --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>junit-jupiter<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="cm">&lt;!-- system: local file (avoid; not portable) --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>local-lib<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>system<span class="nt">&lt;/scope&gt;</span>
+<span class="w">    </span><span class="nt">&lt;systemPath&gt;</span>${project.basedir}/lib/local-lib.jar<span class="nt">&lt;/systemPath&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="scope-summary">Scope Summary<a class="headerlink" href="#scope-summary" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>compile</strong> — the default. Everything uses it.</li>
+<li><strong>provided</strong> — the runtime environment provides it (Servlet API, Lombok).</li>
+<li><strong>runtime</strong> — needed at runtime, not compile (JDBC drivers).</li>
+<li><strong>test</strong> — testing frameworks.</li>
+<li><strong>system</strong> — local path (avoid).</li>
+<li><strong>import</strong> — imports a BOM (see §13).</li>
+</ul>
+<hr />
+<h2 id="11-transitive-dependencies-exclusions">11. Transitive Dependencies &amp; Exclusions<a class="headerlink" href="#11-transitive-dependencies-exclusions" title="Permanent link">&para;</a></h2>
+<h3 id="transitive-by-default">Transitive by Default<a class="headerlink" href="#transitive-by-default" title="Permanent link">&para;</a></h3>
+<p><code>A depends on B; B depends on C</code> → A's classpath includes B and C (if scope permits).</p>
+<h3 id="exclusion">Exclusion<a class="headerlink" href="#exclusion" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;exclusions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;exclusion&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/exclusion&gt;</span>
+<span class="w">        </span><span class="nt">&lt;exclusion&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>commons-logging<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>commons-logging<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/exclusion&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/exclusions&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="wildcard-exclusion">Wildcard Exclusion<a class="headerlink" href="#wildcard-exclusion" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;exclusion&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example.*<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>*<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/exclusion&gt;</span>
+</code></pre></div>
+<p>(Spring Boot only supports this via shade/assembly plugin — plain Maven requires explicit.)</p>
+<h3 id="version-conflict-example">Version Conflict Example<a class="headerlink" href="#version-conflict-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>A → B:1.0
+A → C:1.0
+C → B:2.0
+</code></pre></div>
+<p>Nearest wins: B:1.0 (depth 1) over B:2.0 (depth 2). Force with <code>dependencyManagement</code>.</p>
+<h3 id="managing-transitives">Managing Transitives<a class="headerlink" href="#managing-transitives" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependencyManagement&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>2.16.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/dependencyManagement&gt;</span>
+</code></pre></div>
+<p>Overrides any transitive version of <code>jackson-databind</code>.</p>
+<h3 id="debugging-conflicts">Debugging Conflicts<a class="headerlink" href="#debugging-conflicts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>dependency:tree<span class="w"> </span>-Dverbose<span class="w"> </span>-Dincludes<span class="o">=</span>com.fasterxml.jackson.core
+</code></pre></div>
+<hr />
+<h2 id="12-parent-pom-inheritance">12. Parent POM &amp; Inheritance<a class="headerlink" href="#12-parent-pom-inheritance" title="Permanent link">&para;</a></h2>
+<h3 id="parent">Parent<a class="headerlink" href="#parent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;parent&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>3.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;relativePath/&gt;</span><span class="w">   </span><span class="cm">&lt;!-- look in repo, not filesystem --&gt;</span>
+<span class="nt">&lt;/parent&gt;</span>
+</code></pre></div>
+<p>Inherits:
+- Dependencies (via <code>dependencyManagement</code>)
+- Plugin versions and configurations
+- Properties (<code>java.version</code>, <code>spring-boot.version</code>, etc.)
+- Resource filtering config
+- Encoding defaults</p>
+<h3 id="custom-parent-pom">Custom Parent POM<a class="headerlink" href="#custom-parent-pom" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;project&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>my-parent<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<span class="w">        </span><span class="nt">&lt;java.version&gt;</span>17<span class="nt">&lt;/java.version&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maven.compiler.source&gt;</span>${java.version}<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maven.compiler.target&gt;</span>${java.version}<span class="nt">&lt;/maven.compiler.target&gt;</span>
+<span class="w">        </span><span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;dependencyManagement&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-dependencies<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;version&gt;</span>3.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">                </span><span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+<span class="w">                </span><span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependencyManagement&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div>
+<p>Child:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;parent&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>my-parent<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/parent&gt;</span>
+</code></pre></div>
+<h3 id="inheritance-vs-import">Inheritance vs Import<a class="headerlink" href="#inheritance-vs-import" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Inheritance (<code>&lt;parent&gt;</code>)</th>
+<th>Import (<code>&lt;scope&gt;import&lt;/scope&gt;</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Only one</td>
+<td>✅</td>
+<td>❌ (multiple)</td>
+</tr>
+<tr>
+<td>Inherits properties</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Inherits plugins</td>
+<td>✅</td>
+<td>❌ (only <code>dependencyManagement</code>)</td>
+</tr>
+<tr>
+<td>Purpose</td>
+<td>Full parent-child</td>
+<td>Shared versions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-bom-bill-of-materials">13. BOM (Bill of Materials)<a class="headerlink" href="#13-bom-bill-of-materials" title="Permanent link">&para;</a></h2>
+<p>A <strong>BOM</strong> is a POM that only declares versions in <code>dependencyManagement</code>. Import it to align versions across many artifacts.</p>
+<h3 id="spring-boot-bom">Spring Boot BOM<a class="headerlink" href="#spring-boot-bom" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependencyManagement&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-dependencies<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>3.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+<span class="w">            </span><span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/dependencyManagement&gt;</span>
+
+<span class="nt">&lt;dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- no version — BOM handles it --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div>
+<h3 id="why-bom">Why BOM?<a class="headerlink" href="#why-bom" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Aligns versions across a family of libraries</li>
+<li>Avoids version drift</li>
+<li>Enables a single version bump</li>
+</ul>
+<h3 id="common-boms">Common BOMs<a class="headerlink" href="#common-boms" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>BOM</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spring-boot-dependencies</code></td>
+<td>All Spring Boot deps</td>
+</tr>
+<tr>
+<td><code>spring-cloud-dependencies</code></td>
+<td>Spring Cloud</td>
+</tr>
+<tr>
+<td><code>jackson-bom</code></td>
+<td>Jackson</td>
+</tr>
+<tr>
+<td><code>netty-bom</code></td>
+<td>Netty</td>
+</tr>
+<tr>
+<td><code>spring-framework-bom</code></td>
+<td>Spring Framework</td>
+</tr>
+<tr>
+<td><code>grpc-bom</code></td>
+<td>gRPC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-bom">Custom BOM<a class="headerlink" href="#custom-bom" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;project&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>my-bom<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;dependencyManagement&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>lib-a<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;version&gt;</span>1.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>lib-b<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;version&gt;</span>2.0.1<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependencyManagement&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div>
+<p>Consumers <code>import</code> it.</p>
+<hr />
+<h2 id="14-maven-profiles">14. Maven Profiles<a class="headerlink" href="#14-maven-profiles" title="Permanent link">&para;</a></h2>
+<p>Profiles activate config conditionally (dev, ci, prod, jdk version, OS, etc.).</p>
+<h3 id="defining">Defining<a class="headerlink" href="#defining" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;profiles&gt;</span>
+<span class="w">    </span><span class="nt">&lt;profile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>dev<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;activation&gt;</span>
+<span class="w">            </span><span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/activation&gt;</span>
+<span class="w">        </span><span class="nt">&lt;properties&gt;</span>
+<span class="w">            </span><span class="nt">&lt;env&gt;</span>dev<span class="nt">&lt;/env&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/properties&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/profile&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;profile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>prod<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;properties&gt;</span>
+<span class="w">            </span><span class="nt">&lt;env&gt;</span>prod<span class="nt">&lt;/env&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/properties&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div>
+<h3 id="activation">Activation<a class="headerlink" href="#activation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default</td>
+<td><code>&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</code></td>
+</tr>
+<tr>
+<td>Property</td>
+<td><code>&lt;property&gt;&lt;name&gt;env&lt;/name&gt;&lt;value&gt;prod&lt;/value&gt;&lt;/property&gt;</code></td>
+</tr>
+<tr>
+<td>JDK</td>
+<td><code>&lt;jdk&gt;17&lt;/jdk&gt;</code></td>
+</tr>
+<tr>
+<td>OS</td>
+<td><code>&lt;os&gt;&lt;family&gt;unix&lt;/family&gt;&lt;/os&gt;</code></td>
+</tr>
+<tr>
+<td>File</td>
+<td><code>&lt;file&gt;&lt;exists&gt;foo.txt&lt;/exists&gt;&lt;/file&gt;</code></td>
+</tr>
+<tr>
+<td>By id (CLI)</td>
+<td><code>-Pprod</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="activation-via-property">Activation via Property<a class="headerlink" href="#activation-via-property" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>package<span class="w"> </span>-Denv<span class="o">=</span>prod
+</code></pre></div>
+<h3 id="activation-via-profile-id">Activation via Profile ID<a class="headerlink" href="#activation-via-profile-id" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>package<span class="w"> </span>-Pprod
+mvn<span class="w"> </span>package<span class="w"> </span>-Pdev,ci<span class="w">   </span><span class="c1"># multiple</span>
+mvn<span class="w"> </span>package<span class="w"> </span>-P<span class="w"> </span>!prod<span class="w">   </span><span class="c1"># disable profile</span>
+</code></pre></div>
+<h3 id="profile-content">Profile Content<a class="headerlink" href="#profile-content" title="Permanent link">&para;</a></h3>
+<p>Profiles can override or add: <code>dependencies</code>, <code>dependencyManagement</code>, <code>properties</code>, <code>build</code> (plugins, resources), <code>repositories</code>, <code>distributionManagement</code>.</p>
+<h3 id="inspecting-active-profiles">Inspecting Active Profiles<a class="headerlink" href="#inspecting-active-profiles" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>help:active-profiles
+</code></pre></div>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Avoid <code>activeByDefault</code> — hidden</li>
+<li>Prefer <strong>Spring Profiles</strong> at runtime for app config; use <strong>Maven profiles</strong> for build-time concerns</li>
+<li>Keep profile count small</li>
+</ul>
+<hr />
+<h2 id="15-properties-filtering">15. Properties &amp; Filtering<a class="headerlink" href="#15-properties-filtering" title="Permanent link">&para;</a></h2>
+<h3 id="defining-properties">Defining Properties<a class="headerlink" href="#defining-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;properties&gt;</span>
+<span class="w">    </span><span class="nt">&lt;java.version&gt;</span>17<span class="nt">&lt;/java.version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;spring-boot.version&gt;</span>3.2.0<span class="nt">&lt;/spring-boot.version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div>
+<h3 id="using-properties">Using Properties<a class="headerlink" href="#using-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;version&gt;</span>${spring-boot.version}<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;source&gt;</span>${java.version}<span class="nt">&lt;/source&gt;</span>
+</code></pre></div>
+<h3 id="built-in-properties">Built-in Properties<a class="headerlink" href="#built-in-properties" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${project.basedir}</code></td>
+<td>Project directory</td>
+</tr>
+<tr>
+<td><code>${project.build.directory}</code></td>
+<td><code>target/</code></td>
+</tr>
+<tr>
+<td><code>${project.version}</code></td>
+<td>Project version</td>
+</tr>
+<tr>
+<td><code>${project.artifactId}</code></td>
+<td>Artifact ID</td>
+</tr>
+<tr>
+<td><code>${project.groupId}</code></td>
+<td>Group ID</td>
+</tr>
+<tr>
+<td><code>${project.name}</code></td>
+<td>Project name</td>
+</tr>
+<tr>
+<td><code>${basedir}</code></td>
+<td>Alias for <code>project.basedir</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>env<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>${env.HOME}<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div>
+<p>Format: <code>${env.VAR}</code>.</p>
+<h3 id="system-properties">System Properties<a class="headerlink" href="#system-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>package<span class="w"> </span>-DskipTests<span class="w"> </span>-Denv<span class="o">=</span>prod
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>${env}<span class="nt">&lt;/property&gt;</span>
+</code></pre></div>
+<h3 id="resource-filtering">Resource Filtering<a class="headerlink" href="#resource-filtering" title="Permanent link">&para;</a></h3>
+<p>Replace <code>${...}</code> in resource files at build time.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;build&gt;</span>
+<span class="w">    </span><span class="nt">&lt;resources&gt;</span>
+<span class="w">        </span><span class="nt">&lt;resource&gt;</span>
+<span class="w">            </span><span class="nt">&lt;directory&gt;</span>src/main/resources<span class="nt">&lt;/directory&gt;</span>
+<span class="w">            </span><span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+<span class="w">            </span><span class="nt">&lt;includes&gt;</span>
+<span class="w">                </span><span class="nt">&lt;include&gt;</span>application-*.properties<span class="nt">&lt;/include&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/includes&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/resource&gt;</span>
+<span class="w">        </span><span class="nt">&lt;resource&gt;</span>
+<span class="w">            </span><span class="nt">&lt;directory&gt;</span>src/main/resources<span class="nt">&lt;/directory&gt;</span>
+<span class="w">            </span><span class="nt">&lt;filtering&gt;</span>false<span class="nt">&lt;/filtering&gt;</span>
+<span class="w">            </span><span class="nt">&lt;excludes&gt;</span>
+<span class="w">                </span><span class="nt">&lt;exclude&gt;</span>application-*.properties<span class="nt">&lt;/exclude&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/excludes&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/resource&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/resources&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div>
+<p><strong>Example:</strong> <code>application.properties</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="na">app.version</span><span class="o">=</span><span class="s">${project.version}</span>
+<span class="na">app.name</span><span class="o">=</span><span class="s">${project.name}</span>
+</code></pre></div>
+<p>Becomes:</p>
+<div class="highlight"><pre><span></span><code><span class="na">app.version</span><span class="o">=</span><span class="s">1.0.0</span>
+<span class="na">app.name</span><span class="o">=</span><span class="s">My App</span>
+</code></pre></div>
+<p>⚠️ <strong>Don't filter binaries</strong> — corrupts them. Use <code>&lt;nonFilteredFileExtensions&gt;</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>maven-resources-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">        </span><span class="nt">&lt;nonFilteredFileExtensions&gt;</span>
+<span class="w">            </span><span class="nt">&lt;nonFilteredFileExtension&gt;</span>woff2<span class="nt">&lt;/nonFilteredFileExtension&gt;</span>
+<span class="w">            </span><span class="nt">&lt;nonFilteredFileExtension&gt;</span>ttf<span class="nt">&lt;/nonFilteredFileExtension&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/nonFilteredFileExtensions&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="16-repositories">16. Repositories<a class="headerlink" href="#16-repositories" title="Permanent link">&para;</a></h2>
+<h3 id="local-repository">Local Repository<a class="headerlink" href="#local-repository" title="Permanent link">&para;</a></h3>
+<p><code>~/.m2/repository</code> — downloaded artifacts + installed local projects.</p>
+<h3 id="central-repository">Central Repository<a class="headerlink" href="#central-repository" title="Permanent link">&para;</a></h3>
+<p>https://repo.maven.apache.org/maven2 — default for all Maven builds.</p>
+<h3 id="remote-repository">Remote Repository<a class="headerlink" href="#remote-repository" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;repositories&gt;</span>
+<span class="w">    </span><span class="nt">&lt;repository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>spring-milestones<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://repo.spring.io/milestone<span class="nt">&lt;/url&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/repository&gt;</span>
+<span class="nt">&lt;/repositories&gt;</span>
+</code></pre></div>
+<h3 id="plugin-repository">Plugin Repository<a class="headerlink" href="#plugin-repository" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;pluginRepositories&gt;</span>
+<span class="w">    </span><span class="nt">&lt;pluginRepository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>spring-milestones<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://repo.spring.io/milestone<span class="nt">&lt;/url&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/pluginRepository&gt;</span>
+<span class="nt">&lt;/pluginRepositories&gt;</span>
+</code></pre></div>
+<h3 id="repository-order">Repository Order<a class="headerlink" href="#repository-order" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Local</li>
+<li>Each declared <code>&lt;repository&gt;</code> in order</li>
+<li>Central (unless <code>&lt;mirrorOf&gt;*&lt;/mirrorOf&gt;</code> overrides)</li>
+</ol>
+<h3 id="snapshot-vs-release">Snapshot vs Release<a class="headerlink" href="#snapshot-vs-release" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Release</strong> — immutable, permanent</li>
+<li><strong>Snapshot</strong> — dev, overwritten; Maven checks daily or with <code>-U</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>clean<span class="w"> </span>install<span class="w"> </span>-U<span class="w">        </span><span class="c1"># force update snapshots</span>
+</code></pre></div>
+<h3 id="deploying">Deploying<a class="headerlink" href="#deploying" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;distributionManagement&gt;</span>
+<span class="w">    </span><span class="nt">&lt;repository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>my-releases<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://repo.example.com/releases<span class="nt">&lt;/url&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/repository&gt;</span>
+<span class="w">    </span><span class="nt">&lt;snapshotRepository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>my-snapshots<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://repo.example.com/snapshots<span class="nt">&lt;/url&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/snapshotRepository&gt;</span>
+<span class="nt">&lt;/distributionManagement&gt;</span>
+</code></pre></div>
+<p>Credentials in <code>settings.xml</code>.</p>
+<h3 id="mirrors">Mirrors<a class="headerlink" href="#mirrors" title="Permanent link">&para;</a></h3>
+<p>Route all repository requests through a mirror:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;mirrors&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mirror&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>company-proxy<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://nexus.example.com/repository/maven-public/<span class="nt">&lt;/url&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mirrorOf&gt;</span>*<span class="nt">&lt;/mirrorOf&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/mirror&gt;</span>
+<span class="nt">&lt;/mirrors&gt;</span>
+</code></pre></div>
+<p>Common <code>&lt;mirrorOf&gt;</code> values:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>central</code></td>
+<td>Central only</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Everything</td>
+</tr>
+<tr>
+<td><code>external:*</code></td>
+<td>Everything except localhost</td>
+</tr>
+<tr>
+<td><code>*,!internal</code></td>
+<td>All but <code>internal</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="17-multi-module-projects">17. Multi-Module Projects<a class="headerlink" href="#17-multi-module-projects" title="Permanent link">&para;</a></h2>
+<h3 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>parent/
+├── pom.xml                 (aggregator + parent)
+├── module-a/
+│   └── pom.xml
+├── module-b/
+│   └── pom.xml
+└── module-c/
+    └── pom.xml
+</code></pre></div>
+<h3 id="aggregator-pom">Aggregator POM<a class="headerlink" href="#aggregator-pom" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;project&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>parent<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;modules&gt;</span>
+<span class="w">        </span><span class="nt">&lt;module&gt;</span>module-a<span class="nt">&lt;/module&gt;</span>
+<span class="w">        </span><span class="nt">&lt;module&gt;</span>module-b<span class="nt">&lt;/module&gt;</span>
+<span class="w">        </span><span class="nt">&lt;module&gt;</span>module-c<span class="nt">&lt;/module&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/modules&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<span class="w">        </span><span class="nt">&lt;java.version&gt;</span>17<span class="nt">&lt;/java.version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;dependencyManagement&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>module-a<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependencyManagement&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div>
+<h3 id="module-pom">Module POM<a class="headerlink" href="#module-pom" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;parent&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>parent<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/parent&gt;</span>
+
+<span class="nt">&lt;artifactId&gt;</span>module-a<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+
+<span class="nt">&lt;dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>module-b<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- version from parent's depMgmt --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div>
+<h3 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>install<span class="w">                </span><span class="c1"># build all modules (from root)</span>
+mvn<span class="w"> </span>install<span class="w"> </span>-pl<span class="w"> </span>module-a<span class="w">   </span><span class="c1"># single module</span>
+mvn<span class="w"> </span>install<span class="w"> </span>-pl<span class="w"> </span>module-a<span class="w"> </span>-am<span class="w">   </span><span class="c1"># also build dependencies</span>
+mvn<span class="w"> </span>install<span class="w"> </span>-pl<span class="w"> </span>module-a<span class="w"> </span>-amd<span class="w">  </span><span class="c1"># also build dependents</span>
+</code></pre></div>
+<h3 id="aggregator-vs-parent">Aggregator vs Parent<a class="headerlink" href="#aggregator-vs-parent" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Aggregator</th>
+<th>Parent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Role</td>
+<td>Groups modules</td>
+<td>Inherits config</td>
+</tr>
+<tr>
+<td>Packaging</td>
+<td><code>pom</code></td>
+<td><code>pom</code></td>
+</tr>
+<tr>
+<td>Contains <code>&lt;modules&gt;</code></td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Referenced via <code>&lt;parent&gt;</code></td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Same POM can be both</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p>Often the same POM is both.</p>
+<hr />
+<h2 id="18-maven-wrapper-mvnw">18. Maven Wrapper (mvnw)<a class="headerlink" href="#18-maven-wrapper-mvnw" title="Permanent link">&para;</a></h2>
+<p>Bundles Maven so builds use a specific version without installation.</p>
+<h3 id="generate">Generate<a class="headerlink" href="#generate" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>wrapper:wrapper<span class="w">              </span><span class="c1"># default</span>
+mvn<span class="w"> </span>wrapper:wrapper<span class="w"> </span>-Dmaven<span class="o">=</span><span class="m">3</span>.9.6
+</code></pre></div>
+<p>Creates:</p>
+<div class="highlight"><pre><span></span><code>.mvn/
+├── wrapper/
+│   └── maven-wrapper.properties
+└── jvm.config (optional)
+mvnw
+mvnw.cmd
+</code></pre></div>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./mvnw<span class="w"> </span>clean<span class="w"> </span>install
+./mvnw.cmd<span class="w"> </span>clean<span class="w"> </span>install<span class="w">    </span><span class="c1"># Windows</span>
+</code></pre></div>
+<h3 id="maven-wrapperproperties">maven-wrapper.properties<a class="headerlink" href="#maven-wrapperproperties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">distributionUrl</span><span class="o">=</span><span class="s">https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.6/apache-maven-3.9.6-bin.zip</span>
+<span class="na">wrapperUrl</span><span class="o">=</span><span class="s">https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar</span>
+</code></pre></div>
+<h3 id="why-use-it">Why Use It<a class="headerlink" href="#why-use-it" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Reproducible builds</strong> across dev/CI</li>
+<li><strong>No Maven installation</strong> required</li>
+<li><strong>Version pinned</strong> in repo</li>
+<li>Same for Gradle (gradlew)</li>
+</ul>
+<p><strong>Recommended for all new projects.</strong> Spring Initializr includes it.</p>
+<hr />
+<h2 id="19-common-commands">19. Common Commands<a class="headerlink" href="#19-common-commands" title="Permanent link">&para;</a></h2>
+<h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>compile<span class="w">               </span><span class="c1"># compile</span>
+mvn<span class="w"> </span><span class="nb">test</span><span class="w">                  </span><span class="c1"># run tests</span>
+mvn<span class="w"> </span>package<span class="w">               </span><span class="c1"># create JAR/WAR (in target/)</span>
+mvn<span class="w"> </span>install<span class="w">               </span><span class="c1"># install to ~/.m2</span>
+mvn<span class="w"> </span>deploy<span class="w">                </span><span class="c1"># deploy to remote</span>
+mvn<span class="w"> </span>clean<span class="w">                 </span><span class="c1"># delete target/</span>
+mvn<span class="w"> </span>clean<span class="w"> </span>install<span class="w">         </span><span class="c1"># clean + install</span>
+mvn<span class="w"> </span>clean<span class="w"> </span>package<span class="w"> </span>-DskipTests
+</code></pre></div>
+<h3 id="run">Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>spring-boot:run
+mvn<span class="w"> </span>exec:java<span class="w"> </span>-Dexec.mainClass<span class="o">=</span><span class="s2">"com.example.App"</span>
+</code></pre></div>
+<h3 id="dependency">Dependency<a class="headerlink" href="#dependency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>dependency:tree
+mvn<span class="w"> </span>dependency:tree<span class="w"> </span>-Dincludes<span class="o">=</span>com.fasterxml.jackson
+mvn<span class="w"> </span>dependency:tree<span class="w"> </span>-Dverbose
+mvn<span class="w"> </span>dependency:analyze
+mvn<span class="w"> </span>dependency:list
+mvn<span class="w"> </span>dependency:resolve
+mvn<span class="w"> </span>dependency:purge-local-repository
+</code></pre></div>
+<h3 id="information">Information<a class="headerlink" href="#information" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>help:effective-pom
+mvn<span class="w"> </span>help:describe<span class="w"> </span>-Dplugin<span class="o">=</span>compiler
+mvn<span class="w"> </span>help:active-profiles
+mvn<span class="w"> </span>help:evaluate<span class="w"> </span>-Dexpression<span class="o">=</span>project.version<span class="w"> </span>-q<span class="w"> </span>-DforceStdout
+</code></pre></div>
+<h3 id="plugin-goal">Plugin Goal<a class="headerlink" href="#plugin-goal" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>compiler:compile
+mvn<span class="w"> </span>surefire:test<span class="w"> </span>-Dtest<span class="o">=</span>MyTest
+mvn<span class="w"> </span>surefire:test<span class="w"> </span>-Dtest<span class="o">=</span>MyTest#myMethod
+mvn<span class="w"> </span>failsafe:integration-test
+mvn<span class="w"> </span>jacoco:report
+mvn<span class="w"> </span>versions:display-dependency-updates
+mvn<span class="w"> </span>versions:display-plugin-updates
+mvn<span class="w"> </span>versions:use-latest-releases
+</code></pre></div>
+<h3 id="release">Release<a class="headerlink" href="#release" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>versions:set<span class="w"> </span>-DnewVersion<span class="o">=</span><span class="m">2</span>.0.0
+mvn<span class="w"> </span>release:prepare
+mvn<span class="w"> </span>release:perform
+</code></pre></div>
+<h3 id="debug">Debug<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>-X<span class="w"> </span>package<span class="w">             </span><span class="c1"># debug output</span>
+mvn<span class="w"> </span>-e<span class="w"> </span>package<span class="w">             </span><span class="c1"># show errors</span>
+mvn<span class="w"> </span>-U<span class="w"> </span>package<span class="w">             </span><span class="c1"># force update snapshots</span>
+mvn<span class="w"> </span>-o<span class="w"> </span>package<span class="w">             </span><span class="c1"># offline</span>
+mvn<span class="w"> </span>-q<span class="w"> </span>package<span class="w">             </span><span class="c1"># quiet</span>
+</code></pre></div>
+<hr />
+<h2 id="20-troubleshooting">20. Troubleshooting<a class="headerlink" href="#20-troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Could not resolve dependencies</code></td>
+<td>Missing repo / offline</td>
+<td>Check network, add repository</td>
+</tr>
+<tr>
+<td><code>Dependency convergence error</code></td>
+<td>Version conflict (Enforcer)</td>
+<td>Use <code>dependencyManagement</code></td>
+</tr>
+<tr>
+<td><code>Unknown host</code></td>
+<td>Offline / proxy</td>
+<td>Set <code>settings.xml</code> proxy</td>
+</tr>
+<tr>
+<td><code>Invalid POM</code></td>
+<td>XML error</td>
+<td>Validate XML</td>
+</tr>
+<tr>
+<td><code>ClassNotFoundException</code></td>
+<td>Wrong scope or missing dep</td>
+<td><code>mvn dependency:tree</code></td>
+</tr>
+<tr>
+<td><code>No compiler provided</code></td>
+<td>Java version mismatch</td>
+<td>Set <code>maven.compiler.source/target</code></td>
+</tr>
+<tr>
+<td><code>OutOfMemoryError</code></td>
+<td>Maven heap too small</td>
+<td><code>MAVEN_OPTS=-Xmx2g</code></td>
+</tr>
+<tr>
+<td><code>HTTPS required</code></td>
+<td>Repo requires HTTPS</td>
+<td>Update to HTTPS URLs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="proxy">Proxy<a class="headerlink" href="#proxy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;proxies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;proxy&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>http-proxy<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;active&gt;</span>true<span class="nt">&lt;/active&gt;</span>
+<span class="w">        </span><span class="nt">&lt;protocol&gt;</span>http<span class="nt">&lt;/protocol&gt;</span>
+<span class="w">        </span><span class="nt">&lt;host&gt;</span>proxy.example.com<span class="nt">&lt;/host&gt;</span>
+<span class="w">        </span><span class="nt">&lt;port&gt;</span>8080<span class="nt">&lt;/port&gt;</span>
+<span class="w">        </span><span class="nt">&lt;username&gt;</span>user<span class="nt">&lt;/username&gt;</span>
+<span class="w">        </span><span class="nt">&lt;password&gt;</span>pwd<span class="nt">&lt;/password&gt;</span>
+<span class="w">        </span><span class="nt">&lt;nonProxyHosts&gt;</span>localhost|*.internal<span class="nt">&lt;/nonProxyHosts&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/proxy&gt;</span>
+<span class="nt">&lt;/proxies&gt;</span>
+</code></pre></div>
+<h3 id="maven_opts">MAVEN_OPTS<a class="headerlink" href="#maven_opts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx2g -XX:+UseG1GC"</span>
+</code></pre></div>
+<h3 id="force-update">Force Update<a class="headerlink" href="#force-update" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>clean<span class="w"> </span>install<span class="w"> </span>-U
+</code></pre></div>
+<p>Or delete: <code>rm -rf ~/.m2/repository/org/springframework</code></p>
+<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>-X<span class="w">            </span><span class="c1"># debug</span>
+mvn<span class="w"> </span>-e<span class="w">            </span><span class="c1"># error stack traces</span>
+mvn<span class="w"> </span>-Dorg.slf4j.simpleLogger.defaultLogLevel<span class="o">=</span>debug
+</code></pre></div>
+<hr />
+<h2 id="21-interview-questions">21. Interview Questions<a class="headerlink" href="#21-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-maven">Q1. What is Maven?<a class="headerlink" href="#q1-what-is-maven" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A build automation and dependency management tool for Java. Uses a declarative <code>pom.xml</code> to describe project structure, dependencies, plugins, and lifecycle. Follows convention over configuration.</p>
+<h3 id="q2-explain-mavens-build-lifecycles">Q2. Explain Maven's build lifecycles.<a class="headerlink" href="#q2-explain-mavens-build-lifecycles" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Three: <strong>default</strong> (validate → compile → test → package → verify → install → deploy), <strong>clean</strong> (pre-clean → clean → post-clean), <strong>site</strong> (pre-site → site → post-site → site-deploy). Running a phase executes all prior phases in that lifecycle.</p>
+<h3 id="q3-difference-between-phase-and-goal">Q3. Difference between phase and goal?<a class="headerlink" href="#q3-difference-between-phase-and-goal" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <strong>Phase</strong> is a step in a lifecycle (<code>compile</code>, <code>package</code>). <strong>Goal</strong> is a specific plugin task (<code>compiler:compile</code>, <code>surefire:test</code>). Phases bind to goals — running a phase triggers its goals.</p>
+<h3 id="q4-what-are-maven-coordinates">Q4. What are Maven coordinates?<a class="headerlink" href="#q4-what-are-maven-coordinates" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> GAV — <code>groupId</code>, <code>artifactId</code>, <code>version</code> (plus optional packaging and classifier). Uniquely identify artifacts in repositories.</p>
+<h3 id="q5-what-are-dependency-scopes">Q5. What are dependency scopes?<a class="headerlink" href="#q5-what-are-dependency-scopes" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>compile</code> (default; available everywhere), <code>provided</code> (JDK/container supplies), <code>runtime</code> (needed at runtime, not compile), <code>test</code> (only testing), <code>system</code> (local path, avoid), <code>import</code> (imports a BOM in depMgmt).</p>
+<h3 id="q6-what-is-transitive-dependency">Q6. What is transitive dependency?<a class="headerlink" href="#q6-what-is-transitive-dependency" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A dependency pulled in automatically because another dependency needs it. Maven resolves them recursively. Version conflicts resolved by nearest-wins.</p>
+<h3 id="q7-what-is-the-nearest-wins-strategy">Q7. What is the nearest-wins strategy?<a class="headerlink" href="#q7-what-is-the-nearest-wins-strategy" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> If multiple paths lead to different versions of the same artifact, Maven picks the one closest to the root. Depth 1 beats depth 2, even if depth 2 has a newer version.</p>
+<h3 id="q8-what-is-dependencymanagement">Q8. What is dependencyManagement?<a class="headerlink" href="#q8-what-is-dependencymanagement" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A section that declares default versions for dependencies. Children declare dependencies without a version; the version comes from depMgmt. Ensures consistent versions across modules.</p>
+<h3 id="q9-difference-between-dependencies-and-dependencymanagement">Q9. Difference between dependencies and dependencyManagement?<a class="headerlink" href="#q9-difference-between-dependencies-and-dependencymanagement" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>dependencies</code> = actual dependencies (included in build). <code>dependencyManagement</code> = defaults (versions/scopes) for children's dependencies; doesn't add dependencies itself.</p>
+<h3 id="q10-what-is-a-bom">Q10. What is a BOM?<a class="headerlink" href="#q10-what-is-a-bom" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Bill of Materials — a POM with only <code>dependencyManagement</code> declaring versions. Import it with <code>&lt;scope&gt;import&lt;/scope&gt;</code> to align versions across a family of libraries. Spring Boot's <code>spring-boot-dependencies</code> is a common BOM.</p>
+<h3 id="q11-what-is-a-parent-pom">Q11. What is a parent POM?<a class="headerlink" href="#q11-what-is-a-parent-pom" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A POM referenced with <code>&lt;parent&gt;</code>. Inherits dependencies, depMgmt, plugins, and properties. Only one parent per project. Spring Boot uses <code>spring-boot-starter-parent</code>.</p>
+<h3 id="q12-parent-vs-bom-which-is-better">Q12. Parent vs BOM — which is better?<a class="headerlink" href="#q12-parent-vs-bom-which-is-better" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> They solve different problems. Parent provides full inheritance (properties, plugins). BOM provides shared versions for dependencies. You can have one parent and import multiple BOMs. Spring Boot's parent already imports <code>spring-boot-dependencies</code>.</p>
+<h3 id="q13-what-are-maven-profiles">Q13. What are Maven profiles?<a class="headerlink" href="#q13-what-are-maven-profiles" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Conditional configurations for different environments (dev, prod, ci, jdk, os). Activated via property, file, JDK, OS, or <code>-P&lt;id&gt;</code>. Used for build-time variations, not runtime config.</p>
+<h3 id="q14-how-do-you-exclude-a-transitive-dependency">Q14. How do you exclude a transitive dependency?<a class="headerlink" href="#q14-how-do-you-exclude-a-transitive-dependency" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;exclusions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;exclusion&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/exclusion&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/exclusions&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="q15-what-is-the-maven-wrapper">Q15. What is the Maven Wrapper?<a class="headerlink" href="#q15-what-is-the-maven-wrapper" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A self-contained Maven for the project. <code>mvnw</code>/<code>mvnw.cmd</code> scripts download and use a pinned Maven version. No global install needed. Ensures reproducible builds.</p>
+<h3 id="q16-how-do-you-run-a-spring-boot-app-with-maven">Q16. How do you run a Spring Boot app with Maven?<a class="headerlink" href="#q16-how-do-you-run-a-spring-boot-app-with-maven" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong></p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>spring-boot:run
+</code></pre></div>
+<p>Uses the <code>spring-boot-maven-plugin</code>.</p>
+<h3 id="q17-how-do-you-build-a-fat-jar">Q17. How do you build a fat JAR?<a class="headerlink" href="#q17-how-do-you-build-a-fat-jar" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring Boot's <code>spring-boot-maven-plugin</code> <code>repackage</code> goal creates an executable JAR with all dependencies. Alternatively, <code>maven-shade-plugin</code> or <code>maven-assembly-plugin</code>.</p>
+<h3 id="q18-how-do-you-skip-tests">Q18. How do you skip tests?<a class="headerlink" href="#q18-how-do-you-skip-tests" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>-DskipTests=true</code> (compile but don't run). <code>-Dmaven.test.skip=true</code> (skip compile + run). <code>-Dtest=MyTest</code> to run specific tests.</p>
+<h3 id="q19-what-is-the-difference-between-install-and-deploy">Q19. What is the difference between install and deploy?<a class="headerlink" href="#q19-what-is-the-difference-between-install-and-deploy" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>install</code> copies the built artifact to the local repo (<code>~/.m2</code>). <code>deploy</code> uploads it to a remote repo (<code>&lt;distributionManagement&gt;</code>) for other developers/CI.</p>
+<h3 id="q20-how-do-you-analyze-dependencies">Q20. How do you analyze dependencies?<a class="headerlink" href="#q20-how-do-you-analyze-dependencies" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>mvn dependency:tree</code> (show tree), <code>mvn dependency:analyze</code> (find unused/undeclared), <code>mvn dependency:list</code>, <code>mvn versions:display-dependency-updates</code>.</p>
+<h3 id="q21-what-is-resource-filtering">Q21. What is resource filtering?<a class="headerlink" href="#q21-what-is-resource-filtering" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Substitution of <code>${...}</code> placeholders in resource files during build. Configure with <code>&lt;resources&gt;&lt;resource&gt;&lt;filtering&gt;true&lt;/filtering&gt;</code>. Useful for injecting versions, env-specific config. Exclude binaries.</p>
+<h3 id="q22-how-do-you-resolve-dependency-conflicts">Q22. How do you resolve dependency conflicts?<a class="headerlink" href="#q22-how-do-you-resolve-dependency-conflicts" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>dependencyManagement</code> (pin version), <code>&lt;exclusions&gt;</code> (remove transitive), <code>maven-enforcer-plugin</code> (fail on convergence issues), or upgrade the transitive dependency.</p>
+<h3 id="q23-what-is-a-multi-module-project">Q23. What is a multi-module project?<a class="headerlink" href="#q23-what-is-a-multi-module-project" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A parent POM with <code>&lt;modules&gt;</code> listing child modules. Parent can be a shared parent (<code>&lt;parent&gt;</code> in children) and/or aggregator. Build with <code>mvn install</code> from root. Options: <code>-pl</code> (list), <code>-am</code> (also make deps), <code>-amd</code> (also make dependents).</p>
+<h3 id="q24-what-is-dependency-mediation">Q24. What is dependency mediation?<a class="headerlink" href="#q24-what-is-dependency-mediation" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> The process of choosing a single version when transitive dependencies conflict. Maven 3 uses nearest-wins. Override with <code>dependencyManagement</code>.</p>
+<h3 id="q25-how-do-you-force-maven-to-re-download-dependencies">Q25. How do you force Maven to re-download dependencies?<a class="headerlink" href="#q25-how-do-you-force-maven-to-re-download-dependencies" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>mvn -U clean install</code> (update snapshots). Delete <code>~/.m2/repository/org/springframework</code> for a full refresh.</p>
+<hr />
+<h2 id="22-cheat-sheet">22. Cheat Sheet<a class="headerlink" href="#22-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="pom-structure">POM Structure<a class="headerlink" href="#pom-structure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;project</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;parent&gt;</span>
+<span class="w">        </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;version&gt;</span>3.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">        </span><span class="nt">&lt;relativePath/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/parent&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<span class="w">        </span><span class="nt">&lt;java.version&gt;</span>17<span class="nt">&lt;/java.version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependencies&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;build&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div>
+<h3 id="lifecycle-default">Lifecycle (Default)<a class="headerlink" href="#lifecycle-default" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>validate → compile → test → package → verify → install → deploy
+</code></pre></div>
+<h3 id="scopes">Scopes<a class="headerlink" href="#scopes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>compile   ✅ everywhere
+provided  runtime env supplies
+runtime   runtime only
+test      tests only
+system    local path (avoid)
+import    for BOMs
+</code></pre></div>
+<h3 id="common-commands">Common Commands<a class="headerlink" href="#common-commands" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>clean<span class="w"> </span>install<span class="w">                 </span><span class="c1"># full build</span>
+mvn<span class="w"> </span>package<span class="w">                       </span><span class="c1"># build JAR</span>
+mvn<span class="w"> </span><span class="nb">test</span><span class="w">                          </span><span class="c1"># run tests</span>
+mvn<span class="w"> </span>spring-boot:run<span class="w">               </span><span class="c1"># run app</span>
+mvn<span class="w"> </span>dependency:tree<span class="w">               </span><span class="c1"># dep tree</span>
+mvn<span class="w"> </span>dependency:analyze<span class="w">            </span><span class="c1"># unused/undeclared</span>
+mvn<span class="w"> </span>help:effective-pom<span class="w">            </span><span class="c1"># merged POM</span>
+mvn<span class="w"> </span>versions:display-dependency-updates
+mvn<span class="w"> </span>clean<span class="w"> </span>install<span class="w"> </span>-DskipTests<span class="w">     </span><span class="c1"># skip tests</span>
+mvn<span class="w"> </span>clean<span class="w"> </span>install<span class="w"> </span>-U<span class="w">              </span><span class="c1"># force update</span>
+mvn<span class="w"> </span>-X<span class="w"> </span>package<span class="w">                    </span><span class="c1"># debug</span>
+</code></pre></div>
+<h3 id="multi-module">Multi-Module<a class="headerlink" href="#multi-module" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>install<span class="w">                </span><span class="c1"># all modules</span>
+mvn<span class="w"> </span>install<span class="w"> </span>-pl<span class="w"> </span>module-a<span class="w">   </span><span class="c1"># single</span>
+mvn<span class="w"> </span>install<span class="w"> </span>-pl<span class="w"> </span>module-a<span class="w"> </span>-am<span class="w">   </span><span class="c1"># + dependencies</span>
+mvn<span class="w"> </span>install<span class="w"> </span>-pl<span class="w"> </span>module-a<span class="w"> </span>-amd<span class="w">  </span><span class="c1"># + dependents</span>
+</code></pre></div>
+<h3 id="wrapper">Wrapper<a class="headerlink" href="#wrapper" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./mvnw<span class="w"> </span>clean<span class="w"> </span>install
+</code></pre></div>
+<h3 id="bom-import">BOM Import<a class="headerlink" href="#bom-import" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependencyManagement&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-dependencies<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>3.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">            </span><span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+<span class="w">            </span><span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/dependencyManagement&gt;</span>
+</code></pre></div>
+<h3 id="exclusion_1">Exclusion<a class="headerlink" href="#exclusion_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;exclusions&gt;</span>
+<span class="w">    </span><span class="nt">&lt;exclusion&gt;</span>
+<span class="w">        </span><span class="nt">&lt;groupId&gt;</span>commons-logging<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>commons-logging<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/exclusion&gt;</span>
+<span class="nt">&lt;/exclusions&gt;</span>
+</code></pre></div>
+<h3 id="profiles">Profiles<a class="headerlink" href="#profiles" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;profiles&gt;</span>
+<span class="w">    </span><span class="nt">&lt;profile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>prod<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;properties&gt;&lt;env&gt;</span>prod<span class="nt">&lt;/env&gt;&lt;/properties&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>package<span class="w"> </span>-Pprod
+</code></pre></div>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>16_Spring_Testing.md</code></li>
+<li><strong>Next:</strong> <code>18_Gradle_For_Spring.md</code></li>
+<li><strong>Related:</strong> <code>06_Spring_Boot_Fundamentals.md</code></li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code> (§Maven)</li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="./16_Spring_Testing.md">16_Spring_Testing.md</a></li>
+<li><strong>Next →:</strong> <a href="../18_Gradle_For_Spring/">18_Gradle_For_Spring.md</a></li>
+<li><strong>Related:</strong> <a href="../18_Gradle_For_Spring/">18_Gradle_For_Spring.md</a>, <a href="./06_Spring_Boot_Fundamentals.md">06_Spring_Boot_Fundamentals.md</a>, <a href="./26_Spring_Best_Practices.md">26_Spring_Best_Practices.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

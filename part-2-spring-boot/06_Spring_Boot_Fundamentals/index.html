@@ -1,0 +1,4410 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Spring Boot Fundamentals - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spring-boot-fundamentals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spring Boot Fundamentals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is Spring Boot?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is Spring Boot?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-spring-boot-vs-spring-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spring Boot vs Spring Framework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-springbootapplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. @SpringBootApplication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. @SpringBootApplication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meta-annotation-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Meta-Annotation Breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Method
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customizing Startup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#springbootconfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @SpringBootConfiguration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-auto-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Auto-Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Auto-Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Does
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-config-class-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Config Class Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overriding-auto-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overriding Auto-Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-auto-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Auto-Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enableautoconfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @EnableAutoConfiguration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-auto-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Auto-Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-conditional-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Conditional Annotations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Conditional Annotations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Conditional (custom)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition Ordering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-patterns-in-auto-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Patterns in Auto-Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-starters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Starters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Starters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-starter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a Starter?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-starters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Starters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-tree-web-starter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Tree (web starter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-custom-starter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Custom Starter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#excluding-transitive-deps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excluding Transitive Deps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-embedded-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Embedded Servers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Embedded Servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default: Tomcat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switching-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switching Servers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-selection-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Selection Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#war-deployment-traditional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WAR Deployment (Traditional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-spring-initializr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Spring Initializr
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Spring Initializr">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#via-ide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Via IDE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generated-structure-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generated Structure (Maven)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-spring-boot-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Spring Boot CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Spring Boot CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-sdkman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install (SDKMAN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run a Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-applicationproperties-vs-yml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. application.properties vs yml
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. application.properties vs yml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-document-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Document YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-specific-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile-Specific Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-to-choose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which to Choose?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-property-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special Property Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Property Placeholders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-Line Overrides
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-devtools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. DevTools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. DevTools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-restart-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Restart Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Safety
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caveats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caveats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-versioning-release-cadence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Versioning &amp; Release Cadence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Versioning &amp; Release Cadence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#versioning-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning Scheme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#major-milestones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Major Milestones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choosing-a-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-migrating-from-spring-to-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Migrating from Spring to Spring Boot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Migrating from Spring to Spring Boot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Migration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-migration-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Migration Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-what-is-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. What is Spring Boot?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-what-does-springbootapplication-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. What does @SpringBootApplication do?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-how-does-auto-configuration-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. How does auto-configuration work?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-how-do-you-disable-auto-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. How do you disable auto-configuration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-what-are-starters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. What are starters?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-difference-between-spring-boot-starter-web-and-spring-boot-starter-webflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. Difference between spring-boot-starter-web and spring-boot-starter-webflux?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-embedded-server-vs-external" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. Embedded server vs external?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-how-to-change-the-server-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. How to change the server port?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-difference-between-applicationproperties-and-applicationyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. Difference between application.properties and application.yml?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-how-do-profiles-work-in-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. How do profiles work in Spring Boot?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-how-do-you-override-a-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. How do you override a property?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-what-is-devtools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. What is DevTools?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-how-to-create-a-fatexecutable-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. How to create a fat/executable JAR?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-what-is-the-spring-initializr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. What is the Spring Initializr?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-how-to-view-what-auto-config-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. How to view what auto-config applied?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-how-to-define-custom-auto-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. How to define custom auto-config?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-difference-between-configuration-and-springbootconfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. Difference between @Configuration and @SpringBootConfiguration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-what-happens-if-two-auto-configs-define-the-same-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. What happens if two auto-configs define the same bean?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-how-to-change-logging-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. How to change logging level?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-how-does-spring-boot-work-without-webxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. How does Spring Boot work without web.xml?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q21-can-you-use-spring-boot-with-war-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q21. Can you use Spring Boot with WAR packaging?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q22-difference-between-a-starter-and-a-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q22. Difference between a starter and a library?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q23-what-is-enableautoconfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q23. What is @EnableAutoConfiguration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q24-how-do-you-exclude-a-starters-transitive-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q24. How do you exclude a starter's transitive dependency?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q25-how-does-spring-boot-know-which-auto-config-to-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q25. How does Spring Boot know which auto-config to apply?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Class
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starters-most-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starters (Most Used)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-config-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Config Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-fat-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building Fat JAR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#override-auto-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Override Auto-Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-auto-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Auto-Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actuator-endpoints-with-actuator-starter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actuator Endpoints (with actuator starter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="spring-boot-fundamentals">Spring Boot Fundamentals<a class="headerlink" href="#spring-boot-fundamentals" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>06_Spring_Boot_Fundamentals.md</code>
+<strong>Part:</strong> 2 — Spring Boot
+<strong>Prerequisites:</strong> <code>01_Spring_Framework_Core.md</code>
+<strong>Estimated Study Time:</strong> 8–10 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-what-is-spring-boot">What is Spring Boot?</a></li>
+<li><a href="#2-spring-boot-vs-spring-framework">Spring Boot vs Spring Framework</a></li>
+<li><a href="#3-springbootapplication">@SpringBootApplication</a></li>
+<li><a href="#4-auto-configuration">Auto-Configuration</a></li>
+<li><a href="#5-conditional-annotations">Conditional Annotations</a></li>
+<li><a href="#6-starters">Starters</a></li>
+<li><a href="#7-embedded-servers">Embedded Servers</a></li>
+<li><a href="#8-spring-initializr">Spring Initializr</a></li>
+<li><a href="#9-spring-boot-cli">Spring Boot CLI</a></li>
+<li><a href="#10-applicationproperties-vs-yml">application.properties vs yml</a></li>
+<li><a href="#11-devtools">DevTools</a></li>
+<li><a href="#12-versioning--release-cadence">Versioning &amp; Release Cadence</a></li>
+<li><a href="#13-migrating-from-spring-to-spring-boot">Migrating from Spring to Spring Boot</a></li>
+<li><a href="#14-interview-questions">Interview Questions</a></li>
+<li><a href="#15-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-what-is-spring-boot">1. What is Spring Boot?<a class="headerlink" href="#1-what-is-spring-boot" title="Permanent link">&para;</a></h2>
+<p><strong>Spring Boot</strong> is an opinionated, convention-over-configuration framework built on top of Spring Framework. It eliminates boilerplate configuration so you can build production-ready Spring applications quickly.</p>
+<h3 id="core-goals">Core Goals<a class="headerlink" href="#core-goals" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Faster development</strong> — start coding immediately</li>
+<li><strong>Zero XML</strong> — Java/annotation config only</li>
+<li><strong>Sensible defaults</strong> — works out of the box</li>
+<li><strong>Standalone</strong> — embeds a server (<code>java -jar app.jar</code>)</li>
+<li><strong>Production-ready</strong> — metrics, health, externalized config</li>
+<li><strong>No code generation</strong> — no XML/codegen required</li>
+</ol>
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Auto-Configuration</strong></td>
+<td>Configures beans based on classpath</td>
+</tr>
+<tr>
+<td><strong>Starters</strong></td>
+<td>Curated dependency bundles</td>
+</tr>
+<tr>
+<td><strong>Embedded Server</strong></td>
+<td>Tomcat/Jetty/Undertow built-in</td>
+</tr>
+<tr>
+<td><strong>Actuator</strong></td>
+<td>Production endpoints (health, metrics)</td>
+</tr>
+<tr>
+<td><strong>Externalized Config</strong></td>
+<td>Properties, YAML, env vars</td>
+</tr>
+<tr>
+<td><strong>DevTools</strong></td>
+<td>Hot reload, live reload</td>
+</tr>
+<tr>
+<td><strong>Fat JAR</strong></td>
+<td>Single executable JAR</td>
+</tr>
+<tr>
+<td><strong>No <code>web.xml</code></strong></td>
+<td>Servlet 3+ programmatic setup</td>
+</tr>
+</tbody>
+</table>
+<h3 id="minimal-app">Minimal App<a class="headerlink" href="#minimal-app" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DemoApplication</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">SpringApplication</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">DemoApplication</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">class</span> <span class="nc">HelloController</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/hello"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">hello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"Hello, Spring Boot!"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Run: <code>java -jar demo.jar</code> → serves on port 8080.</p>
+<hr />
+<h2 id="2-spring-boot-vs-spring-framework">2. Spring Boot vs Spring Framework<a class="headerlink" href="#2-spring-boot-vs-spring-framework" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Spring Framework</th>
+<th>Spring Boot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purpose</td>
+<td>DI, AOP, MVC, data</td>
+<td>Simplify Spring setup</td>
+</tr>
+<tr>
+<td>Config</td>
+<td>Explicit (XML/Java)</td>
+<td>Auto + overridable</td>
+</tr>
+<tr>
+<td>Dependencies</td>
+<td>Manual</td>
+<td>Starters</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>External WAR</td>
+<td>Embedded</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>WAR</td>
+<td>Fat JAR</td>
+</tr>
+<tr>
+<td>Boilerplate</td>
+<td>High</td>
+<td>Minimal</td>
+</tr>
+<tr>
+<td>Actuator</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Opinionated</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Versioning</td>
+<td>Own</td>
+<td>Manages all versions</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Not a replacement</strong> — Spring Boot <strong>uses</strong> Spring Framework.</p>
+<hr />
+<h2 id="3-springbootapplication">3. @SpringBootApplication<a class="headerlink" href="#3-springbootapplication" title="Permanent link">&para;</a></h2>
+<h3 id="meta-annotation-breakdown">Meta-Annotation Breakdown<a class="headerlink" href="#meta-annotation-breakdown" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span>
+<span class="c1">// is equivalent to:</span>
+
+<span class="nd">@SpringBootConfiguration</span><span class="w">   </span><span class="c1">// = @Configuration</span>
+<span class="nd">@EnableAutoConfiguration</span><span class="w">   </span><span class="c1">// enable auto-config</span>
+<span class="nd">@ComponentScan</span><span class="w">             </span><span class="c1">// scan base package + subpackages</span>
+</code></pre></div>
+<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span><span class="p">(</span>
+<span class="w">    </span><span class="n">scanBasePackages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"com.example"</span><span class="p">,</span><span class="w"> </span><span class="s">"com.shared"</span><span class="p">},</span>
+<span class="w">    </span><span class="n">scanBasePackageClasses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">DemoApplication</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">SharedConfig</span><span class="p">.</span><span class="na">class</span><span class="p">},</span>
+<span class="w">    </span><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">DataSourceAutoConfiguration</span><span class="p">.</span><span class="na">class</span><span class="p">},</span>
+<span class="w">    </span><span class="n">excludeName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration"</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="main-method">Main Method<a class="headerlink" href="#main-method" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">SpringApplication</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">MyApp</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="customizing-startup">Customizing Startup<a class="headerlink" href="#customizing-startup" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">SpringApplication</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SpringApplication</span><span class="p">(</span><span class="n">MyApp</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="na">setBannerMode</span><span class="p">(</span><span class="n">Banner</span><span class="p">.</span><span class="na">Mode</span><span class="p">.</span><span class="na">OFF</span><span class="p">);</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="na">setAdditionalProfiles</span><span class="p">(</span><span class="s">"dev"</span><span class="p">);</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="na">setDefaultProperties</span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"server.port"</span><span class="p">,</span><span class="w"> </span><span class="s">"9999"</span><span class="p">));</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="na">setLazyInitialization</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="na">setLogStartupInfo</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="n">app</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="springbootconfiguration">@SpringBootConfiguration<a class="headerlink" href="#springbootconfiguration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A specialization of <code>@Configuration</code></li>
+<li>Only <strong>one</strong> per app recommended</li>
+<li>Detected by tests and DevTools</li>
+</ul>
+<h3 id="application-events">Application Events<a class="headerlink" href="#application-events" title="Permanent link">&para;</a></h3>
+<p>Order:</p>
+<ol>
+<li><code>ApplicationStartingEvent</code></li>
+<li><code>ApplicationEnvironmentPreparedEvent</code></li>
+<li><code>ApplicationContextInitializedEvent</code></li>
+<li><code>ApplicationPreparedEvent</code></li>
+<li><code>ContextRefreshedEvent</code></li>
+<li><code>ApplicationStartedEvent</code></li>
+<li><code>AvailabilityChangeEvent</code> (LivenessState.CORRECT)</li>
+<li><code>ApplicationReadyEvent</code></li>
+<li><code>AvailabilityChangeEvent</code> (ReadinessState.ACCEPTING_TRAFFIC)</li>
+<li>On shutdown: <code>ContextClosedEvent</code> → <code>ApplicationStoppingEvent</code> → <code>AvailabilityChangeEvent</code> (LivenessState.BROKEN) → <code>ApplicationFailedEvent</code></li>
+</ol>
+<p>Subscribe:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StartupListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@EventListener</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onReady</span><span class="p">(</span><span class="n">ApplicationReadyEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">"App is ready!"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="4-auto-configuration">4. Auto-Configuration<a class="headerlink" href="#4-auto-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="what-it-does">What It Does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h3>
+<p>Spring Boot inspects the classpath, existing beans, and properties, then <strong>automatically configures beans</strong> you'd otherwise configure manually.</p>
+<p>Example: With <code>spring-boot-starter-web</code> and a <code>DataSource</code> on the classpath:
+- Embedded Tomcat starts
+- <code>DispatcherServlet</code> registered
+- <code>DataSource</code> configured
+- <code>JdbcTemplate</code> bean created
+- <code>PlatformTransactionManager</code> created
+- Jackson <code>ObjectMapper</code> registered
+- Spring MVC infrastructure configured</p>
+<h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<p>Since <strong>Spring Boot 3.0</strong>, auto-configurations are listed in:</p>
+<div class="highlight"><pre><span></span><code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+</code></pre></div>
+<p>(Spring Boot 2.x used <code>META-INF/spring.factories</code> with <code>org.springframework.boot.autoconfigure.EnableAutoConfiguration</code> key.)</p>
+<p>Each line = fully qualified class of an auto-configuration:</p>
+<div class="highlight"><pre><span></span><code>org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration
+org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+...
+</code></pre></div>
+<h3 id="auto-config-class-example">Auto-Config Class Example<a class="headerlink" href="#auto-config-class-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@AutoConfiguration</span>
+<span class="nd">@ConditionalOnClass</span><span class="p">(</span><span class="n">DataSource</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="nd">@ConditionalOnMissingBean</span><span class="p">(</span><span class="n">DataSource</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="nd">@EnableConfigurationProperties</span><span class="p">(</span><span class="n">DataSourceProperties</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DataSourceAutoConfiguration</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@ConditionalOnMissingBean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">dataSource</span><span class="p">(</span><span class="n">DataSourceProperties</span><span class="w"> </span><span class="n">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">props</span><span class="p">.</span><span class="na">initializeDataSourceBuilder</span><span class="p">().</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Reading:</strong>
+- <code>@AutoConfiguration</code> — meta-annotated with <code>@Configuration</code>
+- <code>@ConditionalOnClass</code> — only if this class is on classpath
+- <code>@ConditionalOnMissingBean</code> — only if user hasn't defined one
+- <code>@EnableConfigurationProperties</code> — bind <code>spring.datasource.*</code></p>
+<h3 id="ordering">Ordering<a class="headerlink" href="#ordering" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@AutoConfiguration</span><span class="p">(</span><span class="n">after</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceAutoConfiguration</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="nd">@AutoConfiguration</span><span class="p">(</span><span class="n">before</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JpaAutoConfiguration</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</code></pre></div>
+<p>Or via <code>@AutoConfigureAfter</code>, <code>@AutoConfigureBefore</code>, <code>@AutoConfigureOrder</code>.</p>
+<h3 id="overriding-auto-config">Overriding Auto-Config<a class="headerlink" href="#overriding-auto-config" title="Permanent link">&para;</a></h3>
+<p><strong>1. Define your own bean</strong> — <code>@ConditionalOnMissingBean</code> yields:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">dataSource</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">myCustomDataSource</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><strong>2. Exclude specific auto-config:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span><span class="p">(</span><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceAutoConfiguration</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</code></pre></div>
+<p>Or properties:</p>
+<div class="highlight"><pre><span></span><code><span class="na">spring.autoconfigure.exclude</span><span class="o">=</span><span class="s">org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration</span>
+</code></pre></div>
+<p><strong>3. Override via properties:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="na">server.port</span><span class="o">=</span><span class="s">9090</span>
+<span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">...</span>
+</code></pre></div>
+<h3 id="debugging-auto-config">Debugging Auto-Config<a class="headerlink" href="#debugging-auto-config" title="Permanent link">&para;</a></h3>
+<p>Run with <code>--debug</code>:</p>
+<div class="highlight"><pre><span></span><code>java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span>--debug
+</code></pre></div>
+<p>Or in properties:</p>
+<div class="highlight"><pre><span></span><code><span class="na">debug</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<p>Prints:
+- <strong>Positive matches</strong> — which configs applied and why
+- <strong>Negative matches</strong> — which didn't and why
+- <strong>Exclusions</strong></p>
+<p>Also:</p>
+<div class="highlight"><pre><span></span><code><span class="na">logging.level.org.springframework.boot.autoconfigure</span><span class="o">=</span><span class="s">DEBUG</span>
+</code></pre></div>
+<h3 id="enableautoconfiguration">@EnableAutoConfiguration<a class="headerlink" href="#enableautoconfiguration" title="Permanent link">&para;</a></h3>
+<p>Rarely used directly. Included via <code>@SpringBootApplication</code>. If used separately, must be on a <code>@Configuration</code> class.</p>
+<h3 id="custom-auto-configuration">Custom Auto-Configuration<a class="headerlink" href="#custom-auto-configuration" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create a <code>@AutoConfiguration</code> class</li>
+<li>Add conditions (<code>@ConditionalOnClass</code>, <code>@ConditionalOnMissingBean</code>, etc.)</li>
+<li>Register in <code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code></li>
+<li>Package as a library</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nd">@AutoConfiguration</span>
+<span class="nd">@ConditionalOnClass</span><span class="p">(</span><span class="n">MyService</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="nd">@EnableConfigurationProperties</span><span class="p">(</span><span class="n">MyProperties</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyAutoConfiguration</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@ConditionalOnMissingBean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">MyService</span><span class="w"> </span><span class="nf">myService</span><span class="p">(</span><span class="n">MyProperties</span><span class="w"> </span><span class="n">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyService</span><span class="p">(</span><span class="n">props</span><span class="p">.</span><span class="na">getEndpoint</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="5-conditional-annotations">5. Conditional Annotations<a class="headerlink" href="#5-conditional-annotations" title="Permanent link">&para;</a></h2>
+<h3 id="common-conditions">Common Conditions<a class="headerlink" href="#common-conditions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@ConditionalOnClass</code></td>
+<td>Class present on classpath</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnMissingClass</code></td>
+<td>Class absent</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnBean</code></td>
+<td>Bean present in context</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnMissingBean</code></td>
+<td>Bean absent</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnProperty</code></td>
+<td>Property matches</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnResource</code></td>
+<td>Resource exists</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnWebApplication</code></td>
+<td>Web app</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnNotWebApplication</code></td>
+<td>Non-web</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnExpression</code></td>
+<td>SpEL true</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnJava</code></td>
+<td>Java version matches</td>
+</tr>
+<tr>
+<td><code>@ConditionalOnSingleCandidate</code></td>
+<td>Exactly one bean</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="nd">@ConditionalOnClass</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"com.example.Feature"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Feature</span><span class="w"> </span><span class="nf">feature</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Feature</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Bean</span>
+<span class="nd">@ConditionalOnMissingBean</span><span class="p">(</span><span class="n">EmailService</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">EmailService</span><span class="w"> </span><span class="nf">defaultEmailService</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NoopEmailService</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Bean</span>
+<span class="nd">@ConditionalOnProperty</span><span class="p">(</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"feature.x.enabled"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">havingValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"true"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">matchIfMissing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">XFeature</span><span class="w"> </span><span class="nf">xFeature</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">XFeature</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Bean</span>
+<span class="nd">@ConditionalOnWebApplication</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConditionalOnWebApplication</span><span class="p">.</span><span class="na">Type</span><span class="p">.</span><span class="na">SERVLET</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">ServletFilter</span><span class="w"> </span><span class="nf">servletFilter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="conditional-custom">@Conditional (custom)<a class="headerlink" href="#conditional-custom" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OnProdEnvironment</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Condition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">matches</span><span class="p">(</span><span class="n">ConditionContext</span><span class="w"> </span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="n">AnnotatedTypeMetadata</span><span class="w"> </span><span class="n">md</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">ctx</span><span class="p">.</span><span class="na">getEnvironment</span><span class="p">().</span><span class="na">getActiveProfiles</span><span class="p">()).</span><span class="na">contains</span><span class="p">(</span><span class="s">"prod"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Bean</span>
+<span class="nd">@Conditional</span><span class="p">(</span><span class="n">OnProdEnvironment</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Cache</span><span class="w"> </span><span class="nf">distributedCache</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="condition-ordering">Condition Ordering<a class="headerlink" href="#condition-ordering" title="Permanent link">&para;</a></h3>
+<p>Multiple conditions on a bean are <strong>AND</strong>-ed.</p>
+<h3 id="common-patterns-in-auto-config">Common Patterns in Auto-Config<a class="headerlink" href="#common-patterns-in-auto-config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@AutoConfiguration</span>
+<span class="nd">@ConditionalOnWebApplication</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SERVLET</span><span class="p">)</span>
+<span class="nd">@ConditionalOnClass</span><span class="p">(</span><span class="n">DispatcherServlet</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="nd">@ConditionalOnMissingBean</span><span class="p">(</span><span class="n">DispatcherServlet</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebMvcAutoConfiguration</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="6-starters">6. Starters<a class="headerlink" href="#6-starters" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-a-starter">What is a Starter?<a class="headerlink" href="#what-is-a-starter" title="Permanent link">&para;</a></h3>
+<p>A <strong>starter</strong> is a POM that aggregates dependencies needed for a feature. You add one starter → all transitive deps arrive → auto-config kicks in.</p>
+<h3 id="core-starters">Core Starters<a class="headerlink" href="#core-starters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Starter</th>
+<th>Provides</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spring-boot-starter</code></td>
+<td>Core (Spring, logging, autoconfig)</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-web</code></td>
+<td>MVC + Tomcat + Jackson + validation</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-webflux</code></td>
+<td>Reactive web</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-data-jpa</code></td>
+<td>Hibernate + Spring Data JPA</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-data-jdbc</code></td>
+<td>Spring Data JDBC</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-data-mongodb</code></td>
+<td>MongoDB</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-data-redis</code></td>
+<td>Redis + Lettuce</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-security</code></td>
+<td>Spring Security</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-validation</code></td>
+<td>Hibernate Validator</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-aop</code></td>
+<td>Spring AOP + AspectJ</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-actuator</code></td>
+<td>Actuator endpoints</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-test</code></td>
+<td>JUnit 5, Mockito, AssertJ, MockMvc</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-thymeleaf</code></td>
+<td>Thymeleaf view</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-batch</code></td>
+<td>Spring Batch</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-amqp</code></td>
+<td>RabbitMQ</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-kafka</code></td>
+<td>Kafka</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-mail</code></td>
+<td>JavaMail</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-quartz</code></td>
+<td>Quartz Scheduler</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-cache</code></td>
+<td>Spring Cache abstraction</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-logging</code></td>
+<td>Logback</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-json</code></td>
+<td>Jackson</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-tomcat</code></td>
+<td>Embedded Tomcat</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-jetty</code></td>
+<td>Embedded Jetty</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-undertow</code></td>
+<td>Embedded Undertow</td>
+</tr>
+<tr>
+<td><code>spring-boot-starter-parent</code></td>
+<td>Parent POM (plugin mgmt)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dependency-tree-web-starter">Dependency Tree (web starter)<a class="headerlink" href="#dependency-tree-web-starter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>spring-boot-starter-web
+├── spring-boot-starter
+├── spring-boot-starter-json (Jackson)
+├── spring-boot-starter-tomcat
+├── spring-web
+└── spring-webmvc
+</code></pre></div>
+<h3 id="creating-a-custom-starter">Creating a Custom Starter<a class="headerlink" href="#creating-a-custom-starter" title="Permanent link">&para;</a></h3>
+<p><strong>Convention:</strong>
+- <code>&lt;name&gt;-spring-boot-autoconfigure</code> — code + auto-config
+- <code>&lt;name&gt;-spring-boot-starter</code> — empty POM pulling in the above</p>
+<p><strong>Auto-config module POM:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-autoconfigure<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- library deps --&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div>
+<p><strong>Auto-config class:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@AutoConfiguration</span>
+<span class="nd">@ConditionalOnClass</span><span class="p">(</span><span class="n">MyClient</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="nd">@EnableConfigurationProperties</span><span class="p">(</span><span class="n">MyClientProperties</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyClientAutoConfiguration</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@ConditionalOnMissingBean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">MyClient</span><span class="w"> </span><span class="nf">myClient</span><span class="p">(</span><span class="n">MyClientProperties</span><span class="w"> </span><span class="n">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyClient</span><span class="p">(</span><span class="n">props</span><span class="p">.</span><span class="na">getEndpoint</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Register in imports file:</strong></p>
+<div class="highlight"><pre><span></span><code># META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+com.example.MyClientAutoConfiguration
+</code></pre></div>
+<p><strong>Starter POM:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>myclient-spring-boot-autoconfigure<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div>
+<p>Consumers add only the starter.</p>
+<h3 id="excluding-transitive-deps">Excluding Transitive Deps<a class="headerlink" href="#excluding-transitive-deps" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;exclusions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;exclusion&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/exclusion&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/exclusions&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="cm">&lt;!-- Add Jetty instead --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-jetty<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="7-embedded-servers">7. Embedded Servers<a class="headerlink" href="#7-embedded-servers" title="Permanent link">&para;</a></h2>
+<h3 id="default-tomcat">Default: Tomcat<a class="headerlink" href="#default-tomcat" title="Permanent link">&para;</a></h3>
+<p>Included via <code>spring-boot-starter-web</code>. No external installation needed.</p>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">server.port</span><span class="o">=</span><span class="s">8080</span>
+<span class="na">server.address</span><span class="o">=</span><span class="s">0.0.0.0</span>
+<span class="na">server.servlet.context-path</span><span class="o">=</span><span class="s">/api</span>
+<span class="na">server.servlet.session.timeout</span><span class="o">=</span><span class="s">30m</span>
+<span class="na">server.compression.enabled</span><span class="o">=</span><span class="s">true</span>
+<span class="na">server.compression.min-response-size</span><span class="o">=</span><span class="s">1024</span>
+<span class="na">server.http2.enabled</span><span class="o">=</span><span class="s">true</span>
+<span class="na">server.ssl.enabled</span><span class="o">=</span><span class="s">true</span>
+<span class="na">server.ssl.key-store</span><span class="o">=</span><span class="s">classpath:keystore.p12</span>
+<span class="na">server.ssl.key-store-password</span><span class="o">=</span><span class="s">secret</span>
+<span class="na">server.ssl.key-store-type</span><span class="o">=</span><span class="s">PKCS12</span>
+<span class="na">server.tomcat.max-threads</span><span class="o">=</span><span class="s">200</span>
+<span class="na">server.tomcat.min-spare-threads</span><span class="o">=</span><span class="s">10</span>
+<span class="na">server.tomcat.accept-count</span><span class="o">=</span><span class="s">100</span>
+<span class="na">server.tomcat.max-connections</span><span class="o">=</span><span class="s">8192</span>
+<span class="na">server.tomcat.basedir</span><span class="o">=</span><span class="s">/tmp/tomcat</span>
+<span class="na">server.tomcat.accesslog.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="switching-servers">Switching Servers<a class="headerlink" href="#switching-servers" title="Permanent link">&para;</a></h3>
+<p><strong>Remove Tomcat, add Jetty:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;exclusions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;exclusion&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/exclusion&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/exclusions&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-jetty<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Same for <code>spring-boot-starter-undertow</code>.</p>
+<h3 id="server-selection-table">Server Selection Table<a class="headerlink" href="#server-selection-table" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Server</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tomcat</td>
+<td>Default, mature, well-known</td>
+<td>Slightly slower</td>
+</tr>
+<tr>
+<td>Jetty</td>
+<td>Lightweight, async-friendly</td>
+<td>Less default tooling</td>
+</tr>
+<tr>
+<td>Undertow</td>
+<td>Fast, low memory, JBoss</td>
+<td>Smaller community</td>
+</tr>
+<tr>
+<td>Netty (WebFlux)</td>
+<td>Reactive, non-blocking</td>
+<td>Not for Servlet</td>
+</tr>
+</tbody>
+</table>
+<h3 id="war-deployment-traditional">WAR Deployment (Traditional)<a class="headerlink" href="#war-deployment-traditional" title="Permanent link">&para;</a></h3>
+<p>If you must deploy to an external servlet container:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;packaging&gt;</span>war<span class="nt">&lt;/packaging&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ServletInitializer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpringBootServletInitializer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="n">SpringApplicationBuilder</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">SpringApplicationBuilder</span><span class="w"> </span><span class="n">builder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">sources</span><span class="p">(</span><span class="n">MyApp</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="8-spring-initializr">8. Spring Initializr<a class="headerlink" href="#8-spring-initializr" title="Permanent link">&para;</a></h2>
+<h3 id="web-ui">Web UI<a class="headerlink" href="#web-ui" title="Permanent link">&para;</a></h3>
+<p><strong>https://start.spring.io</strong></p>
+<p>Options:
+- Project: Maven / Gradle
+- Language: Java / Kotlin / Groovy
+- Spring Boot version
+- Group, Artifact, Name, Package
+- Packaging: Jar / War
+- Java version
+- Dependencies (Starters)</p>
+<p>Generates a ready-to-import ZIP.</p>
+<h3 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>https://start.spring.io/starter.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="nv">dependencies</span><span class="o">=</span>web,data-jpa,security,actuator<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="nv">type</span><span class="o">=</span>maven-project<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="nv">language</span><span class="o">=</span>java<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="nv">bootVersion</span><span class="o">=</span><span class="m">3</span>.2.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="nv">javaVersion</span><span class="o">=</span><span class="m">17</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="nv">groupId</span><span class="o">=</span>com.example<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="nv">artifactId</span><span class="o">=</span>demo<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="nv">name</span><span class="o">=</span>demo<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="nv">packageName</span><span class="o">=</span>com.example.demo<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>demo.zip
+</code></pre></div>
+<h3 id="via-ide">Via IDE<a class="headerlink" href="#via-ide" title="Permanent link">&para;</a></h3>
+<ul>
+<li>IntelliJ IDEA → New Project → Spring Initializr</li>
+<li>STS → New → Spring Starter Project</li>
+<li>VS Code → Spring Initializr extension</li>
+</ul>
+<h3 id="generated-structure-maven">Generated Structure (Maven)<a class="headerlink" href="#generated-structure-maven" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>demo/
+├── mvnw, mvnw.cmd
+├── pom.xml
+├── .gitignore
+└── src/
+    ├── main/
+    │   ├── java/com/example/demo/
+    │   │   └── DemoApplication.java
+    │   └── resources/
+    │       ├── application.properties
+    │       ├── static/
+    │       └── templates/
+    └── test/
+        └── java/com/example/demo/
+            └── DemoApplicationTests.java
+</code></pre></div>
+<hr />
+<h2 id="9-spring-boot-cli">9. Spring Boot CLI<a class="headerlink" href="#9-spring-boot-cli" title="Permanent link">&para;</a></h2>
+<p>A command-line tool for rapid prototyping with Groovy.</p>
+<h3 id="install-sdkman">Install (SDKMAN)<a class="headerlink" href="#install-sdkman" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sdk<span class="w"> </span>install<span class="w"> </span>springboot
+</code></pre></div>
+<h3 id="run-a-script">Run a Script<a class="headerlink" href="#run-a-script" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// app.groovy</span>
+<span class="nd">@RestController</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Hello</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nd">@GetMapping</span><span class="o">(</span><span class="s2">"/"</span><span class="o">)</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">hi</span><span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s2">"Hello, Boot CLI"</span><span class="w"> </span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>spring<span class="w"> </span>run<span class="w"> </span>app.groovy
+</code></pre></div>
+<h3 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>spring<span class="w"> </span>run<span class="w"> </span>app.groovy<span class="w">          </span><span class="c1"># run a script</span>
+spring<span class="w"> </span><span class="nb">test</span><span class="w"> </span>app.groovy<span class="w">         </span><span class="c1"># run tests</span>
+spring<span class="w"> </span>shell<span class="w">                   </span><span class="c1"># interactive shell</span>
+spring<span class="w"> </span>init<span class="w"> </span>-d<span class="o">=</span>web<span class="w"> </span>demo<span class="w">        </span><span class="c1"># generate project</span>
+spring<span class="w"> </span>encodepassword<span class="w"> </span>secret<span class="w">   </span><span class="c1"># BCrypt encode</span>
+</code></pre></div>
+<p><strong>Use cases:</strong> Demos, quick POCs, learning. Rare in production.</p>
+<hr />
+<h2 id="10-applicationproperties-vs-yml">10. application.properties vs yml<a class="headerlink" href="#10-applicationproperties-vs-yml" title="Permanent link">&para;</a></h2>
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">server.port</span><span class="o">=</span><span class="s">8080</span>
+<span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://localhost:5432/mydb</span>
+<span class="na">spring.datasource.username</span><span class="o">=</span><span class="s">admin</span>
+<span class="na">spring.jpa.show-sql</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">datasource</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jdbc:postgresql://localhost:5432/mydb</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<span class="w">  </span><span class="nt">jpa</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">show-sql</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h3 id="comparison">Comparison<a class="headerlink" href="#comparison" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Properties</th>
+<th>YAML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Structure</td>
+<td>Flat</td>
+<td>Hierarchical</td>
+</tr>
+<tr>
+<td>Readability</td>
+<td>OK for few</td>
+<td>Better for nested</td>
+</tr>
+<tr>
+<td>Duplicate keys</td>
+<td>Allowed (last wins)</td>
+<td>Error</td>
+</tr>
+<tr>
+<td>Multi-doc</td>
+<td>❌</td>
+<td>✅ (<code>---</code> separator)</td>
+</tr>
+<tr>
+<td>Profiles</td>
+<td>Separate files</td>
+<td>Multi-doc supported</td>
+</tr>
+<tr>
+<td>Lists</td>
+<td>Awkward</td>
+<td>Natural</td>
+</tr>
+<tr>
+<td>Tooling</td>
+<td>Universal</td>
+<td>Requires SnakeYAML</td>
+</tr>
+</tbody>
+</table>
+<h3 id="multi-document-yaml">Multi-Document YAML<a class="headerlink" href="#multi-document-yaml" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># application.yml</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">profiles</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
+
+<span class="nn">---</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">on-profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
+<span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+
+<span class="nn">---</span>
+<span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">on-profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
+<span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div>
+<h3 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># YAML</span>
+<span class="nt">myapp</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host2</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># properties</span>
+<span class="na">myapp.hosts[0]</span><span class="o">=</span><span class="s">host1</span>
+<span class="na">myapp.hosts[1]</span><span class="o">=</span><span class="s">host2</span>
+</code></pre></div>
+<h3 id="profile-specific-files">Profile-Specific Files<a class="headerlink" href="#profile-specific-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>application.properties           # base
+application-dev.properties       # dev overrides
+application-prod.properties      # prod overrides
+</code></pre></div>
+<p>Same for <code>.yml</code>.</p>
+<h3 id="which-to-choose">Which to Choose?<a class="headerlink" href="#which-to-choose" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>YAML</strong> for complex/nested config</li>
+<li><strong>Properties</strong> for simple, flat configs</li>
+<li>Don't mix both for the same app (confusing)</li>
+<li>Pick based on team preference</li>
+</ul>
+<h3 id="special-property-files">Special Property Files<a class="headerlink" href="#special-property-files" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>application.properties/yml</code></td>
+<td>Main</td>
+</tr>
+<tr>
+<td><code>application-{profile}.properties/yml</code></td>
+<td>Per profile</td>
+</tr>
+<tr>
+<td><code>bootstrap.properties/yml</code></td>
+<td>Spring Cloud Config (pre-Spring Boot 2.4)</td>
+</tr>
+<tr>
+<td><code>spring.factories</code></td>
+<td>Auto-config (2.x)</td>
+</tr>
+<tr>
+<td><code>AutoConfiguration.imports</code></td>
+<td>Auto-config (3.x+)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="property-placeholders">Property Placeholders<a class="headerlink" href="#property-placeholders" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">app.name</span><span class="o">=</span><span class="s">Demo</span>
+<span class="na">app.description</span><span class="o">=</span><span class="s">${app.name} is awesome</span>
+<span class="na">app.random</span><span class="o">=</span><span class="s">${random.uuid}</span>
+<span class="na">app.int</span><span class="o">=</span><span class="s">${random.int(1,100)}</span>
+</code></pre></div>
+<h3 id="command-line-overrides">Command-Line Overrides<a class="headerlink" href="#command-line-overrides" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>java<span class="w"> </span>-jar<span class="w"> </span>app.jar<span class="w"> </span>--server.port<span class="o">=</span><span class="m">9090</span><span class="w"> </span>--spring.profiles.active<span class="o">=</span>prod
+</code></pre></div>
+<hr />
+<h2 id="11-devtools">11. DevTools<a class="headerlink" href="#11-devtools" title="Permanent link">&para;</a></h2>
+<h3 id="add-dependency">Add Dependency<a class="headerlink" href="#add-dependency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-devtools<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="w">    </span><span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Automatic restart</strong></td>
+<td>Restart on classpath change</td>
+</tr>
+<tr>
+<td><strong>LiveReload</strong></td>
+<td>Browser auto-refresh (needs extension)</td>
+</tr>
+<tr>
+<td><strong>Property defaults</strong></td>
+<td>Disables caching for templates</td>
+</tr>
+<tr>
+<td><strong>H2 console auto-config</strong></td>
+<td>When H2 present</td>
+</tr>
+<tr>
+<td><strong>Global settings</strong></td>
+<td><code>~/.spring-boot-devtools.properties</code></td>
+</tr>
+<tr>
+<td><strong>Remote debug tunnel</strong></td>
+<td>For remote apps</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-restart-works">How Restart Works<a class="headerlink" href="#how-restart-works" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Two classloaders: base (deps) + restart (your classes)</li>
+<li>Only your classes reload — fast</li>
+<li>Trigger: classpath change (IDE compile or file save)</li>
+</ul>
+<h3 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Disable restart</span>
+<span class="na">spring.devtools.restart.enabled</span><span class="o">=</span><span class="s">false</span>
+
+<span class="c1"># Exclude paths from restart trigger</span>
+<span class="na">spring.devtools.restart.exclude</span><span class="o">=</span><span class="s">static/**,public/**</span>
+
+<span class="c1"># Additional watch paths</span>
+<span class="na">spring.devtools.restart.additional-paths</span><span class="o">=</span><span class="s">../shared</span>
+
+<span class="c1"># Trigger file</span>
+<span class="na">spring.devtools.restart.trigger-file</span><span class="o">=</span><span class="s">.trigger</span>
+</code></pre></div>
+<h3 id="production-safety">Production Safety<a class="headerlink" href="#production-safety" title="Permanent link">&para;</a></h3>
+<p>DevTools is <strong>disabled</strong> when running a packaged JAR (<code>java -jar</code>). Property defaults don't apply. LiveReload server doesn't start.</p>
+<h3 id="caveats">Caveats<a class="headerlink" href="#caveats" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Not for production</li>
+<li>IDE must compile automatically</li>
+<li>Some libraries (Spring Security) need re-login on restart</li>
+<li>Doesn't reload <code>application.properties</code> in all cases (restart needed)</li>
+</ul>
+<hr />
+<h2 id="12-versioning-release-cadence">12. Versioning &amp; Release Cadence<a class="headerlink" href="#12-versioning-release-cadence" title="Permanent link">&para;</a></h2>
+<h3 id="versioning-scheme">Versioning Scheme<a class="headerlink" href="#versioning-scheme" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Major</strong> — Spring Boot 3.x (Spring Framework 6, Jakarta EE 9+)</li>
+<li><strong>Minor</strong> — 3.1, 3.2 (new features)</li>
+<li><strong>Patch</strong> — 3.2.1 (bug/security fixes)</li>
+</ul>
+<h3 id="support-windows">Support Windows<a class="headerlink" href="#support-windows" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Each minor version: ~13 months of OSS support</li>
+<li>Extended commercial support available</li>
+</ul>
+<h3 id="major-milestones">Major Milestones<a class="headerlink" href="#major-milestones" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Released</th>
+<th>Highlights</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>2014</td>
+<td>Initial</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>2017</td>
+<td>LTS-ish</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>2018</td>
+<td>WebFlux, Kotlin, Micrometer</td>
+</tr>
+<tr>
+<td>2.1–2.3</td>
+<td>2018–2020</td>
+<td>Refinements</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>2020</td>
+<td>Config data API, profile groups</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>2021</td>
+<td></td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>2021</td>
+<td>Circular refs disabled</td>
+</tr>
+<tr>
+<td>2.7</td>
+<td>2022</td>
+<td>Last 2.x</td>
+</tr>
+<tr>
+<td><strong>3.0</strong></td>
+<td>Nov 2022</td>
+<td>Jakarta EE 9, Java 17, AOT, native</td>
+</tr>
+<tr>
+<td><strong>3.1</strong></td>
+<td>2023</td>
+<td>Docker Compose, SSL bundle</td>
+</tr>
+<tr>
+<td><strong>3.2</strong></td>
+<td>2023</td>
+<td>Virtual threads, RestClient</td>
+</tr>
+<tr>
+<td><strong>3.3</strong></td>
+<td>2024</td>
+<td>CDS, observability</td>
+</tr>
+<tr>
+<td><strong>3.4</strong></td>
+<td>2024</td>
+<td>Structured logging</td>
+</tr>
+<tr>
+<td><strong>3.5</strong></td>
+<td>2025</td>
+<td>Extended support</td>
+</tr>
+</tbody>
+</table>
+<h3 id="choosing-a-version">Choosing a Version<a class="headerlink" href="#choosing-a-version" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Latest stable</strong> for new projects</li>
+<li><strong>LTS-like</strong> for conservative teams (e.g., 3.2.x)</li>
+<li>Match Spring Cloud, Spring Security versions</li>
+<li>Always check <a href="https://start.spring.io">start.spring.io</a> for supported combos</li>
+</ul>
+<h3 id="dependency-management">Dependency Management<a class="headerlink" href="#dependency-management" title="Permanent link">&para;</a></h3>
+<p>Spring Boot's parent POM pins versions of ~300 libraries. Your app declares versions only for those not managed.</p>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- No version needed --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="cm">&lt;!-- Override managed version (rare) --&gt;</span>
+<span class="nt">&lt;properties&gt;</span>
+<span class="w">    </span><span class="nt">&lt;jackson.version&gt;</span>2.17.0<span class="nt">&lt;/jackson.version&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="13-migrating-from-spring-to-spring-boot">13. Migrating from Spring to Spring Boot<a class="headerlink" href="#13-migrating-from-spring-to-spring-boot" title="Permanent link">&para;</a></h2>
+<h3 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Assess</strong> — inventory XML configs, dependencies, servlet container</li>
+<li><strong>Add Spring Boot Parent POM</strong> (or BOM)</li>
+<li><strong>Convert to Starters</strong> — replace explicit deps</li>
+<li><strong>Consolidate config</strong> — into <code>application.properties/yml</code></li>
+<li><strong>Replace XML with auto-config</strong> — remove boilerplate</li>
+<li><strong>Add <code>@SpringBootApplication</code></strong></li>
+<li><strong>Migrate web.xml</strong> — use embedded server or <code>SpringBootServletInitializer</code></li>
+<li><strong>Test</strong> — full integration</li>
+</ol>
+<h3 id="example-migration">Example Migration<a class="headerlink" href="#example-migration" title="Permanent link">&para;</a></h3>
+<p><strong>Before (Spring):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableWebMvc</span>
+<span class="nd">@ComponentScan</span><span class="p">(</span><span class="s">"com.example"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableTransactionManagement</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DataConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Bean</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">ds</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nd">@Bean</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">JdbcTemplate</span><span class="w"> </span><span class="nf">jdbc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nd">@Bean</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="nf">tx</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebAppInitializer</span><span class="w"> </span>
+<span class="w">      </span><span class="kd">extends</span><span class="w"> </span><span class="n">AbstractAnnotationConfigDispatcherServletInitializer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>After (Spring Boot):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyApp</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">SpringApplication</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">MyApp</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>application.properties</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:...</span>
+<span class="na">spring.datasource.username</span><span class="o">=</span><span class="s">admin</span>
+</code></pre></div>
+<p>Auto-config provides <code>DataSource</code>, <code>JdbcTemplate</code>, <code>PlatformTransactionManager</code>, <code>DispatcherServlet</code>, etc.</p>
+<h3 id="common-migration-issues">Common Migration Issues<a class="headerlink" href="#common-migration-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>javax.*</code> → <code>jakarta.*</code> (Spring Boot 3)</li>
+<li>Servlet container features not available</li>
+<li>Custom <code>web.xml</code> mappings</li>
+<li>Legacy XML security config → Java config</li>
+<li>Filter/servlet registrations</li>
+</ul>
+<hr />
+<h2 id="14-interview-questions">14. Interview Questions<a class="headerlink" href="#14-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-spring-boot">Q1. What is Spring Boot?<a class="headerlink" href="#q1-what-is-spring-boot" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring Boot is an opinionated framework built on Spring that simplifies setup via auto-configuration, starter dependencies, embedded servers, and production-ready features. It eliminates XML and boilerplate, letting you focus on business logic.</p>
+<h3 id="q2-what-does-springbootapplication-do">Q2. What does @SpringBootApplication do?<a class="headerlink" href="#q2-what-does-springbootapplication-do" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> It combines <code>@SpringBootConfiguration</code> (= <code>@Configuration</code>), <code>@EnableAutoConfiguration</code>, and <code>@ComponentScan</code>. It marks the main class and enables auto-config + component scanning of the base package and subpackages.</p>
+<h3 id="q3-how-does-auto-configuration-work">Q3. How does auto-configuration work?<a class="headerlink" href="#q3-how-does-auto-configuration-work" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring Boot inspects the classpath, existing beans, and properties. Auto-configuration classes (listed in <code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code> in Spring Boot 3) are conditionally applied via <code>@ConditionalOnClass</code>, <code>@ConditionalOnMissingBean</code>, etc. This produces beans matching the environment. You override any bean by defining your own.</p>
+<h3 id="q4-how-do-you-disable-auto-configuration">Q4. How do you disable auto-configuration?<a class="headerlink" href="#q4-how-do-you-disable-auto-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>@SpringBootApplication(exclude = XyzAutoConfiguration.class)</code> or property <code>spring.autoconfigure.exclude=...</code>. Or define a bean of the same type (<code>@ConditionalOnMissingBean</code> yields).</p>
+<h3 id="q5-what-are-starters">Q5. What are starters?<a class="headerlink" href="#q5-what-are-starters" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Starters are dependency descriptors (POMs) bundling libraries for a feature. E.g., <code>spring-boot-starter-web</code> pulls in Tomcat, Spring MVC, Jackson, validation. One dependency → all needed libs → auto-config triggers.</p>
+<h3 id="q6-difference-between-spring-boot-starter-web-and-spring-boot-starter-webflux">Q6. Difference between spring-boot-starter-web and spring-boot-starter-webflux?<a class="headerlink" href="#q6-difference-between-spring-boot-starter-web-and-spring-boot-starter-webflux" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>web</code> is Servlet-based, blocking, uses Tomcat. <code>webflux</code> is reactive, non-blocking, uses Netty (or other reactive server). Choose <code>web</code> for traditional APIs; <code>webflux</code> for high-concurrency reactive apps.</p>
+<h3 id="q7-embedded-server-vs-external">Q7. Embedded server vs external?<a class="headerlink" href="#q7-embedded-server-vs-external" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring Boot embeds Tomcat/Jetty/Undertow, so the app runs as a standalone JAR (<code>java -jar app.jar</code>). This simplifies deployment (no external container). External deployment is still possible with <code>packaging=war</code> + <code>SpringBootServletInitializer</code>.</p>
+<h3 id="q8-how-to-change-the-server-port">Q8. How to change the server port?<a class="headerlink" href="#q8-how-to-change-the-server-port" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>server.port=9090</code> in <code>application.properties</code>, or <code>--server.port=9090</code> on command line, or via env var <code>SERVER_PORT=9090</code>.</p>
+<h3 id="q9-difference-between-applicationproperties-and-applicationyml">Q9. Difference between application.properties and application.yml?<a class="headerlink" href="#q9-difference-between-applicationproperties-and-applicationyml" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>.properties</code> is flat <code>key=value</code>; <code>.yml</code> is hierarchical. YAML handles nested data and lists more naturally and supports multi-document (multi-profile) files. Both load identically; choose one style.</p>
+<h3 id="q10-how-do-profiles-work-in-spring-boot">Q10. How do profiles work in Spring Boot?<a class="headerlink" href="#q10-how-do-profiles-work-in-spring-boot" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>spring.profiles.active=dev</code> activates a profile. Profile-specific files (<code>application-dev.properties</code>) are loaded and override base. Beans can be conditional via <code>@Profile("dev")</code> or <code>@ConditionalOnProperty</code>. Spring Boot 2.4+ supports profile groups.</p>
+<h3 id="q11-how-do-you-override-a-property">Q11. How do you override a property?<a class="headerlink" href="#q11-how-do-you-override-a-property" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Precedence (high to low, mostly):
+1. DevTools global settings
+2. <code>@TestPropertySource</code>
+3. Command-line args
+4. <code>SPRING_APPLICATION_JSON</code>
+5. Servlet config/context params
+6. JNDI
+7. Java system properties
+8. OS environment variables
+9. <code>application-{profile}.properties</code>
+10. <code>application.properties</code>
+11. <code>@PropertySource</code>
+12. Default properties</p>
+<h3 id="q12-what-is-devtools">Q12. What is DevTools?<a class="headerlink" href="#q12-what-is-devtools" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Development-only helper providing automatic restart on classpath changes, LiveReload, sensible development-time defaults (disabled template caching), and H2 console auto-config. Disabled in production (<code>java -jar</code>).</p>
+<h3 id="q13-how-to-create-a-fatexecutable-jar">Q13. How to create a fat/executable JAR?<a class="headerlink" href="#q13-how-to-create-a-fatexecutable-jar" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>spring-boot-maven-plugin</code> (<code>repackage</code> goal). The plugin bundles your classes + dependencies into a single JAR with a launcher that creates a classloader hierarchy. <code>java -jar app.jar</code> runs it.</p>
+<h3 id="q14-what-is-the-spring-initializr">Q14. What is the Spring Initializr?<a class="headerlink" href="#q14-what-is-the-spring-initializr" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A project generator (start.spring.io) that produces a skeleton Spring Boot project with selected dependencies. Accessible via web, IDE, or command line.</p>
+<h3 id="q15-how-to-view-what-auto-config-applied">Q15. How to view what auto-config applied?<a class="headerlink" href="#q15-how-to-view-what-auto-config-applied" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Run with <code>--debug</code> or set <code>debug=true</code>; Spring Boot logs a <strong>Condition Evaluation Report</strong> listing positive/negative matches and reasons. Actuator's <code>/actuator/conditions</code> endpoint also exposes it.</p>
+<h3 id="q16-how-to-define-custom-auto-config">Q16. How to define custom auto-config?<a class="headerlink" href="#q16-how-to-define-custom-auto-config" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong>
+1. Create <code>@AutoConfiguration</code> class with conditions
+2. Add to <code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code> (Spring Boot 3) or <code>spring.factories</code> (2.x)
+3. Package as library/starter</p>
+<h3 id="q17-difference-between-configuration-and-springbootconfiguration">Q17. Difference between @Configuration and @SpringBootConfiguration?<a class="headerlink" href="#q17-difference-between-configuration-and-springbootconfiguration" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>@SpringBootConfiguration</code> is a specialization of <code>@Configuration</code>, used to mark the main application class. There should be only one per application; tests find it for <code>@SpringBootTest</code>.</p>
+<h3 id="q18-what-happens-if-two-auto-configs-define-the-same-bean">Q18. What happens if two auto-configs define the same bean?<a class="headerlink" href="#q18-what-happens-if-two-auto-configs-define-the-same-bean" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring Boot applies ordering (<code>@AutoConfigureBefore/After</code>) and <code>@ConditionalOnMissingBean</code>. If user's bean exists, auto-config backs off. If both are auto-configs and both apply, conflicts cause startup failure — resolved by ordering or explicit exclusion.</p>
+<h3 id="q19-how-to-change-logging-level">Q19. How to change logging level?<a class="headerlink" href="#q19-how-to-change-logging-level" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>logging.level.com.example=DEBUG</code> in <code>application.properties</code>, or <code>--logging.level.com.example=DEBUG</code>, or Actuator's <code>/actuator/loggers/com.example</code> POST endpoint.</p>
+<h3 id="q20-how-does-spring-boot-work-without-webxml">Q20. How does Spring Boot work without web.xml?<a class="headerlink" href="#q20-how-does-spring-boot-work-without-webxml" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring Boot uses Servlet 3+ programmatic registration (or embedded server). <code>DispatcherServlet</code> and filters are registered via <code>ServletContextInitializer</code> beans by auto-config. No <code>web.xml</code> needed.</p>
+<h3 id="q21-can-you-use-spring-boot-with-war-packaging">Q21. Can you use Spring Boot with WAR packaging?<a class="headerlink" href="#q21-can-you-use-spring-boot-with-war-packaging" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes — set <code>&lt;packaging&gt;war&lt;/packaging&gt;</code>, mark <code>spring-boot-starter-tomcat</code> as <code>provided</code>, and extend <code>SpringBootServletInitializer</code> to configure the app for the container. Rarely needed today.</p>
+<h3 id="q22-difference-between-a-starter-and-a-library">Q22. Difference between a starter and a library?<a class="headerlink" href="#q22-difference-between-a-starter-and-a-library" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A starter is a <strong>dependency-only POM</strong> that pulls in libraries + auto-config. It contains no code. A library is actual code. Starters make setup easy; libraries do the work.</p>
+<h3 id="q23-what-is-enableautoconfiguration">Q23. What is <code>@EnableAutoConfiguration</code>?<a class="headerlink" href="#q23-what-is-enableautoconfiguration" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A meta-annotation that enables Spring Boot's auto-configuration mechanism. Included by <code>@SpringBootApplication</code>. It imports <code>AutoConfigurationImportSelector</code> which reads auto-configuration candidates.</p>
+<h3 id="q24-how-do-you-exclude-a-starters-transitive-dependency">Q24. How do you exclude a starter's transitive dependency?<a class="headerlink" href="#q24-how-do-you-exclude-a-starters-transitive-dependency" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>&lt;exclusions&gt;</code> in Maven or <code>exclude</code> in Gradle. Example: exclude <code>spring-boot-starter-tomcat</code> from <code>spring-boot-starter-web</code>, then add <code>spring-boot-starter-jetty</code>.</p>
+<h3 id="q25-how-does-spring-boot-know-which-auto-config-to-apply">Q25. How does Spring Boot know which auto-config to apply?<a class="headerlink" href="#q25-how-does-spring-boot-know-which-auto-config-to-apply" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> It reads a curated list from <code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code> (Spring Boot 3) or <code>META-INF/spring.factories</code> (2.x). Each candidate is filtered by conditions (classpath, beans, properties, etc.).</p>
+<hr />
+<h2 id="15-cheat-sheet">15. Cheat Sheet<a class="headerlink" href="#15-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="main-class">Main Class<a class="headerlink" href="#main-class" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">App</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">SpringApplication</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">App</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="common-properties">Common Properties<a class="headerlink" href="#common-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">server.port</span><span class="o">=</span><span class="s">8080</span>
+<span class="na">server.servlet.context-path</span><span class="o">=</span><span class="s">/</span>
+<span class="na">spring.application.name</span><span class="o">=</span><span class="s">my-app</span>
+<span class="na">spring.profiles.active</span><span class="o">=</span><span class="s">dev</span>
+<span class="na">logging.level.root</span><span class="o">=</span><span class="s">INFO</span>
+<span class="na">logging.level.com.example</span><span class="o">=</span><span class="s">DEBUG</span>
+<span class="na">debug</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="starters-most-used">Starters (Most Used)<a class="headerlink" href="#starters-most-used" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>web, webflux, data-jpa, data-jdbc, security, validation,
+aop, actuator, test, thymeleaf, batch, amqp, kafka,
+redis, mongodb, quartz, cache, mail
+</code></pre></div>
+<h3 id="conditional-annotations">Conditional Annotations<a class="headerlink" href="#conditional-annotations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>@ConditionalOnClass
+@ConditionalOnMissingClass
+@ConditionalOnBean
+@ConditionalOnMissingBean
+@ConditionalOnProperty
+@ConditionalOnResource
+@ConditionalOnWebApplication
+@ConditionalOnNotWebApplication
+@ConditionalOnExpression
+</code></pre></div>
+<h3 id="auto-config-files">Auto-Config Files<a class="headerlink" href="#auto-config-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Spring Boot 2.x: META-INF/spring.factories
+Spring Boot 3.x: META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+</code></pre></div>
+<h3 id="building-fat-jar">Building Fat JAR<a class="headerlink" href="#building-fat-jar" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>clean<span class="w"> </span>package
+java<span class="w"> </span>-jar<span class="w"> </span>target/app.jar
+</code></pre></div>
+<h3 id="override-auto-config">Override Auto-Config<a class="headerlink" href="#override-auto-config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span><span class="p">(</span><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceAutoConfiguration</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="na">spring.autoconfigure.exclude</span><span class="o">=</span><span class="s">org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration</span>
+</code></pre></div>
+<h3 id="debug-auto-config">Debug Auto-Config<a class="headerlink" href="#debug-auto-config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">debug</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="na">logging.level.org.springframework.boot.autoconfigure</span><span class="o">=</span><span class="s">DEBUG</span>
+</code></pre></div>
+<h3 id="actuator-endpoints-with-actuator-starter">Actuator Endpoints (with actuator starter)<a class="headerlink" href="#actuator-endpoints-with-actuator-starter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>/actuator/health
+/actuator/info
+/actuator/metrics
+/actuator/env
+/actuator/beans
+/actuator/mappings
+/actuator/conditions
+/actuator/loggers
+</code></pre></div>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>05_Spring_Transaction_Management.md</code></li>
+<li><strong>Next:</strong> <code>07_Spring_Boot_Starters.md</code></li>
+<li><strong>Related:</strong> <code>08_Spring_Boot_Configuration.md</code>, <code>09_Spring_Boot_Actuator.md</code></li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code> (§Spring Boot)</li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="./05_Spring_Transaction_Management.md">05_Spring_Transaction_Management.md</a></li>
+<li><strong>Next →:</strong> <a href="../07_Spring_Boot_Starters/">07_Spring_Boot_Starters.md</a></li>
+<li><strong>Related:</strong> <a href="./01_Spring_Framework_Core.md">01_Spring_Framework_Core.md</a>, <a href="../08_Spring_Boot_Configuration/">08_Spring_Boot_Configuration.md</a>, <a href="./16_Spring_Testing.md">16_Spring_Testing.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

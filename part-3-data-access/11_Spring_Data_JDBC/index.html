@@ -1,0 +1,3755 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Spring Data JDBC - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spring-data-jdbc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spring Data JDBC
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-spring-data-jdbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is Spring Data JDBC?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is Spring Data JDBC?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-its-not" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It's Not
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-spring-data-jdbc-vs-jpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spring Data JDBC vs JPA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Spring Data JDBC vs JPA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-jpa-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When JPA Wins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-spring-data-jdbc-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Spring Data JDBC Wins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aggregate-roots-ddd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Aggregate Roots &amp; DDD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Aggregate Roots &amp; DDD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ddd-aggregate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The DDD Aggregate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-data-jdbc-enforces-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Data JDBC Enforces This
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-setup-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Setup &amp; Dependencies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Setup &amp; Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maven
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable Repositories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-entity-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Entity Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Entity Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Entity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rules_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructor-binding-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructor Binding (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#immutable-with-records-boot-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Immutable with Records (Boot 3+)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#column" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Column
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Id Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedded-value-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedded Value Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-naming-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Naming Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-crudrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. CrudRepository
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. CrudRepository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crud-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CRUD Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save Semantics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagingandsortingrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PagingAndSortingRepository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-custom-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Custom Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Custom Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#derived-query-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derived Query Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-native-sql-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Query (Native SQL Only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifying-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modifying Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-for-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query for Projections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-for-aggregates-with-children" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query for Aggregates with Children
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#named-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Named Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-lookup-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Lookup Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Relationships
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Relationships">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-aggregate-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Aggregate Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-to-many-within-aggregate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-to-Many (within aggregate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-to-one-within-aggregate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-to-One (within aggregate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#many-to-many" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Many-to-Many
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-aggregate-reference-by-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-Aggregate Reference (by ID)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mappedcollection-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @MappedCollection Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletion-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deletion Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-lifecycle-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Lifecycle Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Lifecycle Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entity-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity Callbacks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auditing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-optimistic-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Optimistic Locking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Optimistic Locking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-when-to-choose-spring-data-jdbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. When to Choose Spring Data JDBC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. When to Choose Spring Data JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choose-spring-data-jdbc-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose Spring Data JDBC If
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choose-spring-data-jpa-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose Spring Data JPA If
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hybrid Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-what-is-spring-data-jdbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. What is Spring Data JDBC?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-difference-between-spring-data-jdbc-and-spring-data-jpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. Difference between Spring Data JDBC and Spring Data JPA?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-what-is-an-aggregate-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. What is an aggregate root?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-how-does-spring-data-jdbc-handle-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. How does Spring Data JDBC handle relationships?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-does-spring-data-jdbc-support-jpql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. Does Spring Data JDBC support JPQL?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-how-do-you-create-custom-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. How do you create custom queries?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-how-do-you-generate-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. How do you generate IDs?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-what-is-mappedcollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. What is @MappedCollection?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-does-spring-data-jdbc-support-optimistic-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. Does Spring Data JDBC support optimistic locking?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-what-are-the-lifecycle-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. What are the lifecycle callbacks?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-does-spring-data-jdbc-support-auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. Does Spring Data JDBC support auditing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-how-do-you-save-an-aggregate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. How do you save an aggregate?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-what-happens-to-children-on-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. What happens to children on save?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-can-spring-data-jdbc-and-jpa-coexist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. Can Spring Data JDBC and JPA coexist?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-when-would-you-choose-spring-data-jdbc-over-jpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. When would you choose Spring Data JDBC over JPA?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-does-spring-data-jdbc-do-ddl-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. Does Spring Data JDBC do DDL generation?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-how-is-pagination-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. How is pagination supported?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-what-is-persistencecreator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. What is @PersistenceCreator?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-how-does-spring-data-jdbc-avoid-the-n1-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. How does Spring Data JDBC avoid the N+1 problem?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-does-spring-data-jdbc-support-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. Does Spring Data JDBC support transactions?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregates-cheat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregates Cheat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-data-jdbc-vs-jpa-quick-pick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Data JDBC vs JPA — Quick Pick
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="spring-data-jdbc">Spring Data JDBC<a class="headerlink" href="#spring-data-jdbc" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>11_Spring_Data_JDBC.md</code>
+<strong>Part:</strong> 3 — Data Access
+<strong>Prerequisites:</strong> <code>04_Spring_JDBC.md</code>, <code>05_Spring_Transaction_Management.md</code>
+<strong>Estimated Study Time:</strong> 5–6 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-what-is-spring-data-jdbc">What is Spring Data JDBC?</a></li>
+<li><a href="#2-spring-data-jdbc-vs-jpa">Spring Data JDBC vs JPA</a></li>
+<li><a href="#3-aggregate-roots--ddd">Aggregate Roots &amp; DDD</a></li>
+<li><a href="#4-setup--dependencies">Setup &amp; Dependencies</a></li>
+<li><a href="#5-entity-mapping">Entity Mapping</a></li>
+<li><a href="#6-crudrepository">CrudRepository</a></li>
+<li><a href="#7-custom-queries">Custom Queries</a></li>
+<li><a href="#8-relationships">Relationships</a></li>
+<li><a href="#9-lifecycle-events">Lifecycle Events</a></li>
+<li><a href="#10-optimistic-locking">Optimistic Locking</a></li>
+<li><a href="#11-when-to-choose-spring-data-jdbc">When to Choose Spring Data JDBC</a></li>
+<li><a href="#12-interview-questions">Interview Questions</a></li>
+<li><a href="#13-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-what-is-spring-data-jdbc">1. What is Spring Data JDBC?<a class="headerlink" href="#1-what-is-spring-data-jdbc" title="Permanent link">&para;</a></h2>
+<p><strong>Spring Data JDBC</strong> is a simpler alternative to Spring Data JPA that maps entities directly to tables without the ORM overhead. It's based on <strong>aggregate-oriented</strong> design and <strong>explicit</strong> SQL semantics.</p>
+<h3 id="core-principles">Core Principles<a class="headerlink" href="#core-principles" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Aggregates</strong> — the unit of consistency (root + children)</li>
+<li><strong>No lazy loading</strong> — no proxies, no sessions</li>
+<li><strong>No caching</strong> — always hits the DB</li>
+<li><strong>No dirty checking</strong> — you save explicitly</li>
+<li><strong>Predictable SQL</strong> — you know what executes</li>
+<li><strong>DDD-friendly</strong> — models follow aggregate boundaries</li>
+</ul>
+<h3 id="what-its-not">What It's Not<a class="headerlink" href="#what-its-not" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Not a JPA replacement for complex ORMs</li>
+<li>Not for legacy schemas with foreign key spaghetti</li>
+<li>Not for lazy loading or caching-heavy workloads</li>
+</ul>
+<hr />
+<h2 id="2-spring-data-jdbc-vs-jpa">2. Spring Data JDBC vs JPA<a class="headerlink" href="#2-spring-data-jdbc-vs-jpa" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Spring Data JDBC</th>
+<th>Spring Data JPA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ORM</td>
+<td>❌</td>
+<td>✅ (Hibernate)</td>
+</tr>
+<tr>
+<td>Lazy loading</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Dirty checking</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>First-level cache</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Second-level cache</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Proxies</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Aggregate root concept</td>
+<td>✅ Central</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>Relationship cascade</td>
+<td>Aggregate-driven</td>
+<td><code>CascadeType</code></td>
+</tr>
+<tr>
+<td>N+1 problem</td>
+<td>❌ (by design)</td>
+<td>✅ Common</td>
+</tr>
+<tr>
+<td>Learning curve</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Predictability</td>
+<td>High</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Complex relations</td>
+<td>Limited</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>DDL generation</td>
+<td>Basic</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>Startup time</td>
+<td>Fast</td>
+<td>Slower</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-jpa-wins">When JPA Wins<a class="headerlink" href="#when-jpa-wins" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Deep object graphs</li>
+<li>Legacy relational schemas</li>
+<li>Fine-grained caching</li>
+<li>Complex bidirectional relationships</li>
+</ul>
+<h3 id="when-spring-data-jdbc-wins">When Spring Data JDBC Wins<a class="headerlink" href="#when-spring-data-jdbc-wins" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Aggregate-oriented models</li>
+<li>Simple data + explicit SQL</li>
+<li>Avoiding ORM complexity</li>
+<li>Functional domain models</li>
+<li>Microservices with clear boundaries</li>
+</ul>
+<hr />
+<h2 id="3-aggregate-roots-ddd">3. Aggregate Roots &amp; DDD<a class="headerlink" href="#3-aggregate-roots-ddd" title="Permanent link">&para;</a></h2>
+<h3 id="the-ddd-aggregate">The DDD Aggregate<a class="headerlink" href="#the-ddd-aggregate" title="Permanent link">&para;</a></h3>
+<p>An <strong>aggregate</strong> is a cluster of domain objects treated as a single unit for data changes. The <strong>aggregate root</strong> is the only entry point.</p>
+<h3 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Each aggregate has one <strong>root entity</strong></li>
+<li>Only the root is loaded directly</li>
+<li>References to other aggregates are by <strong>ID</strong>, not object</li>
+<li>Deleting root deletes the whole aggregate</li>
+<li>Transactional consistency within aggregate; eventual consistency across</li>
+</ol>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Customer (root)
+├── Address (embedded)
+├── Order (child)
+│   └── OrderLine (child of Order)
+└── PaymentMethod (child)
+</code></pre></div>
+<p>Loading <code>Customer</code> loads the entire aggregate. To load <code>Order</code> alone, you'd make it a separate aggregate with a <code>customerId</code> reference.</p>
+<h3 id="spring-data-jdbc-enforces-this">Spring Data JDBC Enforces This<a class="headerlink" href="#spring-data-jdbc-enforces-this" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Only aggregate roots are repositories</li>
+<li>Children aren't repositories</li>
+<li>Cross-aggregate references are IDs (<code>Long customerId</code>)</li>
+<li>Writes save the whole aggregate (replace children)</li>
+</ul>
+<hr />
+<h2 id="4-setup-dependencies">4. Setup &amp; Dependencies<a class="headerlink" href="#4-setup-dependencies" title="Permanent link">&para;</a></h2>
+<h3 id="maven">Maven<a class="headerlink" href="#maven" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.postgresql<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>postgresql<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Pulls in:
+- <code>spring-data-jdbc</code>
+- <code>spring-data-relational</code>
+- <code>spring-boot-starter-jdbc</code> (HikariCP + JdbcTemplate)</p>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://localhost:5432/mydb</span>
+<span class="na">spring.datasource.username</span><span class="o">=</span><span class="s">admin</span>
+<span class="na">spring.datasource.password</span><span class="o">=</span><span class="s">secret</span>
+<span class="na">spring.datasource.hikari.maximum-pool-size</span><span class="o">=</span><span class="s">20</span>
+</code></pre></div>
+<h3 id="enable-repositories">Enable Repositories<a class="headerlink" href="#enable-repositories" title="Permanent link">&para;</a></h3>
+<p>Spring Boot auto-detects. Manual:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@EnableJdbcRepositories</span><span class="p">(</span><span class="n">basePackages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"com.example.repo"</span><span class="p">)</span>
+<span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">JdbcConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">dataSource</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">NamedParameterJdbcOperations</span><span class="w"> </span><span class="nf">operations</span><span class="p">(</span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NamedParameterJdbcTemplate</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="nf">txManager</span><span class="p">(</span><span class="n">DataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataSourceTransactionManager</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="schema">Schema<a class="headerlink" href="#schema" title="Permanent link">&para;</a></h3>
+<p>Spring Data JDBC does <strong>not</strong> generate DDL. Create schema via:</p>
+<ul>
+<li>Flyway / Liquibase</li>
+<li><code>schema.sql</code> (Boot picks it up automatically)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">BIGSERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">BIGSERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">customer_id</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">total</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">order_line</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">BIGSERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">order_id</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">product</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">quantity</span><span class="w"> </span><span class="nb">INT</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="5-entity-mapping">5. Entity Mapping<a class="headerlink" href="#5-entity-mapping" title="Permanent link">&para;</a></h2>
+<h3 id="minimal-entity">Minimal Entity<a class="headerlink" href="#minimal-entity" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// getters/setters or constructor</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="rules_1">Rules<a class="headerlink" href="#rules_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>@Table(name)</code> — optional (default = class name, camelCase → snake_case)</li>
+<li><code>@Id</code> — required (name = <code>id</code> by default)</li>
+<li>Fields → columns (camelCase → snake_case by default)</li>
+<li><strong>No <code>@Column</code> needed unless overriding</strong></li>
+<li>Constructor-based creation supported (preferred)</li>
+</ul>
+<h3 id="constructor-binding-recommended">Constructor Binding (Recommended)<a class="headerlink" href="#constructor-binding-recommended" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Customer</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PersistenceCreator</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Customer</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// getters only</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="immutable-with-records-boot-3">Immutable with Records (Boot 3+)<a class="headerlink" href="#immutable-with-records-boot-3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">Customer</span><span class="p">(</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="column">@Column<a class="headerlink" href="#column" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Column</span><span class="p">(</span><span class="s">"full_name"</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="id-generation">@Id Generation<a class="headerlink" href="#id-generation" title="Permanent link">&para;</a></h3>
+<p>Spring Data JDBC doesn't generate IDs. Options:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database auto-increment</td>
+<td>Column <code>BIGSERIAL</code> / <code>AUTO_INCREMENT</code></td>
+</tr>
+<tr>
+<td>Manual</td>
+<td>You set ID before save</td>
+</tr>
+<tr>
+<td><code>@Id</code> + database sequence</td>
+<td>Use DB default</td>
+</tr>
+</tbody>
+</table>
+<p>Unlike JPA, there's no <code>@GeneratedValue</code>. The DB generates IDs and Spring reads them back.</p>
+<h3 id="embedded-value-objects">Embedded Value Objects<a class="headerlink" href="#embedded-value-objects" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Address</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">street</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">zip</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// constructor, getters</span>
+<span class="p">}</span>
+
+<span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w">   </span><span class="c1">// embedded (columns in same table)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Columns: <code>street</code>, <code>city</code>, <code>zip</code> in <code>customer</code> table.</p>
+<h3 id="custom-naming-strategy">Custom Naming Strategy<a class="headerlink" href="#custom-naming-strategy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">JdbcConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">NamingStrategy</span><span class="w"> </span><span class="nf">namingStrategy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">NamingStrategy</span><span class="p">.</span><span class="na">INSTANCE</span><span class="p">;</span><span class="w">   </span><span class="c1">// or custom</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or via <code>@Column</code> per field.</p>
+<hr />
+<h2 id="6-crudrepository">6. CrudRepository<a class="headerlink" href="#6-crudrepository" title="Permanent link">&para;</a></h2>
+<p>Spring Data JDBC uses <code>CrudRepository</code> (not <code>JpaRepository</code>).</p>
+<h3 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">CustomerRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CrudRepository</span><span class="o">&lt;</span><span class="n">Customer</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="crud-methods">CRUD Methods<a class="headerlink" href="#crud-methods" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>save(entity)</code></td>
+<td>Insert or update aggregate</td>
+</tr>
+<tr>
+<td><code>saveAll(Iterable)</code></td>
+<td>Batch</td>
+</tr>
+<tr>
+<td><code>findById(id)</code></td>
+<td>Load whole aggregate</td>
+</tr>
+<tr>
+<td><code>findAll()</code></td>
+<td>Load all aggregates</td>
+</tr>
+<tr>
+<td><code>count()</code></td>
+<td>Row count</td>
+</tr>
+<tr>
+<td><code>existsById(id)</code></td>
+<td>Existence</td>
+</tr>
+<tr>
+<td><code>deleteById(id)</code></td>
+<td>Delete aggregate</td>
+</tr>
+<tr>
+<td><code>delete(entity)</code></td>
+<td>Delete</td>
+</tr>
+<tr>
+<td><code>deleteAll()</code></td>
+<td>Delete all</td>
+</tr>
+</tbody>
+</table>
+<h3 id="save-semantics">Save Semantics<a class="headerlink" href="#save-semantics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>New</strong> (id == null) → INSERT</li>
+<li><strong>Existing</strong> (id != null) → UPDATE (or DELETE + INSERT for children)</li>
+</ul>
+<p>Child collections are <strong>replaced</strong> on save — Spring Data JDBC issues DELETE for old children, INSERT for new ones.</p>
+<h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomerService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">CustomerRepository</span><span class="w"> </span><span class="n">repo</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">CustomerService</span><span class="p">(</span><span class="n">CustomerRepository</span><span class="w"> </span><span class="n">repo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">repo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Customer</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Customer</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Customer</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="w">   </span><span class="c1">// INSERT, returns entity with generated ID</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Customer</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Customer</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Customer</span><span class="w"> </span><span class="n">updated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Customer</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="na">id</span><span class="p">(),</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">email</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">updated</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">deleteById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="pagingandsortingrepository">PagingAndSortingRepository<a class="headerlink" href="#pagingandsortingrepository" title="Permanent link">&para;</a></h3>
+<p>Spring Data JDBC supports <code>PagingAndSortingRepository</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">CustomerRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PagingAndSortingRepository</span><span class="o">&lt;</span><span class="n">Customer</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Query:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Page</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">findAll</span><span class="p">(</span><span class="n">PageRequest</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">Sort</span><span class="p">.</span><span class="na">by</span><span class="p">(</span><span class="s">"name"</span><span class="p">)));</span>
+</code></pre></div>
+<p>Or <code>ListPagingAndSortingRepository</code> (Boot 3+) for <code>List</code> returns.</p>
+<hr />
+<h2 id="7-custom-queries">7. Custom Queries<a class="headerlink" href="#7-custom-queries" title="Permanent link">&para;</a></h2>
+<h3 id="derived-query-methods">Derived Query Methods<a class="headerlink" href="#derived-query-methods" title="Permanent link">&para;</a></h3>
+<p>Same syntax as JPA:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">CustomerRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CrudRepository</span><span class="o">&lt;</span><span class="n">Customer</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByNameContaining</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">part</span><span class="p">);</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmailEndingWith</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">domain</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="nf">countByNameStartingWith</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">prefix</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">existsByEmail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteByEmail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="query-native-sql-only">@Query (Native SQL Only)<a class="headerlink" href="#query-native-sql-only" title="Permanent link">&para;</a></h3>
+<p>⚠️ Spring Data JDBC <strong>does not support JPQL</strong>. Use <strong>native SQL</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Query</span><span class="p">(</span><span class="s">"SELECT id, name, email FROM customer WHERE email = :email"</span><span class="p">)</span>
+<span class="n">Optional</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmail</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">"email"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+
+<span class="nd">@Query</span><span class="p">(</span><span class="s">"""</span>
+<span class="s">    SELECT c.id, c.name, c.email</span>
+<span class="s">    FROM customer c</span>
+<span class="s">    JOIN orders o ON o.customer_id = c.id</span>
+<span class="s">    WHERE o.total &gt; :minTotal</span>
+<span class="s">    """</span><span class="p">)</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findBigSpenders</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">"minTotal"</span><span class="p">)</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">minTotal</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="modifying-queries">Modifying Queries<a class="headerlink" href="#modifying-queries" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Modifying</span>
+<span class="nd">@Query</span><span class="p">(</span><span class="s">"UPDATE customer SET email = :email WHERE id = :id"</span><span class="p">)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">updateEmail</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">"id"</span><span class="p">)</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="nd">@Param</span><span class="p">(</span><span class="s">"email"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+
+<span class="nd">@Modifying</span>
+<span class="nd">@Query</span><span class="p">(</span><span class="s">"DELETE FROM customer WHERE email IS NULL"</span><span class="p">)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">deleteWithoutEmail</span><span class="p">();</span>
+</code></pre></div>
+<p>Must be called within a transaction.</p>
+<h3 id="query-for-projections">Query for Projections<a class="headerlink" href="#query-for-projections" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">CustomerNameOnly</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="nf">getId</span><span class="p">();</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">getName</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nd">@Query</span><span class="p">(</span><span class="s">"SELECT id, name FROM customer WHERE email IS NOT NULL"</span><span class="p">)</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">CustomerNameOnly</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findWithEmail</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="query-for-aggregates-with-children">Query for Aggregates with Children<a class="headerlink" href="#query-for-aggregates-with-children" title="Permanent link">&para;</a></h3>
+<p>Spring Data JDBC maps result sets to aggregates. If your query returns multiple joined rows, Spring assembles them:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Query</span><span class="p">(</span><span class="s">"""</span>
+<span class="s">    SELECT c.id AS customer_id, c.name, </span>
+<span class="s">           o.id AS order_id, o.total</span>
+<span class="s">    FROM customer c</span>
+<span class="s">    LEFT JOIN orders o ON o.customer_id = c.id</span>
+<span class="s">    WHERE c.id = :id</span>
+<span class="s">    """</span><span class="p">)</span>
+<span class="n">Optional</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findWithOrders</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">"id"</span><span class="p">)</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+</code></pre></div>
+<p>Aliases like <code>customer_id</code>, <code>order_id</code> help Spring disambiguate.</p>
+<h3 id="named-queries">Named Queries<a class="headerlink" href="#named-queries" title="Permanent link">&para;</a></h3>
+<p>Not fully supported — use <code>@Query</code> or derived methods.</p>
+<h3 id="query-lookup-strategy">Query Lookup Strategy<a class="headerlink" href="#query-lookup-strategy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@EnableJdbcRepositories</span><span class="p">(</span><span class="n">queryLookupStrategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QueryLookupStrategy</span><span class="p">.</span><span class="na">Key</span><span class="p">.</span><span class="na">CREATE_IF_NOT_FOUND</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="8-relationships">8. Relationships<a class="headerlink" href="#8-relationships" title="Permanent link">&para;</a></h2>
+<h3 id="the-aggregate-rule">The Aggregate Rule<a class="headerlink" href="#the-aggregate-rule" title="Permanent link">&para;</a></h3>
+<p>Spring Data JDBC models aggregates; children are part of the root. Cross-aggregate references are <strong>by ID</strong>.</p>
+<h3 id="one-to-many-within-aggregate">One-to-Many (within aggregate)<a class="headerlink" href="#one-to-many-within-aggregate" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@MappedCollection</span><span class="p">(</span><span class="n">idColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"customer_id"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nd">@Table</span><span class="p">(</span><span class="s">"orders"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Order</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">total</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// No reference back to Customer!</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Key points:
+- <code>@MappedCollection(idColumn = "customer_id")</code> — the FK column in <code>orders</code>
+- Children have no parent reference (no <code>@ManyToOne</code>)
+- Loading customer loads all orders
+- Saving customer saves orders</p>
+<h3 id="one-to-one-within-aggregate">One-to-One (within aggregate)<a class="headerlink" href="#one-to-one-within-aggregate" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@MappedCollection</span><span class="p">(</span><span class="n">idColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"customer_id"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w">   </span><span class="c1">// columns in address table</span>
+<span class="p">}</span>
+
+<span class="nd">@Table</span><span class="p">(</span><span class="s">"address"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Address</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">street</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Spring Data JDBC treats this as a 1:1</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or embed the address as a value object (see §5).</p>
+<h3 id="many-to-many">Many-to-Many<a class="headerlink" href="#many-to-many" title="Permanent link">&para;</a></h3>
+<p><strong>Not directly supported.</strong> Model as separate aggregates:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">roleIds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">   </span><span class="c1">// IDs, not objects</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or use a join entity within the aggregate:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@MappedCollection</span><span class="p">(</span><span class="n">idColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"customer_id"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">CustomerRole</span><span class="o">&gt;</span><span class="w"> </span><span class="n">roles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nd">@Table</span><span class="p">(</span><span class="s">"customer_role"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomerRole</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">roleId</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="cross-aggregate-reference-by-id">Cross-Aggregate Reference (by ID)<a class="headerlink" href="#cross-aggregate-reference-by-id" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"orders"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Order</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">customerId</span><span class="p">;</span><span class="w">   </span><span class="c1">// reference, not @ManyToOne</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">total</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">OrderRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CrudRepository</span><span class="o">&lt;</span><span class="n">Order</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByCustomerId</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">customerId</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="mappedcollection-options">@MappedCollection Options<a class="headerlink" href="#mappedcollection-options" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@MappedCollection</span><span class="p">(</span>
+<span class="w">    </span><span class="n">idColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"customer_id"</span><span class="p">,</span><span class="w">         </span><span class="c1">// FK column name</span>
+<span class="w">    </span><span class="n">keyColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"position"</span><span class="w">            </span><span class="c1">// for Map/List ordering</span>
+<span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li><strong>Set</strong> — unordered; DB stores rows</li>
+<li><strong>List</strong> — requires <code>keyColumn</code> for ordering</li>
+<li><strong>Map</strong> — keys stored in <code>keyColumn</code></li>
+</ul>
+<h3 id="deletion-behavior">Deletion Behavior<a class="headerlink" href="#deletion-behavior" title="Permanent link">&para;</a></h3>
+<p>When you <code>deleteById(customer)</code>, Spring Data JDBC:
+1. Deletes all children (cascading within aggregate)
+2. Deletes the root</p>
+<p>No <code>CascadeType</code> needed — it's implicit for the aggregate.</p>
+<hr />
+<h2 id="9-lifecycle-events">9. Lifecycle Events<a class="headerlink" href="#9-lifecycle-events" title="Permanent link">&para;</a></h2>
+<p>Spring Data JDBC supports <code>@BeforeSave</code>, <code>@AfterSave</code>, <code>@BeforeDelete</code>, and Spring's <code>ApplicationListener</code>.</p>
+<h3 id="entity-callbacks">Entity Callbacks<a class="headerlink" href="#entity-callbacks" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Instant</span><span class="w"> </span><span class="n">createdAt</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Instant</span><span class="w"> </span><span class="n">updatedAt</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@BeforeSave</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">beforeSave</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">createdAt</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="n">createdAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instant</span><span class="p">.</span><span class="na">now</span><span class="p">();</span>
+<span class="w">        </span><span class="n">updatedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instant</span><span class="p">.</span><span class="na">now</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Callbacks:</p>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@BeforeSave</code></td>
+<td>Before insert/update</td>
+</tr>
+<tr>
+<td><code>@AfterSave</code></td>
+<td>After insert/update</td>
+</tr>
+<tr>
+<td><code>@BeforeDelete</code></td>
+<td>Before delete</td>
+</tr>
+<tr>
+<td><code>@AfterDelete</code></td>
+<td>After delete</td>
+</tr>
+<tr>
+<td><code>@AfterLoad</code></td>
+<td>After entity loaded</td>
+</tr>
+</tbody>
+</table>
+<h3 id="application-events">Application Events<a class="headerlink" href="#application-events" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomerListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@EventListener</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onAfterSave</span><span class="p">(</span><span class="n">AfterSaveEvent</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">"Saved: {}"</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getEntity</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Events extend <code>RelationalEvent</code> and include the entity, id, and source.</p>
+<h3 id="auditing">Auditing<a class="headerlink" href="#auditing" title="Permanent link">&para;</a></h3>
+<p>Spring Data JDBC supports auditing similarly to JPA:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableJdbcAuditing</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AuditConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">AuditorAware</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">auditor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"system"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@CreatedDate</span><span class="w"> </span><span class="nd">@Column</span><span class="p">(</span><span class="n">updatable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Instant</span><span class="w"> </span><span class="n">createdAt</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@LastModifiedDate</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Instant</span><span class="w"> </span><span class="n">updatedAt</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@CreatedBy</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">createdBy</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="10-optimistic-locking">10. Optimistic Locking<a class="headerlink" href="#10-optimistic-locking" title="Permanent link">&para;</a></h2>
+<h3 id="version">@Version<a class="headerlink" href="#version" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Version</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">version</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Spring Data JDBC adds <code>AND version = ?</code> to UPDATE. On mismatch → <code>OptimisticLockingFailureException</code>.</p>
+<h3 id="behavior">Behavior<a class="headerlink" href="#behavior" title="Permanent link">&para;</a></h3>
+<ul>
+<li>On insert: version set to <code>0</code></li>
+<li>On update: <code>version = version + 1</code></li>
+<li>Concurrent updates: one succeeds, one throws</li>
+</ul>
+<h3 id="handling-failures">Handling Failures<a class="headerlink" href="#handling-failures" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Retryable</span><span class="p">(</span><span class="n">retryFor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OptimisticLockingFailureException</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">maxAttempts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Customer</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Customer</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Customer</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="na">id</span><span class="p">(),</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">version</span><span class="p">()));</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Requires <code>spring-retry</code> + <code>@EnableRetry</code>.</p>
+<hr />
+<h2 id="11-when-to-choose-spring-data-jdbc">11. When to Choose Spring Data JDBC<a class="headerlink" href="#11-when-to-choose-spring-data-jdbc" title="Permanent link">&para;</a></h2>
+<h3 id="choose-spring-data-jdbc-if">Choose Spring Data JDBC If<a class="headerlink" href="#choose-spring-data-jdbc-if" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Your domain is aggregate-oriented</li>
+<li>✅ You want predictable, fast SQL</li>
+<li>✅ You dislike ORM magic (proxies, lazy loading)</li>
+<li>✅ Your relationships fit within aggregates</li>
+<li>✅ You want to avoid the N+1 problem by design</li>
+<li>✅ Startup time matters</li>
+<li>✅ You're building microservices with clear boundaries</li>
+</ul>
+<h3 id="choose-spring-data-jpa-if">Choose Spring Data JPA If<a class="headerlink" href="#choose-spring-data-jpa-if" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Complex bidirectional relationships across aggregates</li>
+<li>✅ Legacy schemas with intricate FKs</li>
+<li>✅ Need lazy loading for large graphs</li>
+<li>✅ Need fine-grained caching</li>
+<li>✅ Rich domain model with proxies and tracking</li>
+</ul>
+<h3 id="hybrid-approach">Hybrid Approach<a class="headerlink" href="#hybrid-approach" title="Permanent link">&para;</a></h3>
+<p>You can use <strong>both</strong> in the same app:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jpa<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Use JPA for complex aggregates; Spring Data JDBC (or plain JdbcTemplate) for reports and simple reads. Configure separate repositories with <code>@EnableJpaRepositories</code> and <code>@EnableJdbcRepositories</code> in different packages.</p>
+<hr />
+<h2 id="12-interview-questions">12. Interview Questions<a class="headerlink" href="#12-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-spring-data-jdbc">Q1. What is Spring Data JDBC?<a class="headerlink" href="#q1-what-is-spring-data-jdbc" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A simpler alternative to Spring Data JPA based on aggregate-oriented DDD. It maps entities directly to tables without ORM (no lazy loading, no dirty checking, no caching). Uses <code>CrudRepository</code> and native SQL <code>@Query</code>.</p>
+<h3 id="q2-difference-between-spring-data-jdbc-and-spring-data-jpa">Q2. Difference between Spring Data JDBC and Spring Data JPA?<a class="headerlink" href="#q2-difference-between-spring-data-jdbc-and-spring-data-jpa" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> JPA uses an ORM (Hibernate) with lazy loading, dirty checking, caching, and entity lifecycle. Spring Data JDBC has none of these — it saves/loads complete aggregates explicitly. JPA is more powerful but complex; JDBC is simpler and predictable.</p>
+<h3 id="q3-what-is-an-aggregate-root">Q3. What is an aggregate root?<a class="headerlink" href="#q3-what-is-an-aggregate-root" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A DDD concept: the single entry point to a cluster of related objects treated as a unit. Only the root has a repository. Children are loaded/saved with the root. References to other aggregates are by ID.</p>
+<h3 id="q4-how-does-spring-data-jdbc-handle-relationships">Q4. How does Spring Data JDBC handle relationships?<a class="headerlink" href="#q4-how-does-spring-data-jdbc-handle-relationships" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Children within an aggregate are mapped with <code>@MappedCollection(idColumn = "...")</code>. Cross-aggregate references are stored as plain IDs (<code>Long customerId</code>). No <code>@ManyToOne</code> — that would create a cross-aggregate dependency.</p>
+<h3 id="q5-does-spring-data-jdbc-support-jpql">Q5. Does Spring Data JDBC support JPQL?<a class="headerlink" href="#q5-does-spring-data-jdbc-support-jpql" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> No. It only supports <strong>native SQL</strong> in <code>@Query</code>. The underlying query language is SQL, not JPQL.</p>
+<h3 id="q6-how-do-you-create-custom-queries">Q6. How do you create custom queries?<a class="headerlink" href="#q6-how-do-you-create-custom-queries" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Derived method names (same as JPA) for simple queries. <code>@Query</code> with native SQL for complex queries. <code>@Modifying</code> for UPDATE/DELETE.</p>
+<h3 id="q7-how-do-you-generate-ids">Q7. How do you generate IDs?<a class="headerlink" href="#q7-how-do-you-generate-ids" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring Data JDBC doesn't generate IDs — the database does (<code>BIGSERIAL</code>, <code>AUTO_INCREMENT</code>). Spring reads them back. There's no <code>@GeneratedValue</code> annotation.</p>
+<h3 id="q8-what-is-mappedcollection">Q8. What is @MappedCollection?<a class="headerlink" href="#q8-what-is-mappedcollection" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Marks a collection/embedded field within an aggregate. <code>idColumn</code> specifies the FK column in the child table. Optional <code>keyColumn</code> for List/Map ordering.</p>
+<h3 id="q9-does-spring-data-jdbc-support-optimistic-locking">Q9. Does Spring Data JDBC support optimistic locking?<a class="headerlink" href="#q9-does-spring-data-jdbc-support-optimistic-locking" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes, via <code>@Version</code>. Spring adds <code>AND version = ?</code> to UPDATEs. On mismatch, <code>OptimisticLockingFailureException</code> is thrown.</p>
+<h3 id="q10-what-are-the-lifecycle-callbacks">Q10. What are the lifecycle callbacks?<a class="headerlink" href="#q10-what-are-the-lifecycle-callbacks" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>@BeforeSave</code>, <code>@AfterSave</code>, <code>@BeforeDelete</code>, <code>@AfterDelete</code>, <code>@AfterLoad</code>. Plus ApplicationEvents (<code>AfterSaveEvent</code>, <code>BeforeDeleteEvent</code>, etc.).</p>
+<h3 id="q11-does-spring-data-jdbc-support-auditing">Q11. Does Spring Data JDBC support auditing?<a class="headerlink" href="#q11-does-spring-data-jdbc-support-auditing" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes. <code>@EnableJdbcAuditing</code> + <code>AuditorAware&lt;String&gt;</code> bean, then <code>@CreatedDate</code>, <code>@LastModifiedDate</code>, <code>@CreatedBy</code>, <code>@LastModifiedBy</code> on entities.</p>
+<h3 id="q12-how-do-you-save-an-aggregate">Q12. How do you save an aggregate?<a class="headerlink" href="#q12-how-do-you-save-an-aggregate" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>repository.save(rootEntity)</code> — Spring deletes all children then re-inserts them (or updates if IDs match). This is intentional: aggregate is the unit of persistence.</p>
+<h3 id="q13-what-happens-to-children-on-save">Q13. What happens to children on save?<a class="headerlink" href="#q13-what-happens-to-children-on-save" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Spring Data JDBC <strong>replaces</strong> children: it deletes children no longer in the collection and inserts new ones. If a child's ID is unchanged, it may issue an UPDATE. This is different from JPA's incremental behavior.</p>
+<h3 id="q14-can-spring-data-jdbc-and-jpa-coexist">Q14. Can Spring Data JDBC and JPA coexist?<a class="headerlink" href="#q14-can-spring-data-jdbc-and-jpa-coexist" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes. Configure <code>@EnableJpaRepositories</code> for one package and <code>@EnableJdbcRepositories</code> for another. Use JPA for complex aggregates; JDBC for simple reads/reports.</p>
+<h3 id="q15-when-would-you-choose-spring-data-jdbc-over-jpa">Q15. When would you choose Spring Data JDBC over JPA?<a class="headerlink" href="#q15-when-would-you-choose-spring-data-jdbc-over-jpa" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> When your domain is naturally aggregate-oriented, you want predictable SQL, you dislike ORM magic (proxies, sessions, lazy loading), you need fast startup, and cross-aggregate relationships are minimal.</p>
+<h3 id="q16-does-spring-data-jdbc-do-ddl-generation">Q16. Does Spring Data JDBC do DDL generation?<a class="headerlink" href="#q16-does-spring-data-jdbc-do-ddl-generation" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> No. You must provide schema via Flyway/Liquibase or <code>schema.sql</code>. Spring Data JDBC only maps existing tables to entities.</p>
+<h3 id="q17-how-is-pagination-supported">Q17. How is pagination supported?<a class="headerlink" href="#q17-how-is-pagination-supported" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> By extending <code>PagingAndSortingRepository</code> (or <code>ListPagingAndSortingRepository</code>). Use <code>PageRequest</code> and <code>Sort</code> the same way as JPA. Internally Spring generates <code>LIMIT/OFFSET</code> (or DB-specific) SQL.</p>
+<h3 id="q18-what-is-persistencecreator">Q18. What is @PersistenceCreator?<a class="headerlink" href="#q18-what-is-persistencecreator" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Marks a constructor Spring uses when reconstructing an entity from a <code>ResultSet</code>. Useful when there are multiple constructors — Spring might otherwise pick the wrong one.</p>
+<h3 id="q19-how-does-spring-data-jdbc-avoid-the-n1-problem">Q19. How does Spring Data JDBC avoid the N+1 problem?<a class="headerlink" href="#q19-how-does-spring-data-jdbc-avoid-the-n1-problem" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> By design: it doesn't lazy-load. Loading an aggregate loads all children in one join. Cross-aggregate references must be explicitly fetched (creating N+1 if you loop). The framework doesn't hide this; you control it.</p>
+<h3 id="q20-does-spring-data-jdbc-support-transactions">Q20. Does Spring Data JDBC support transactions?<a class="headerlink" href="#q20-does-spring-data-jdbc-support-transactions" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes — with <code>DataSourceTransactionManager</code> (or the same <code>PlatformTransactionManager</code> used for JDBC). Annotate service methods with <code>@Transactional</code>.</p>
+<hr />
+<h2 id="13-cheat-sheet">13. Cheat Sheet<a class="headerlink" href="#13-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="dependency">Dependency<a class="headerlink" href="#dependency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="entity">Entity<a class="headerlink" href="#entity" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Table</span><span class="p">(</span><span class="s">"customer"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">Customer</span><span class="p">(</span>
+<span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">    </span><span class="nd">@MappedCollection</span><span class="p">(</span><span class="n">idColumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"customer_id"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="n">orders</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="repository_1">Repository<a class="headerlink" href="#repository_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">CustomerRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CrudRepository</span><span class="o">&lt;</span><span class="n">Customer</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">"SELECT * FROM customer WHERE name LIKE :pattern"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">searchByName</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">"pattern"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">pattern</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nd">@Modifying</span>
+<span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">"UPDATE customer SET email = :email WHERE id = :id"</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">updateEmail</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">"id"</span><span class="p">)</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="nd">@Param</span><span class="p">(</span><span class="s">"email"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="annotations">Annotations<a class="headerlink" href="#annotations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@Table</code></td>
+<td>Maps to table</td>
+</tr>
+<tr>
+<td><code>@Id</code></td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>@Column</code></td>
+<td>Override column name</td>
+</tr>
+<tr>
+<td><code>@MappedCollection</code></td>
+<td>Child collection within aggregate</td>
+</tr>
+<tr>
+<td><code>@Version</code></td>
+<td>Optimistic locking</td>
+</tr>
+<tr>
+<td><code>@PersistenceCreator</code></td>
+<td>Constructor for reconstitution</td>
+</tr>
+<tr>
+<td><code>@CreatedDate</code>, <code>@LastModifiedDate</code>, <code>@CreatedBy</code>, <code>@LastModifiedBy</code></td>
+<td>Auditing</td>
+</tr>
+<tr>
+<td><code>@BeforeSave</code>, <code>@AfterSave</code>, <code>@BeforeDelete</code>, <code>@AfterDelete</code>, <code>@AfterLoad</code></td>
+<td>Lifecycle</td>
+</tr>
+</tbody>
+</table>
+<h3 id="aggregates-cheat">Aggregates Cheat<a class="headerlink" href="#aggregates-cheat" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>- Only roots have repositories
+- Children loaded/saved with root via @MappedCollection
+- Cross-aggregate references = plain ID field
+- No lazy loading, no proxies, no sessions
+- Save replaces children (delete + insert)
+</code></pre></div>
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://...</span>
+<span class="na">spring.datasource.username</span><span class="o">=</span><span class="s">admin</span>
+<span class="na">spring.datasource.password</span><span class="o">=</span><span class="s">secret</span>
+</code></pre></div>
+<h3 id="spring-data-jdbc-vs-jpa-quick-pick">Spring Data JDBC vs JPA — Quick Pick<a class="headerlink" href="#spring-data-jdbc-vs-jpa-quick-pick" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Choose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple aggregates</td>
+<td>JDBC</td>
+</tr>
+<tr>
+<td>Complex bidirectional graphs</td>
+<td>JPA</td>
+</tr>
+<tr>
+<td>Predictable SQL</td>
+<td>JDBC</td>
+</tr>
+<tr>
+<td>Lazy loading</td>
+<td>JPA</td>
+</tr>
+<tr>
+<td>Fast startup</td>
+<td>JDBC</td>
+</tr>
+<tr>
+<td>Caching (L2)</td>
+<td>JPA</td>
+</tr>
+<tr>
+<td>DDD aggregates</td>
+<td>JDBC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>10_Spring_Data_JPA.md</code></li>
+<li><strong>Next:</strong> <code>12_Spring_Caching.md</code></li>
+<li><strong>Related:</strong> <code>04_Spring_JDBC.md</code>, <code>05_Spring_Transaction_Management.md</code></li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code></li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="../10_Spring_Data_JPA/">10_Spring_Data_JPA.md</a></li>
+<li><strong>Next →:</strong> <a href="../12_Spring_Caching/">12_Spring_Caching.md</a></li>
+<li><strong>Related:</strong> <a href="../10_Spring_Data_JPA/">10_Spring_Data_JPA.md</a>, <a href="./04_Spring_JDBC.md">04_Spring_JDBC.md</a>, <a href="./26_Spring_Best_Practices.md">26_Spring_Best_Practices.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

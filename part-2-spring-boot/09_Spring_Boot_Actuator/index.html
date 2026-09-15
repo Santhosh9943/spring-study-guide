@@ -1,0 +1,4494 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Spring Boot Actuator - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spring-boot-actuator" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spring Boot Actuator
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-actuator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is Actuator?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is Actuator?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-it-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-enabling-actuator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Enabling Actuator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Enabling Actuator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expose Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-base-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Base Path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate Port
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-context-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Context Path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jmx-instead-of-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JMX Instead of HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-built-in-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Built-In Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Built-In Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beans
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Env
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-dump" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread Dump
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heap-dump" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap Dump
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shutdown-disabled-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shutdown (Disabled by Default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-health-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Health Indicators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Health Indicators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregate Health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-health-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-In Health Indicators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-health-indicator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Health Indicator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reactive-health-indicator-webflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reactive Health Indicator (WebFlux)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-probes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes Probes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-info-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Info Endpoint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Info Endpoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Content
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Property-Based
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-infocontributor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom InfoContributor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-info-boot-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Info (Boot 3.0+)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#os-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OS Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-metrics-with-micrometer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Metrics with Micrometer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Metrics with Micrometer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metric-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metric Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meterregistry-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MeterRegistry Injection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-custom-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Custom Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timed-counted-aop-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Timed / @Counted (AOP-based)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meter-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Meter Filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percentiles-histograms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Percentiles &amp; Histograms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-prometheus-grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Prometheus &amp; Grafana
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Prometheus &amp; Grafana">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-prometheus-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Prometheus Registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expose Endpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prometheus Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grafana Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-promql-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common PromQL Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-custom-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Custom Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Custom Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gauge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gauge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distributionsummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DistributionSummary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timed-with-aspects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Timed with Aspects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-custom-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Custom Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Custom Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-generic-http-jmx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Endpoint (Generic — HTTP + JMX)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webendpoint-http-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @WebEndpoint (HTTP only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jmxendpoint-jmx-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @JmxEndpoint (JMX only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reactive-read-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reactive Read Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selector-for-path-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Selector for Path Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-health-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint Health Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-securing-actuator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Securing Actuator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Securing Actuator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-securityfilterchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom SecurityFilterChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpointrequest-matcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EndpointRequest Matcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sanitize-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sanitize Sensitive Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restrict-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restrict Exposure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roles-for-health-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles for Health Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-port-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separate Port + Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-for-actuator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS for Actuator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-production-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Production Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Production Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exposure-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exposure Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Startup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-what-is-spring-boot-actuator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. What is Spring Boot Actuator?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-which-endpoints-are-exposed-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. Which endpoints are exposed by default?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-how-do-you-expose-more-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. How do you expose more endpoints?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-what-is-the-difference-between-actuatorhealth-and-actuatorhealthliveness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. What is the difference between /actuator/health and /actuator/health/liveness?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-what-is-micrometer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. What is Micrometer?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-how-do-you-enable-prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. How do you enable Prometheus?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-what-is-a-healthindicator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. What is a HealthIndicator?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-how-do-you-create-a-custom-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. How do you create a custom endpoint?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-how-do-you-change-log-levels-at-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. How do you change log levels at runtime?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-how-do-you-secure-actuator-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. How do you secure Actuator endpoints?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-what-does-actuatorenv-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. What does /actuator/env do?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-difference-between-healthshow-detailsalways-and-when-authorized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. Difference between health.show-details=always and when-authorized?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-how-do-you-expose-heapthread-dumps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. How do you expose heap/thread dumps?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-what-is-a-meterregistry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. What is a MeterRegistry?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-what-are-common-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. What are common tags?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-what-is-timed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. What is @Timed?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-how-do-you-disable-specific-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. How do you disable specific metrics?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-what-are-kubernetes-probes-and-how-does-actuator-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. What are Kubernetes probes and how does Actuator help?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-how-do-you-customize-info-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. How do you customize info endpoint?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-what-is-the-actuatorconditions-endpoint-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. What is the /actuator/conditions endpoint for?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Counter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Endpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-actuator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secure Actuator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promql-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PromQL Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="spring-boot-actuator">Spring Boot Actuator<a class="headerlink" href="#spring-boot-actuator" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>09_Spring_Boot_Actuator.md</code>
+<strong>Part:</strong> 2 — Spring Boot
+<strong>Prerequisites:</strong> <code>06_Spring_Boot_Fundamentals.md</code>, <code>08_Spring_Boot_Configuration.md</code>
+<strong>Estimated Study Time:</strong> 6–8 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-what-is-actuator">What is Actuator?</a></li>
+<li><a href="#2-enabling-actuator">Enabling Actuator</a></li>
+<li><a href="#3-built-in-endpoints">Built-In Endpoints</a></li>
+<li><a href="#4-health-indicators">Health Indicators</a></li>
+<li><a href="#5-info-endpoint">Info Endpoint</a></li>
+<li><a href="#6-metrics-with-micrometer">Metrics with Micrometer</a></li>
+<li><a href="#7-prometheus--grafana">Prometheus &amp; Grafana</a></li>
+<li><a href="#8-custom-metrics">Custom Metrics</a></li>
+<li><a href="#9-custom-endpoints">Custom Endpoints</a></li>
+<li><a href="#10-securing-actuator">Securing Actuator</a></li>
+<li><a href="#11-production-best-practices">Production Best Practices</a></li>
+<li><a href="#12-interview-questions">Interview Questions</a></li>
+<li><a href="#13-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-what-is-actuator">1. What is Actuator?<a class="headerlink" href="#1-what-is-actuator" title="Permanent link">&para;</a></h2>
+<p><strong>Spring Boot Actuator</strong> provides production-ready features for monitoring, managing, and troubleshooting applications. It exposes <strong>HTTP endpoints</strong> (or JMX) that report:</p>
+<ul>
+<li><strong>Health</strong> — Is the app up? Are dependencies reachable?</li>
+<li><strong>Metrics</strong> — CPU, memory, HTTP requests, custom KPIs</li>
+<li><strong>Info</strong> — Build metadata, git commit</li>
+<li><strong>Environment</strong> — Properties, active profiles</li>
+<li><strong>Beans</strong> — All Spring beans, their dependencies</li>
+<li><strong>Mappings</strong> — All HTTP endpoints</li>
+<li><strong>Loggers</strong> — View/change log levels at runtime</li>
+<li><strong>Thread dump</strong>, <strong>heap dump</strong></li>
+<li><strong>Conditions</strong> — Why auto-config applied or didn't</li>
+<li><strong>Scheduled tasks</strong>, <strong>HTTP traces</strong>, <strong>caches</strong></li>
+</ul>
+<h3 id="why-it-matters">Why It Matters<a class="headerlink" href="#why-it-matters" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Observability</strong> — real-time insight into running apps</li>
+<li><strong>Health checks</strong> — Kubernetes liveness/readiness probes</li>
+<li><strong>Metrics</strong> — feed Prometheus, Datadog, New Relic</li>
+<li><strong>Debugging</strong> — without restarting the app</li>
+<li><strong>Standard interface</strong> — same endpoints across all Spring Boot apps</li>
+</ul>
+<hr />
+<h2 id="2-enabling-actuator">2. Enabling Actuator<a class="headerlink" href="#2-enabling-actuator" title="Permanent link">&para;</a></h2>
+<h3 id="add-dependency">Add Dependency<a class="headerlink" href="#add-dependency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Pulls in:
+- <code>spring-boot-actuator</code>
+- <code>spring-boot-actuator-autoconfigure</code>
+- <code>micrometer-core</code> (metrics façade)</p>
+<h3 id="default-behavior">Default Behavior<a class="headerlink" href="#default-behavior" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/actuator/health</code> and <code>/actuator/info</code> exposed over HTTP by default</li>
+<li>All others are available but <strong>not exposed</strong></li>
+<li>Base path: <code>/actuator</code></li>
+<li>Expose endpoints via properties</li>
+</ul>
+<h3 id="expose-endpoints">Expose Endpoints<a class="headerlink" href="#expose-endpoints" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Expose specific endpoints</span>
+<span class="na">management.endpoints.web.exposure.include</span><span class="o">=</span><span class="s">health,info,metrics,env,beans</span>
+
+<span class="c1"># Expose everything (dev only!)</span>
+<span class="na">management.endpoints.web.exposure.include</span><span class="o">=</span><span class="s">*</span>
+
+<span class="c1"># Exclude specific</span>
+<span class="na">management.endpoints.web.exposure.exclude</span><span class="o">=</span><span class="s">env,beans,heapdump</span>
+</code></pre></div>
+<h3 id="custom-base-path">Custom Base Path<a class="headerlink" href="#custom-base-path" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoints.web.base-path</span><span class="o">=</span><span class="s">/manage</span>
+<span class="c1"># → /manage/health, /manage/metrics</span>
+</code></pre></div>
+<h3 id="separate-port">Separate Port<a class="headerlink" href="#separate-port" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.server.port</span><span class="o">=</span><span class="s">9001</span>
+<span class="na">management.server.address</span><span class="o">=</span><span class="s">127.0.0.1</span>
+</code></pre></div>
+<p>Runs Actuator on a different port — useful for isolating from public traffic.</p>
+<h3 id="custom-context-path">Custom Context Path<a class="headerlink" href="#custom-context-path" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.server.base-path</span><span class="o">=</span><span class="s">/actuator</span>
+</code></pre></div>
+<h3 id="jmx-instead-of-http">JMX Instead of HTTP<a class="headerlink" href="#jmx-instead-of-http" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoints.jmx.exposure.include</span><span class="o">=</span><span class="s">*</span>
+<span class="na">spring.jmx.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<p>Access via JConsole, VisualVM, or JMX clients.</p>
+<hr />
+<h2 id="3-built-in-endpoints">3. Built-In Endpoints<a class="headerlink" href="#3-built-in-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="endpoint-reference">Endpoint Reference<a class="headerlink" href="#endpoint-reference" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auditevents</code></td>
+<td><code>/actuator/auditevents</code></td>
+<td>Audit events</td>
+</tr>
+<tr>
+<td><code>beans</code></td>
+<td><code>/actuator/beans</code></td>
+<td>All beans</td>
+</tr>
+<tr>
+<td><code>caches</code></td>
+<td><code>/actuator/caches</code></td>
+<td>Cache managers</td>
+</tr>
+<tr>
+<td><code>conditions</code></td>
+<td><code>/actuator/conditions</code></td>
+<td>Auto-config conditions</td>
+</tr>
+<tr>
+<td><code>configprops</code></td>
+<td><code>/actuator/configprops</code></td>
+<td><code>@ConfigurationProperties</code></td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td><code>/actuator/env</code></td>
+<td>Environment properties</td>
+</tr>
+<tr>
+<td><code>flyway</code></td>
+<td><code>/actuator/flyway</code></td>
+<td>Flyway migrations</td>
+</tr>
+<tr>
+<td><code>health</code></td>
+<td><code>/actuator/health</code></td>
+<td>Aggregate health</td>
+</tr>
+<tr>
+<td><code>heapdump</code></td>
+<td><code>/actuator/heapdump</code></td>
+<td>Heap dump file</td>
+</tr>
+<tr>
+<td><code>httpexchanges</code></td>
+<td><code>/actuator/httpexchanges</code></td>
+<td>HTTP request traces</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>/actuator/info</code></td>
+<td>App info</td>
+</tr>
+<tr>
+<td><code>integrationgraph</code></td>
+<td><code>/actuator/integrationgraph</code></td>
+<td>Spring Integration graph</td>
+</tr>
+<tr>
+<td><code>jolokia</code></td>
+<td><code>/actuator/jolokia</code></td>
+<td>JMX over HTTP</td>
+</tr>
+<tr>
+<td><code>liquibase</code></td>
+<td><code>/actuator/liquibase</code></td>
+<td>Liquibase migrations</td>
+</tr>
+<tr>
+<td><code>logfile</code></td>
+<td><code>/actuator/logfile</code></td>
+<td>Log file content</td>
+</tr>
+<tr>
+<td><code>loggers</code></td>
+<td><code>/actuator/loggers</code></td>
+<td>Log levels</td>
+</tr>
+<tr>
+<td><code>mappings</code></td>
+<td><code>/actuator/mappings</code></td>
+<td>Request mappings</td>
+</tr>
+<tr>
+<td><code>metrics</code></td>
+<td><code>/actuator/metrics</code></td>
+<td>Metrics list</td>
+</tr>
+<tr>
+<td><code>prometheus</code></td>
+<td><code>/actuator/prometheus</code></td>
+<td>Prometheus format</td>
+</tr>
+<tr>
+<td><code>quartz</code></td>
+<td><code>/actuator/quartz</code></td>
+<td>Quartz jobs</td>
+</tr>
+<tr>
+<td><code>scheduledtasks</code></td>
+<td><code>/actuator/scheduledtasks</code></td>
+<td>Scheduled tasks</td>
+</tr>
+<tr>
+<td><code>sessions</code></td>
+<td><code>/actuator/sessions</code></td>
+<td>HTTP sessions</td>
+</tr>
+<tr>
+<td><code>shutdown</code></td>
+<td><code>/actuator/shutdown</code></td>
+<td>Graceful shutdown (disabled)</td>
+</tr>
+<tr>
+<td><code>startup</code></td>
+<td><code>/actuator/startup</code></td>
+<td>Startup steps</td>
+</tr>
+<tr>
+<td><code>threaddump</code></td>
+<td><code>/actuator/threaddump</code></td>
+<td>Thread dump</td>
+</tr>
+</tbody>
+</table>
+<h3 id="health">Health<a class="headerlink" href="#health" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/actuator/health
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"UP"</span><span class="p">}</span>
+</code></pre></div>
+<p>With <code>show-details=always</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UP"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"db"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UP"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"database"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PostgreSQL"</span><span class="p">,</span><span class="w"> </span><span class="nt">"validationQuery"</span><span class="p">:</span><span class="w"> </span><span class="s2">"isValid()"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"diskSpace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UP"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">500000000000</span><span class="p">,</span><span class="w"> </span><span class="nt">"free"</span><span class="p">:</span><span class="w"> </span><span class="mi">300000000000</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"ping"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UP"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="beans">Beans<a class="headerlink" href="#beans" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/actuator/beans
+</code></pre></div>
+<p>Lists all beans, their dependencies, scope, type.</p>
+<h3 id="env">Env<a class="headerlink" href="#env" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/actuator/env
+</code></pre></div>
+<p>Lists property sources and their values (secrets redacted by default).</p>
+<h3 id="mappings">Mappings<a class="headerlink" href="#mappings" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/actuator/mappings
+</code></pre></div>
+<p>All <code>@RequestMapping</code> endpoints, filters, servlets.</p>
+<h3 id="loggers">Loggers<a class="headerlink" href="#loggers" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># List all loggers</span>
+curl<span class="w"> </span>http://localhost:8080/actuator/loggers
+
+<span class="c1"># View specific</span>
+curl<span class="w"> </span>http://localhost:8080/actuator/loggers/com.example
+
+<span class="c1"># Change log level at runtime</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/actuator/loggers/com.example<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"configuredLevel":"DEBUG"}'</span>
+</code></pre></div>
+<h3 id="thread-dump">Thread Dump<a class="headerlink" href="#thread-dump" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/actuator/threaddump
+</code></pre></div>
+<p>JSON thread dump — same as <code>jstack</code>.</p>
+<h3 id="heap-dump">Heap Dump<a class="headerlink" href="#heap-dump" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/actuator/heapdump<span class="w"> </span>-o<span class="w"> </span>heap.hprof
+</code></pre></div>
+<p>Downloads an HPROF file for analysis in Eclipse MAT or VisualVM.</p>
+<h3 id="conditions">Conditions<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/actuator/conditions
+</code></pre></div>
+<p>Shows which auto-configs applied (and why), which didn't, and the reasons.</p>
+<h3 id="scheduled-tasks">Scheduled Tasks<a class="headerlink" href="#scheduled-tasks" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/actuator/scheduledtasks
+</code></pre></div>
+<p>All <code>@Scheduled</code> methods with cron/fixedRate/fixedDelay.</p>
+<h3 id="caches">Caches<a class="headerlink" href="#caches" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/actuator/caches
+</code></pre></div>
+<p>Lists caches (name, target). Supports <code>DELETE /actuator/caches/{name}</code> to clear.</p>
+<h3 id="shutdown-disabled-by-default">Shutdown (Disabled by Default)<a class="headerlink" href="#shutdown-disabled-by-default" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoint.shutdown.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/actuator/shutdown
+</code></pre></div>
+<p>⚠️ <strong>Never expose in production.</strong></p>
+<hr />
+<h2 id="4-health-indicators">4. Health Indicators<a class="headerlink" href="#4-health-indicators" title="Permanent link">&para;</a></h2>
+<h3 id="aggregate-health">Aggregate Health<a class="headerlink" href="#aggregate-health" title="Permanent link">&para;</a></h3>
+<p>Spring Boot aggregates all <code>HealthIndicator</code> beans. If any is DOWN → aggregate DOWN.</p>
+<h3 id="built-in-health-indicators">Built-In Health Indicators<a class="headerlink" href="#built-in-health-indicators" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Requires</th>
+<th>Checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DataSourceHealthIndicator</code></td>
+<td><code>DataSource</code></td>
+<td>DB connectivity</td>
+</tr>
+<tr>
+<td><code>DiskSpaceHealthIndicator</code></td>
+<td>Always</td>
+<td>Free disk space</td>
+</tr>
+<tr>
+<td><code>MongoHealthIndicator</code></td>
+<td>MongoDB</td>
+<td>MongoDB ping</td>
+</tr>
+<tr>
+<td><code>RedisHealthIndicator</code></td>
+<td>Redis</td>
+<td>Redis ping</td>
+</tr>
+<tr>
+<td><code>CassandraHealthIndicator</code></td>
+<td>Cassandra</td>
+<td>Cassandra</td>
+</tr>
+<tr>
+<td><code>ElasticsearchRestHealthIndicator</code></td>
+<td>Elasticsearch</td>
+<td>ES ping</td>
+</tr>
+<tr>
+<td><code>RabbitHealthIndicator</code></td>
+<td>RabbitMQ</td>
+<td>Rabbit connection</td>
+</tr>
+<tr>
+<td><code>KafkaHealthIndicator</code></td>
+<td>Kafka</td>
+<td>Broker metadata</td>
+</tr>
+<tr>
+<td><code>MailHealthIndicator</code></td>
+<td>JavaMail</td>
+<td>SMTP connection</td>
+</tr>
+<tr>
+<td><code>LdapHealthIndicator</code></td>
+<td>LDAP</td>
+<td>LDAP</td>
+</tr>
+<tr>
+<td><code>PingHealthIndicator</code></td>
+<td>Always</td>
+<td>Always UP (unless down)</td>
+</tr>
+<tr>
+<td><code>JmsHealthIndicator</code></td>
+<td>JMS</td>
+<td>JMS broker</td>
+</tr>
+<tr>
+<td><code>Neo4jHealthIndicator</code></td>
+<td>Neo4j</td>
+<td>Neo4j</td>
+</tr>
+<tr>
+<td><code>SolrHealthIndicator</code></td>
+<td>Solr</td>
+<td>Solr</td>
+</tr>
+<tr>
+<td><code>Db2HealthIndicator</code></td>
+<td>DB2</td>
+<td>DB2</td>
+</tr>
+<tr>
+<td><code>CassandraDriverHealthIndicator</code></td>
+<td>Driver</td>
+<td>Cluster metadata</td>
+</tr>
+</tbody>
+</table>
+<h3 id="health-configuration">Health Configuration<a class="headerlink" href="#health-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Show details always, when-authorized, or never</span>
+<span class="na">management.endpoint.health.show-details</span><span class="o">=</span><span class="s">always</span>
+
+<span class="c1"># Show components</span>
+<span class="na">management.endpoint.health.show-components</span><span class="o">=</span><span class="s">always</span>
+
+<span class="c1"># Roles for authorized access</span>
+<span class="na">management.endpoint.health.roles</span><span class="o">=</span><span class="s">ADMIN</span>
+
+<span class="c1"># Status mapping (custom HTTP status codes)</span>
+<span class="na">management.endpoint.health.status.http-mapping.DOWN</span><span class="o">=</span><span class="s">503</span>
+<span class="na">management.endpoint.health.status.http-mapping.OUT_OF_SERVICE</span><span class="o">=</span><span class="s">503</span>
+<span class="na">management.endpoint.health.status.http-mapping.UP</span><span class="o">=</span><span class="s">200</span>
+
+<span class="c1"># Add custom status ordering</span>
+<span class="na">management.endpoint.health.status.order</span><span class="o">=</span><span class="s">DOWN,OUT_OF_SERVICE,UP,UNKNOWN</span>
+</code></pre></div>
+<h3 id="custom-health-indicator">Custom Health Indicator<a class="headerlink" href="#custom-health-indicator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ExternalApiHealthIndicator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">HealthIndicator</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">RestClient</span><span class="w"> </span><span class="n">restClient</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">ExternalApiHealthIndicator</span><span class="p">(</span><span class="n">RestClient</span><span class="p">.</span><span class="na">Builder</span><span class="w"> </span><span class="n">builder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">restClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">baseUrl</span><span class="p">(</span><span class="s">"https://api.example.com"</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Health</span><span class="w"> </span><span class="nf">health</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span>
+<span class="w">            </span><span class="n">restClient</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">uri</span><span class="p">(</span><span class="s">"/health"</span><span class="p">).</span><span class="na">retrieve</span><span class="p">().</span><span class="na">toBodilessEntity</span><span class="p">();</span>
+<span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="n">latency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">up</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withDetail</span><span class="p">(</span><span class="s">"latencyMs"</span><span class="p">,</span><span class="w"> </span><span class="n">latency</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withDetail</span><span class="p">(</span><span class="s">"url"</span><span class="p">,</span><span class="w"> </span><span class="s">"https://api.example.com"</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">down</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withDetail</span><span class="p">(</span><span class="s">"reason"</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withException</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="reactive-health-indicator-webflux">Reactive Health Indicator (WebFlux)<a class="headerlink" href="#reactive-health-indicator-webflux" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ReactiveApiHealth</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ReactiveHealthIndicator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Health</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">health</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">webClient</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">uri</span><span class="p">(</span><span class="s">"/health"</span><span class="p">).</span><span class="na">retrieve</span><span class="p">().</span><span class="na">toBodilessEntity</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">up</span><span class="p">().</span><span class="na">build</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">onErrorResume</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Mono</span><span class="p">.</span><span class="na">just</span><span class="p">(</span><span class="n">Health</span><span class="p">.</span><span class="na">down</span><span class="p">(</span><span class="n">e</span><span class="p">).</span><span class="na">build</span><span class="p">()));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="health-groups">Health Groups<a class="headerlink" href="#health-groups" title="Permanent link">&para;</a></h3>
+<p>Group health indicators for different use cases (e.g., readiness vs liveness).</p>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoint.health.group.liveness.include</span><span class="o">=</span><span class="s">ping,diskSpace</span>
+<span class="na">management.endpoint.health.group.readiness.include</span><span class="o">=</span><span class="s">db,redis,externalApi</span>
+<span class="na">management.endpoint.health.group.readiness.show-details</span><span class="o">=</span><span class="s">always</span>
+</code></pre></div>
+<p>Access:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>/actuator/health/liveness
+curl<span class="w"> </span>/actuator/health/readiness
+</code></pre></div>
+<h3 id="kubernetes-probes">Kubernetes Probes<a class="headerlink" href="#kubernetes-probes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoint.health.probes.enabled</span><span class="o">=</span><span class="s">true</span>
+<span class="na">management.health.livenessstate.enabled</span><span class="o">=</span><span class="s">true</span>
+<span class="na">management.health.readinessstate.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<p>Exposes:
+- <code>/actuator/health/liveness</code> — is the app alive?
+- <code>/actuator/health/readiness</code> — ready to serve traffic?</p>
+<p><strong>Kubernetes deployment:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">livenessProbe</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/actuator/health/liveness</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="nt">readinessProbe</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/actuator/health/readiness</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</code></pre></div>
+<h3 id="custom-status">Custom Status<a class="headerlink" href="#custom-status" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomStatus</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">Status</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">Status</span><span class="w"> </span><span class="n">DEGRADED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomStatus</span><span class="p">(</span><span class="s">"DEGRADED"</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or use <code>Status</code> builder:</p>
+<div class="highlight"><pre><span></span><code><span class="k">return</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="s">"DEGRADED"</span><span class="p">).</span><span class="na">withDetail</span><span class="p">(</span><span class="s">"msg"</span><span class="p">,</span><span class="w"> </span><span class="s">"partial"</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+</code></pre></div>
+<p>Register ordering:</p>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoint.health.status.order</span><span class="o">=</span><span class="s">DEGRADED,DOWN,OUT_OF_SERVICE,UP,UNKNOWN</span>
+</code></pre></div>
+<hr />
+<h2 id="5-info-endpoint">5. Info Endpoint<a class="headerlink" href="#5-info-endpoint" title="Permanent link">&para;</a></h2>
+<h3 id="default-content">Default Content<a class="headerlink" href="#default-content" title="Permanent link">&para;</a></h3>
+<p>Empty by default. Populate via:</p>
+<ul>
+<li><code>info.*</code> properties in <code>application.properties</code></li>
+<li><code>InfoContributor</code> beans</li>
+<li>Build info (Maven/Gradle plugin)</li>
+<li>Git info (git-commit-id plugin)</li>
+<li>Environment info</li>
+</ul>
+<h3 id="property-based">Property-Based<a class="headerlink" href="#property-based" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">info.app.name</span><span class="o">=</span><span class="s">My App</span>
+<span class="na">info.app.version</span><span class="o">=</span><span class="s">1.0.0</span>
+<span class="na">info.app.description</span><span class="o">=</span><span class="s">Demo application</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>/actuator/info
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My App"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo application"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="build-info">Build Info<a class="headerlink" href="#build-info" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">            </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                </span><span class="nt">&lt;goal&gt;</span>build-info<span class="nt">&lt;/goal&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+<p>Creates <code>META-INF/build-info.properties</code>. Accessed at <code>/actuator/info</code>.</p>
+<h3 id="git-info">Git Info<a class="headerlink" href="#git-info" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.github.git-commit-id<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>git-commit-id-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">            </span><span class="nt">&lt;goals&gt;&lt;goal&gt;</span>revision<span class="nt">&lt;/goal&gt;&lt;/goals&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/executions&gt;</span>
+<span class="w">    </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">        </span><span class="nt">&lt;generateGitPropertiesFile&gt;</span>true<span class="nt">&lt;/generateGitPropertiesFile&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="na">management.info.git.mode</span><span class="o">=</span><span class="s">full</span>
+</code></pre></div>
+<p>Output includes commit ID, branch, author, timestamp.</p>
+<h3 id="custom-infocontributor">Custom InfoContributor<a class="headerlink" href="#custom-infocontributor" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomInfoContributor</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">InfoContributor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">contribute</span><span class="p">(</span><span class="n">Info</span><span class="p">.</span><span class="na">Builder</span><span class="w"> </span><span class="n">builder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="na">withDetail</span><span class="p">(</span><span class="s">"custom"</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">            </span><span class="s">"team"</span><span class="p">,</span><span class="w"> </span><span class="s">"Platform"</span><span class="p">,</span>
+<span class="w">            </span><span class="s">"region"</span><span class="p">,</span><span class="w"> </span><span class="s">"us-east-1"</span><span class="p">,</span>
+<span class="w">            </span><span class="s">"featureFlags"</span><span class="p">,</span><span class="w"> </span><span class="n">featureFlagService</span><span class="p">.</span><span class="na">getActive</span><span class="p">()</span>
+<span class="w">        </span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="environment-info-boot-30">Environment Info (Boot 3.0+)<a class="headerlink" href="#environment-info-boot-30" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.info.env.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<p>Enables <code>info.*</code> from properties (disabled by default for security in newer versions).</p>
+<h3 id="java-info">Java Info<a class="headerlink" href="#java-info" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.info.java.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<p>Includes JVM version, vendor, runtime.</p>
+<h3 id="os-info">OS Info<a class="headerlink" href="#os-info" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.info.os.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<p>Includes OS name, version, arch.</p>
+<hr />
+<h2 id="6-metrics-with-micrometer">6. Metrics with Micrometer<a class="headerlink" href="#6-metrics-with-micrometer" title="Permanent link">&para;</a></h2>
+<p><strong>Micrometer</strong> is a vendor-neutral metrics façade. Spring Boot Actuator integrates it. Add a registry (Prometheus, Datadog, etc.) and metrics flow there.</p>
+<h3 id="registries">Registries<a class="headerlink" href="#registries" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Registry</th>
+<th>Dependency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prometheus</td>
+<td><code>micrometer-registry-prometheus</code></td>
+</tr>
+<tr>
+<td>Datadog</td>
+<td><code>micrometer-registry-datadog</code></td>
+</tr>
+<tr>
+<td>New Relic</td>
+<td><code>micrometer-registry-new-relic</code></td>
+</tr>
+<tr>
+<td>Graphite</td>
+<td><code>micrometer-registry-graphite</code></td>
+</tr>
+<tr>
+<td>Influx</td>
+<td><code>micrometer-registry-influx</code></td>
+</tr>
+<tr>
+<td>StatsD</td>
+<td><code>micrometer-registry-statsd</code></td>
+</tr>
+<tr>
+<td>CloudWatch</td>
+<td><code>micrometer-registry-cloudwatch2</code></td>
+</tr>
+<tr>
+<td>JMX</td>
+<td><code>micrometer-registry-jmx</code></td>
+</tr>
+<tr>
+<td>Simple (in-memory)</td>
+<td><code>micrometer-registry-simple</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="default-metrics">Default Metrics<a class="headerlink" href="#default-metrics" title="Permanent link">&para;</a></h3>
+<p>Spring Boot auto-registers:</p>
+<ul>
+<li><strong>JVM</strong>: memory, GC, threads, classes</li>
+<li><strong>System</strong>: CPU, load average, uptime</li>
+<li><strong>HTTP</strong>: request count, latency (via <code>WebMvcTagsProvider</code>)</li>
+<li><strong>Tomcat</strong>: sessions, threads</li>
+<li><strong>DataSource</strong>: Hikari connections</li>
+<li><strong>Logback</strong>: log events</li>
+<li><strong>Kafka</strong>, <strong>RabbitMQ</strong>, <strong>MongoDB</strong> (if present)</li>
+<li><strong>Spring Integration</strong></li>
+<li><strong>RestTemplate</strong> / <strong>WebClient</strong></li>
+</ul>
+<h3 id="enable-metrics">Enable Metrics<a class="headerlink" href="#enable-metrics" title="Permanent link">&para;</a></h3>
+<p>Automatically enabled when <code>micrometer-registry-*</code> is on classpath.</p>
+<div class="highlight"><pre><span></span><code><span class="na">management.metrics.enable.all</span><span class="o">=</span><span class="s">true</span>
+<span class="na">management.metrics.enable.jvm</span><span class="o">=</span><span class="s">true</span>
+<span class="na">management.metrics.enable.http.server.requests</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="metric-types">Metric Types<a class="headerlink" href="#metric-types" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Use Case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Counter</code></td>
+<td>Monotonic increase</td>
+<td>requests total</td>
+</tr>
+<tr>
+<td><code>Gauge</code></td>
+<td>Instant value</td>
+<td>memory usage</td>
+</tr>
+<tr>
+<td><code>Timer</code></td>
+<td>Latency + count</td>
+<td>HTTP request duration</td>
+</tr>
+<tr>
+<td><code>DistributionSummary</code></td>
+<td>Non-time distribution</td>
+<td>payload size</td>
+</tr>
+</tbody>
+</table>
+<h3 id="query-metrics">Query Metrics<a class="headerlink" href="#query-metrics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># List metric names</span>
+curl<span class="w"> </span>/actuator/metrics
+
+<span class="c1"># Query specific</span>
+curl<span class="w"> </span>/actuator/metrics/jvm.memory.used
+
+<span class="c1"># Filter by tag</span>
+curl<span class="w"> </span>/actuator/metrics/http.server.requests?tag<span class="o">=</span>uri:/api/users<span class="p">&amp;</span><span class="nv">tag</span><span class="o">=</span>method:GET
+</code></pre></div>
+<p>Response:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jvm.memory.used"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"measurements"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"statistic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VALUE"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.23e8</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">  </span><span class="nt">"availableTags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"area"</span><span class="p">,</span><span class="w"> </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"heap"</span><span class="p">,</span><span class="w"> </span><span class="s2">"nonheap"</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w"> </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"G1 Eden Space"</span><span class="p">,</span><span class="w"> </span><span class="s2">"G1 Old Gen"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="meterregistry-injection">MeterRegistry Injection<a class="headerlink" href="#meterregistry-injection" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Counter</span><span class="w"> </span><span class="n">ordersCounter</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Timer</span><span class="w"> </span><span class="n">orderTimer</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">OrderService</span><span class="p">(</span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">ordersCounter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Counter</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">"orders.created"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">description</span><span class="p">(</span><span class="s">"Total orders created"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">"service"</span><span class="p">,</span><span class="w"> </span><span class="s">"order"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">orderTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Timer</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">"orders.duration"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">publishPercentiles</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="mf">0.99</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">CreateOrderRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">orderTimer</span><span class="p">.</span><span class="na">record</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Order</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">doCreate</span><span class="p">(</span><span class="n">req</span><span class="p">);</span>
+<span class="w">            </span><span class="n">ordersCounter</span><span class="p">.</span><span class="na">increment</span><span class="p">();</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">o</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="common-custom-metrics">Common Custom Metrics<a class="headerlink" href="#common-custom-metrics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Gauge — tracks a value over time</span>
+<span class="n">Gauge</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">"cache.size"</span><span class="p">,</span><span class="w"> </span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">size</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="na">description</span><span class="p">(</span><span class="s">"Current cache size"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+
+<span class="c1">// Counter — increment on events</span>
+<span class="n">Counter</span><span class="w"> </span><span class="n">errors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">registry</span><span class="p">.</span><span class="na">counter</span><span class="p">(</span><span class="s">"errors"</span><span class="p">,</span><span class="w"> </span><span class="s">"type"</span><span class="p">,</span><span class="w"> </span><span class="s">"validation"</span><span class="p">);</span>
+
+<span class="c1">// Timer — measure latency</span>
+<span class="n">Timer</span><span class="p">.</span><span class="na">Sample</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Timer</span><span class="p">.</span><span class="na">start</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="c1">// ... operation</span>
+<span class="n">sample</span><span class="p">.</span><span class="na">stop</span><span class="p">(</span><span class="n">registry</span><span class="p">.</span><span class="na">timer</span><span class="p">(</span><span class="s">"op.duration"</span><span class="p">));</span>
+
+<span class="c1">// DistributionSummary — non-time values</span>
+<span class="n">registry</span><span class="p">.</span><span class="na">summary</span><span class="p">(</span><span class="s">"payload.bytes"</span><span class="p">).</span><span class="na">record</span><span class="p">(</span><span class="n">bytes</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="timed-counted-aop-based">@Timed / @Counted (AOP-based)<a class="headerlink" href="#timed-counted-aop-based" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Timed</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"api.requests"</span><span class="p">,</span><span class="w"> </span><span class="n">percentiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="mf">0.99</span><span class="p">})</span>
+<span class="nd">@Counted</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"api.calls"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findUser</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Requires:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">TimedAspect</span><span class="w"> </span><span class="nf">timedAspect</span><span class="p">(</span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TimedAspect</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">CountedAspect</span><span class="w"> </span><span class="nf">countedAspect</span><span class="p">(</span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CountedAspect</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Or with <code>@EnableAspectJAutoProxy</code>.</p>
+<h3 id="common-tags">Common Tags<a class="headerlink" href="#common-tags" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.metrics.tags.application</span><span class="o">=</span><span class="s">my-app</span>
+<span class="na">management.metrics.tags.region</span><span class="o">=</span><span class="s">us-east-1</span>
+<span class="na">management.metrics.tags.environment</span><span class="o">=</span><span class="s">prod</span>
+</code></pre></div>
+<p>Every metric carries these tags — useful for grouping in Prometheus/Grafana.</p>
+<h3 id="meter-filters">Meter Filters<a class="headerlink" href="#meter-filters" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Disable specific metrics</span>
+<span class="na">management.metrics.enable.jvm.gc.pause</span><span class="o">=</span><span class="s">false</span>
+
+<span class="c1"># Deny by name pattern</span>
+<span class="na">management.metrics.enable.process.cpu</span><span class="o">=</span><span class="s">false</span>
+
+<span class="c1"># Prefix filter</span>
+<span class="na">management.metrics.enable.http</span><span class="o">=</span><span class="s">false</span>
+</code></pre></div>
+<p>Programmatic filter:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">MeterRegistryCustomizer</span><span class="o">&lt;</span><span class="n">MeterRegistry</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">metricsCommon</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">registry</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">registry</span><span class="p">.</span><span class="na">config</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">commonTags</span><span class="p">(</span><span class="s">"app"</span><span class="p">,</span><span class="w"> </span><span class="s">"my-app"</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">meterFilter</span><span class="p">(</span><span class="n">MeterFilter</span><span class="p">.</span><span class="na">denyNameStartsWith</span><span class="p">(</span><span class="s">"jvm.gc"</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="percentiles-histograms">Percentiles &amp; Histograms<a class="headerlink" href="#percentiles-histograms" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.metrics.distribution.percentiles-histogram.http.server.requests</span><span class="o">=</span><span class="s">true</span>
+<span class="na">management.metrics.distribution.percentiles.http.server.requests</span><span class="o">=</span><span class="s">0.5,0.95,0.99</span>
+<span class="na">management.metrics.distribution.sla.http.server.requests</span><span class="o">=</span><span class="s">10ms,50ms,100ms,500ms</span>
+<span class="na">management.metrics.distribution.minimum-expected-value.http.server.requests</span><span class="o">=</span><span class="s">10ms</span>
+<span class="na">management.metrics.distribution.maximum-expected-value.http.server.requests</span><span class="o">=</span><span class="s">5s</span>
+</code></pre></div>
+<p>Enables histograms and percentiles in Prometheus output.</p>
+<hr />
+<h2 id="7-prometheus-grafana">7. Prometheus &amp; Grafana<a class="headerlink" href="#7-prometheus-grafana" title="Permanent link">&para;</a></h2>
+<h3 id="add-prometheus-registry">Add Prometheus Registry<a class="headerlink" href="#add-prometheus-registry" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.micrometer<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>micrometer-registry-prometheus<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="expose-endpoint">Expose Endpoint<a class="headerlink" href="#expose-endpoint" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoints.web.exposure.include</span><span class="o">=</span><span class="s">health,info,prometheus</span>
+<span class="na">management.metrics.export.prometheus.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<p>Endpoint: <code>/actuator/prometheus</code></p>
+<h3 id="sample-output">Sample Output<a class="headerlink" href="#sample-output" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code># HELP http_server_requests_seconds
+# TYPE http_server_requests_seconds summary
+http_server_requests_seconds_count{method="GET",status="200",uri="/api/users",} 42.0
+http_server_requests_seconds_sum{method="GET",status="200",uri="/api/users",} 1.234
+
+# HELP jvm_memory_used_bytes
+# TYPE jvm_memory_used_bytes gauge
+jvm_memory_used_bytes{area="heap",id="G1 Eden Space",} 3.2e8
+</code></pre></div>
+<h3 id="prometheus-configuration">Prometheus Configuration<a class="headerlink" href="#prometheus-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>prometheus.yml:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15s</span>
+
+<span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">'spring-boot'</span>
+<span class="w">    </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="s">'/actuator/prometheus'</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">'my-app:8080'</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>With authentication:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">'spring-boot'</span>
+<span class="w">    </span><span class="nt">basic_auth</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prometheus</span>
+<span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret</span>
+<span class="w">    </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="s">'/actuator/prometheus'</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">'my-app:8080'</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<h3 id="docker-compose-example">Docker Compose Example<a class="headerlink" href="#docker-compose-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">'3.8'</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">app</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"8080:8080"</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">health,prometheus</span>
+
+<span class="w">  </span><span class="nt">prometheus</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prom/prometheus</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"9090:9090"</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./prometheus.yml:/etc/prometheus/prometheus.yml</span>
+
+<span class="w">  </span><span class="nt">grafana</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grafana/grafana</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"3000:3000"</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">GF_SECURITY_ADMIN_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+</code></pre></div>
+<h3 id="grafana-dashboard">Grafana Dashboard<a class="headerlink" href="#grafana-dashboard" title="Permanent link">&para;</a></h3>
+<p>Popular dashboards:</p>
+<ul>
+<li><strong>JVM (Micrometer)</strong> — ID <code>4701</code></li>
+<li><strong>Spring Boot 2.1 Statistics</strong> — ID <code>11378</code></li>
+<li><strong>Spring Boot Observability</strong> — ID <code>12687</code></li>
+</ul>
+<p>Import by ID in Grafana.</p>
+<h3 id="common-promql-queries">Common PromQL Queries<a class="headerlink" href="#common-promql-queries" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Request rate</span>
+<span class="kr">rate</span><span class="o">(</span><span class="nv">http_server_requests_seconds_count</span><span class="p">[</span><span class="s">1m</span><span class="p">]</span><span class="o">)</span>
+
+<span class="c1"># P95 latency</span>
+<span class="kr">histogram_quantile</span><span class="o">(</span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="kr">rate</span><span class="o">(</span><span class="nv">http_server_requests_seconds_bucket</span><span class="p">[</span><span class="s">5m</span><span class="p">]</span><span class="o">))</span>
+
+<span class="c1"># Error rate</span>
+<span class="k">sum</span><span class="o">(</span><span class="kr">rate</span><span class="o">(</span><span class="nv">http_server_requests_seconds_count</span><span class="p">{</span><span class="nl">status</span><span class="o">=~</span><span class="p">"</span><span class="s">5..</span><span class="p">"}[</span><span class="s">5m</span><span class="p">]</span><span class="o">))</span>
+<span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="k">sum</span><span class="o">(</span><span class="kr">rate</span><span class="o">(</span><span class="nv">http_server_requests_seconds_count</span><span class="p">[</span><span class="s">5m</span><span class="p">]</span><span class="o">))</span>
+
+<span class="c1"># Heap usage</span>
+<span class="nv">jvm_memory_used_bytes</span><span class="p">{</span><span class="nl">area</span><span class="o">=</span><span class="p">"</span><span class="s">heap</span><span class="p">"}</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">jvm_memory_max_bytes</span><span class="p">{</span><span class="nl">area</span><span class="o">=</span><span class="p">"</span><span class="s">heap</span><span class="p">"}</span>
+</code></pre></div>
+<hr />
+<h2 id="8-custom-metrics">8. Custom Metrics<a class="headerlink" href="#8-custom-metrics" title="Permanent link">&para;</a></h2>
+<h3 id="counter">Counter<a class="headerlink" href="#counter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MetricsService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Counter</span><span class="w"> </span><span class="n">ordersPlaced</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MetricsService</span><span class="p">(</span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">ordersPlaced</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Counter</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">"orders.placed"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">description</span><span class="p">(</span><span class="s">"Total orders placed"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">"currency"</span><span class="p">,</span><span class="w"> </span><span class="s">"USD"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">orderPlaced</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ordersPlaced</span><span class="p">.</span><span class="na">increment</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">bulkOrderPlaced</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ordersPlaced</span><span class="p">.</span><span class="na">increment</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="timer">Timer<a class="headerlink" href="#timer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LatencyTracker</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Timer</span><span class="w"> </span><span class="n">dbTimer</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">LatencyTracker</span><span class="p">(</span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">dbTimer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Timer</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">"db.query.duration"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">description</span><span class="p">(</span><span class="s">"DB query duration"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">publishPercentiles</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="mf">0.99</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">track</span><span class="p">(</span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">operation</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">dbTimer</span><span class="p">.</span><span class="na">record</span><span class="p">(</span><span class="n">operation</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="gauge">Gauge<a class="headerlink" href="#gauge" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">QueueMetrics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">Job</span><span class="o">&gt;</span><span class="w"> </span><span class="n">queue</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">QueueMetrics</span><span class="p">(</span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">Job</span><span class="o">&gt;</span><span class="w"> </span><span class="n">queue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Gauge</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">"jobs.queued"</span><span class="p">,</span><span class="w"> </span><span class="n">queue</span><span class="p">,</span><span class="w"> </span><span class="n">Queue</span><span class="p">::</span><span class="n">size</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">description</span><span class="p">(</span><span class="s">"Jobs in queue"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="distributionsummary">DistributionSummary<a class="headerlink" href="#distributionsummary" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">registry</span><span class="p">.</span><span class="na">summary</span><span class="p">(</span><span class="s">"response.size"</span><span class="p">,</span><span class="w"> </span><span class="s">"endpoint"</span><span class="p">,</span><span class="w"> </span><span class="s">"/api/data"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">record</span><span class="p">(</span><span class="n">bytes</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="timed-with-aspects">@Timed with Aspects<a class="headerlink" href="#timed-with-aspects" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Timed</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"user.find"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="n">percentiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="mf">0.99</span><span class="p">},</span>
+<span class="w">           </span><span class="n">extraTags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"layer"</span><span class="p">,</span><span class="w"> </span><span class="s">"service"</span><span class="p">})</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Requires <code>TimedAspect</code> bean (see §6).</p>
+<hr />
+<h2 id="9-custom-endpoints">9. Custom Endpoints<a class="headerlink" href="#9-custom-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="endpoint-generic-http-jmx">@Endpoint (Generic — HTTP + JMX)<a class="headerlink" href="#endpoint-generic-http-jmx" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@Endpoint</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"features"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FeaturesEndpoint</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Boolean</span><span class="o">&gt;</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nd">@ReadOperation</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Boolean</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">features</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">features</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@ReadOperation</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Feature</span><span class="w"> </span><span class="nf">feature</span><span class="p">(</span><span class="nd">@Selector</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@WriteOperation</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="nd">@Selector</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">enabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">features</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">enabled</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@DeleteOperation</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteFeature</span><span class="p">(</span><span class="nd">@Selector</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">features</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">Feature</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">enabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Endpoints:</p>
+<ul>
+<li><code>GET /actuator/features</code> → all features</li>
+<li><code>GET /actuator/features/{name}</code> → one feature</li>
+<li><code>POST /actuator/features/{name}</code> with body <code>{"enabled":true}</code> → set</li>
+<li><code>DELETE /actuator/features/{name}</code> → remove</li>
+</ul>
+<p>Must be <strong>exposed</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoints.web.exposure.include</span><span class="o">=</span><span class="s">health,features</span>
+</code></pre></div>
+<h3 id="webendpoint-http-only">@WebEndpoint (HTTP only)<a class="headerlink" href="#webendpoint-http-only" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@WebEndpoint</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"cache-stats"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CacheStatsEndpoint</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@ReadOperation</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">CacheStats</span><span class="w"> </span><span class="nf">stats</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CacheStats</span><span class="p">(...);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">CacheStats</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">hits</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">misses</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">hitRatio</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="jmxendpoint-jmx-only">@JmxEndpoint (JMX only)<a class="headerlink" href="#jmxendpoint-jmx-only" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@JmxEndpoint</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"custom"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomJmxEndpoint</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@ReadOperation</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">status</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"OK"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="endpoint-attributes">Endpoint Attributes<a class="headerlink" href="#endpoint-attributes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@Endpoint</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"secure-feature"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SecureFeatureEndpoint</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@ReadOperation</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">status</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"running"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Enable/disable:</p>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoint.secure-feature.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="reactive-read-operation">Reactive Read Operation<a class="headerlink" href="#reactive-read-operation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@ReadOperation</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">status</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Mono</span><span class="p">.</span><span class="na">just</span><span class="p">(</span><span class="s">"running"</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Supported on WebFlux.</p>
+<h3 id="selector-for-path-variables">@Selector for Path Variables<a class="headerlink" href="#selector-for-path-variables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@ReadOperation</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">user</span><span class="p">(</span><span class="nd">@Selector</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Path <code>/actuator/users/{id}</code>.</p>
+<h3 id="endpoint-health-integration">Endpoint Health Integration<a class="headerlink" href="#endpoint-health-integration" title="Permanent link">&para;</a></h3>
+<p>Custom health can be queried via <code>/actuator/health</code>. Custom endpoints are independent — they don't contribute to aggregate health.</p>
+<hr />
+<h2 id="10-securing-actuator">10. Securing Actuator<a class="headerlink" href="#10-securing-actuator" title="Permanent link">&para;</a></h2>
+<h3 id="default-security">Default Security<a class="headerlink" href="#default-security" title="Permanent link">&para;</a></h3>
+<p>With <code>spring-boot-starter-security</code>:</p>
+<ul>
+<li>All Actuator endpoints require authentication (except <code>/actuator/health</code> unless configured)</li>
+<li>CSRF applies to POST/PUT/DELETE</li>
+</ul>
+<h3 id="custom-securityfilterchain">Custom SecurityFilterChain<a class="headerlink" href="#custom-securityfilterchain" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ActuatorSecurityConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@Order</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SecurityFilterChain</span><span class="w"> </span><span class="nf">actuatorChain</span><span class="p">(</span><span class="n">HttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">http</span>
+<span class="w">            </span><span class="p">.</span><span class="na">securityMatcher</span><span class="p">(</span><span class="n">EndpointRequest</span><span class="p">.</span><span class="na">toAnyEndpoint</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">excluding</span><span class="p">(</span><span class="s">"health"</span><span class="p">,</span><span class="w"> </span><span class="s">"info"</span><span class="p">,</span><span class="w"> </span><span class="s">"prometheus"</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">authorizeHttpRequests</span><span class="p">(</span><span class="n">auth</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">auth</span>
+<span class="w">                </span><span class="p">.</span><span class="na">anyRequest</span><span class="p">().</span><span class="na">hasRole</span><span class="p">(</span><span class="s">"ACTUATOR"</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">httpBasic</span><span class="p">(</span><span class="n">Customizer</span><span class="p">.</span><span class="na">withDefaults</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@Order</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SecurityFilterChain</span><span class="w"> </span><span class="nf">appChain</span><span class="p">(</span><span class="n">HttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">http</span>
+<span class="w">            </span><span class="p">.</span><span class="na">authorizeHttpRequests</span><span class="p">(</span><span class="n">auth</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">auth</span>
+<span class="w">                </span><span class="p">.</span><span class="na">requestMatchers</span><span class="p">(</span><span class="s">"/actuator/health"</span><span class="p">,</span><span class="w"> </span><span class="s">"/actuator/info"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                 </span><span class="s">"/actuator/prometheus"</span><span class="p">).</span><span class="na">permitAll</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">anyRequest</span><span class="p">().</span><span class="na">authenticated</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">formLogin</span><span class="p">(</span><span class="n">Customizer</span><span class="p">.</span><span class="na">withDefaults</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="endpointrequest-matcher">EndpointRequest Matcher<a class="headerlink" href="#endpointrequest-matcher" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">EndpointRequest</span><span class="p">.</span><span class="na">to</span><span class="p">(</span><span class="s">"health"</span><span class="p">,</span><span class="w"> </span><span class="s">"info"</span><span class="p">)</span><span class="w">           </span><span class="c1">// specific endpoints</span>
+<span class="n">EndpointRequest</span><span class="p">.</span><span class="na">toAnyEndpoint</span><span class="p">()</span><span class="w">                </span><span class="c1">// all endpoints</span>
+<span class="n">EndpointRequest</span><span class="p">.</span><span class="na">toLinks</span><span class="p">()</span><span class="w">                      </span><span class="c1">// root links endpoint</span>
+</code></pre></div>
+<h3 id="sanitize-sensitive-data">Sanitize Sensitive Data<a class="headerlink" href="#sanitize-sensitive-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Keys always sanitized</span>
+<span class="na">management.endpoint.env.keys-to-sanitize</span><span class="o">=</span><span class="s">password,secret,token,key</span>
+</code></pre></div>
+<p>Defaults include common patterns (<code>password</code>, <code>secret</code>, <code>key</code>, <code>token</code>, <code>*credentials*</code>).</p>
+<h3 id="restrict-exposure">Restrict Exposure<a class="headerlink" href="#restrict-exposure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Only these endpoints over HTTP</span>
+<span class="na">management.endpoints.web.exposure.include</span><span class="o">=</span><span class="s">health,info,prometheus,metrics</span>
+
+<span class="c1"># Exclude specific</span>
+<span class="na">management.endpoints.web.exposure.exclude</span><span class="o">=</span><span class="s">env,beans,heapdump,threaddump,shutdown</span>
+
+<span class="c1"># Never enable shutdown in production</span>
+<span class="na">management.endpoint.shutdown.enabled</span><span class="o">=</span><span class="s">false</span>
+</code></pre></div>
+<h3 id="roles-for-health-details">Roles for Health Details<a class="headerlink" href="#roles-for-health-details" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoint.health.show-details</span><span class="o">=</span><span class="s">when-authorized</span>
+<span class="na">management.endpoint.health.roles</span><span class="o">=</span><span class="s">ADMIN</span>
+</code></pre></div>
+<h3 id="separate-port-firewall">Separate Port + Firewall<a class="headerlink" href="#separate-port-firewall" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.server.port</span><span class="o">=</span><span class="s">9001</span>
+<span class="na">management.server.address</span><span class="o">=</span><span class="s">127.0.0.1</span>
+</code></pre></div>
+<p>Only accessible locally (or via VPN).</p>
+<h3 id="tls-for-actuator">TLS for Actuator<a class="headerlink" href="#tls-for-actuator" title="Permanent link">&para;</a></h3>
+<p>Use the same HTTPS config as the main server, or configure separately:</p>
+<div class="highlight"><pre><span></span><code><span class="na">management.server.ssl.enabled</span><span class="o">=</span><span class="s">true</span>
+<span class="na">management.server.ssl.key-store</span><span class="o">=</span><span class="s">classpath:keystore.p12</span>
+<span class="na">management.server.ssl.key-store-password</span><span class="o">=</span><span class="s">secret</span>
+</code></pre></div>
+<hr />
+<h2 id="11-production-best-practices">11. Production Best Practices<a class="headerlink" href="#11-production-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="exposure-checklist">Exposure Checklist<a class="headerlink" href="#exposure-checklist" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Expose only <code>health</code>, <code>info</code>, <code>prometheus</code>, <code>metrics</code> (or a subset)</li>
+<li>✅ Never expose <code>env</code>, <code>beans</code>, <code>heapdump</code>, <code>threaddump</code>, <code>shutdown</code> publicly</li>
+<li>✅ Disable <code>shutdown</code> endpoint entirely</li>
+<li>✅ Use separate port + address binding for Actuator</li>
+<li>✅ Secure with Spring Security</li>
+<li>✅ Enable authentication for <code>/actuator/prometheus</code> if internet-reachable</li>
+<li>✅ Sanitize sensitive env keys</li>
+<li>✅ Restrict heap/thread dump access</li>
+</ul>
+<h3 id="health-checks">Health Checks<a class="headerlink" href="#health-checks" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Use <code>/actuator/health/liveness</code> for K8s livenessProbe</li>
+<li>✅ Use <code>/actuator/health/readiness</code> for K8s readinessProbe</li>
+<li>✅ Include DB, cache, and external API in readiness (not liveness)</li>
+<li>✅ Liveness should NOT check dependencies (else pod restarts on dependency failure)</li>
+<li>✅ Set <code>initialDelaySeconds</code> to allow startup</li>
+</ul>
+<h3 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Add <code>micrometer-registry-prometheus</code></li>
+<li>✅ Add common tags (app, env, region)</li>
+<li>✅ Publish percentile histograms for HTTP</li>
+<li>✅ Exclude high-cardinality tags (user IDs)</li>
+<li>✅ Set retention in Prometheus</li>
+<li>✅ Alert on error rate, latency, saturation</li>
+</ul>
+<h3 id="startup">Startup<a class="headerlink" href="#startup" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoint.startup.enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<p>Expose startup steps for slow-start analysis.</p>
+<h3 id="memory">Memory<a class="headerlink" href="#memory" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable heap dump endpoint only in dev/staging</span>
+<span class="na">management.endpoint.heapdump.enabled</span><span class="o">=</span><span class="s">false</span>
+</code></pre></div>
+<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Don't log Actuator requests</span>
+<span class="na">logging.level.org.springframework.boot.actuate</span><span class="o">=</span><span class="s">WARN</span>
+</code></pre></div>
+<hr />
+<h2 id="12-interview-questions">12. Interview Questions<a class="headerlink" href="#12-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-spring-boot-actuator">Q1. What is Spring Boot Actuator?<a class="headerlink" href="#q1-what-is-spring-boot-actuator" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A sub-project providing production-ready features: monitoring endpoints (<code>/health</code>, <code>/metrics</code>, <code>/env</code>, <code>/beans</code>, <code>/loggers</code>, <code>/threaddump</code>), health indicators, metrics integration (Micrometer), and JMX support. Endpoints are exposed over HTTP or JMX and can be secured.</p>
+<h3 id="q2-which-endpoints-are-exposed-by-default">Q2. Which endpoints are exposed by default?<a class="headerlink" href="#q2-which-endpoints-are-exposed-by-default" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Only <code>/actuator/health</code> and <code>/actuator/info</code> are exposed over HTTP by default. Others exist but must be exposed explicitly via <code>management.endpoints.web.exposure.include</code>.</p>
+<h3 id="q3-how-do-you-expose-more-endpoints">Q3. How do you expose more endpoints?<a class="headerlink" href="#q3-how-do-you-expose-more-endpoints" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Set <code>management.endpoints.web.exposure.include=health,metrics,env,beans</code> (or <code>*</code> for all in dev). Exclude with <code>.exclude</code>.</p>
+<h3 id="q4-what-is-the-difference-between-actuatorhealth-and-actuatorhealthliveness">Q4. What is the difference between <code>/actuator/health</code> and <code>/actuator/health/liveness</code>?<a class="headerlink" href="#q4-what-is-the-difference-between-actuatorhealth-and-actuatorhealthliveness" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>/health</code> is the aggregate status of all <code>HealthIndicator</code> beans. <code>/health/liveness</code> (Kubernetes probe) checks if the app is alive (JVM not stuck) — usually excludes dependencies. <code>/health/readiness</code> checks if the app is ready to serve traffic — includes dependencies.</p>
+<h3 id="q5-what-is-micrometer">Q5. What is Micrometer?<a class="headerlink" href="#q5-what-is-micrometer" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A vendor-neutral metrics façade. Applications use Micrometer's API (<code>MeterRegistry</code>, <code>Counter</code>, <code>Timer</code>, <code>Gauge</code>), and Micrometer publishes to any registry (Prometheus, Datadog, New Relic, etc.) via a <code>MeterRegistry</code> implementation. Spring Boot auto-configures Micrometer and common registries.</p>
+<h3 id="q6-how-do-you-enable-prometheus">Q6. How do you enable Prometheus?<a class="headerlink" href="#q6-how-do-you-enable-prometheus" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Add <code>micrometer-registry-prometheus</code> dependency and expose the <code>prometheus</code> endpoint via <code>management.endpoints.web.exposure.include=health,info,prometheus</code>. Scrape <code>/actuator/prometheus</code>.</p>
+<h3 id="q7-what-is-a-healthindicator">Q7. What is a HealthIndicator?<a class="headerlink" href="#q7-what-is-a-healthindicator" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A bean implementing <code>HealthIndicator</code> (or <code>ReactiveHealthIndicator</code>) that reports <code>Health.up()</code> / <code>Health.down()</code> with optional details. Spring Boot aggregates all indicators into <code>/actuator/health</code>. Built-in indicators cover DB, Redis, disk, etc.</p>
+<h3 id="q8-how-do-you-create-a-custom-endpoint">Q8. How do you create a custom endpoint?<a class="headerlink" href="#q8-how-do-you-create-a-custom-endpoint" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Annotate a bean with <code>@Endpoint(id = "...")</code> and methods with <code>@ReadOperation</code>, <code>@WriteOperation</code>, <code>@DeleteOperation</code>. Use <code>@Selector</code> for path parameters. Register by exposing the ID via <code>management.endpoints.web.exposure.include</code>.</p>
+<h3 id="q9-how-do-you-change-log-levels-at-runtime">Q9. How do you change log levels at runtime?<a class="headerlink" href="#q9-how-do-you-change-log-levels-at-runtime" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> POST to <code>/actuator/loggers/{name}</code> with <code>{"configuredLevel":"DEBUG"}</code>. The <code>loggers</code> endpoint must be exposed. Reset by sending <code>null</code>.</p>
+<h3 id="q10-how-do-you-secure-actuator-endpoints">Q10. How do you secure Actuator endpoints?<a class="headerlink" href="#q10-how-do-you-secure-actuator-endpoints" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use Spring Security with <code>EndpointRequest.toAnyEndpoint()</code> matcher. Configure role-based access. Use a separate port (<code>management.server.port=9001</code>) and bind to <code>127.0.0.1</code>. Exclude non-sensitive endpoints (<code>health</code>, <code>info</code>) from auth. Sanitize env keys via <code>management.endpoint.env.keys-to-sanitize</code>.</p>
+<h3 id="q11-what-does-actuatorenv-do">Q11. What does <code>/actuator/env</code> do?<a class="headerlink" href="#q11-what-does-actuatorenv-do" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Lists all property sources and their values, showing where each property comes from. Sensitive keys (<code>password</code>, <code>secret</code>, <code>key</code>) are sanitized (<code>******</code>) by default.</p>
+<h3 id="q12-difference-between-healthshow-detailsalways-and-when-authorized">Q12. Difference between <code>health.show-details=always</code> and <code>when-authorized</code>?<a class="headerlink" href="#q12-difference-between-healthshow-detailsalways-and-when-authorized" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>always</code> shows component details to anyone. <code>when-authorized</code> shows details only to users with roles specified in <code>management.endpoint.health.roles</code>.</p>
+<h3 id="q13-how-do-you-expose-heapthread-dumps">Q13. How do you expose heap/thread dumps?<a class="headerlink" href="#q13-how-do-you-expose-heapthread-dumps" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>management.endpoints.web.exposure.include=heapdump,threaddump</code>. <code>GET /actuator/heapdump</code> downloads an HPROF. <code>GET /actuator/threaddump</code> returns JSON thread dump. <strong>Never expose publicly</strong>.</p>
+<h3 id="q14-what-is-a-meterregistry">Q14. What is a MeterRegistry?<a class="headerlink" href="#q14-what-is-a-meterregistry" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Micrometer's central interface for creating and querying meters (counter, gauge, timer, distribution summary). Spring Boot registers a <code>MeterRegistry</code> bean per enabled registry (Prometheus, JMX, etc.). Inject it to create custom metrics.</p>
+<h3 id="q15-what-are-common-tags">Q15. What are common tags?<a class="headerlink" href="#q15-what-are-common-tags" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Key-value pairs added to every metric. Set via <code>management.metrics.tags.*</code> or programmatically with <code>MeterRegistryCustomizer</code>. Useful for grouping metrics by app name, environment, region.</p>
+<h3 id="q16-what-is-timed">Q16. What is @Timed?<a class="headerlink" href="#q16-what-is-timed" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> A Micrometer annotation that times a method and records to a <code>Timer</code>. Requires a <code>TimedAspect</code> bean registered. Records count, total time, percentiles.</p>
+<h3 id="q17-how-do-you-disable-specific-metrics">Q17. How do you disable specific metrics?<a class="headerlink" href="#q17-how-do-you-disable-specific-metrics" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>management.metrics.enable.jvm.gc.pause=false</code> or programmatically with a <code>MeterFilter</code> (e.g., <code>MeterFilter.denyNameStartsWith("jvm.gc")</code>).</p>
+<h3 id="q18-what-are-kubernetes-probes-and-how-does-actuator-help">Q18. What are Kubernetes probes and how does Actuator help?<a class="headerlink" href="#q18-what-are-kubernetes-probes-and-how-does-actuator-help" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Liveness (is the app alive?) and readiness (can it serve traffic?). Spring Boot exposes <code>/actuator/health/liveness</code> and <code>/actuator/health/readiness</code> when <code>management.endpoint.health.probes.enabled=true</code>. K8s <code>livenessProbe</code> and <code>readinessProbe</code> point at these paths.</p>
+<h3 id="q19-how-do-you-customize-info-endpoint">Q19. How do you customize info endpoint?<a class="headerlink" href="#q19-how-do-you-customize-info-endpoint" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Add <code>info.*</code> properties, <code>InfoContributor</code> beans, or plugins (<code>spring-boot-maven-plugin:build-info</code>, <code>git-commit-id-maven-plugin</code>). Set <code>management.info.env.enabled=true</code> to include properties, <code>management.info.git.mode=full</code> for full git info.</p>
+<h3 id="q20-what-is-the-actuatorconditions-endpoint-for">Q20. What is the <code>/actuator/conditions</code> endpoint for?<a class="headerlink" href="#q20-what-is-the-actuatorconditions-endpoint-for" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Shows the auto-configuration report: which configs applied (positive matches), which didn't (negative matches), with reasons. Equivalent to <code>debug=true</code> output. Invaluable for debugging why a bean wasn't created.</p>
+<hr />
+<h2 id="13-cheat-sheet">13. Cheat Sheet<a class="headerlink" href="#13-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="dependency">Dependency<a class="headerlink" href="#dependency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.micrometer<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>micrometer-registry-prometheus<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="key-properties">Key Properties<a class="headerlink" href="#key-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">management.endpoints.web.exposure.include</span><span class="o">=</span><span class="s">health,info,prometheus,metrics</span>
+<span class="na">management.endpoints.web.exposure.exclude</span><span class="o">=</span><span class="s">env,beans,shutdown</span>
+<span class="na">management.endpoints.web.base-path</span><span class="o">=</span><span class="s">/actuator</span>
+<span class="na">management.server.port</span><span class="o">=</span><span class="s">9001</span>
+<span class="na">management.endpoint.health.show-details</span><span class="o">=</span><span class="s">when-authorized</span>
+<span class="na">management.endpoint.health.roles</span><span class="o">=</span><span class="s">ADMIN</span>
+<span class="na">management.endpoint.shutdown.enabled</span><span class="o">=</span><span class="s">false</span>
+<span class="na">management.metrics.tags.application</span><span class="o">=</span><span class="s">my-app</span>
+<span class="na">management.metrics.distribution.percentiles-histogram.http.server.requests</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="common-endpoints">Common Endpoints<a class="headerlink" href="#common-endpoints" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>/actuator
+/actuator/health
+/actuator/health/liveness
+/actuator/health/readiness
+/actuator/info
+/actuator/metrics
+/actuator/metrics/{name}
+/actuator/prometheus
+/actuator/env
+/actuator/beans
+/actuator/mappings
+/actuator/configprops
+/actuator/loggers
+/actuator/loggers/{name}   (POST)
+/actuator/threaddump
+/actuator/heapdump
+/actuator/conditions
+/actuator/scheduledtasks
+/actuator/caches
+</code></pre></div>
+<h3 id="custom-health">Custom Health<a class="headerlink" href="#custom-health" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ApiHealth</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">HealthIndicator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Health</span><span class="w"> </span><span class="nf">health</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">apiUp</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">up</span><span class="p">().</span><span class="na">withDetail</span><span class="p">(</span><span class="s">"latency"</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">).</span><span class="na">build</span><span class="p">()</span>
+<span class="w">                       </span><span class="p">:</span><span class="w"> </span><span class="n">Health</span><span class="p">.</span><span class="na">down</span><span class="p">().</span><span class="na">withDetail</span><span class="p">(</span><span class="s">"reason"</span><span class="p">,</span><span class="w"> </span><span class="s">"timeout"</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="custom-counter">Custom Counter<a class="headerlink" href="#custom-counter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Counter</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Counter</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">"orders.placed"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">"service"</span><span class="p">,</span><span class="w"> </span><span class="s">"order"</span><span class="p">).</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="n">c</span><span class="p">.</span><span class="na">increment</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="custom-endpoint">Custom Endpoint<a class="headerlink" href="#custom-endpoint" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@Endpoint</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"features"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FeaturesEndpoint</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@ReadOperation</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Boolean</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">features</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nd">@WriteOperation</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="nd">@Selector</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">enabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="secure-actuator">Secure Actuator<a class="headerlink" href="#secure-actuator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="nd">@Order</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">SecurityFilterChain</span><span class="w"> </span><span class="nf">actuator</span><span class="p">(</span><span class="n">HttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">http</span><span class="p">.</span><span class="na">securityMatcher</span><span class="p">(</span><span class="n">EndpointRequest</span><span class="p">.</span><span class="na">toAnyEndpoint</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">excluding</span><span class="p">(</span><span class="s">"health"</span><span class="p">,</span><span class="w"> </span><span class="s">"info"</span><span class="p">,</span><span class="w"> </span><span class="s">"prometheus"</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">authorizeHttpRequests</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">anyRequest</span><span class="p">().</span><span class="na">hasRole</span><span class="p">(</span><span class="s">"ACTUATOR"</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">httpBasic</span><span class="p">(</span><span class="n">Customizer</span><span class="p">.</span><span class="na">withDefaults</span><span class="p">());</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="promql-examples">PromQL Examples<a class="headerlink" href="#promql-examples" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kr">rate</span><span class="o">(</span><span class="nv">http_server_requests_seconds_count</span><span class="p">[</span><span class="s">1m</span><span class="p">]</span><span class="o">)</span>
+<span class="kr">histogram_quantile</span><span class="o">(</span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="kr">rate</span><span class="o">(</span><span class="nv">http_server_requests_seconds_bucket</span><span class="p">[</span><span class="s">5m</span><span class="p">]</span><span class="o">))</span>
+<span class="k">sum</span><span class="o">(</span><span class="kr">rate</span><span class="o">(</span><span class="nv">http_server_requests_seconds_count</span><span class="p">{</span><span class="nl">status</span><span class="o">=~</span><span class="p">"</span><span class="s">5..</span><span class="p">"}[</span><span class="s">5m</span><span class="p">]</span><span class="o">))</span>
+<span class="nv">jvm_memory_used_bytes</span><span class="p">{</span><span class="nl">area</span><span class="o">=</span><span class="p">"</span><span class="s">heap</span><span class="p">"}</span>
+</code></pre></div>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>08_Spring_Boot_Configuration.md</code></li>
+<li><strong>Next:</strong> <code>10_Spring_Data_JPA.md</code></li>
+<li><strong>Related:</strong> <code>19_Spring_Microservices_Cloud.md</code> (distributed tracing)</li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code></li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="../08_Spring_Boot_Configuration/">08_Spring_Boot_Configuration.md</a></li>
+<li><strong>Next →:</strong> <a href="./10_Spring_Data_JPA.md">10_Spring_Data_JPA.md</a></li>
+<li><strong>Related:</strong> <a href="../06_Spring_Boot_Fundamentals/">06_Spring_Boot_Fundamentals.md</a>, <a href="./16_Spring_Testing.md">16_Spring_Testing.md</a>, <a href="./26_Spring_Best_Practices.md">26_Spring_Best_Practices.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

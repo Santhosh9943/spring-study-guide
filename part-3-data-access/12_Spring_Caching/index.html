@@ -1,0 +1,4676 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete Spring guide with 27 files">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Spring Caching - Spring Ecosystem Study Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spring-caching" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-header__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spring Ecosystem Study Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spring Caching
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 1 — Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-tabs__link">
+          
+  
+  
+  Part 2 — Spring Boot
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-tabs__link">
+          
+  
+  
+  Part 3 — Data Access
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-tabs__link">
+          
+  
+  
+  Part 4 — Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-tabs__link">
+          
+  
+  
+  Part 5 — Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-tabs__link">
+          
+  
+  
+  Part 6 — Build Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-tabs__link">
+          
+  
+  
+  Part 7 — Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-tabs__link">
+          
+  
+  
+  Part 8 — Interview Prep
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Spring Ecosystem Study Guide" class="md-nav__button md-logo" aria-label="Spring Ecosystem Study Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Spring Ecosystem Study Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 — Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/01_Spring_Framework_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/02_Spring_AOP.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/03_Spring_MVC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/04_Spring_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-1-foundations/05_Spring_Transaction_Management.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 — Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/06_Spring_Boot_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/07_Spring_Boot_Starters.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/08_Spring_Boot_Configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-2-spring-boot/09_Spring_Boot_Actuator.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actuator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 — Data Access
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Data Access
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/10_Spring_Data_JPA.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/11_Spring_Data_JDBC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Data JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-3-data-access/12_Spring_Caching.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 — Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/13_Spring_Security_Core.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/14_Spring_Security_JWT_OAuth2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT & OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-4-security/15_Spring_Security_Method_Level.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 — Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-5-testing/16_Spring_Testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 — Build Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Build Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/17_Maven_Build_Tool.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-6-build-tools/18_Gradle_For_Spring.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 — Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/19_Spring_Microservices_Cloud.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/20_Spring_WebFlux_Reactive.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebFlux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/21_Spring_Batch.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/22_Spring_Messaging.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-7-advanced/23_Spring_Web_Services.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 — Interview Prep
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Interview Prep
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/24_Spring_Interview_Questions.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/25_Spring_Project_Architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/26_Spring_Best_Practices.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/part-8-interview-prep/27_Spring_Cheat_Sheet.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-caching-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Caching Concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Caching Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Terms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-hit-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Hit Ratio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-invalidation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Invalidation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-spring-cache-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spring Cache Abstraction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Spring Cache Abstraction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-spi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The SPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-the-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling the Abstraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-enabling-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enabling Caching
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Enabling Caching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specifying Provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cacheable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. @Cacheable
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. @Cacheable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuecachename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Value/CacheName
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition-evaluated-before-invocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition (evaluated before invocation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unless-evaluated-after-invocation-on-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unless (evaluated after invocation, on result)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition-vs-unless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition vs Unless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cacheable-on-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Cacheable on Class
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cacheput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. @CachePut
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. @CachePut">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behavior_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cacheable-vs-cacheput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Cacheable vs @CachePut
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cacheevict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. @CacheEvict
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. @CacheEvict">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beforeinvocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beforeInvocation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-caching-combining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. @Caching (Combining)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. @Caching (Combining)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attributes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-over-combining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoid Over-Combining
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cache-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cache Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Cache Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-cachemanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default CacheManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-cachemanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom CacheManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-cache-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Cache Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-caching-in-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable Caching in Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Caches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-names-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Names Constants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-key-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Key Generation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Key Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-keygenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default KeyGenerator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spel-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SpEL Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#useful-spel-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful SpEL Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-keygenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom KeyGenerator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-default-keygenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Default KeyGenerator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-safe-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Null-Safe Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cacheable-with-composite-key-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @Cacheable with Composite Key Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-conditional-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Conditional Caching
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Conditional Caching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condition-before-invocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        condition — before invocation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unless-after-invocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unless — after invocation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cacheput-with-conditionunless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @CachePut with condition/unless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cacheevict-with-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        @CacheEvict with condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-args-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Args &amp; Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-cache-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Cache Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Cache Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-selection-order-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Selection Order (Boot)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrentmapcache-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConcurrentMapCache (Default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ehcache-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ehcache 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jcache-jsr-107" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JCache (JSR-107)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-redis-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Redis Cache
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Redis Cache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serialization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Prefix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distributed-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-storage-bonus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Storage (bonus)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-eviction-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis Eviction Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-caffeine-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Caffeine Cache
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Caffeine Cache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-cache-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Cache Builder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-not-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Not to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cache-metrics-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Cache Metrics &amp; Monitoring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Cache Metrics &amp; Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auto-registered-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Registered Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-cache-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable Cache Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alerting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Common Pitfalls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Common Pitfalls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#151-self-invocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1 Self-Invocation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#152-caching-nulls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.2 Caching Nulls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#153-key-collisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3 Key Collisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#154-mutable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.4 Mutable Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#155-cache-stampede" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.5 Cache Stampede
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#156-forgetting-eviction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.6 Forgetting Eviction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#157-using-cache-for-consistency-critical-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.7 Using Cache for Consistency-Critical Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#158-cache-inherited-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.8 Cache Inherited Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#159-cache-transaction-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.9 Cache + Transaction Ordering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1510-big-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.10 Big Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pitfalls-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pitfalls Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-interview-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Interview Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Interview Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-what-is-caching-and-why-use-springs-cache-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. What is caching and why use Spring's cache abstraction?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-difference-between-cacheable-cacheput-and-cacheevict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. Difference between @Cacheable, @CachePut, and @CacheEvict?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-what-is-the-difference-between-condition-and-unless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. What is the difference between condition and unless?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-how-does-spring-generate-cache-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. How does Spring generate cache keys?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-what-is-allentries-true-in-cacheevict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. What is allEntries = true in @CacheEvict?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-what-is-beforeinvocation-true-in-cacheevict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. What is beforeInvocation = true in @CacheEvict?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-how-do-you-cache-multiple-keys-for-one-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. How do you cache multiple keys for one method?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-what-is-cache-stampede-and-how-do-you-prevent-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. What is cache stampede and how do you prevent it?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-how-do-you-disable-caching-in-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9. How do you disable caching in tests?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-how-do-you-customize-cache-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10. How do you customize cache error handling?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-what-are-the-differences-between-caffeine-and-redis-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11. What are the differences between Caffeine and Redis caches?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-how-do-you-configure-different-ttls-for-different-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12. How do you configure different TTLs for different caches?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q13-why-is-caching-nulls-sometimes-bad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13. Why is caching nulls sometimes bad?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q14-how-does-cacheable-interact-with-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14. How does @Cacheable interact with @Transactional?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15-what-is-the-self-invocation-problem-in-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15. What is the "self-invocation" problem in caching?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16-what-is-the-default-cachemanager-in-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16. What is the default CacheManager in Spring Boot?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17-how-do-you-cache-collection-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17. How do you cache collection results?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18-what-is-a-cache-hit-ratio-and-how-do-you-monitor-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18. What is a cache hit ratio and how do you monitor it?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19-can-you-cache-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19. Can you cache Optional?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q20-how-do-you-invalidate-the-cache-when-data-changes-externally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20. How do you invalidate the cache when data changes externally?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spel-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SpEL Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Providers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-redis-cachemanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Redis CacheManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caffeine-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caffeine Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pitfalls-checklist_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pitfalls Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="spring-caching">Spring Caching<a class="headerlink" href="#spring-caching" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>File:</strong> <code>12_Spring_Caching.md</code>
+<strong>Part:</strong> 3 — Data Access
+<strong>Prerequisites:</strong> <code>01_Spring_Framework_Core.md</code>, <code>02_Spring_AOP.md</code>
+<strong>Estimated Study Time:</strong> 5–7 hours</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-caching-concepts">Caching Concepts</a></li>
+<li><a href="#2-spring-cache-abstraction">Spring Cache Abstraction</a></li>
+<li><a href="#3-enabling-caching">Enabling Caching</a></li>
+<li><a href="#4-cacheable">@Cacheable</a></li>
+<li><a href="#5-cacheput">@CachePut</a></li>
+<li><a href="#6-cacheevict">@CacheEvict</a></li>
+<li><a href="#7-caching-combining">@Caching (Combining)</a></li>
+<li><a href="#8-cache-configuration">Cache Configuration</a></li>
+<li><a href="#9-key-generation">Key Generation</a></li>
+<li><a href="#10-conditional-caching">Conditional Caching</a></li>
+<li><a href="#11-cache-providers">Cache Providers</a></li>
+<li><a href="#12-redis-cache">Redis Cache</a></li>
+<li><a href="#13-caffeine-cache">Caffeine Cache</a></li>
+<li><a href="#14-cache-metrics--monitoring">Cache Metrics &amp; Monitoring</a></li>
+<li><a href="#15-common-pitfalls">Common Pitfalls</a></li>
+<li><a href="#16-interview-questions">Interview Questions</a></li>
+<li><a href="#17-cheat-sheet">Cheat Sheet</a></li>
+</ol>
+<hr />
+<h2 id="1-caching-concepts">1. Caching Concepts<a class="headerlink" href="#1-caching-concepts" title="Permanent link">&para;</a></h2>
+<p><strong>Caching</strong> stores the result of an expensive operation so subsequent calls return faster.</p>
+<h3 id="core-terms">Core Terms<a class="headerlink" href="#core-terms" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cache</strong></td>
+<td>Storage for cached values</td>
+</tr>
+<tr>
+<td><strong>Cache hit</strong></td>
+<td>Value found in cache</td>
+</tr>
+<tr>
+<td><strong>Cache miss</strong></td>
+<td>Value not found; compute and store</td>
+</tr>
+<tr>
+<td><strong>Eviction</strong></td>
+<td>Removing entries</td>
+</tr>
+<tr>
+<td><strong>TTL</strong></td>
+<td>Time-to-live for entries</td>
+</tr>
+<tr>
+<td><strong>Invalidation</strong></td>
+<td>Marking entries stale on data change</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cache-hit-ratio">Cache Hit Ratio<a class="headerlink" href="#cache-hit-ratio" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>hitRatio = hits / (hits + misses)
+</code></pre></div>
+<p>Higher = better. Aim for &gt;80% for effective caching.</p>
+<h3 id="what-to-cache">What to Cache<a class="headerlink" href="#what-to-cache" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Expensive computations (aggregations, ML inference)</li>
+<li>✅ Frequent reads of rarely-changing data (config, reference data)</li>
+<li>✅ External API responses</li>
+<li>✅ Session data</li>
+<li>❌ Rapidly-changing data</li>
+<li>❌ Large objects with low hit ratio</li>
+<li>❌ User-specific data with strict consistency needs</li>
+</ul>
+<h3 id="cache-strategies">Cache Strategies<a class="headerlink" href="#cache-strategies" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cache-Aside</strong></td>
+<td>App reads cache; on miss, reads DB and populates</td>
+</tr>
+<tr>
+<td><strong>Read-Through</strong></td>
+<td>Cache reads DB on miss</td>
+</tr>
+<tr>
+<td><strong>Write-Through</strong></td>
+<td>Write to cache and DB together</td>
+</tr>
+<tr>
+<td><strong>Write-Behind</strong></td>
+<td>Write to cache; async to DB</td>
+</tr>
+</tbody>
+</table>
+<p>Spring's <code>@Cacheable</code> implements <strong>cache-aside</strong>.</p>
+<h3 id="cache-invalidation">Cache Invalidation<a class="headerlink" href="#cache-invalidation" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>"There are only two hard things in computer science: cache invalidation and naming things." — Phil Karlton</p>
+</blockquote>
+<p>Strategies:
+- <strong>TTL</strong> — expire after time
+- <strong>Explicit evict</strong> — on write, remove key
+- <strong>Versioned keys</strong> — include a version in the key
+- <strong>Write-through</strong> — update on write</p>
+<p>Spring provides <code>@CacheEvict</code> and <code>@CachePut</code> for explicit invalidation.</p>
+<hr />
+<h2 id="2-spring-cache-abstraction">2. Spring Cache Abstraction<a class="headerlink" href="#2-spring-cache-abstraction" title="Permanent link">&para;</a></h2>
+<p>Spring provides a <strong>cache abstraction</strong> — a consistent API over multiple cache providers.</p>
+<h3 id="the-spi">The SPI<a class="headerlink" href="#the-spi" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────┐
+│     Application Code             │
+│     @Cacheable, @CachePut, ...   │
+├──────────────────────────────────┤
+│     Spring Cache Abstraction     │
+│     CacheManager, Cache          │
+├──────────────────────────────────┤
+│     Providers                    │
+│  ┌────────┬─────────┬──────────┐ │
+│  │Concur  │ Redis   │ Caffeine │ │
+│  │rentMap │         │          │ │
+│  └────────┴─────────┴──────────┘ │
+│         ... (Ehcache, Hazelcast) │
+└──────────────────────────────────┘
+</code></pre></div>
+<h3 id="key-interfaces">Key Interfaces<a class="headerlink" href="#key-interfaces" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CacheManager</code></td>
+<td>Creates/manages caches</td>
+</tr>
+<tr>
+<td><code>Cache</code></td>
+<td>A single cache (get, put, evict)</td>
+</tr>
+<tr>
+<td><code>CacheResolver</code></td>
+<td>Resolves which cache to use</td>
+</tr>
+<tr>
+<td><code>KeyGenerator</code></td>
+<td>Generates cache keys</td>
+</tr>
+<tr>
+<td><code>CacheErrorHandler</code></td>
+<td>Handles cache errors</td>
+</tr>
+</tbody>
+</table>
+<h3 id="enabling-the-abstraction">Enabling the Abstraction<a class="headerlink" href="#enabling-the-abstraction" title="Permanent link">&para;</a></h3>
+<p>Add <code>@EnableCaching</code> and a <code>CacheManager</code> (or let Spring Boot auto-configure).</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableCaching</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CacheConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="3-enabling-caching">3. Enabling Caching<a class="headerlink" href="#3-enabling-caching" title="Permanent link">&para;</a></h2>
+<h3 id="add-dependency">Add Dependency<a class="headerlink" href="#add-dependency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-cache<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Pulls in <code>spring-context-support</code> (for Caffeine, Ehcache integration).</p>
+<h3 id="enable">Enable<a class="headerlink" href="#enable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableCaching</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">App</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Or on a config class:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableCaching</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CacheConfig</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="auto-configuration">Auto-Configuration<a class="headerlink" href="#auto-configuration" title="Permanent link">&para;</a></h3>
+<p>Spring Boot auto-configures a <code>CacheManager</code> when:</p>
+<ul>
+<li><code>@EnableCaching</code> present</li>
+<li>One of these on classpath: Caffeine, Ehcache, Redis, Hazelcast, Couchbase, Infinispan, or none</li>
+</ul>
+<p>If none → <code>ConcurrentMapCacheManager</code>.</p>
+<h3 id="specifying-provider">Specifying Provider<a class="headerlink" href="#specifying-provider" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.type</span><span class="o">=</span><span class="s">redis         # or caffeine, ehcache, none</span>
+</code></pre></div>
+<p>Values: <code>caffeine</code>, <code>couchbase</code>, <code>ehcache</code>, <code>hazelcast</code>, <code>infinispan</code>, <code>jcache</code>, <code>redis</code>, <code>simple</code>, <code>none</code>.</p>
+<hr />
+<h2 id="4-cacheable">4. @Cacheable<a class="headerlink" href="#4-cacheable" title="Permanent link">&para;</a></h2>
+<p>Caches the <strong>return value</strong> of a method.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="s">"users"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// expensive lookup</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="behavior">Behavior<a class="headerlink" href="#behavior" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Method called with args → cache key computed</li>
+<li>Key present → return cached value (<strong>hit</strong>)</li>
+<li>Key absent → invoke method, store result (<strong>miss</strong>)</li>
+</ol>
+<h3 id="valuecachename">Value/CacheName<a class="headerlink" href="#valuecachename" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="s">"users"</span><span class="p">)</span><span class="w">                       </span><span class="c1">// shorthand</span>
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">cacheNames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">)</span>
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">)</span>
+<span class="nd">@Cacheable</span><span class="p">({</span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="s">"allUsers"</span><span class="p">})</span><span class="w">         </span><span class="c1">// multiple caches — value stored in all</span>
+</code></pre></div>
+<p>Multiple caches: the value is stored in all; lookup checks each in order.</p>
+<h3 id="key">Key<a class="headerlink" href="#key" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.email"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id + ':' + #tenant"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">tenant</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Default key generation uses all parameters.</p>
+<h3 id="condition-evaluated-before-invocation">Condition (evaluated before invocation)<a class="headerlink" href="#condition-evaluated-before-invocation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id &gt; 0"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>If condition is false → <strong>not cached, not looked up</strong>.</p>
+<h3 id="unless-evaluated-after-invocation-on-result">Unless (evaluated after invocation, on result)<a class="headerlink" href="#unless-evaluated-after-invocation-on-result" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">unless</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#result == null"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">unless</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#result.active == false"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>If unless is true → <strong>not cached</strong> (but was computed).</p>
+<h3 id="condition-vs-unless">Condition vs Unless<a class="headerlink" href="#condition-vs-unless" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Evaluated</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>condition</code></td>
+<td>Before</td>
+<td>Skip cache entirely</td>
+</tr>
+<tr>
+<td><code>unless</code></td>
+<td>After</td>
+<td>Don't cache certain results</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sync">Sync<a class="headerlink" href="#sync" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">sync</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Blocks concurrent calls for the same key — avoids duplicate computation (<strong>cache stampede</strong>). Only supported by some providers (ConcurrentMap, Redis via <code>@Cacheable</code> since 4.3).</p>
+<h3 id="cacheable-on-class">@Cacheable on Class<a class="headerlink" href="#cacheable-on-class" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="s">"users"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// all public methods cached</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Rarely used — usually method-level.</p>
+<h3 id="return-types">Return Types<a class="headerlink" href="#return-types" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Works with any return type</li>
+<li><code>Optional&lt;T&gt;</code> is cached as-is (not unwrapped) — check semantics</li>
+</ul>
+<hr />
+<h2 id="5-cacheput">5. @CachePut<a class="headerlink" href="#5-cacheput" title="Permanent link">&para;</a></h2>
+<p><strong>Always invokes the method</strong> and <strong>updates the cache</strong> with the result.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">user</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="behavior_1">Behavior<a class="headerlink" href="#behavior_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Method always invoked</li>
+<li>Result stored in cache under the key</li>
+</ol>
+<p><strong>Use case:</strong> Update methods that must update both DB and cache.</p>
+<h3 id="cacheable-vs-cacheput">@Cacheable vs @CachePut<a class="headerlink" href="#cacheable-vs-cacheput" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>@Cacheable</th>
+<th>@CachePut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Method invoked</td>
+<td>On miss</td>
+<td>Always</td>
+</tr>
+<tr>
+<td>Cache read</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Cache write</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Use case</td>
+<td>Read methods</td>
+<td>Write methods</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#result.id"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">UserRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">User</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">        </span><span class="n">u</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">name</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>@CachePut(value="users", key="#result.id")</code> — uses the returned entity's ID as the key, avoiding stale args.</p>
+<hr />
+<h2 id="6-cacheevict">6. @CacheEvict<a class="headerlink" href="#6-cacheevict" title="Permanent link">&para;</a></h2>
+<p><strong>Removes</strong> entries from cache.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@CacheEvict</span><span class="p">(</span><span class="s">"users"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">clearAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">allEntries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">refreshAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Default</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code>/<code>cacheNames</code></td>
+<td>Required</td>
+<td>Cache(s) to evict</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>All params</td>
+<td>Key to evict</td>
+</tr>
+<tr>
+<td><code>condition</code></td>
+<td>—</td>
+<td>Only evict if true</td>
+</tr>
+<tr>
+<td><code>allEntries</code></td>
+<td><code>false</code></td>
+<td>Evict all entries</td>
+</tr>
+<tr>
+<td><code>beforeInvocation</code></td>
+<td><code>false</code></td>
+<td>Evict before method runs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="beforeinvocation">beforeInvocation<a class="headerlink" href="#beforeinvocation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">,</span><span class="w"> </span><span class="n">beforeInvocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>false</code> (default) — evict <strong>after</strong> method succeeds (method can throw → no evict)</li>
+<li><code>true</code> — evict <strong>before</strong> method (even if method throws)</li>
+</ul>
+<p>Use <code>beforeInvocation = true</code> for safety when data may be removed regardless of the method outcome.</p>
+<h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">userRepository</span><span class="p">.</span><span class="na">deleteById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">allEntries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">importAll</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">userRepository</span><span class="p">.</span><span class="na">saveAll</span><span class="p">(</span><span class="n">users</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="7-caching-combining">7. @Caching (Combining)<a class="headerlink" href="#7-caching-combining" title="Permanent link">&para;</a></h2>
+<p>Combine multiple cache operations on one method.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Caching</span><span class="p">(</span>
+<span class="w">    </span><span class="n">put</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.id"</span><span class="p">),</span>
+<span class="w">        </span><span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"usersByEmail"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.email"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="n">evict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"userList"</span><span class="p">,</span><span class="w"> </span><span class="n">allEntries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">user</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>cacheable = {...}</code></li>
+<li><code>put = {...}</code></li>
+<li><code>evict = {...}</code></li>
+</ul>
+<h3 id="use-case">Use Case<a class="headerlink" href="#use-case" title="Permanent link">&para;</a></h3>
+<p>Method touches multiple caches simultaneously:</p>
+<ul>
+<li>Update user → update <code>users</code> cache by ID</li>
+<li>Also update <code>usersByEmail</code> cache (lookup by email)</li>
+<li>Evict <code>userList</code> (list is stale)</li>
+</ul>
+<h3 id="avoid-over-combining">Avoid Over-Combining<a class="headerlink" href="#avoid-over-combining" title="Permanent link">&para;</a></h3>
+<p>If a class has multiple <code>@Caching</code> methods, consider whether the caching strategy is too complex. Often it's better to have a single primary cache and let other data be evicted.</p>
+<hr />
+<h2 id="8-cache-configuration">8. Cache Configuration<a class="headerlink" href="#8-cache-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="default-cachemanager">Default CacheManager<a class="headerlink" href="#default-cachemanager" title="Permanent link">&para;</a></h3>
+<p>Without a provider, Spring Boot uses <code>ConcurrentMapCacheManager</code> — in-memory, no eviction, suitable for dev.</p>
+<h3 id="custom-cachemanager">Custom CacheManager<a class="headerlink" href="#custom-cachemanager" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableCaching</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CacheConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">CacheManager</span><span class="w"> </span><span class="nf">cacheManager</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">CaffeineCacheManager</span><span class="w"> </span><span class="n">cm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CaffeineCacheManager</span><span class="p">();</span>
+<span class="w">        </span><span class="n">cm</span><span class="p">.</span><span class="na">setCaffeine</span><span class="p">(</span><span class="n">Caffeine</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">expireAfterWrite</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">maximumSize</span><span class="p">(</span><span class="mi">1000</span><span class="p">));</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">cm</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="per-cache-configuration">Per-Cache Configuration<a class="headerlink" href="#per-cache-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">CacheManager</span><span class="w"> </span><span class="nf">cacheManager</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">SimpleCacheManager</span><span class="w"> </span><span class="n">cm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleCacheManager</span><span class="p">();</span>
+<span class="w">    </span><span class="n">cm</span><span class="p">.</span><span class="na">setCaches</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">ConcurrentMapCache</span><span class="p">(</span><span class="s">"users"</span><span class="p">),</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">ConcurrentMapCache</span><span class="p">(</span><span class="s">"products"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">cm</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="disable-caching-in-tests">Disable Caching in Tests<a class="headerlink" href="#disable-caching-in-tests" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.type</span><span class="o">=</span><span class="s">none</span>
+</code></pre></div>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@TestPropertySource</span><span class="p">(</span><span class="n">properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"spring.cache.type=none"</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">MyTest</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="multiple-caches">Multiple Caches<a class="headerlink" href="#multiple-caches" title="Permanent link">&para;</a></h3>
+<p>With <code>@Cacheable({"users", "allUsers"})</code> — first is primary; the value is stored in all caches.</p>
+<h3 id="cache-names-constants">Cache Names Constants<a class="headerlink" href="#cache-names-constants" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CacheNames</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">USERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">PRODUCTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"products"</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">CacheNames</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">CacheNames</span><span class="p">.</span><span class="na">USERS</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="boot-properties">Boot Properties<a class="headerlink" href="#boot-properties" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.type</span><span class="o">=</span><span class="s">caffeine</span>
+<span class="na">spring.cache.cache-names</span><span class="o">=</span><span class="s">users,products,orders</span>
+<span class="na">spring.cache.caffeine.spec</span><span class="o">=</span><span class="s">maximumSize=500,expireAfterWrite=10m</span>
+<span class="na">spring.cache.redis.time-to-live</span><span class="o">=</span><span class="s">600000</span>
+<span class="na">spring.cache.redis.cache-null-values</span><span class="o">=</span><span class="s">false</span>
+<span class="na">spring.cache.redis.key-prefix</span><span class="o">=</span><span class="s">myapp:cache:</span>
+</code></pre></div>
+<h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
+<p>By default, cache errors propagate. Customize:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableCaching</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CacheConfig</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CachingConfigurerSupport</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">CacheErrorHandler</span><span class="w"> </span><span class="nf">errorHandler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleCacheErrorHandler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nd">@Override</span>
+<span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">handleCacheGetError</span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">ex</span><span class="p">,</span><span class="w"> </span><span class="n">Cache</span><span class="w"> </span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">log</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">"Cache GET failed: {}"</span><span class="p">,</span><span class="w"> </span><span class="n">cache</span><span class="p">.</span><span class="na">getName</span><span class="p">(),</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
+<span class="w">                </span><span class="c1">// Swallow — fall back to method invocation</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// similar for put/evict/clear</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Production tip:</strong> Cache errors (Redis down) shouldn't break the app. Swallow + log.</p>
+<hr />
+<h2 id="9-key-generation">9. Key Generation<a class="headerlink" href="#9-key-generation" title="Permanent link">&para;</a></h2>
+<h3 id="default-keygenerator">Default KeyGenerator<a class="headerlink" href="#default-keygenerator" title="Permanent link">&para;</a></h3>
+<p>Uses all method args:
+- No args → <code>SimpleKey.EMPTY</code>
+- One arg → the arg itself
+- Multiple args → <code>SimpleKey(args...)</code></p>
+<p><code>SimpleKey</code> has value semantics (<code>equals</code>/<code>hashCode</code>).</p>
+<h3 id="spel-keys">SpEL Keys<a class="headerlink" href="#spel-keys" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"userPages"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#page + '-' + #size"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Page</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findPage</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">page</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#root.methodName + ':' + #id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="useful-spel-variables">Useful SpEL Variables<a class="headerlink" href="#useful-spel-variables" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#root.method</code></td>
+<td>Method object</td>
+</tr>
+<tr>
+<td><code>#root.methodName</code></td>
+<td>Method name</td>
+</tr>
+<tr>
+<td><code>#root.target</code></td>
+<td>Target object</td>
+</tr>
+<tr>
+<td><code>#root.targetClass</code></td>
+<td>Target class</td>
+</tr>
+<tr>
+<td><code>#root.args</code></td>
+<td>Args array</td>
+</tr>
+<tr>
+<td><code>#root.caches</code></td>
+<td>Caches array</td>
+</tr>
+<tr>
+<td><code>#result</code></td>
+<td>Return value (for <code>unless</code>)</td>
+</tr>
+<tr>
+<td><code>#a0</code>, <code>#p0</code></td>
+<td>First arg</td>
+</tr>
+<tr>
+<td><code>#paramName</code></td>
+<td>Named param (if compiled with <code>-parameters</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-keygenerator">Custom KeyGenerator<a class="headerlink" href="#custom-keygenerator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span><span class="p">(</span><span class="s">"myKeyGen"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyKeyGenerator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">KeyGenerator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">Method</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="p">...</span><span class="w"> </span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">method</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">":"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">params</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">keyGenerator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"myKeyGen"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="configure-default-keygenerator">Configure Default KeyGenerator<a class="headerlink" href="#configure-default-keygenerator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableCaching</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CacheConfig</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">CachingConfigurer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">KeyGenerator</span><span class="w"> </span><span class="nf">keyGenerator</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyKeyGenerator</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="null-safe-keys">Null-Safe Keys<a class="headerlink" href="#null-safe-keys" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id ?: 'unknown'"</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="cacheable-with-composite-key-object">@Cacheable with Composite Key Object<a class="headerlink" href="#cacheable-with-composite-key-object" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">UserCacheKey</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">tenant</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"new com.example.UserCacheKey(#id, #tenant)"</span><span class="p">)</span>
+</code></pre></div>
+<p>Simpler: use string concatenation.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id + '-' + #tenant"</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="10-conditional-caching">10. Conditional Caching<a class="headerlink" href="#10-conditional-caching" title="Permanent link">&para;</a></h2>
+<h3 id="condition-before-invocation">condition — before invocation<a class="headerlink" href="#condition-before-invocation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id &gt; 0"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>False → no cache interaction, method runs.</p>
+<h3 id="unless-after-invocation">unless — after invocation<a class="headerlink" href="#unless-after-invocation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">unless</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#result == null"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">unless</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#result.age &lt; 18"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>True → do not cache the result.</p>
+<h3 id="combined">Combined<a class="headerlink" href="#combined" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span>
+<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id &gt; 0"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">unless</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#result == null || #result.disabled"</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="cacheput-with-conditionunless">@CachePut with condition/unless<a class="headerlink" href="#cacheput-with-conditionunless" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.id"</span><span class="p">,</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.active"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="cacheevict-with-condition">@CacheEvict with condition<a class="headerlink" href="#cacheevict-with-condition" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">,</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id != null"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="runtime-args-result">Runtime Args &amp; Result<a class="headerlink" href="#runtime-args-result" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>condition</code> sees only args (not result)</li>
+<li><code>unless</code> sees args <strong>and</strong> <code>#result</code></li>
+<li><code>#root.target</code>, <code>#root.method</code> available in both</li>
+</ul>
+<hr />
+<h2 id="11-cache-providers">11. Cache Providers<a class="headerlink" href="#11-cache-providers" title="Permanent link">&para;</a></h2>
+<h3 id="comparison">Comparison<a class="headerlink" href="#comparison" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Type</th>
+<th>Distributed</th>
+<th>TTL</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ConcurrentMap</strong></td>
+<td>In-memory</td>
+<td>❌</td>
+<td>❌</td>
+<td>Dev, tests</td>
+</tr>
+<tr>
+<td><strong>Caffeine</strong></td>
+<td>In-memory</td>
+<td>❌</td>
+<td>✅</td>
+<td>Single-node prod</td>
+</tr>
+<tr>
+<td><strong>Ehcache</strong></td>
+<td>In-memory + disk</td>
+<td>Cluster option</td>
+<td>✅</td>
+<td>Heavy local caching</td>
+</tr>
+<tr>
+<td><strong>Redis</strong></td>
+<td>External</td>
+<td>✅</td>
+<td>✅</td>
+<td>Distributed, sessions</td>
+</tr>
+<tr>
+<td><strong>Hazelcast</strong></td>
+<td>Distributed</td>
+<td>✅</td>
+<td>✅</td>
+<td>In-memory data grid</td>
+</tr>
+<tr>
+<td><strong>Infinispan</strong></td>
+<td>Distributed</td>
+<td>✅</td>
+<td>✅</td>
+<td>Enterprise, JCache</td>
+</tr>
+<tr>
+<td><strong>Couchbase</strong></td>
+<td>External</td>
+<td>✅</td>
+<td>✅</td>
+<td>Document + cache</td>
+</tr>
+<tr>
+<td><strong>JCache (JSR-107)</strong></td>
+<td>Spec</td>
+<td>Depends</td>
+<td>✅</td>
+<td>Standard API</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auto-selection-order-boot">Auto-Selection Order (Boot)<a class="headerlink" href="#auto-selection-order-boot" title="Permanent link">&para;</a></h3>
+<p>Spring Boot auto-configures in this order (first available):</p>
+<ol>
+<li>Generic (custom <code>CacheManager</code> bean)</li>
+<li>JCache</li>
+<li>Hazelcast</li>
+<li>Infinispan</li>
+<li>Couchbase</li>
+<li>Redis</li>
+<li>Caffeine</li>
+<li>Simple (ConcurrentMap)</li>
+</ol>
+<p>Override with <code>spring.cache.type</code>.</p>
+<h3 id="concurrentmapcache-default">ConcurrentMapCache (Default)<a class="headerlink" href="#concurrentmapcache-default" title="Permanent link">&para;</a></h3>
+<ul>
+<li>In-memory</li>
+<li>No eviction</li>
+<li>Per JVM</li>
+<li>Fine for dev, not prod</li>
+</ul>
+<h3 id="ehcache-3">Ehcache 3<a class="headerlink" href="#ehcache-3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.ehcache<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>ehcache<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p><code>ehcache.xml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;config</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://www.ehcache.org/v3"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cache</span><span class="w"> </span><span class="na">alias=</span><span class="s">"users"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;key-type&gt;</span>java.lang.Long<span class="nt">&lt;/key-type&gt;</span>
+<span class="w">        </span><span class="nt">&lt;value-type&gt;</span>com.example.User<span class="nt">&lt;/value-type&gt;</span>
+<span class="w">        </span><span class="nt">&lt;expiry&gt;&lt;ttl</span><span class="w"> </span><span class="na">unit=</span><span class="s">"minutes"</span><span class="nt">&gt;</span>10<span class="nt">&lt;/ttl&gt;&lt;/expiry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;resources&gt;</span>
+<span class="w">            </span><span class="nt">&lt;heap</span><span class="w"> </span><span class="na">unit=</span><span class="s">"entries"</span><span class="nt">&gt;</span>1000<span class="nt">&lt;/heap&gt;</span>
+<span class="w">            </span><span class="nt">&lt;offheap</span><span class="w"> </span><span class="na">unit=</span><span class="s">"MB"</span><span class="nt">&gt;</span>50<span class="nt">&lt;/offheap&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/resources&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cache&gt;</span>
+<span class="nt">&lt;/config&gt;</span>
+</code></pre></div>
+<p>Boot auto-detects <code>ehcache.xml</code>.</p>
+<h3 id="jcache-jsr-107">JCache (JSR-107)<a class="headerlink" href="#jcache-jsr-107" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>javax.cache<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>cache-api<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.ehcache<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>ehcache<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;classifier&gt;</span>jakarta<span class="nt">&lt;/classifier&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.type</span><span class="o">=</span><span class="s">jcache</span>
+<span class="na">spring.cache.jcache.config</span><span class="o">=</span><span class="s">classpath:ehcache.xml</span>
+</code></pre></div>
+<p>Uses standard <code>@CacheResult</code>, <code>@CachePut</code>, <code>@CacheRemove</code> annotations — but Spring's <code>@Cacheable</code> also works via the <code>JCacheCacheManager</code>.</p>
+<hr />
+<h2 id="12-redis-cache">12. Redis Cache<a class="headerlink" href="#12-redis-cache" title="Permanent link">&para;</a></h2>
+<h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-redis<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-cache<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.type</span><span class="o">=</span><span class="s">redis</span>
+<span class="na">spring.data.redis.host</span><span class="o">=</span><span class="s">localhost</span>
+<span class="na">spring.data.redis.port</span><span class="o">=</span><span class="s">6379</span>
+<span class="na">spring.data.redis.password</span><span class="o">=</span><span class="s">secret</span>
+<span class="na">spring.cache.redis.time-to-live</span><span class="o">=</span><span class="s">600000</span>
+<span class="na">spring.cache.redis.cache-null-values</span><span class="o">=</span><span class="s">false</span>
+<span class="na">spring.cache.redis.key-prefix</span><span class="o">=</span><span class="s">myapp:cache:</span>
+<span class="na">spring.cache.redis.use-key-prefix</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="serialization">Serialization<a class="headerlink" href="#serialization" title="Permanent link">&para;</a></h3>
+<p>Default uses JDK serialization — verbose. Override:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">RedisCacheConfiguration</span><span class="w"> </span><span class="nf">cacheConfiguration</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RedisCacheConfiguration</span><span class="p">.</span><span class="na">defaultCacheConfig</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">entryTtl</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">disableCachingNullValues</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">serializeKeysWith</span><span class="p">(</span><span class="n">RedisSerializationContext</span><span class="p">.</span><span class="na">SerializationPair</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fromSerializer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">StringRedisSerializer</span><span class="p">()))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">serializeValuesWith</span><span class="p">(</span><span class="n">RedisSerializationContext</span><span class="p">.</span><span class="na">SerializationPair</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fromSerializer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GenericJackson2JsonRedisSerializer</span><span class="p">()));</span>
+<span class="p">}</span>
+
+<span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">RedisCacheManager</span><span class="w"> </span><span class="nf">cacheManager</span><span class="p">(</span><span class="n">RedisConnectionFactory</span><span class="w"> </span><span class="n">cf</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RedisCacheManager</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">cf</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">cacheDefaults</span><span class="p">(</span><span class="n">cacheConfiguration</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">withCacheConfiguration</span><span class="p">(</span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="n">cacheConfiguration</span><span class="p">().</span><span class="na">entryTtl</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">withCacheConfiguration</span><span class="p">(</span><span class="s">"products"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="n">cacheConfiguration</span><span class="p">().</span><span class="na">entryTtl</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofHours</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="key-prefix">Key Prefix<a class="headerlink" href="#key-prefix" title="Permanent link">&para;</a></h3>
+<p><code>myapp:cache:users::1</code></p>
+<p>Prefix isolates app caches from other Redis keys.</p>
+<h3 id="distributed-caching">Distributed Caching<a class="headerlink" href="#distributed-caching" title="Permanent link">&para;</a></h3>
+<p>Redis works across multiple app instances — critical for microservices and K8s deployments.</p>
+<h3 id="session-storage-bonus">Session Storage (bonus)<a class="headerlink" href="#session-storage-bonus" title="Permanent link">&para;</a></h3>
+<p>Redis also backs Spring Session:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.session<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-session-data-redis<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="pitfalls">Pitfalls<a class="headerlink" href="#pitfalls" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Network latency</strong> — every cache call is a round-trip. Cache small data.</li>
+<li><strong>Serialization cost</strong> — JSON or binary. Choose the serializer wisely.</li>
+<li><strong>Cache stampede</strong> — many concurrent misses on same key. Use <code>sync=true</code>.</li>
+<li><strong>Eviction policy</strong> — Redis default is <code>noeviction</code> (fails writes when full). Set <code>allkeys-lru</code> or <code>volatile-lru</code>.</li>
+</ul>
+<h3 id="redis-eviction-policies">Redis Eviction Policies<a class="headerlink" href="#redis-eviction-policies" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>noeviction</code></td>
+<td>Fail writes when memory full</td>
+</tr>
+<tr>
+<td><code>allkeys-lru</code></td>
+<td>Evict any key (LRU)</td>
+</tr>
+<tr>
+<td><code>allkeys-lfu</code></td>
+<td>Evict any key (LFU)</td>
+</tr>
+<tr>
+<td><code>volatile-lru</code></td>
+<td>Evict keys with TTL (LRU)</td>
+</tr>
+<tr>
+<td><code>volatile-ttl</code></td>
+<td>Evict keys with shortest TTL</td>
+</tr>
+</tbody>
+</table>
+<p>Set in <code>redis.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>maxmemory 2gb
+maxmemory-policy allkeys-lru
+</code></pre></div>
+<hr />
+<h2 id="13-caffeine-cache">13. Caffeine Cache<a class="headerlink" href="#13-caffeine-cache" title="Permanent link">&para;</a></h2>
+<p><strong>Caffeine</strong> is a high-performance in-memory cache, the modern replacement for Guava Cache.</p>
+<h3 id="dependency">Dependency<a class="headerlink" href="#dependency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.ben-manes.caffeine<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>caffeine<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h3 id="auto-config">Auto-Config<a class="headerlink" href="#auto-config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.type</span><span class="o">=</span><span class="s">caffeine</span>
+<span class="na">spring.cache.cache-names</span><span class="o">=</span><span class="s">users,products</span>
+<span class="na">spring.cache.caffeine.spec</span><span class="o">=</span><span class="s">maximumSize=1000,expireAfterWrite=10m</span>
+</code></pre></div>
+<p>Spring Boot auto-configures <code>CaffeineCacheManager</code>.</p>
+<h3 id="custom-configuration">Custom Configuration<a class="headerlink" href="#custom-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableCaching</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CacheConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">CacheManager</span><span class="w"> </span><span class="nf">cacheManager</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">CaffeineCacheManager</span><span class="w"> </span><span class="n">cm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CaffeineCacheManager</span><span class="p">();</span>
+<span class="w">        </span><span class="n">cm</span><span class="p">.</span><span class="na">setCaffeine</span><span class="p">(</span><span class="n">Caffeine</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">maximumSize</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">expireAfterWrite</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">expireAfterAccess</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">recordStats</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">cm</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="per-cache-builder">Per-Cache Builder<a class="headerlink" href="#per-cache-builder" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">CacheManager</span><span class="w"> </span><span class="nf">cacheManager</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CaffeineCacheManager</span><span class="w"> </span><span class="n">cm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CaffeineCacheManager</span><span class="p">();</span>
+<span class="w">    </span><span class="n">cm</span><span class="p">.</span><span class="na">setCacheSpecification</span><span class="p">(</span><span class="s">"maximumSize=1000,expireAfterWrite=10m"</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cm</span><span class="p">.</span><span class="na">registerCustomCache</span><span class="p">(</span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="n">Caffeine</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">maximumSize</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">expireAfterWrite</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">());</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">cm</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Size-based eviction (LRU-ish, Window TinyLFU)</li>
+<li>Time-based expiration (write, access, custom)</li>
+<li>Refresh (async reload)</li>
+<li>Stats (hit rate, load time)</li>
+<li>Async loading</li>
+</ul>
+<h3 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Single-node apps needing fast local cache</li>
+<li>Replace default ConcurrentMap</li>
+<li>When Redis is overkill</li>
+</ul>
+<h3 id="when-not-to-use">When Not to Use<a class="headerlink" href="#when-not-to-use" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Multiple app instances needing shared cache → use Redis/Hazelcast</li>
+</ul>
+<h3 id="stats">Stats<a class="headerlink" href="#stats" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.caffeine.spec</span><span class="o">=</span><span class="s">recordStats</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">CaffeineCache</span><span class="w"> </span><span class="n">cache</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">CaffeineCache</span><span class="p">)</span><span class="w"> </span><span class="n">cacheManager</span><span class="p">.</span><span class="na">getCache</span><span class="p">(</span><span class="s">"users"</span><span class="p">);</span>
+<span class="n">CacheStats</span><span class="w"> </span><span class="n">stats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cache</span><span class="p">.</span><span class="na">getNativeCache</span><span class="p">().</span><span class="na">stats</span><span class="p">();</span>
+<span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">"Hit rate: {}"</span><span class="p">,</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="na">hitRate</span><span class="p">());</span>
+</code></pre></div>
+<p>Exposed via Actuator <code>/actuator/metrics/cache.*</code> if Micrometer enabled.</p>
+<hr />
+<h2 id="14-cache-metrics-monitoring">14. Cache Metrics &amp; Monitoring<a class="headerlink" href="#14-cache-metrics-monitoring" title="Permanent link">&para;</a></h2>
+<h3 id="auto-registered-metrics">Auto-Registered Metrics<a class="headerlink" href="#auto-registered-metrics" title="Permanent link">&para;</a></h3>
+<p>With Actuator + Micrometer, cache metrics are auto-published:</p>
+<div class="highlight"><pre><span></span><code>cache.gets{name="users", result="hit"}
+cache.gets{name="users", result="miss"}
+cache.puts{name="users"}
+cache.evictions{name="users"}
+cache.size{name="users"}
+</code></pre></div>
+<h3 id="enable-cache-metrics">Enable Cache Metrics<a class="headerlink" href="#enable-cache-metrics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">CacheManager</span><span class="w"> </span><span class="nf">cacheManager</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CaffeineCacheManager</span><span class="w"> </span><span class="n">cm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CaffeineCacheManager</span><span class="p">();</span>
+<span class="w">    </span><span class="n">cm</span><span class="p">.</span><span class="na">setCaffeine</span><span class="p">(</span><span class="n">Caffeine</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">().</span><span class="na">recordStats</span><span class="p">());</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">cm</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>For Redis, use <code>RedisCacheManager</code> and Micrometer auto-instruments.</p>
+<h3 id="query-metrics">Query Metrics<a class="headerlink" href="#query-metrics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>/actuator/metrics/cache.gets
+curl<span class="w"> </span>/actuator/metrics/cache.gets?tag<span class="o">=</span>name:users<span class="p">&amp;</span><span class="nv">tag</span><span class="o">=</span>result:hit
+</code></pre></div>
+<h3 id="custom-metrics">Custom Metrics<a class="headerlink" href="#custom-metrics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CacheMetrics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">CacheMetrics</span><span class="p">(</span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">CacheManager</span><span class="w"> </span><span class="n">cm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">registry</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Gauge</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">"cache.size"</span><span class="p">,</span><span class="w"> </span><span class="n">cm</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Cache</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">getCache</span><span class="p">(</span><span class="s">"users"</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">((</span><span class="n">CaffeineCache</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="p">).</span><span class="na">getNativeCache</span><span class="p">().</span><span class="na">estimatedSize</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}).</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="alerting">Alerting<a class="headerlink" href="#alerting" title="Permanent link">&para;</a></h3>
+<p>Alert on:
+- <strong>Low hit ratio</strong> (&lt;50%) → cache is ineffective
+- <strong>High eviction rate</strong> → cache too small
+- <strong>Redis connection errors</strong> → cache layer down</p>
+<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
+<p>Enable cache debug logs:</p>
+<div class="highlight"><pre><span></span><code><span class="na">logging.level.org.springframework.cache</span><span class="o">=</span><span class="s">DEBUG</span>
+</code></pre></div>
+<p>Logs cache hits/misses with method and key.</p>
+<hr />
+<h2 id="15-common-pitfalls">15. Common Pitfalls<a class="headerlink" href="#15-common-pitfalls" title="Permanent link">&para;</a></h2>
+<h3 id="151-self-invocation">15.1 Self-Invocation<a class="headerlink" href="#151-self-invocation" title="Permanent link">&para;</a></h3>
+<p>Same as <code>@Transactional</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">   </span><span class="c1">// ❌ bypasses @Cacheable</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Cacheable</span><span class="p">(</span><span class="s">"users"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Fix: split into another bean, or inject self, or use <code>AopContext.currentProxy()</code>.</p>
+<h3 id="152-caching-nulls">15.2 Caching Nulls<a class="headerlink" href="#152-caching-nulls" title="Permanent link">&para;</a></h3>
+<p>By default, null results are cached. For optional values, may be desirable; for missing data, often not.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">unless</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#result == null"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Or set <code>spring.cache.redis.cache-null-values=false</code>.</p>
+<h3 id="153-key-collisions">15.3 Key Collisions<a class="headerlink" href="#153-key-collisions" title="Permanent link">&para;</a></h3>
+<p>Two different methods returning different types but same key value → same cache entry. Use distinct caches per method or prefix keys.</p>
+<h3 id="154-mutable-objects">15.4 Mutable Objects<a class="headerlink" href="#154-mutable-objects" title="Permanent link">&para;</a></h3>
+<p>Cached objects are shared. Mutating one affects all callers.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="s">"users"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="n">User</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="mi">1L</span><span class="p">);</span>
+<span class="n">u</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">"Hacked"</span><span class="p">);</span><span class="w">    </span><span class="c1">// ⚠️ cached object mutated!</span>
+</code></pre></div>
+<p>Fix: cache immutable DTOs, or deep-copy on cache/retrieve.</p>
+<h3 id="155-cache-stampede">15.5 Cache Stampede<a class="headerlink" href="#155-cache-stampede" title="Permanent link">&para;</a></h3>
+<p>Many concurrent misses on the same key → all compute simultaneously.</p>
+<p>Fix: <code>@Cacheable(sync = true)</code>.</p>
+<h3 id="156-forgetting-eviction">15.6 Forgetting Eviction<a class="headerlink" href="#156-forgetting-eviction" title="Permanent link">&para;</a></h3>
+<p>Cache grows stale after writes.</p>
+<p>Fix: <code>@CacheEvict</code> or <code>@CachePut</code> on write methods.</p>
+<h3 id="157-using-cache-for-consistency-critical-data">15.7 Using Cache for Consistency-Critical Data<a class="headerlink" href="#157-using-cache-for-consistency-critical-data" title="Permanent link">&para;</a></h3>
+<p>Cached data is eventually consistent. Don't cache data where stale reads cause bugs.</p>
+<h3 id="158-cache-inherited-methods">15.8 Cache Inherited Methods<a class="headerlink" href="#158-cache-inherited-methods" title="Permanent link">&para;</a></h3>
+<p><code>@Cacheable</code> on a class caches inherited public methods, but annotations on overridden methods may not inherit.</p>
+<h3 id="159-cache-transaction-ordering">15.9 Cache + Transaction Ordering<a class="headerlink" href="#159-cache-transaction-ordering" title="Permanent link">&para;</a></h3>
+<p>If <code>@Cacheable</code> method is also <code>@Transactional</code>, careful:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="s">"users"</span><span class="p">)</span>
+<span class="nd">@Transactional</span><span class="p">(</span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Order: Cache advice runs <strong>outside</strong> transaction advice by default. On miss, opens transaction, returns result, caches after commit. Usually fine.</p>
+<p>For write methods with <code>@CachePut</code> + <code>@Transactional</code>, the cache is updated <strong>before</strong> commit — if transaction rolls back, cache has stale value.</p>
+<p>Fix: use <code>@TransactionalEventListener(AFTER_COMMIT)</code> to populate cache.</p>
+<h3 id="1510-big-objects">15.10 Big Objects<a class="headerlink" href="#1510-big-objects" title="Permanent link">&para;</a></h3>
+<p>Caching large objects (images, big lists) can exhaust memory.</p>
+<p>Fix: bound size (<code>maximumSize</code>), use off-heap (Ehcache), or cache references/IDs.</p>
+<h3 id="pitfalls-checklist">Pitfalls Checklist<a class="headerlink" href="#pitfalls-checklist" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] No self-invocation</li>
+<li>[ ] <code>unless</code> set for nulls if needed</li>
+<li>[ ] Keys unique per cache</li>
+<li>[ ] Cached objects immutable</li>
+<li>[ ] <code>sync=true</code> for hot keys</li>
+<li>[ ] Eviction on writes</li>
+<li>[ ] TTL set appropriately</li>
+<li>[ ] Cache manager configured for prod</li>
+<li>[ ] Metrics monitored</li>
+</ul>
+<hr />
+<h2 id="16-interview-questions">16. Interview Questions<a class="headerlink" href="#16-interview-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-what-is-caching-and-why-use-springs-cache-abstraction">Q1. What is caching and why use Spring's cache abstraction?<a class="headerlink" href="#q1-what-is-caching-and-why-use-springs-cache-abstraction" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Caching stores expensive operation results for faster retrieval. Spring's abstraction provides consistent annotations (<code>@Cacheable</code>, <code>@CachePut</code>, <code>@CacheEvict</code>) over multiple providers (Caffeine, Redis, Ehcache), so you can swap providers without changing business code.</p>
+<h3 id="q2-difference-between-cacheable-cacheput-and-cacheevict">Q2. Difference between @Cacheable, @CachePut, and @CacheEvict?<a class="headerlink" href="#q2-difference-between-cacheable-cacheput-and-cacheevict" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong>
+- <code>@Cacheable</code>: check cache; on miss, invoke method and cache result
+- <code>@CachePut</code>: always invoke method and update cache
+- <code>@CacheEvict</code>: remove entries from cache</p>
+<h3 id="q3-what-is-the-difference-between-condition-and-unless">Q3. What is the difference between <code>condition</code> and <code>unless</code>?<a class="headerlink" href="#q3-what-is-the-difference-between-condition-and-unless" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>condition</code> is evaluated <strong>before</strong> the method — if false, cache is skipped entirely. <code>unless</code> is evaluated <strong>after</strong> the method using <code>#result</code> — if true, the result is not cached.</p>
+<h3 id="q4-how-does-spring-generate-cache-keys">Q4. How does Spring generate cache keys?<a class="headerlink" href="#q4-how-does-spring-generate-cache-keys" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> By default, all method arguments — single arg is used directly; multiple args → <code>SimpleKey</code>. Override with <code>key = "#id"</code> (SpEL) or a custom <code>KeyGenerator</code>.</p>
+<h3 id="q5-what-is-allentries-true-in-cacheevict">Q5. What is <code>allEntries = true</code> in @CacheEvict?<a class="headerlink" href="#q5-what-is-allentries-true-in-cacheevict" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Clears <strong>all entries</strong> in the specified cache(s), ignoring the key. Use for bulk invalidation ("refresh entire cache").</p>
+<h3 id="q6-what-is-beforeinvocation-true-in-cacheevict">Q6. What is <code>beforeInvocation = true</code> in @CacheEvict?<a class="headerlink" href="#q6-what-is-beforeinvocation-true-in-cacheevict" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Evicts <strong>before</strong> the method runs, even if it throws. Default is false — eviction happens only on successful method return.</p>
+<h3 id="q7-how-do-you-cache-multiple-keys-for-one-method">Q7. How do you cache multiple keys for one method?<a class="headerlink" href="#q7-how-do-you-cache-multiple-keys-for-one-method" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Use <code>@Caching</code> with multiple <code>@CachePut</code> / <code>@CacheEvict</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Caching</span><span class="p">(</span><span class="n">put</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.id"</span><span class="p">),</span>
+<span class="w">    </span><span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"usersByEmail"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.email"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+<h3 id="q8-what-is-cache-stampede-and-how-do-you-prevent-it">Q8. What is cache stampede and how do you prevent it?<a class="headerlink" href="#q8-what-is-cache-stampede-and-how-do-you-prevent-it" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Many concurrent requests miss the same cache key and all invoke the method. Prevent with <code>@Cacheable(sync = true)</code> (single execution per key) or by pre-warming caches.</p>
+<h3 id="q9-how-do-you-disable-caching-in-tests">Q9. How do you disable caching in tests?<a class="headerlink" href="#q9-how-do-you-disable-caching-in-tests" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>spring.cache.type=none</code> property, or <code>@TestPropertySource(properties = "spring.cache.type=none")</code>, or don't add <code>@EnableCaching</code>.</p>
+<h3 id="q10-how-do-you-customize-cache-error-handling">Q10. How do you customize cache error handling?<a class="headerlink" href="#q10-how-do-you-customize-cache-error-handling" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Implement <code>CachingConfigurer.errorHandler()</code> returning a <code>CacheErrorHandler</code>. Often used to log and swallow cache errors (cache should never break the app).</p>
+<h3 id="q11-what-are-the-differences-between-caffeine-and-redis-caches">Q11. What are the differences between Caffeine and Redis caches?<a class="headerlink" href="#q11-what-are-the-differences-between-caffeine-and-redis-caches" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Caffeine is in-memory, per-JVM, fastest — good for single-node. Redis is external, distributed, shared across instances — required for multi-node. Caffeine can't share state; Redis adds network latency.</p>
+<h3 id="q12-how-do-you-configure-different-ttls-for-different-caches">Q12. How do you configure different TTLs for different caches?<a class="headerlink" href="#q12-how-do-you-configure-different-ttls-for-different-caches" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> With <code>RedisCacheManager</code> or <code>CaffeineCacheManager</code> and <code>withCacheConfiguration</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">RedisCacheManager</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">cf</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">withCacheConfiguration</span><span class="p">(</span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">().</span><span class="na">entryTtl</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+<span class="w">    </span><span class="p">.</span><span class="na">withCacheConfiguration</span><span class="p">(</span><span class="s">"products"</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">().</span><span class="na">entryTtl</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofHours</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+<span class="w">    </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="q13-why-is-caching-nulls-sometimes-bad">Q13. Why is caching nulls sometimes bad?<a class="headerlink" href="#q13-why-is-caching-nulls-sometimes-bad" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Caching nulls consumes memory and can hide data that later appears (e.g., a user created later). Use <code>unless = "#result == null"</code> to skip caching nulls.</p>
+<h3 id="q14-how-does-cacheable-interact-with-transactional">Q14. How does @Cacheable interact with @Transactional?<a class="headerlink" href="#q14-how-does-cacheable-interact-with-transactional" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Cache advice runs <strong>outside</strong> the transaction. On miss, transaction opens, method runs, transaction commits, then result is cached. For write methods, <code>@CachePut</code> may update cache before commit — consider <code>@TransactionalEventListener(AFTER_COMMIT)</code> for correctness.</p>
+<h3 id="q15-what-is-the-self-invocation-problem-in-caching">Q15. What is the "self-invocation" problem in caching?<a class="headerlink" href="#q15-what-is-the-self-invocation-problem-in-caching" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Calling a <code>@Cacheable</code> method from within the same bean bypasses the proxy, so caching is skipped. Same as <code>@Transactional</code>. Fix by splitting into another bean or injecting self.</p>
+<h3 id="q16-what-is-the-default-cachemanager-in-spring-boot">Q16. What is the default CacheManager in Spring Boot?<a class="headerlink" href="#q16-what-is-the-default-cachemanager-in-spring-boot" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>ConcurrentMapCacheManager</code> (in-memory, no TTL, no eviction) when no provider is present. Fine for dev, not production.</p>
+<h3 id="q17-how-do-you-cache-collection-results">Q17. How do you cache collection results?<a class="headerlink" href="#q17-how-do-you-cache-collection-results" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Same as any method — <code>@Cacheable</code> on a method returning <code>List&lt;T&gt;</code>. Be careful: the entire list is cached as one object. If any item changes, the whole list is stale. Better: cache individual items by key.</p>
+<h3 id="q18-what-is-a-cache-hit-ratio-and-how-do-you-monitor-it">Q18. What is a cache hit ratio and how do you monitor it?<a class="headerlink" href="#q18-what-is-a-cache-hit-ratio-and-how-do-you-monitor-it" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> <code>hits / (hits + misses)</code>. Monitor via Micrometer metrics (<code>cache.gets{result=hit|miss}</code>) exposed on <code>/actuator/metrics/cache.gets</code>. Aim &gt;80% for effective caching.</p>
+<h3 id="q19-can-you-cache-optional">Q19. Can you cache Optional<User>?<a class="headerlink" href="#q19-can-you-cache-optional" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Yes, but it caches the <code>Optional</code> wrapper. Note that Java <code>Optional</code> isn't <code>Serializable</code> by default — for Redis, disable <code>Optional</code> caching or provide a custom serializer.</p>
+<h3 id="q20-how-do-you-invalidate-the-cache-when-data-changes-externally">Q20. How do you invalidate the cache when data changes externally?<a class="headerlink" href="#q20-how-do-you-invalidate-the-cache-when-data-changes-externally" title="Permanent link">&para;</a></h3>
+<p><strong>Answer:</strong> Options:
+1. <strong>TTL</strong> — expire after N minutes
+2. <strong>Explicit eviction</strong> via <code>@CacheEvict</code> in the write path
+3. <strong>Versioned keys</strong> — include a version in the key
+4. <strong>Pub/sub</strong> — broadcast invalidation (Redis pub/sub, Spring Cloud Bus)</p>
+<hr />
+<h2 id="17-cheat-sheet">17. Cheat Sheet<a class="headerlink" href="#17-cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="enable_1">Enable<a class="headerlink" href="#enable_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableCaching</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">App</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.type</span><span class="o">=</span><span class="s">redis</span>
+<span class="na">spring.cache.redis.time-to-live</span><span class="o">=</span><span class="s">600000</span>
+</code></pre></div>
+<h3 id="annotations">Annotations<a class="headerlink" href="#annotations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">,</span><span class="w"> </span><span class="n">unless</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#result == null"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">allEntries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">clearUsers</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nd">@Caching</span><span class="p">(</span>
+<span class="w">    </span><span class="n">put</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"users"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.id"</span><span class="p">),</span>
+<span class="w">            </span><span class="nd">@CachePut</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"usersByEmail"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#user.email"</span><span class="p">)</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="n">evict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nd">@CacheEvict</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"userList"</span><span class="p">,</span><span class="w"> </span><span class="n">allEntries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="spel-variables">SpEL Variables<a class="headerlink" href="#spel-variables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>#id, #a0, #p0, #user.email       → args
+#result                          → return value (unless)
+#root.method, #root.methodName
+#root.target, #root.targetClass
+#root.args, #root.caches
+</code></pre></div>
+<h3 id="conditional">Conditional<a class="headerlink" href="#conditional" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#id &gt; 0"</span><span class="w">             </span><span class="c1">// before invocation</span>
+<span class="n">unless</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#result == null"</span><span class="w">        </span><span class="c1">// after invocation</span>
+</code></pre></div>
+<h3 id="providers">Providers<a class="headerlink" href="#providers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Dependency</th>
+<th>Distributed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td>(none)</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Caffeine</td>
+<td><code>caffeine</code></td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Ehcache</td>
+<td><code>ehcache</code></td>
+<td>⚠️</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td><code>spring-boot-starter-data-redis</code></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Hazelcast</td>
+<td><code>spring-boot-starter-data-hazelcast</code></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="redis-config">Redis Config<a class="headerlink" href="#redis-config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.type</span><span class="o">=</span><span class="s">redis</span>
+<span class="na">spring.data.redis.host</span><span class="o">=</span><span class="s">localhost</span>
+<span class="na">spring.data.redis.port</span><span class="o">=</span><span class="s">6379</span>
+<span class="na">spring.cache.redis.time-to-live</span><span class="o">=</span><span class="s">600000</span>
+<span class="na">spring.cache.redis.cache-null-values</span><span class="o">=</span><span class="s">false</span>
+<span class="na">spring.cache.redis.key-prefix</span><span class="o">=</span><span class="s">myapp:</span>
+<span class="na">spring.cache.redis.use-key-prefix</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h3 id="custom-redis-cachemanager">Custom Redis CacheManager<a class="headerlink" href="#custom-redis-cachemanager" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">RedisCacheManager</span><span class="w"> </span><span class="nf">cacheManager</span><span class="p">(</span><span class="n">RedisConnectionFactory</span><span class="w"> </span><span class="n">cf</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RedisCacheConfiguration</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RedisCacheConfiguration</span><span class="p">.</span><span class="na">defaultCacheConfig</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">entryTtl</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">disableCachingNullValues</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">serializeKeysWith</span><span class="p">(</span><span class="n">fromSerializer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">StringRedisSerializer</span><span class="p">()))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">serializeValuesWith</span><span class="p">(</span><span class="n">fromSerializer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GenericJackson2JsonRedisSerializer</span><span class="p">()));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RedisCacheManager</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">cf</span><span class="p">).</span><span class="na">cacheDefaults</span><span class="p">(</span><span class="n">config</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="caffeine-config">Caffeine Config<a class="headerlink" href="#caffeine-config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="na">spring.cache.type</span><span class="o">=</span><span class="s">caffeine</span>
+<span class="na">spring.cache.caffeine.spec</span><span class="o">=</span><span class="s">maximumSize=1000,expireAfterWrite=10m,recordStats</span>
+</code></pre></div>
+<h3 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>/actuator/metrics/cache.gets
+curl<span class="w"> </span>/actuator/metrics/cache.gets?tag<span class="o">=</span>name:users<span class="p">&amp;</span><span class="nv">tag</span><span class="o">=</span>result:hit
+curl<span class="w"> </span>/actuator/metrics/cache.evictions?tag<span class="o">=</span>name:users
+</code></pre></div>
+<h3 id="pitfalls-checklist_1">Pitfalls Checklist<a class="headerlink" href="#pitfalls-checklist_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] No self-invocation</li>
+<li>[ ] <code>unless</code> for nulls</li>
+<li>[ ] Immutable cached objects</li>
+<li>[ ] Distinct caches/keys</li>
+<li>[ ] <code>sync=true</code> for hot keys</li>
+<li>[ ] Evict on writes</li>
+<li>[ ] TTL set</li>
+<li>[ ] <code>CacheErrorHandler</code> swallows errors</li>
+<li>[ ] Metrics monitored</li>
+<li>[ ] <code>spring.cache.type=none</code> in tests</li>
+</ul>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Previous:</strong> <code>11_Spring_Data_JDBC.md</code></li>
+<li><strong>Next:</strong> <code>13_Spring_Security_Core.md</code></li>
+<li><strong>Related:</strong> <code>02_Spring_AOP.md</code>, <code>09_Spring_Boot_Actuator.md</code>, <code>10_Spring_Data_JPA.md</code> (L2 cache)</li>
+<li><strong>Interview:</strong> <code>24_Spring_Interview_Questions.md</code></li>
+</ul>
+<hr />
+<h2 id="navigation">🔗 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>📖 <a href="../../../README.md">Table of Contents</a></strong></li>
+<li><strong>← Previous:</strong> <a href="../11_Spring_Data_JDBC/">11_Spring_Data_JDBC.md</a></li>
+<li><strong>Next →:</strong> <a href="./13_Spring_Security_Core.md">13_Spring_Security_Core.md</a></li>
+<li><strong>Related:</strong> <a href="../10_Spring_Data_JPA/">10_Spring_Data_JPA.md</a>, <a href="./09_Spring_Boot_Actuator.md">09_Spring_Boot_Actuator.md</a>, <a href="./26_Spring_Best_Practices.md">26_Spring_Best_Practices.md</a></li>
+</ul>
+<hr />
+<p><em>Part of the <a href="../../../README.md">Spring Study Guide</a> — ⭐ star the repo if it helped!</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
