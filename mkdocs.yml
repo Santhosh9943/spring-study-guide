@@ -14,7 +14,7 @@ theme:
       primary: green
       accent: green
 nav:
-  - Home: README.md
+  - Home: index.md
   - Part 1 — Foundations:
       - Spring Core: docs/part-1-foundations/01_Spring_Framework_Core.md
       - AOP: docs/part-1-foundations/02_Spring_AOP.md
