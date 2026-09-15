@@ -1,0 +1,29 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^\\.\\./",
+      "reason": "Local relative parent directory links"
+    },
+    {
+      "pattern": "^\\./",
+      "reason": "Local relative current directory links"
+    },
+    {
+      "pattern": "^#",
+      "reason": "Anchor links"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "^\\.\\./\\.\\./\\.\\./README\\.md$",
+      "replacement": "https://github.com/Santhosh9943/spring-study-guide/blob/main/README.md"
+    },
+    {
+      "pattern": "^\\.\\./\\.\\./\\.\\./",
+      "replacement": "https://github.com/Santhosh9943/spring-study-guide/blob/main/"
+    }
+  ],
+  "httpHeaders": {
+    "User-Agent": "markdown-link-check"
+  }
+}

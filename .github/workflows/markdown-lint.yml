@@ -14,3 +14,4 @@ jobs:
           globs: |
             docs/**/*.md
             README.md
+          config-file: '.markdownlint.json'
